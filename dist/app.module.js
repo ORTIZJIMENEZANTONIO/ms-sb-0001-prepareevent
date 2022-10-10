@@ -15,6 +15,13 @@ const winston = require("winston");
 const config_service_1 = require("./shared/config/config.service");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const comer_events_module_1 = require("./modules/sera/comer-events/comer-events.module");
+const comer_agreement_events_module_1 = require("./modules/sera/comer-agreement-events/comer-agreement-events.module");
+const comer_property_by_batch_module_1 = require("./modules/sera/comer-property-by-batch/comer-property-by-batch.module");
+const comer_batch_module_1 = require("./modules/sera/comer-batch/comer-batch.module");
+const comer_adjudirec_module_1 = require("./modules/sera/comer-adjudirec/comer-adjudirec.module");
+const comer_client_module_1 = require("./modules/sera/comer-client/comer-client.module");
+const comer_rejected_property_module_1 = require("./modules/sera/comer-rejected-property/comer-rejected-property.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -45,6 +52,13 @@ AppModule = __decorate([
                     new winston.transports.Console({ level: 'debug' }),
                 ],
             }),
+            comer_events_module_1.ComerEventsModule,
+            comer_agreement_events_module_1.ComerAgreementEventsModule,
+            comer_property_by_batch_module_1.ComerPropertyByBatchModule,
+            comer_batch_module_1.ComerBatchModule,
+            comer_adjudirec_module_1.ComerAdjudirecModule,
+            comer_client_module_1.ComerClientModule,
+            comer_rejected_property_module_1.ComerRejectedPropertyModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
