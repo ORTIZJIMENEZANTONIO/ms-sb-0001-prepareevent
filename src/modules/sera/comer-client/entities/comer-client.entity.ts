@@ -15,7 +15,7 @@ import { ApiProperty } from "@nestjs/swagger";
 // @Index("isia178s3_comer_cli", ["nomRazon"], {})
 // @Index("isia178p2_comer_cli", ["rfc"], { unique: true })
 @Entity("comer_clientes", { schema: "sera" })
-export class ComerClientesEntity {
+export class ComerClientEntity {
   @ApiProperty({ example: "No. Cliente" })
   @PrimaryGeneratedColumn({
     name: "id_cliente",
