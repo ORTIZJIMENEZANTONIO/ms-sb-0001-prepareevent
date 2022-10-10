@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerRejectedPropertyEntity {
+export class ComerRejectedPropertyDto {
   idRejectedProperty: string;
 
   idEvent: string;
