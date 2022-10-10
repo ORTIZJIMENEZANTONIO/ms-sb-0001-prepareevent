@@ -1,0 +1,26 @@
+import { ApiProperty } from "@nestjs/swagger";
+
+export class ComerRejectedPropertyEntity {
+  idRejectedProperty: string;
+
+  idEvent: string;
+
+  noProperty: string;
+
+  origin: string | null;
+
+  description: string | null;
+
+  status: string | null;
+
+  cause: string | null;
+
+  event: string | null;
+
+  batchPublic: string | null;
+
+  rejectedReason: string | null;
+
+  batchOrigin: string | null;
+
+}
