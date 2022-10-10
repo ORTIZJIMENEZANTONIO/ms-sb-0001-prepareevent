@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ComerRejectedPropertyDto {
-  idRejectedProperty: string;
+  idRejectedProperty: number;
 
   idEvent: string;
 

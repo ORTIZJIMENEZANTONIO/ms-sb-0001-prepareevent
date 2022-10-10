@@ -12,7 +12,7 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  idRejectedProperty: string;
+  idRejectedProperty: number;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
   idEvent: string;
