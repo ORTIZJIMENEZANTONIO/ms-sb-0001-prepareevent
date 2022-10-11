@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerEventEntity {
+export class UpdateComerEventDto {
   @ApiProperty({ example: "No. Evento" })
   idEventToUpdt: number;
 }

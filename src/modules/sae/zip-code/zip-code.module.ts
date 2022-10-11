@@ -1,21 +1,22 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import {
   makeCounterProvider,
   PrometheusModule,
-} from '@willsoto/nestjs-prometheus';
+} from "@willsoto/nestjs-prometheus";
 
-import { ZipCodeEntity } from './entities/zipCodeEntity.entity';
-import { ZipCodeService } from './zip-code.service';
-import { ZipCodeController } from './zip-code.controller';
+import { ZipCodeEntity } from "./entities/zipCodeEntity.entity";
+import { ZipCodeService } from "./zip-code.service";
+import { ZipCodeController } from "./zip-code.controller";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ZipCodeEntity])],
-  providers: [ZipCodeService,
+  providers: [
+    ZipCodeService,
     makeCounterProvider({
-      name:'zip_code_served',
-      help:'zip_code_help'
-    }) 
+      name: "zip_code_served",
+      help: "zip_code_help",
+    }),
   ],
   controllers: [ZipCodeController],
 })
