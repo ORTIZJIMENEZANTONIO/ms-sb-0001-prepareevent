@@ -27,6 +27,11 @@ export class ComerEventsController {
     );
   }
 
+  @MessagePattern({ cmd: 'getAllComerEvents' })
+  async getAllComerEvents( {inicio, pageSize}: PaginationDto ) {
+    return await this.service.getAllComerEvents( {inicio, pageSize} );
+  }
+
   @MessagePattern({ cmd: "getComerEventByAddress" })
   async getComerEventByAddress(address: string) {
     const codeFound = await this.service.getComerEventByAddress(address);
