@@ -8,14 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerAdjudirecModule = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_adjudirec_service_1 = require("./comer-adjudirec.service");
 const comer_adjudirec_controller_1 = require("./comer-adjudirec.controller");
+const comer_adjudirec_entity_1 = require("./entities/comer-adjudirec.entity");
 let ComerAdjudirecModule = class ComerAdjudirecModule {
 };
 ComerAdjudirecModule = __decorate([
     (0, common_1.Module)({
-        providers: [comer_adjudirec_service_1.ComerAdjudirecService],
-        controllers: [comer_adjudirec_controller_1.ComerAdjudirecController]
+        imports: [typeorm_1.TypeOrmModule.forFeature([comer_adjudirec_entity_1.ComerAdjudirecEntity])],
+        controllers: [comer_adjudirec_controller_1.ComerAdjudirecController],
+        providers: [
+            comer_adjudirec_service_1.ComerAdjudirecService,
+            (0, nestjs_prometheus_1.makeCounterProvider)({
+                name: "comer_adjudirec_served",
+                help: "comer_adjudirec_help",
+            }),
+        ],
     })
 ], ComerAdjudirecModule);
 exports.ComerAdjudirecModule = ComerAdjudirecModule;

@@ -18,11 +18,12 @@ let ZipCodeModule = class ZipCodeModule {
 ZipCodeModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([zipCodeEntity_entity_1.ZipCodeEntity])],
-        providers: [zip_code_service_1.ZipCodeService,
+        providers: [
+            zip_code_service_1.ZipCodeService,
             (0, nestjs_prometheus_1.makeCounterProvider)({
-                name: 'zip_code_served',
-                help: 'zip_code_help'
-            })
+                name: "zip_code_served",
+                help: "zip_code_help",
+            }),
         ],
         controllers: [zip_code_controller_1.ZipCodeController],
     })

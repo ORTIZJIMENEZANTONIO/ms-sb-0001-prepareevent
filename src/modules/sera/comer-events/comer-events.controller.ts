@@ -34,6 +34,7 @@ export class ComerEventsController {
 
   @MessagePattern({ cmd: "getComerEventByAddress" })
   async getComerEventByAddress(address: string) {
+    console.log( address )
     const codeFound = await this.service.getComerEventByAddress(address);
     return (
       codeFound ?? {

@@ -12,8 +12,7 @@ import { ComerRejectedPropertyEntity } from "./entities/comer-rejected-property.
 @Injectable()
 export class ComerRejectedPropertyService {
   constructor(
-    @InjectRepository(ComerRejectedPropertyEntity)
-    private entity: Repository<ComerRejectedPropertyEntity>,
+    @InjectRepository(ComerRejectedPropertyEntity) private entity: Repository<ComerRejectedPropertyEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
     @InjectMetric("comer_rejected_property_served") public counter: Counter<string>
   ) {}
@@ -37,13 +36,13 @@ export class ComerRejectedPropertyService {
     };
   }
 
-  async getComerRejectedPropertyById(id: string) {
+  async getComerRejectedPropertyById(id: number) {
     return await this.entity.findOne({
       where: { idRejectedProperty: id },
     });
   }
 
-  async updateComerRejectedProperty(id: string, updatewarehouseDto: ComerRejectedPropertyDto) {
+  async updateComerRejectedProperty(id: number, updatewarehouseDto: ComerRejectedPropertyDto) {
     const ComerRejectedPropertyFound = await this.entity.findOne({
       where: { idRejectedProperty: id },
     });

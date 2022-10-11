@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerConvEventEntity {
+export class ComerConvEventDto {
   
   @ApiProperty({ example: "ex" })
   idEvent: string;

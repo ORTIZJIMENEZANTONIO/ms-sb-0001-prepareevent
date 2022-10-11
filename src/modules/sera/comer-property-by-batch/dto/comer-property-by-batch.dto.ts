@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerPropertyByBatchEntity {
+export class ComerPropertyByBatchDto {
   @ApiProperty({ example: "No. bien por lote" })
   goodsLoteId: number;
 
