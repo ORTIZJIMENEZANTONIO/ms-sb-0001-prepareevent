@@ -22,6 +22,18 @@ export class ComerEventsService {
     return await this.entity.save(comerEvent);
   }
 
+  async getAllComerEvents({ inicio, pageSize }: PaginationDto) {
+    const [result, total] = await this.entity.findAndCount({
+      order: { eventId: "DESC" },
+      take: pageSize || 10,
+      skip: (inicio - 1) * pageSize || 0,
+    });
+    return {
+      data: result,
+      count: total,
+    };
+  }
+
   async getComerEventByAddress(address: string) {
     return await this.entity.find({ where: { address } });
   }
