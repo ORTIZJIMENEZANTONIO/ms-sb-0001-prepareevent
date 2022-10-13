@@ -9,26 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerPropertyByBatchEntity = void 0;
+exports.ComerGoodsXLotEntity = void 0;
 const typeorm_1 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
-let ComerPropertyByBatchEntity = class ComerPropertyByBatchEntity {
+let ComerGoodsXLotEntity = class ComerGoodsXLotEntity {
 };
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "No. bien por lote" }),
+    (0, swagger_1.ApiProperty)({ example: 'No. bien por lote' }),
     (0, typeorm_1.PrimaryGeneratedColumn)({
         name: "id_bienxlote",
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "goodsLoteId", void 0);
+], ComerGoodsXLotEntity.prototype, "goodsLotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "goodsId", void 0);
+], ComerGoodsXLotEntity.prototype, "goodsId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_lote", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "lotId", void 0);
+], ComerGoodsXLotEntity.prototype, "lotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "valor_base",
@@ -37,7 +37,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "baseValue", void 0);
+], ComerGoodsXLotEntity.prototype, "baseValue", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_avaluo_ref",
@@ -46,7 +46,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "valuReferential", void 0);
+], ComerGoodsXLotEntity.prototype, "valueReferential", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_final",
@@ -55,7 +55,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "finalPrice", void 0);
+], ComerGoodsXLotEntity.prototype, "finalPrice", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "iva_base",
@@ -64,7 +64,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "baseVat", void 0);
+], ComerGoodsXLotEntity.prototype, "baseTax", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "iva_final",
@@ -74,7 +74,7 @@ __decorate([
         default: () => "0",
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "finalVat", void 0);
+], ComerGoodsXLotEntity.prototype, "finalTax", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "porc_iva",
@@ -83,43 +83,43 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "vatPercent", void 0);
+], ComerGoodsXLotEntity.prototype, "taxPercent", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo1", nullable: true, length: 1250 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp1", void 0);
+], ComerGoodsXLotEntity.prototype, "camp1", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo2", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp2", void 0);
+], ComerGoodsXLotEntity.prototype, "camp2", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo3", nullable: true, length: 75 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp3", void 0);
+], ComerGoodsXLotEntity.prototype, "camp3", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo4", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp4", void 0);
+], ComerGoodsXLotEntity.prototype, "camp4", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo5", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp5", void 0);
+], ComerGoodsXLotEntity.prototype, "camp5", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo6", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp6", void 0);
+], ComerGoodsXLotEntity.prototype, "camp6", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo7", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp7", void 0);
+], ComerGoodsXLotEntity.prototype, "camp7", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo8", nullable: true, length: 500 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp8", void 0);
+], ComerGoodsXLotEntity.prototype, "camp8", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo9", nullable: true, length: 50 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "camp9", void 0);
+], ComerGoodsXLotEntity.prototype, "camp9", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "cantidad",
@@ -128,7 +128,7 @@ __decorate([
         scale: 3,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "quantity", void 0);
+], ComerGoodsXLotEntity.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_almacen",
@@ -137,7 +137,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "storeNo", void 0);
+], ComerGoodsXLotEntity.prototype, "storeNo", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "cve_peritaje_jur",
@@ -145,7 +145,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "expertiseCve", void 0);
+], ComerGoodsXLotEntity.prototype, "expertiseCve", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "empresa_valuadora",
@@ -153,7 +153,7 @@ __decorate([
         length: 60,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "appraiserEnterprise", void 0);
+], ComerGoodsXLotEntity.prototype, "appraiserEnterprise", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_inventario",
@@ -161,7 +161,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "inventoryId", void 0);
+], ComerGoodsXLotEntity.prototype, "inventoryId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_sin_iva",
@@ -170,7 +170,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "noVatPrice", void 0);
+], ComerGoodsXLotEntity.prototype, "noTaxPrice", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_app_iva",
@@ -179,7 +179,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "vatAppAmount", void 0);
+], ComerGoodsXLotEntity.prototype, "taxAppAmount", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_noapp_iva",
@@ -189,7 +189,7 @@ __decorate([
         default: () => "0",
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "vatAmountId", void 0);
+], ComerGoodsXLotEntity.prototype, "taxAmountId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "estatus_ant",
@@ -197,11 +197,11 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "antStatus", void 0);
+], ComerGoodsXLotEntity.prototype, "antStatus", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fecha_avaluo", nullable: true }),
     __metadata("design:type", Date)
-], ComerPropertyByBatchEntity.prototype, "appraiserDate", void 0);
+], ComerGoodsXLotEntity.prototype, "appraiserDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "estatus_calc",
@@ -209,7 +209,7 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "calcStatus", void 0);
+], ComerGoodsXLotEntity.prototype, "calcStatus", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_garantia",
@@ -218,7 +218,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "warrantyPrice", void 0);
+], ComerGoodsXLotEntity.prototype, "warrantyPrice", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "estatus_comer",
@@ -226,7 +226,7 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "eatStatus", void 0);
+], ComerGoodsXLotEntity.prototype, "eatStatus", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_transferente",
@@ -235,7 +235,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "transferenceId", void 0);
+], ComerGoodsXLotEntity.prototype, "transferenceId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "anticipo",
@@ -244,7 +244,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "advance", void 0);
+], ComerGoodsXLotEntity.prototype, "advance", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "pctslote",
@@ -253,11 +253,11 @@ __decorate([
         scale: 9,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "lotPcts", void 0);
+], ComerGoodsXLotEntity.prototype, "lotPcts", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fecha_creacion", nullable: true }),
     __metadata("design:type", Date)
-], ComerPropertyByBatchEntity.prototype, "creationDate", void 0);
+], ComerGoodsXLotEntity.prototype, "creationDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_lote_comer",
@@ -266,7 +266,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "eatLotId", void 0);
+], ComerGoodsXLotEntity.prototype, "eatLotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_evento_comer",
@@ -275,7 +275,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "eatEventId", void 0);
+], ComerGoodsXLotEntity.prototype, "eatEventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_evento_remesa",
@@ -284,7 +284,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "consignmentEventId", void 0);
+], ComerGoodsXLotEntity.prototype, "consignmentEventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_lote_remesa",
@@ -293,7 +293,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "consignmentLotId", void 0);
+], ComerGoodsXLotEntity.prototype, "consignmentLotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_bienxlote_remesa",
@@ -302,11 +302,11 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "consignmentGoodsId", void 0);
+], ComerGoodsXLotEntity.prototype, "consignmentGoodsId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "vendido", nullable: true, length: 1 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "sold", void 0);
+], ComerGoodsXLotEntity.prototype, "sold", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "observaciones",
@@ -314,7 +314,7 @@ __decorate([
         length: 4000,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "observation", void 0);
+], ComerGoodsXLotEntity.prototype, "observation", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_factura",
@@ -322,14 +322,14 @@ __decorate([
         length: 10,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "billId", void 0);
+], ComerGoodsXLotEntity.prototype, "billId", void 0);
 __decorate([
     (0, typeorm_1.Column)("timestamp without time zone", {
         name: "fecha_factura",
         nullable: true,
     }),
     __metadata("design:type", Date)
-], ComerPropertyByBatchEntity.prototype, "billDate", void 0);
+], ComerGoodsXLotEntity.prototype, "billDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "seleccionado",
@@ -337,11 +337,11 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "selected", void 0);
+], ComerGoodsXLotEntity.prototype, "selected", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "anexo", nullable: true, length: 2 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "annex", void 0);
+], ComerGoodsXLotEntity.prototype, "annex", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_cilindros",
@@ -349,7 +349,7 @@ __decorate([
         length: 10,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "cylindersId", void 0);
+], ComerGoodsXLotEntity.prototype, "cylindersId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "procedencia",
@@ -357,7 +357,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "origin", void 0);
+], ComerGoodsXLotEntity.prototype, "origin", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "pais_procedencia",
@@ -365,7 +365,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "originCountry", void 0);
+], ComerGoodsXLotEntity.prototype, "originCountry", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "descripcion_lote",
@@ -373,7 +373,7 @@ __decorate([
         length: 255,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "loteDescription", void 0);
+], ComerGoodsXLotEntity.prototype, "loteDescription", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_delegacionrem",
@@ -382,7 +382,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "delegationId", void 0);
+], ComerGoodsXLotEntity.prototype, "delegationId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "observaciones_2",
@@ -390,7 +390,7 @@ __decorate([
         length: 4000,
     }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "observations2", void 0);
+], ComerGoodsXLotEntity.prototype, "observations2", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_avaluo",
@@ -399,13 +399,13 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchEntity.prototype, "appraisalId", void 0);
+], ComerGoodsXLotEntity.prototype, "appraisalId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "a_iva", nullable: true, length: 2 }),
     __metadata("design:type", String)
-], ComerPropertyByBatchEntity.prototype, "vatA", void 0);
-ComerPropertyByBatchEntity = __decorate([
+], ComerGoodsXLotEntity.prototype, "taxA", void 0);
+ComerGoodsXLotEntity = __decorate([
     (0, typeorm_1.Entity)("comer_bienesxlote", { schema: "sera" })
-], ComerPropertyByBatchEntity);
-exports.ComerPropertyByBatchEntity = ComerPropertyByBatchEntity;
+], ComerGoodsXLotEntity);
+exports.ComerGoodsXLotEntity = ComerGoodsXLotEntity;
 //# sourceMappingURL=comer-property-by-batch.entity.js.map

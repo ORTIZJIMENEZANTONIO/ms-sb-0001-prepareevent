@@ -7,16 +7,16 @@ import {
 
 import { ComerPropertyByBatchController } from './comer-property-by-batch.controller';
 import { ComerPropertyByBatchService } from './comer-property-by-batch.service';
-import { ComerPropertyByBatchEntity } from "./entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "./entities/comer-property-by-batch.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ComerPropertyByBatchEntity])],
+  imports: [TypeOrmModule.forFeature([ComerGoodsXLotEntity])],
   controllers: [ComerPropertyByBatchController],
   providers: [
     ComerPropertyByBatchService,
     makeCounterProvider({
-      name: "comer_proeprt_by_batch_served",
-      help: "comer_proeprt_by_batch_help",
+      name: "comer_goods_x_lot_served",
+      help: "comer_goods_x_lot_help",
     }),
   ]
 })

@@ -12,7 +12,13 @@ import { ComerConvEventEntity } from "./entities/comer-agreement-events.entity";
 @Module({
   imports: [TypeOrmModule.forFeature([ComerConvEventEntity])],
   controllers: [ComerAgreementEventsController],
-  providers: [ComerAgreementEventsService],
+  providers: [
+    ComerAgreementEventsService,
+    makeCounterProvider({
+      name: "comer_conv_event_served",
+      help: "comer_conv_event_help",
+    }),
+  ],
 
 })
 export class ComerAgreementEventsModule {}

@@ -3,9 +3,9 @@ import { ApiProperty } from "@nestjs/swagger";
 export class ComerConvEventDto {
   
   @ApiProperty({ example: "ex" })
-  idEvent: string;
+  eventId: number;
 
-  noAnnouncementEvent: string;
+  noAnnouncementEvent: number;
 
   description: string | null;
 

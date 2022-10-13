@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerAgreementEventsModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_agreement_events_service_1 = require("./comer-agreement-events.service");
 const comer_agreement_events_controller_1 = require("./comer-agreement-events.controller");
 const comer_agreement_events_entity_1 = require("./entities/comer-agreement-events.entity");
@@ -18,7 +19,13 @@ ComerAgreementEventsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([comer_agreement_events_entity_1.ComerConvEventEntity])],
         controllers: [comer_agreement_events_controller_1.ComerAgreementEventsController],
-        providers: [comer_agreement_events_service_1.ComerAgreementEventsService],
+        providers: [
+            comer_agreement_events_service_1.ComerAgreementEventsService,
+            (0, nestjs_prometheus_1.makeCounterProvider)({
+                name: "comer_conv_event_served",
+                help: "comer_conv_event_help",
+            }),
+        ],
     })
 ], ComerAgreementEventsModule);
 exports.ComerAgreementEventsModule = ComerAgreementEventsModule;

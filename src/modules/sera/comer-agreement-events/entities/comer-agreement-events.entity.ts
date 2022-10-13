@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 //import { ComerEventos } from "./ComerEventos";
 
 //@Index("isia188p1_comer_con", ["idEvento", "noEventoConvocatoria"], {
@@ -10,13 +10,13 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 //})
 @Entity("comer_conv_eventos", { schema: "sera" })
 export class ComerConvEventEntity {
-  @Column("numeric", {
+  @PrimaryColumn("numeric", {
     primary: true,
     name: "id_evento",
     precision: 7,
     scale: 0,
   })
-  idEvent: string;
+  eventId: number;
 
   @Column("numeric", {
     primary: true,
@@ -24,7 +24,7 @@ export class ComerConvEventEntity {
     precision: 7,
     scale: 0,
   })
-  noAnnouncementEvent: string;
+  noAnnouncementEvent: number;
 
   @Column("character varying", {
     name: "descripcion",

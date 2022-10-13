@@ -16,6 +16,6 @@ class UpdateComerPropertyByBatchDto {
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "No. bien por lote" }),
     __metadata("design:type", Number)
-], UpdateComerPropertyByBatchDto.prototype, "idGoodsBatchToUpdt", void 0);
+], UpdateComerPropertyByBatchDto.prototype, "goodsLotIdToUpdt", void 0);
 exports.UpdateComerPropertyByBatchDto = UpdateComerPropertyByBatchDto;
 //# sourceMappingURL=update-comer-property-by-batch.dto.js.map

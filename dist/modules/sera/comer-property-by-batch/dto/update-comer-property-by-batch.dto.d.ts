@@ -1,5 +1,5 @@
 export declare class UpdateComerPropertyByBatchDto {
-    idGoodsBatchToUpdt: number;
-    idGoodsToUpdt: number;
-    idBatchToUpdt: number;
+    goodsLotIdToUpdt: number;
+    goodsIdToUpdt: number;
+    lotIdToUpdt: number;
 }

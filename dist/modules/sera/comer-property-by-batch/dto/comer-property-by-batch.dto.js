@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerPropertyByBatchDto = void 0;
+exports.ComerGoodsXLotDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class ComerPropertyByBatchDto {
+class ComerGoodsXLotDto {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "No. bien por lote" }),
     __metadata("design:type", Number)
-], ComerPropertyByBatchDto.prototype, "goodsLoteId", void 0);
-exports.ComerPropertyByBatchDto = ComerPropertyByBatchDto;
+], ComerGoodsXLotDto.prototype, "goodsLotId", void 0);
+exports.ComerGoodsXLotDto = ComerGoodsXLotDto;
 //# sourceMappingURL=comer-property-by-batch.dto.js.map

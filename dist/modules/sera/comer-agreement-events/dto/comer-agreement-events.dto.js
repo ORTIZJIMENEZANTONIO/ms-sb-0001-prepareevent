@@ -15,7 +15,7 @@ class ComerConvEventDto {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "ex" }),
-    __metadata("design:type", String)
-], ComerConvEventDto.prototype, "idEvent", void 0);
+    __metadata("design:type", Number)
+], ComerConvEventDto.prototype, "eventId", void 0);
 exports.ComerConvEventDto = ComerConvEventDto;
 //# sourceMappingURL=comer-agreement-events.dto.js.map

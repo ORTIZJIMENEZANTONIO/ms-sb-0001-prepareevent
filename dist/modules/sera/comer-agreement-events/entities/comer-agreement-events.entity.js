@@ -14,14 +14,14 @@ const typeorm_1 = require("typeorm");
 let ComerConvEventEntity = class ComerConvEventEntity {
 };
 __decorate([
-    (0, typeorm_1.Column)("numeric", {
+    (0, typeorm_1.PrimaryColumn)("numeric", {
         primary: true,
         name: "id_evento",
         precision: 7,
         scale: 0,
     }),
-    __metadata("design:type", String)
-], ComerConvEventEntity.prototype, "idEvent", void 0);
+    __metadata("design:type", Number)
+], ComerConvEventEntity.prototype, "eventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         primary: true,
@@ -29,7 +29,7 @@ __decorate([
         precision: 7,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerConvEventEntity.prototype, "noAnnouncementEvent", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {

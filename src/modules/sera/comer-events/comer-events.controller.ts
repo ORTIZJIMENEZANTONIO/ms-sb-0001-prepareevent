@@ -6,8 +6,6 @@ import { MessagePattern } from "@nestjs/microservices";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventsService } from "./comer-events.service";
 import { ComerEventDto } from "./dto/comer-events.dto";
-import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
-import { ComerPropertyByBatchDto } from "../comer-property-by-batch/dto/comer-property-by-batch.dto";
 import { ComerBatchDto } from "../comer-batch/dto/comer-batch.dto";
 
 @Controller("comer-events")

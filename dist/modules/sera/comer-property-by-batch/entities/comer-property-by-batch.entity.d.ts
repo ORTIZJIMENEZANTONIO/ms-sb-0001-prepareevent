@@ -1,13 +1,13 @@
-export declare class ComerPropertyByBatchEntity {
-    goodsLoteId: number;
+export declare class ComerGoodsXLotEntity {
+    goodsLotId: number;
     goodsId: number;
     lotId: number;
     baseValue: number | null;
-    valuReferential: number | null;
+    valueReferential: number | null;
     finalPrice: number | null;
-    baseVat: number | null;
-    finalVat: number | null;
-    vatPercent: number | null;
+    baseTax: number | null;
+    finalTax: number | null;
+    taxPercent: number | null;
     camp1: string | null;
     camp2: string | null;
     camp3: string | null;
@@ -22,9 +22,9 @@ export declare class ComerPropertyByBatchEntity {
     expertiseCve: string | null;
     appraiserEnterprise: string | null;
     inventoryId: string | null;
-    noVatPrice: number;
-    vatAppAmount: number | null;
-    vatAmountId: number | null;
+    noTaxPrice: number;
+    taxAppAmount: number | null;
+    taxAmountId: number | null;
     antStatus: string | null;
     appraiserDate: Date | null;
     calcStatus: string | null;
@@ -52,5 +52,5 @@ export declare class ComerPropertyByBatchEntity {
     delegationId: number | null;
     observations2: string | null;
     appraisalId: number | null;
-    vatA: string | null;
+    taxA: string | null;
 }

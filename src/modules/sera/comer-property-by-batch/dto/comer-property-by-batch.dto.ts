@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerPropertyByBatchDto {
+export class ComerGoodsXLotDto {
   @ApiProperty({ example: "No. bien por lote" })
-  goodsLoteId: number;
+  goodsLotId: number;
 
   goodsId: number;
 
@@ -10,15 +10,15 @@ export class ComerPropertyByBatchDto {
 
   baseValue: number | null;
 
-  valuReferential: number | null;
+  valueReferential: number | null;
 
   finalPrice: number | null;
 
-  baseVat: number | null;
+  baseTax: number | null;
 
-  finalVat: number | null;
+  finalTax: number | null;
 
-  vatPercent: number | null;
+  taxPercent: number | null;
 
   camp1: string | null;
 
@@ -48,11 +48,11 @@ export class ComerPropertyByBatchDto {
 
   inventoryId: string | null;
 
-  noVatPrice: number;
+  noTaxPrice: number;
 
-  vatAppAmount: number | null;
+  taxAppAmount: number | null;
 
-  vatAmountId: number | null;
+  taxAmountId: number | null;
 
   antStatus: string | null;
 
@@ -108,5 +108,5 @@ export class ComerPropertyByBatchDto {
 
   appraisalId: number | null;
 
-  vatA: string | null;
+  taxA: string | null;
 }

@@ -1,23 +1,17 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 
 @Entity("comer_bienesxlote", { schema: "sera" })
-export class ComerPropertyByBatchEntity {
-  @ApiProperty({ example: "No. bien por lote" })
+export class ComerGoodsXLotEntity {
+  @ApiProperty({example: 'No. bien por lote'})
   @PrimaryGeneratedColumn({
     name: "id_bienxlote",
   })
-  goodsLoteId: number;
+  goodsLotId: number;
 
   @Column("numeric", { name: "no_bien", precision: 10, scale: 0 })
   goodsId: number;
+
 
   @Column("numeric", { name: "id_lote", precision: 10, scale: 0 })
   lotId: number;
@@ -36,7 +30,7 @@ export class ComerPropertyByBatchEntity {
     precision: 15,
     scale: 2,
   })
-  valuReferential: number | null;
+  valueReferential: number | null;
 
   @Column("numeric", {
     name: "precio_final",
@@ -52,7 +46,7 @@ export class ComerPropertyByBatchEntity {
     precision: 13,
     scale: 2,
   })
-  baseVat: number | null;
+  baseTax: number | null;
 
   @Column("numeric", {
     name: "iva_final",
@@ -61,7 +55,7 @@ export class ComerPropertyByBatchEntity {
     scale: 2,
     default: () => "0",
   })
-  finalVat: number | null;
+  finalTax: number | null;
 
   @Column("numeric", {
     name: "porc_iva",
@@ -69,7 +63,7 @@ export class ComerPropertyByBatchEntity {
     precision: 2,
     scale: 0,
   })
-  vatPercent: number | null;
+  taxPercent: number | null;
 
   @Column("character varying", { name: "campo1", nullable: true, length: 1250 })
   camp1: string | null;
@@ -141,7 +135,7 @@ export class ComerPropertyByBatchEntity {
     precision: 15,
     scale: 2,
   })
-  noVatPrice: number;
+  noTaxPrice: number;
 
   @Column("numeric", {
     name: "monto_app_iva",
@@ -149,7 +143,7 @@ export class ComerPropertyByBatchEntity {
     precision: 15,
     scale: 2,
   })
-  vatAppAmount: number | null;
+  taxAppAmount: number | null;
 
   @Column("numeric", {
     name: "monto_noapp_iva",
@@ -158,7 +152,7 @@ export class ComerPropertyByBatchEntity {
     scale: 2,
     default: () => "0",
   })
-  vatAmountId: number | null;
+  taxAmountId: number | null;
 
   @Column("character varying", {
     name: "estatus_ant",
@@ -167,7 +161,7 @@ export class ComerPropertyByBatchEntity {
   })
   antStatus: string | null;
 
-  @Column({ type: Date, name: "fecha_avaluo", nullable: true })
+  @Column( {type: Date, name: "fecha_avaluo", nullable: true })
   appraiserDate: Date | null;
 
   @Column("character varying", {
@@ -216,7 +210,7 @@ export class ComerPropertyByBatchEntity {
   })
   lotPcts: number | null;
 
-  @Column({ type: Date, name: "fecha_creacion", nullable: true })
+  @Column( {type: Date,  name: "fecha_creacion", nullable: true })
   creationDate: Date | null;
 
   @Column("numeric", {
@@ -344,5 +338,6 @@ export class ComerPropertyByBatchEntity {
   appraisalId: number | null;
 
   @Column("character varying", { name: "a_iva", nullable: true, length: 2 })
-  vatA: string | null;
+  taxA: string | null;
+
 }
