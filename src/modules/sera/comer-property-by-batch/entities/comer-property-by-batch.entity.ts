@@ -1,19 +1,25 @@
-import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 
 @Entity("comer_bienesxlote", { schema: "sera" })
 export class ComerGoodsXLotEntity {
-  @ApiProperty({example: 'No. bien por lote'})
-  @PrimaryGeneratedColumn({
+  @ApiProperty({ example: "No. bien por lote" })
+  @Column({
     name: "id_bienxlote",
   })
   goodsLotId: number;
 
-  @Column("numeric", { name: "no_bien", precision: 10, scale: 0 })
+  @PrimaryColumn("numeric", { name: "no_bien", precision: 10, scale: 0 })
   goodsId: number;
 
-
-  @Column("numeric", { name: "id_lote", precision: 10, scale: 0 })
+  @PrimaryColumn("numeric", { name: "id_lote", precision: 10, scale: 0 })
   lotId: number;
 
   @Column("numeric", {
@@ -161,7 +167,7 @@ export class ComerGoodsXLotEntity {
   })
   antStatus: string | null;
 
-  @Column( {type: Date, name: "fecha_avaluo", nullable: true })
+  @Column({ type: Date, name: "fecha_avaluo", nullable: true })
   appraiserDate: Date | null;
 
   @Column("character varying", {
@@ -210,7 +216,7 @@ export class ComerGoodsXLotEntity {
   })
   lotPcts: number | null;
 
-  @Column( {type: Date,  name: "fecha_creacion", nullable: true })
+  @Column({ type: Date, name: "fecha_creacion", nullable: true })
   creationDate: Date | null;
 
   @Column("numeric", {
@@ -339,5 +345,4 @@ export class ComerGoodsXLotEntity {
 
   @Column("character varying", { name: "a_iva", nullable: true, length: 2 })
   taxA: string | null;
-
 }

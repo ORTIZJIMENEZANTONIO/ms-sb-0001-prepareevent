@@ -15,18 +15,18 @@ const swagger_1 = require("@nestjs/swagger");
 let ComerGoodsXLotEntity = class ComerGoodsXLotEntity {
 };
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'No. bien por lote' }),
-    (0, typeorm_1.PrimaryGeneratedColumn)({
+    (0, swagger_1.ApiProperty)({ example: "No. bien por lote" }),
+    (0, typeorm_1.Column)({
         name: "id_bienxlote",
     }),
     __metadata("design:type", Number)
 ], ComerGoodsXLotEntity.prototype, "goodsLotId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
+    (0, typeorm_1.PrimaryColumn)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
 ], ComerGoodsXLotEntity.prototype, "goodsId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("numeric", { name: "id_lote", precision: 10, scale: 0 }),
+    (0, typeorm_1.PrimaryColumn)("numeric", { name: "id_lote", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
 ], ComerGoodsXLotEntity.prototype, "lotId", void 0);
 __decorate([

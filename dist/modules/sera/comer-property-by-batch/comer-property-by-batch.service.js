@@ -40,12 +40,12 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
             count: total,
         };
     }
-    async getComerXLotById(comerEvent) {
-        const { goodsLotId } = comerEvent;
+    async getComerXLotByLotId(comerEvent) {
+        const { lotId } = comerEvent;
         const events = await this.entity
             .createQueryBuilder("table")
-            .where({ goodsLotId })
-            .orderBy("table.eventId", "DESC")
+            .where({ lotId })
+            .orderBy("table.goodsLotId", "DESC")
             .getMany();
         return events;
     }

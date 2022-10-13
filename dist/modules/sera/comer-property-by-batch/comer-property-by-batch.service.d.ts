@@ -14,5 +14,5 @@ export declare class ComerPropertyByBatchService {
         data: ComerGoodsXLotEntity[];
         count: number;
     }>;
-    getComerXLotById(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotEntity[]>;
+    getComerXLotByLotId(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotEntity[]>;
 }
