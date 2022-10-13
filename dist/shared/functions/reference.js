@@ -44,10 +44,12 @@ class Reference {
         return hsbcKey;
     }
     static getBanamexKey(batch, mandate, type) {
+        const sumsuc = 329;
+        const sumta = 565;
         const batchFormatted = this.toChar(batch, "00000000");
-        const reference = `${type}${mandate}${batchFormatted}L`;
-        const referenceAux = reference.replace("G", "4").replace("L", "5");
-        const digit = Number(reference.substring(1, 2)) * 19 +
+        const referenceAux = `${type}${mandate}${batchFormatted}L`;
+        const reference = referenceAux.replace("G", "4").replace("L", "5");
+        const digit = (Number(reference.substring(1, 2)) * 19 +
             Number(reference.substring(2, 3)) * 23 +
             Number(reference.substring(3, 4)) * 29 +
             Number(reference.substring(4, 5)) * 31 +
@@ -57,8 +59,15 @@ class Reference {
             Number(reference.substring(8, 9)) * 3 +
             Number(reference.substring(9, 10)) * 5 +
             Number(reference.substring(10, 11)) * 7 +
-            Number(reference.substring(11, 12)) * 7;
-        const checkDigit = 1;
+            Number(reference.substring(11, 12)) * 11 +
+            Number(reference.substring(12, 13)) * 13 +
+            Number(reference.substring(13, 14)) * 17 +
+            Number(reference.substring(14, 15)) * 19 +
+            Number(reference.substring(15, 16)) * 23 +
+            Number(reference.substring(16, 17)) * 29 +
+            Number(reference.substring(17, 18)) * 31 +
+            Number(reference.substring(18, 19)) * 37) || 10 + sumsuc + sumta;
+        const checkDigit = 99 - (digit % 97);
         const banamexKey = `${referenceAux}${this.toChar(checkDigit, "00")}`;
         return banamexKey;
     }

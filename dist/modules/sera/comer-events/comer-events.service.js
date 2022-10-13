@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_events_entity_1 = require("./entities/comer-events.entity");
+const reference_1 = require("../../../shared/functions/reference");
 let ComerEventsService = class ComerEventsService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -50,6 +51,8 @@ let ComerEventsService = class ComerEventsService {
             .orderBy("table.eventId", "DESC")
             .addOrderBy("table.eventTpId", "DESC")
             .getMany();
+        console.log(reference_1.Reference.calculateReference("HSBC", 68807, '800000', "PAG"));
+        console.log(reference_1.Reference.calculateReference("BANAMEX", 68807, '800000', "PAG"));
         return events;
     }
     async getComerEventByAddressAndId(comerEvent) {

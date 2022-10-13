@@ -47,8 +47,8 @@ export class ComerEventsService {
       .addOrderBy("table.eventTpId", "DESC")
       .getMany();
 
-    //Reference.calculateReference("HSBC", 68807, '800000', "PAG")
-    //Reference.calculateReference("BANAMEX", 68807, '800000', "PAG")
+    console.log(Reference.calculateReference("HSBC", 68807, '800000', "PAG"))
+    console.log(Reference.calculateReference("BANAMEX", 68807, '800000', "PAG"))
     //if (events.length < 1)
     //  throw new NotFoundException( `Comer event not found with address: ${address} `);
     return events;

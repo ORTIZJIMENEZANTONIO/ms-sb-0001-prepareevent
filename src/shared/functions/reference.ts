@@ -25,7 +25,7 @@ export class Reference {
     );
     return batchComplement.join("").trim();
   }
-  // query string
+
   static getHsbcKey(batch: number, mandate: string, type: string): string {
     const batchFormatted = this.toChar(batch, "00000000");
     const reference = `${type}${mandate}${batchFormatted}L`;
@@ -50,10 +50,12 @@ export class Reference {
   }
 
   static getBanamexKey(batch: number, mandate: string, type: string): string {
+    const sumsuc = 329; // SUMA DE LA CONVERSION DE LA SUCURSAL 0650    JCHN --* SE COMENTARON PORQUE NO SE NECESITAN YA EN EL NUEVO CALCULO 29/01/08
+    const sumta = 565; //-- SUMA DE LA CONVERSION DE LA CUENTA   7495220 JCHN
     const batchFormatted = this.toChar(batch, "00000000");
-    const reference = `${type}${mandate}${batchFormatted}L`;
-    const referenceAux = reference.replace("G", "4").replace("L", "5");
-    const digit = Number(reference.substring(1, 2)) * 19 + 
+    const referenceAux = `${type}${mandate}${batchFormatted}L`;
+    const reference = referenceAux.replace("G", "4").replace("L", "5");
+    const digit = (Number(reference.substring(1, 2)) * 19 + 
     Number(reference.substring(2, 3)) * 23 +
     Number(reference.substring(3, 4)) * 29 +
     Number(reference.substring(4, 5)) * 31 +
@@ -63,38 +65,17 @@ export class Reference {
     Number(reference.substring(8, 9)) * 3 +
     Number(reference.substring(9, 10)) * 5 +
     Number(reference.substring(10, 11)) * 7 +
-    Number(reference.substring(11, 12)) * 7
-    /*
-  	CA_DIGVERIF   := 99 - 
-    MOD(
-      (
-        (
-  		    SUBSTR(CA_REFERENCIA,11,1)*11+SUBSTR(CA_REFERENCIA,12,1)*13+
-  		    SUBSTR(CA_REFERENCIA,13,1)*17+SUBSTR(CA_REFERENCIA,14,1)*19+SUBSTR(CA_REFERENCIA,15,1)*23+SUBSTR(CA_REFERENCIA,16,1)*29+
-  		    SUBSTR(CA_REFERENCIA,17,1)*31+SUBSTR(CA_REFERENCIA,18,1)*37
-        ) 
-        + CA_SUMSUC + CA_SUMCTA
-      ),97);
-  	CA_REFERENCIA := CA_REFEAUX || TO_CHAR(CA_DIGVERIF,'00');	
-		CA_REFERENCIA := REPLACE(CA_REFERENCIA, ' ', '');
-  	RETURN CA_REFERENCIA;
-  END IF;
-    */
-    const checkDigit = 1;
+    Number(reference.substring(11, 12)) * 11 +
+    Number(reference.substring(12, 13)) * 13 +
+    Number(reference.substring(13, 14)) * 17 +
+    Number(reference.substring(14, 15)) * 19 +
+    Number(reference.substring(15, 16)) * 23 +
+    Number(reference.substring(16, 17)) * 29 +
+    Number(reference.substring(17, 18)) * 31 +
+    Number(reference.substring(18, 19)) * 37 ) || 10 + sumsuc + sumta;
+    const checkDigit = 99 - (digit % 97);
     const banamexKey = `${referenceAux}${this.toChar(checkDigit, "00")}`;
     return banamexKey;
   }
 
-  /**
-   FUNCTION CALCULA_REFERENCIA (
-		PLOTE IN NUMBER, 
-		PMANDATO IN VARCHAR2, 
-		PTIPO IN VARCHAR2
-	) RETURN VARCHAR2 IS
-	CA_SUMSUC			NUMBER(3)   := 329; -- SUMA DE LA CONVERSION DE LA SUCURSAL 0650    JCHN --* SE COMENTARON PORQUE NO SE NECESITAN YA EN EL NUEVO CALCULO 29/01/08
-	CA_SUMCTA			NUMBER(4)   := 565; -- SUMA DE LA CONVERSION DE LA CUENTA   7495220 JCHN
-	CA_REFERENCIA VARCHAR2(30);
-	CA_REFEAUX		VARCHAR2(20);
-	CA_DIGVERIF		NUMBER(2);	
-  */
 }
