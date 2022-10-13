@@ -18,11 +18,11 @@ export class ComerPropertyByBatchService {
     @InjectMetric("comer_goods_x_lot_served") public counter: Counter<string>
   ) {}
 
-  async createComerEvent(comerEvent: ComerGoodsXLotDto) {
+  async createComerGoodXLot(comerEvent: ComerGoodsXLotDto) {
     return await this.entity.save(comerEvent);
   }
 
-  async getAllComerEvents({ inicio, pageSize }: PaginationDto) {
+  async getAllComerGoodXLots({ inicio, pageSize }: PaginationDto) {
     const [result, total] = await this.entity.findAndCount({
       order: { goodsLotId: "DESC" },
       take: pageSize || 10,
@@ -34,12 +34,14 @@ export class ComerPropertyByBatchService {
     };
   }
 
-  async getComerXLotByLotId(comerEvent: ComerGoodsXLotDto) {
-    const { lotId } = comerEvent;
+  async getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto) {
+    const { lotId, inicio = 1, pageSize = 10  } = comerEvent;
     const events = await this.entity
       .createQueryBuilder("table")
       .where({ lotId })
-      .orderBy("table.goodsLotId", "DESC")
+      .take(pageSize)
+      .skip((inicio - 1) * pageSize || 0)
+      .orderBy("table.goodsId", "DESC")
       .getMany();
 
     return events;

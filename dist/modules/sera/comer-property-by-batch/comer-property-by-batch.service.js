@@ -26,10 +26,10 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerEvent(comerEvent) {
+    async createComerGoodXLot(comerEvent) {
         return await this.entity.save(comerEvent);
     }
-    async getAllComerEvents({ inicio, pageSize }) {
+    async getAllComerGoodXLots({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
             order: { goodsLotId: "DESC" },
             take: pageSize || 10,
@@ -41,11 +41,13 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         };
     }
     async getComerXLotByLotId(comerEvent) {
-        const { lotId } = comerEvent;
+        const { lotId, inicio = 1, pageSize = 10 } = comerEvent;
         const events = await this.entity
             .createQueryBuilder("table")
             .where({ lotId })
-            .orderBy("table.goodsLotId", "DESC")
+            .take(pageSize)
+            .skip((inicio - 1) * pageSize || 0)
+            .orderBy("table.goodsId", "DESC")
             .getMany();
         return events;
     }

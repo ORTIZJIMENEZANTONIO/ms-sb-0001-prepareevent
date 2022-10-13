@@ -9,10 +9,10 @@ export declare class ComerPropertyByBatchService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerGoodsXLotEntity>, logger: Logger, counter: Counter<string>);
-    createComerEvent(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotDto & ComerGoodsXLotEntity>;
-    getAllComerEvents({ inicio, pageSize }: PaginationDto): Promise<{
+    createComerGoodXLot(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotDto & ComerGoodsXLotEntity>;
+    getAllComerGoodXLots({ inicio, pageSize }: PaginationDto): Promise<{
         data: ComerGoodsXLotEntity[];
         count: number;
     }>;
-    getComerXLotByLotId(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotEntity[]>;
+    getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto): Promise<ComerGoodsXLotEntity[]>;
 }
