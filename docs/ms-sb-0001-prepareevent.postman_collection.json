@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "f7aef0c5-51d4-49fd-908e-e184fcbc8e1d",
+		"name": "ms-sb-0001-prepareevent",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6419147"
+	},
+	"item": [
+		{
+			"name": "comer-events",
+			"item": [
+				{
+					"name": "getComerEventByAddress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerEvents}}/address/?address=A&inicio=1&pageSize=3",
+							"host": [
+								"{{port}}{{comerEvents}}"
+							],
+							"path": [
+								"address",
+								""
+							],
+							"query": [
+								{
+									"key": "address",
+									"value": "A"
+								},
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComerEventByAddressAndId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerEvents}}/adress-and-eventid/?address=A&eventId=23190",
+							"host": [
+								"{{port}}{{comerEvents}}"
+							],
+							"path": [
+								"adress-and-eventid",
+								""
+							],
+							"query": [
+								{
+									"key": "address",
+									"value": "A"
+								},
+								{
+									"key": "eventId",
+									"value": "23190"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComerEventByTpEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventTpId\": 6,\n    \"lotId\": 10914,\n    \"address\": \"M\",\n    \"inicio\": 1,\n    \"pageSize\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerEvents}}/tp-event-amd-not-sold/",
+							"host": [
+								"{{port}}{{comerEvents}}"
+							],
+							"path": [
+								"tp-event-amd-not-sold",
+								""
+							],
+							"query": [
+								{
+									"key": "eventTpId",
+									"value": "6",
+									"disabled": true
+								},
+								{
+									"key": "lotId",
+									"value": "10914",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "M",
+									"disabled": true
+								},
+								{
+									"key": "inicio",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comer-conv-event",
+			"item": [
+				{
+					"name": "getComerConvEventById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerConvEvent}}",
+							"host": [
+								"{{port}}{{comerConvEvent}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComerConvEventById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerConvEvent}}/by-id/?eventId=1",
+							"host": [
+								"{{port}}{{comerConvEvent}}"
+							],
+							"path": [
+								"by-id",
+								""
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comer-goods-x-lot",
+			"item": [
+				{
+					"name": "getComerEventByAddress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerPropertyByBatch}}/lot-id/?lotId=1",
+							"host": [
+								"{{port}}{{comerPropertyByBatch}}"
+							],
+							"path": [
+								"lot-id",
+								""
+							],
+							"query": [
+								{
+									"key": "lotId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllComerEvents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerPropertyByBatch}}",
+							"host": [
+								"{{port}}{{comerPropertyByBatch}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "http://localhost:3001"
+		},
+		{
+			"key": "comerEvents",
+			"value": "/api/v1/comer-events"
+		},
+		{
+			"key": "comerConvEvent",
+			"value": "/api/v1/comer-agreement-events"
+		},
+		{
+			"key": "comerPropertyByBatch",
+			"value": "/api/v1/comer-property-by-batch"
+		}
+	]
+}
