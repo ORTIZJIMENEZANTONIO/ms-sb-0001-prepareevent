@@ -40,8 +40,49 @@ let ComerEventsService = class ComerEventsService {
             count: total,
         };
     }
-    async getComerEventByAddress(address) {
-        return await this.entity.find({ where: { address } });
+    async getComerEventByAddress(comerEvent) {
+        const { address, inicio = 1, pageSize = 10 } = comerEvent;
+        const events = await this.entity
+            .createQueryBuilder("table")
+            .where({ address: address })
+            .take(pageSize)
+            .skip((inicio - 1) * pageSize || 0)
+            .orderBy("table.eventId", "DESC")
+            .addOrderBy("table.eventTpId", "DESC")
+            .getMany();
+        return events;
+    }
+    async getComerEventByAddressAndId(comerEvent) {
+        const { address, eventId } = comerEvent;
+        const events = await this.entity
+            .createQueryBuilder("table")
+            .where({ eventId })
+            .andWhere({ address })
+            .orderBy("table.eventId", "DESC")
+            .getMany();
+        return events;
+    }
+    async getComerEventByTpEvent(comerEvent) {
+        const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
+        const subQueryDeep = await this.entity.query(`
+      SELECT 1
+      FROM   sera.COMER_BIENESXLOTE BXL
+      WHERE  BXL.ID_LOTE = ${lotId}
+      AND  BXL.VENDIDO IS NULL
+    `);
+        const subQuery = await this.entity.query(`
+      SELECT 1
+      FROM   sera.COMER_LOTES LOT
+      WHERE  ${subQueryDeep.length > 0}
+    `);
+        const events = await this.entity
+            .createQueryBuilder("t")
+            .where({ eventTpId })
+            .andWhere({ address })
+            .take(pageSize)
+            .skip((inicio - 1) * pageSize || 0)
+            .orderBy("t.eventId", "DESC");
+        return subQuery.length < 1 ? [] : events.getMany();
     }
 };
 ComerEventsService = __decorate([

@@ -1,0 +1,100 @@
+export class Reference {
+  private banks = ["HSBC", "BANAMEX"];
+
+  static calculateReference(
+    bank: string,
+    batch: number,
+    mandate: string,
+    type: string
+  ): string {
+    switch (bank) {
+      case "HSBC":
+        return this.getHsbcKey(batch, mandate, type);
+      case "BANAMEX":
+        return this.getBanamexKey(batch, mandate, type);
+      default:
+        return "";
+    }
+  }
+
+  static toChar(num: number, format: string) {
+    const referenceLength = format.length;
+    const batchComplement = new Array(referenceLength).fill(format[0]);
+    [...num.toString()].map(
+      (letter, index) => (batchComplement[index] = letter)
+    );
+    return batchComplement.join("").trim();
+  }
+  // query string
+  static getHsbcKey(batch: number, mandate: string, type: string): string {
+    const batchFormatted = this.toChar(batch, "00000000");
+    const reference = `${type}${mandate}${batchFormatted}L`;
+    const referenceAux = reference.replace("G", "7").replace("L", "3");
+    const digit = Number(reference.substring(14, 15)) * 13 + 
+    Number(reference.substring(13, 14)) * 17 + 
+    Number(reference.substring(12, 13)) * 19 + 
+    Number(reference.substring(11, 12)) * 23 + 
+    Number(reference.substring(10, 11)) * 11 + 
+    Number(reference.substring(9, 10)) * 13 + 
+    Number(reference.substring(8, 9)) * 17 + 
+    Number(reference.substring(7, 8)) * 19
+    Number(reference.substring(6, 7)) * 23 +
+    Number(reference.substring(5, 6)) * 11 +
+    Number(reference.substring(4, 5)) * 13 +
+    Number(reference.substring(3, 4)) * 17 +
+    Number(reference.substring(2, 1)) * 19 +
+    Number(reference.substring(1, 2)) * 23 + 330;
+    const checkDigit = (digit % 97) + 1;
+    const hsbcKey = `${referenceAux}${this.toChar(checkDigit, "00")}`;
+    return hsbcKey;
+  }
+
+  static getBanamexKey(batch: number, mandate: string, type: string): string {
+    const batchFormatted = this.toChar(batch, "00000000");
+    const reference = `${type}${mandate}${batchFormatted}L`;
+    const referenceAux = reference.replace("G", "4").replace("L", "5");
+    const digit = Number(reference.substring(1, 2)) * 19 + 
+    Number(reference.substring(2, 3)) * 23 +
+    Number(reference.substring(3, 4)) * 29 +
+    Number(reference.substring(4, 5)) * 31 +
+    Number(reference.substring(5, 6)) * 37 +
+    Number(reference.substring(6, 7)) * 1 +
+    Number(reference.substring(7, 8)) * 2 +
+    Number(reference.substring(8, 9)) * 3 +
+    Number(reference.substring(9, 10)) * 5 +
+    Number(reference.substring(10, 11)) * 7 +
+    Number(reference.substring(11, 12)) * 7
+    /*
+  	CA_DIGVERIF   := 99 - 
+    MOD(
+      (
+        (
+  		    SUBSTR(CA_REFERENCIA,11,1)*11+SUBSTR(CA_REFERENCIA,12,1)*13+
+  		    SUBSTR(CA_REFERENCIA,13,1)*17+SUBSTR(CA_REFERENCIA,14,1)*19+SUBSTR(CA_REFERENCIA,15,1)*23+SUBSTR(CA_REFERENCIA,16,1)*29+
+  		    SUBSTR(CA_REFERENCIA,17,1)*31+SUBSTR(CA_REFERENCIA,18,1)*37
+        ) 
+        + CA_SUMSUC + CA_SUMCTA
+      ),97);
+  	CA_REFERENCIA := CA_REFEAUX || TO_CHAR(CA_DIGVERIF,'00');	
+		CA_REFERENCIA := REPLACE(CA_REFERENCIA, ' ', '');
+  	RETURN CA_REFERENCIA;
+  END IF;
+    */
+    const checkDigit = 1;
+    const banamexKey = `${referenceAux}${this.toChar(checkDigit, "00")}`;
+    return banamexKey;
+  }
+
+  /**
+   FUNCTION CALCULA_REFERENCIA (
+		PLOTE IN NUMBER, 
+		PMANDATO IN VARCHAR2, 
+		PTIPO IN VARCHAR2
+	) RETURN VARCHAR2 IS
+	CA_SUMSUC			NUMBER(3)   := 329; -- SUMA DE LA CONVERSION DE LA SUCURSAL 0650    JCHN --* SE COMENTARON PORQUE NO SE NECESITAN YA EN EL NUEVO CALCULO 29/01/08
+	CA_SUMCTA			NUMBER(4)   := 565; -- SUMA DE LA CONVERSION DE LA CUENTA   7495220 JCHN
+	CA_REFERENCIA VARCHAR2(30);
+	CA_REFEAUX		VARCHAR2(20);
+	CA_DIGVERIF		NUMBER(2);	
+  */
+}

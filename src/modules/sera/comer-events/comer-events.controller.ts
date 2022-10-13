@@ -7,6 +7,8 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventsService } from "./comer-events.service";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
+import { ComerPropertyByBatchDto } from "../comer-property-by-batch/dto/comer-property-by-batch.dto";
+import { ComerBatchDto } from "../comer-batch/dto/comer-batch.dto";
 
 @Controller("comer-events")
 export class ComerEventsController {
@@ -33,15 +35,17 @@ export class ComerEventsController {
   }
 
   @MessagePattern({ cmd: "getComerEventByAddress" })
-  async getComerEventByAddress(address: string) {
-    console.log( address )
-    const codeFound = await this.service.getComerEventByAddress(address);
-    return (
-      codeFound ?? {
-        statusCode: "404",
-        message: "Comer event not found",
-        error: "Not found",
-      }
-    );
+  async getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto) {
+    return await this.service.getComerEventByAddress(comerEvent);
+  }
+
+  @MessagePattern({ cmd: "getComerEventByAddressAndId" })
+  async getComerEventByAddressAndId(comerEvent: ComerEventDto) {
+    return await this.service.getComerEventByAddressAndId(comerEvent);
+  }
+
+  @MessagePattern({ cmd: "getComerEventByTpEvent" })
+  async getComerEventByTpEvent(comerEvent: ComerEventDto & ComerBatchDto & PaginationDto) {
+    return await this.service.getComerEventByTpEvent(comerEvent) ;
   }
 }

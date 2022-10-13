@@ -2,8 +2,9 @@ import { Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
-import { ComerEventEntity } from "./entities/comer-events.entity";
 import { ComerEventDto } from "./dto/comer-events.dto";
+import { ComerEventEntity } from "./entities/comer-events.entity";
+import { ComerBatchDto } from "../comer-batch/dto/comer-batch.dto";
 export declare class ComerEventsService {
     private entity;
     private readonly logger;
@@ -14,5 +15,7 @@ export declare class ComerEventsService {
         data: ComerEventEntity[];
         count: number;
     }>;
-    getComerEventByAddress(address: string): Promise<ComerEventEntity[]>;
+    getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<ComerEventEntity[]>;
+    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<ComerEventEntity[]>;
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerBatchDto & PaginationDto): Promise<any[] | ComerEventEntity[]>;
 }
