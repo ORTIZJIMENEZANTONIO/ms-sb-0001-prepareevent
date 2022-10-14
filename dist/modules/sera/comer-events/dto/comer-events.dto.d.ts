@@ -5,9 +5,9 @@ export declare class ComerEventDto {
     processCve: string | null;
     observations: string | null;
     address: string | null;
-    failureDate: string | null;
+    failureDate: Date | null;
     place: string | null;
-    eventDate: string | null;
+    eventDate: Date | null;
     texto1: string | null;
     texto2: string | null;
     firmante: string | null;
@@ -23,8 +23,8 @@ export declare class ComerEventDto {
     delegationId: number | null;
     faseInmu: number | null;
     thirdId: number | null;
-    fechaNotificacion: string | null;
-    eventClosingDate: string | null;
+    fechaNotificacion: Date | null;
+    eventClosingDate: Date | null;
     tpsolavalId: number | null;
     ivaApplies: string | null;
 }

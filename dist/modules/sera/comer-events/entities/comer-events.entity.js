@@ -51,7 +51,7 @@ __decorate([
 ], ComerEventEntity.prototype, "address", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fec_fallo", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerEventEntity.prototype, "failureDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "lugar", nullable: true, length: 100 }),
@@ -59,7 +59,7 @@ __decorate([
 ], ComerEventEntity.prototype, "place", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fec_evento", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerEventEntity.prototype, "eventDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "texto1", nullable: true, length: 4000 }),
@@ -160,11 +160,11 @@ __decorate([
 ], ComerEventEntity.prototype, "thirdId", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_notificacion", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerEventEntity.prototype, "fechaNotificacion", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_cierre_evento", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerEventEntity.prototype, "eventClosingDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {

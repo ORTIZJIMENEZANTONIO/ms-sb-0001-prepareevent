@@ -33,13 +33,13 @@ export class ComerEventEntity {
   address: string | null;
 
   @Column("date", { name: "fec_fallo", nullable: true })
-  failureDate: string | null;
+  failureDate: Date | null;
 
   @Column("character varying", { name: "lugar", nullable: true, length: 100 })
   place: string | null;
 
   @Column("date", { name: "fec_evento", nullable: true })
-  eventDate: string | null;
+  eventDate: Date | null;
 
   @Column("character varying", { name: "texto1", nullable: true, length: 4000 })
   texto1: string | null;
@@ -124,10 +124,10 @@ export class ComerEventEntity {
   thirdId: number | null;
 
   @Column("date", { name: "fecha_notificacion", nullable: true })
-  fechaNotificacion: string | null;
+  fechaNotificacion: Date | null;
 
   @Column("date", { name: "fecha_cierre_evento", nullable: true })
-  eventClosingDate: string | null;
+  eventClosingDate: Date | null;
 
   @Column("numeric", {
     name: "id_tpsolaval",
