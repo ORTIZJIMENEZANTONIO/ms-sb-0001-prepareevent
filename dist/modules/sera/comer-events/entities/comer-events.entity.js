@@ -16,7 +16,7 @@ let ComerEventEntity = class ComerEventEntity {
 };
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "No. Evento" }),
-    (0, typeorm_1.PrimaryGeneratedColumn)({
+    (0, typeorm_1.PrimaryColumn)({
         name: "id_evento",
     }),
     __metadata("design:type", Number)
@@ -108,7 +108,7 @@ __decorate([
         precision: 10,
         scale: 2,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "baseCost", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -117,7 +117,7 @@ __decorate([
         precision: 5,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "numBaseVend", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "usuario", nullable: true, length: 30 }),
@@ -125,11 +125,11 @@ __decorate([
 ], ComerEventEntity.prototype, "user", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "mes", nullable: true, precision: 2, scale: 0 }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "month", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "anio", nullable: true, precision: 4, scale: 0 }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "year", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -138,7 +138,7 @@ __decorate([
         precision: 3,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "delegationId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -147,7 +147,7 @@ __decorate([
         precision: 2,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "faseInmu", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -173,7 +173,7 @@ __decorate([
         precision: 10,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerEventEntity.prototype, "tpsolavalId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {

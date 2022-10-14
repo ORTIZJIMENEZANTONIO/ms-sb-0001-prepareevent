@@ -12,11 +12,20 @@ export declare class ComerEventsController {
         message: string;
         error: string;
     };
-    getAllComerEvents({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComerEvents(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-events.entity").ComerEventEntity[];
         count: number;
     }>;
-    getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<import("./entities/comer-events.entity").ComerEventEntity[]>;
-    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<import("./entities/comer-events.entity").ComerEventEntity[]>;
-    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | import("./entities/comer-events.entity").ComerEventEntity[]>;
+    getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<{
+        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        count: number;
+    }>;
+    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<{
+        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        count: number;
+    }>;
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | {
+        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        count: number;
+    }>;
 }

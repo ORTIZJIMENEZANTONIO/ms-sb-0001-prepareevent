@@ -17,9 +17,9 @@ export class ComerEventsController {
 
   @MessagePattern({ cmd: "createComerEvent" })
   createComerEvent(comerEvent: ComerEventDto) {
-    const zipCodeCreated = this.service.createComerEvent(comerEvent);
+    const comerCreated = this.service.createComerEvent(comerEvent);
     return (
-      zipCodeCreated ?? {
+      comerCreated ?? {
         statusCode: 503,
         message: "This comer event was not created",
         error: "Create Error",
@@ -27,9 +27,9 @@ export class ComerEventsController {
     );
   }
 
-  @MessagePattern({ cmd: 'getAllComerEvents' })
-  async getAllComerEvents( {inicio, pageSize}: PaginationDto ) {
-    return await this.service.getAllComerEvents( {inicio, pageSize} );
+  @MessagePattern({ cmd: "getAllComerEvents" })
+  async getAllComerEvents(pagination: PaginationDto) {
+    return await this.service.getAllComerEvents(pagination);
   }
 
   @MessagePattern({ cmd: "getComerEventByAddress" })
@@ -43,7 +43,9 @@ export class ComerEventsController {
   }
 
   @MessagePattern({ cmd: "getComerEventByTpEvent" })
-  async getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto) {
-    return await this.service.getComerEventByTpEvent(comerEvent) ;
+  async getComerEventByTpEvent(
+    comerEvent: ComerEventDto & ComerLotsDto & PaginationDto
+  ) {
+    return await this.service.getComerEventByTpEvent(comerEvent);
   }
 }

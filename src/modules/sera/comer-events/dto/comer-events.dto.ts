@@ -34,19 +34,19 @@ export class ComerEventDto {
 
   textofin4: string | null;
 
-  baseCost: string | null;
+  baseCost: number | null;
 
-  numBaseVend: string | null;
+  numBaseVend: number | null;
 
   user: string | null;
 
-  month: string | null;
+  month: number | null;
 
-  year: string | null;
+  year: number | null;
 
-  delegationId: string | null;
+  delegationId: number | null;
 
-  faseInmu: string | null;
+  faseInmu: number | null;
 
   thirdId: number | null;
 
@@ -54,7 +54,7 @@ export class ComerEventDto {
 
   eventClosingDate: string | null;
 
-  tpsolavalId: string | null;
+  tpsolavalId: number | null;
 
   ivaApplies: string | null;
 }

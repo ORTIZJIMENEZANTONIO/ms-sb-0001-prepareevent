@@ -1,10 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
-
+// autoincrement
 @Entity("comer_eventos", { schema: "sera" })
 export class ComerEventEntity {
   @ApiProperty({ example: "No. Evento" })
-  @PrimaryGeneratedColumn({
+  @PrimaryColumn({
     name: "id_evento",
   })
   eventId: number;
@@ -80,7 +80,7 @@ export class ComerEventEntity {
     precision: 10,
     scale: 2,
   })
-  baseCost: string | null;
+  baseCost: number | null;
 
   @Column("numeric", {
     name: "num_base_vend",
@@ -88,16 +88,16 @@ export class ComerEventEntity {
     precision: 5,
     scale: 0,
   })
-  numBaseVend: string | null;
+  numBaseVend: number | null;
 
   @Column("character varying", { name: "usuario", nullable: true, length: 30 })
   user: string | null;
 
   @Column("numeric", { name: "mes", nullable: true, precision: 2, scale: 0 })
-  month: string | null;
+  month: number | null;
 
   @Column("numeric", { name: "anio", nullable: true, precision: 4, scale: 0 })
-  year: string | null;
+  year: number | null;
 
   @Column("numeric", {
     name: "no_delegacion",
@@ -105,7 +105,7 @@ export class ComerEventEntity {
     precision: 3,
     scale: 0,
   })
-  delegationId: string | null;
+  delegationId: number | null;
 
   @Column("numeric", {
     name: "fase_inmu",
@@ -113,7 +113,7 @@ export class ComerEventEntity {
     precision: 2,
     scale: 0,
   })
-  faseInmu: string | null;
+  faseInmu: number | null;
 
   @Column("numeric", {
     name: "id_tercerocomer",
@@ -135,7 +135,7 @@ export class ComerEventEntity {
     precision: 10,
     scale: 0,
   })
-  tpsolavalId: string | null;
+  tpsolavalId: number | null;
 
   @Column("character varying", {
     name: "aplica_iva",

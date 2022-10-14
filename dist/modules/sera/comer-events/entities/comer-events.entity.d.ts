@@ -15,16 +15,16 @@ export declare class ComerEventEntity {
     notes: string | null;
     textofin3: string | null;
     textofin4: string | null;
-    baseCost: string | null;
-    numBaseVend: string | null;
+    baseCost: number | null;
+    numBaseVend: number | null;
     user: string | null;
-    month: string | null;
-    year: string | null;
-    delegationId: string | null;
-    faseInmu: string | null;
+    month: number | null;
+    year: number | null;
+    delegationId: number | null;
+    faseInmu: number | null;
     thirdId: number | null;
     fechaNotificacion: string | null;
     eventClosingDate: string | null;
-    tpsolavalId: string | null;
+    tpsolavalId: number | null;
     ivaApplies: string | null;
 }

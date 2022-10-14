@@ -20,7 +20,6 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_events_entity_1 = require("./entities/comer-events.entity");
-const reference_1 = require("../../../shared/functions/reference");
 let ComerEventsService = class ComerEventsService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -30,42 +29,53 @@ let ComerEventsService = class ComerEventsService {
     async createComerEvent(comerEvent) {
         return await this.entity.save(comerEvent);
     }
-    async getAllComerEvents({ inicio, pageSize }) {
-        const [result, total] = await this.entity.findAndCount({
-            order: { eventId: "DESC" },
-            take: pageSize || 10,
-            skip: (inicio - 1) * pageSize || 0,
-        });
+    async getAllComerEvents(pagination) {
+        var _a, _b;
+        this.counter.inc();
+        const { inicio = 1, pageSize = 10 } = pagination;
+        const result = await this.entity
+            .createQueryBuilder("ce")
+            .orderBy({ "ce.eventId": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
         return {
-            data: result,
-            count: total,
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
     async getComerEventByAddress(comerEvent) {
+        var _a, _b;
         const { address, inicio = 1, pageSize = 10 } = comerEvent;
-        const events = await this.entity
+        const result = await this.entity
             .createQueryBuilder("table")
             .where({ address: address })
             .take(pageSize)
             .skip((inicio - 1) * pageSize || 0)
-            .orderBy("table.eventId", "DESC")
-            .addOrderBy("table.eventTpId", "DESC")
-            .getMany();
-        console.log(reference_1.Reference.calculateReference("HSBC", 68807, '800000', "PAG"));
-        console.log(reference_1.Reference.calculateReference("BANAMEX", 68807, '800000', "PAG"));
-        return events;
+            .orderBy("table.eventTpId", "DESC")
+            .addOrderBy("table.eventId", "DESC")
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+        };
     }
     async getComerEventByAddressAndId(comerEvent) {
+        var _a, _b;
         const { address, eventId } = comerEvent;
-        const events = await this.entity
+        const result = await this.entity
             .createQueryBuilder("table")
             .where({ eventId })
             .andWhere({ address })
             .orderBy("table.eventId", "DESC")
-            .getMany();
-        return events;
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+        };
     }
     async getComerEventByTpEvent(comerEvent) {
+        var _a, _b;
         const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
         const subQueryDeep = await this.entity.query(`
       SELECT 1
@@ -78,14 +88,20 @@ let ComerEventsService = class ComerEventsService {
       FROM   sera.COMER_LOTES LOT
       WHERE  ${subQueryDeep.length > 0}
     `);
-        const events = await this.entity
+        const result = await this.entity
             .createQueryBuilder("t")
             .where({ eventTpId })
             .andWhere({ address })
             .take(pageSize)
             .skip((inicio - 1) * pageSize || 0)
-            .orderBy("t.eventId", "DESC");
-        return subQuery.length < 1 ? [] : events.getMany();
+            .orderBy("t.eventId", "DESC")
+            .getManyAndCount();
+        return subQuery.length < 1
+            ? []
+            : {
+                data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+                count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+            };
     }
 };
 ComerEventsService = __decorate([

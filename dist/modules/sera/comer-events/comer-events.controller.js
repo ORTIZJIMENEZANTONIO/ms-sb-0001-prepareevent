@@ -26,15 +26,15 @@ let ComerEventsController = class ComerEventsController {
         this.logger = logger;
     }
     createComerEvent(comerEvent) {
-        const zipCodeCreated = this.service.createComerEvent(comerEvent);
-        return (zipCodeCreated !== null && zipCodeCreated !== void 0 ? zipCodeCreated : {
+        const comerCreated = this.service.createComerEvent(comerEvent);
+        return (comerCreated !== null && comerCreated !== void 0 ? comerCreated : {
             statusCode: 503,
             message: "This comer event was not created",
             error: "Create Error",
         });
     }
-    async getAllComerEvents({ inicio, pageSize }) {
-        return await this.service.getAllComerEvents({ inicio, pageSize });
+    async getAllComerEvents(pagination) {
+        return await this.service.getAllComerEvents(pagination);
     }
     async getComerEventByAddress(comerEvent) {
         return await this.service.getComerEventByAddress(comerEvent);
@@ -53,7 +53,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ComerEventsController.prototype, "createComerEvent", null);
 __decorate([
-    (0, microservices_1.MessagePattern)({ cmd: 'getAllComerEvents' }),
+    (0, microservices_1.MessagePattern)({ cmd: "getAllComerEvents" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
     __metadata("design:returntype", Promise)

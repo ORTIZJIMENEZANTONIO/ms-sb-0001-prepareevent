@@ -11,11 +11,20 @@ export declare class ComerEventsService {
     counter: Counter<string>;
     constructor(entity: Repository<ComerEventEntity>, logger: Logger, counter: Counter<string>);
     createComerEvent(comerEvent: ComerEventDto): Promise<ComerEventDto & ComerEventEntity>;
-    getAllComerEvents({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComerEvents(pagination: PaginationDto): Promise<{
         data: ComerEventEntity[];
         count: number;
     }>;
-    getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<ComerEventEntity[]>;
-    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<ComerEventEntity[]>;
-    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | ComerEventEntity[]>;
+    getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<{
+        data: ComerEventEntity[];
+        count: number;
+    }>;
+    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<{
+        data: ComerEventEntity[];
+        count: number;
+    }>;
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | {
+        data: ComerEventEntity[];
+        count: number;
+    }>;
 }

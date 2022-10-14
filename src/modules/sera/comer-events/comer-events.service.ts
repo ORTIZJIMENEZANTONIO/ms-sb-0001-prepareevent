@@ -10,7 +10,8 @@ import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
 import { Reference } from "src/shared/functions/reference";
 import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
-
+// comer_tpeventos pending
+// comer_estatusvta pending
 @Injectable()
 export class ComerEventsService {
   constructor(
@@ -24,49 +25,67 @@ export class ComerEventsService {
     return await this.entity.save(comerEvent);
   }
 
-  async getAllComerEvents({ inicio, pageSize }: PaginationDto) {
-    const [result, total] = await this.entity.findAndCount({
-      order: { eventId: "DESC" },
-      take: pageSize || 10,
-      skip: (inicio - 1) * pageSize || 0,
-    });
+  async getAllComerEvents(pagination: PaginationDto) {
+    this.counter.inc();
+    const { inicio = 1, pageSize = 10 } = pagination;
+    const result = await this.entity
+      .createQueryBuilder("ce")
+      //.innerJoinAndMapOne(
+      //  "crp.eventId",
+      //  ComerEventEntity,
+      //  "ce",
+      //  "crp.eventId = ce.eventId"
+      //)
+      .orderBy({ "ce.eventId": "DESC" })
+      .skip((inicio - 1) * pageSize || 0)
+      .take(pageSize)
+      .getManyAndCount();
+
     return {
-      data: result,
-      count: total,
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
     };
   }
 
   async getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto) {
     const { address, inicio = 1, pageSize = 10 } = comerEvent;
-    const events = await this.entity
+    const result = await this.entity
       .createQueryBuilder("table")
       .where({ address: address })
       .take(pageSize)
       .skip((inicio - 1) * pageSize || 0)
-      .orderBy("table.eventId", "DESC")
-      .addOrderBy("table.eventTpId", "DESC")
-      .getMany();
+      .orderBy("table.eventTpId", "DESC")
+      .addOrderBy("table.eventId", "DESC")
+      .getManyAndCount();
 
-    console.log(Reference.calculateReference("HSBC", 68807, '800000', "PAG"))
-    console.log(Reference.calculateReference("BANAMEX", 68807, '800000', "PAG"))
-    //if (events.length < 1)
-    //  throw new NotFoundException( `Comer event not found with address: ${address} `);
-    return events;
+    return {
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
+    };
+    //console.log(Reference.calculateReference("HSBC", 68807, "800000", "PAG"));
+    //console.log(
+    //  Reference.calculateReference("BANAMEX", 68807, "800000", "PAG")
+    //);
   }
 
   async getComerEventByAddressAndId(comerEvent: ComerEventDto) {
     const { address, eventId } = comerEvent;
-    const events = await this.entity
+    const result = await this.entity
       .createQueryBuilder("table")
       .where({ eventId })
       .andWhere({ address })
       .orderBy("table.eventId", "DESC")
-      .getMany();
+      .getManyAndCount();
 
-    return events;
+    return {
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
+    };
   }
 
-  async getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto) {
+  async getComerEventByTpEvent(
+    comerEvent: ComerEventDto & ComerLotsDto & PaginationDto
+  ) {
     const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
     const subQueryDeep = await this.entity.query(`
       SELECT 1
@@ -81,14 +100,20 @@ export class ComerEventsService {
       WHERE  ${subQueryDeep.length > 0}
     `);
 
-    const events = await this.entity
+    const result = await this.entity
       .createQueryBuilder("t")
       .where({ eventTpId })
       .andWhere({ address })
       .take(pageSize)
       .skip((inicio - 1) * pageSize || 0)
-      .orderBy("t.eventId", "DESC");
+      .orderBy("t.eventId", "DESC")
+      .getManyAndCount();
 
-    return subQuery.length < 1 ? [] : events.getMany();
+    return subQuery.length < 1
+      ? []
+      : {
+          data: result[0] ?? [],
+          count: result[1] ?? 0,
+        };
   }
 }
