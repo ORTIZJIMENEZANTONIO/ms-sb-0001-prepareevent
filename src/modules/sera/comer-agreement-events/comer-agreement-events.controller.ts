@@ -6,7 +6,6 @@ import { MessagePattern } from "@nestjs/microservices";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerConvEventDto } from "./dto/comer-agreement-events.dto";
 import { ComerAgreementEventsService } from "./comer-agreement-events.service";
-import { response } from "express";
 
 @Controller("comer-agreement-events")
 export class ComerAgreementEventsController {

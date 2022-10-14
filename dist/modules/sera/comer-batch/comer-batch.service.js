@@ -28,7 +28,12 @@ let ComerBatchService = class ComerBatchService {
         this.counter = counter;
     }
     async createComerLot(comerEvent) {
-        return await this.entity.save(comerEvent);
+        try {
+            return await this.entity.save(comerEvent);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComersLot(pagination) {
         var _a, _b;

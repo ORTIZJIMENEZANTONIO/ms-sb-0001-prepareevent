@@ -19,7 +19,11 @@ export class ComerAdjudirecService {
   ) {}
 
   async createComerAdjudirec(comerEvent: ComerAdjudirecDto) {
-    return await this.entity.save(comerEvent);
+    try {
+      return await this.entity.save(comerEvent);
+    } catch (error) {
+      return { error: error.detail };
+    }
   }
 
   async getAllComersAdjudirec({ inicio, pageSize }: PaginationDto) {

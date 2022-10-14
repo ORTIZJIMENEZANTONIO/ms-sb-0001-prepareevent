@@ -19,7 +19,11 @@ export class ComerPropertyByBatchService {
   ) {}
 
   async createComerGoodXLot(comerEvent: ComerGoodsXLotDto) {
-    return await this.entity.save(comerEvent);
+    try {
+      return await this.entity.save(comerEvent);
+    } catch (error) {
+      return {error: error.detail}
+    }
   }
 
   async getAllComerGoodXLots({ inicio, pageSize }: PaginationDto) {
@@ -36,14 +40,17 @@ export class ComerPropertyByBatchService {
 
   async getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto) {
     const { lotId, inicio = 1, pageSize = 10  } = comerEvent;
-    const events = await this.entity
+    const result = await this.entity
       .createQueryBuilder("table")
       .where({ lotId })
       .take(pageSize)
       .skip((inicio - 1) * pageSize || 0)
       .orderBy("table.goodsId", "DESC")
-      .getMany();
+      .getManyAndCount();
 
-    return events;
+    return {
+      data: result[0] ?? [],
+      count: result[1] ?? 0
+    };
   }
 }

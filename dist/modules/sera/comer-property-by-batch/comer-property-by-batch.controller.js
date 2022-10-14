@@ -26,12 +26,7 @@ let ComerPropertyByBatchController = class ComerPropertyByBatchController {
         this.logger = logger;
     }
     createComerGoodXLot(comerEvent) {
-        const zipCodeCreated = this.service.createComerGoodXLot(comerEvent);
-        return (zipCodeCreated !== null && zipCodeCreated !== void 0 ? zipCodeCreated : {
-            statusCode: 503,
-            message: "This comer goods by lot was not created",
-            error: "Create Error",
-        });
+        return this.service.createComerGoodXLot(comerEvent);
     }
     async getAllComerGoodXLots({ inicio, pageSize }) {
         return await this.service.getAllComerGoodXLots({ inicio, pageSize });

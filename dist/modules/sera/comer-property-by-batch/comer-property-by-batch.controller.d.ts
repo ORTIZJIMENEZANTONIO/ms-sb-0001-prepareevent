@@ -6,14 +6,15 @@ export declare class ComerPropertyByBatchController {
     private readonly service;
     private readonly logger;
     constructor(service: ComerPropertyByBatchService, logger: Logger);
-    createComerGoodXLot(comerEvent: ComerGoodsXLotDto): Promise<ComerGoodsXLotDto & import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity> | {
-        statusCode: number;
-        message: string;
-        error: string;
-    };
+    createComerGoodXLot(comerEvent: ComerGoodsXLotDto): Promise<(ComerGoodsXLotDto & import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity) | {
+        error: any;
+    }>;
     getAllComerGoodXLots({ inicio, pageSize }: PaginationDto): Promise<{
         data: import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity[];
         count: number;
     }>;
-    getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto): Promise<import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity[]>;
+    getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto): Promise<{
+        data: import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity[];
+        count: number;
+    }>;
 }

@@ -16,14 +16,7 @@ export class ComerPropertyByBatchController {
 
   @MessagePattern({ cmd: "createComerGoodXLot" })
   createComerGoodXLot(comerEvent: ComerGoodsXLotDto) {
-    const zipCodeCreated = this.service.createComerGoodXLot(comerEvent);
-    return (
-      zipCodeCreated ?? {
-        statusCode: 503,
-        message: "This comer goods by lot was not created",
-        error: "Create Error",
-      }
-    );
+    return this.service.createComerGoodXLot(comerEvent);
   }
 
   @MessagePattern({ cmd: 'getAllComerGoodXLots' })

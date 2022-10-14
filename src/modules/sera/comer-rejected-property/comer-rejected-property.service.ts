@@ -21,7 +21,11 @@ export class ComerRejectedPropertyService {
   ) {}
 
   async createComerRejectedProperty(comerRejected: ComerRejectedGoodDto) {
-    return await this.entity.save(comerRejected);
+    try {
+      return await this.entity.save(comerRejected);
+    } catch (error) {
+      return { error: error.detail };
+    }
   }
 
   async getAllComersRejectedProperties(pagination: PaginationDto) {

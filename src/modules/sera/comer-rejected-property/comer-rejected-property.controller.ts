@@ -16,14 +16,7 @@ export class ComerRejectedPropertyController {
 
   @MessagePattern({ cmd: "createComerRejectedProperty" })
   createComerRejectedProperty(comerEvent: ComerRejectedGoodDto) {
-    const zipCodeCreated = this.service.createComerRejectedProperty(comerEvent);
-    return (
-      zipCodeCreated ?? {
-        statusCode: 503,
-        message: "This comer rejected was not created",
-        error: "Create Error",
-      }
-    );
+    return this.service.createComerRejectedProperty(comerEvent);
   }
 
   @MessagePattern({ cmd: "getAllComersRejectedProperties" })

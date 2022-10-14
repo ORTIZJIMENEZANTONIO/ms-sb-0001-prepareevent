@@ -9,7 +9,9 @@ export declare class ComerClientService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerClientEntity>, logger: Logger, counter: Counter<string>);
-    createComerClient(comer: ComerClientDto): Promise<ComerClientDto & ComerClientEntity>;
+    createComerClient(comer: ComerClientDto): Promise<(ComerClientDto & ComerClientEntity) | {
+        error: any;
+    }>;
     getAllComersClient({ inicio, pageSize }: PaginationDto): Promise<{
         data: ComerClientEntity[];
         count: number;

@@ -15,15 +15,8 @@ export class ComerAdjudirecController {
   ) {}
 
   @MessagePattern({ cmd: "createComerAdjudirec" })
-  createComerAdjudirec(comerEvent: ComerAdjudirecDto) {
-    const comer = this.service.createComerAdjudirec(comerEvent);
-    return (
-      comer ?? {
-        statusCode: 503,
-        message: "This comer adjudirec was not created",
-        error: "Create Error",
-      }
-    );
+  async createComerAdjudirec(comerEvent: ComerAdjudirecDto) {
+    return await this.service.createComerAdjudirec(comerEvent);
   }
 
   @MessagePattern({ cmd: 'getAllComersAdjudirec' })

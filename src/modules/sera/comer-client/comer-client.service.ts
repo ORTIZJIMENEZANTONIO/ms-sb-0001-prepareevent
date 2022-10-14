@@ -19,7 +19,11 @@ export class ComerClientService {
   ) {}
 
   async createComerClient(comer: ComerClientDto) {
-    return await this.entity.save(comer);
+    try {
+      return await this.entity.save(comer);
+    } catch (error) {
+      return { error: error.detail };
+    }
   }
 
   async getAllComersClient({ inicio, pageSize }: PaginationDto) {

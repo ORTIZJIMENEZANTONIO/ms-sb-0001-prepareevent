@@ -27,7 +27,12 @@ let ComerEventsService = class ComerEventsService {
         this.counter = counter;
     }
     async createComerEvent(comerEvent) {
-        return await this.entity.save(comerEvent);
+        try {
+            return await this.entity.save(comerEvent);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComerEvents(pagination) {
         var _a, _b;

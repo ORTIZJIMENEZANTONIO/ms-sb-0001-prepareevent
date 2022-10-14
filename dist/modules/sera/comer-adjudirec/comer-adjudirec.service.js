@@ -27,7 +27,12 @@ let ComerAdjudirecService = class ComerAdjudirecService {
         this.counter = counter;
     }
     async createComerAdjudirec(comerEvent) {
-        return await this.entity.save(comerEvent);
+        try {
+            return await this.entity.save(comerEvent);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComersAdjudirec({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({

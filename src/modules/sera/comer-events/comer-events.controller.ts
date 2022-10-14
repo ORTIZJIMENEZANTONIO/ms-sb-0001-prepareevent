@@ -16,15 +16,8 @@ export class ComerEventsController {
   ) {}
 
   @MessagePattern({ cmd: "createComerEvent" })
-  createComerEvent(comerEvent: ComerEventDto) {
-    const comerCreated = this.service.createComerEvent(comerEvent);
-    return (
-      comerCreated ?? {
-        statusCode: 503,
-        message: "This comer event was not created",
-        error: "Create Error",
-      }
-    );
+  async createComerEvent(comerEvent: ComerEventDto) {
+    return await this.service.createComerEvent(comerEvent);
   }
 
   @MessagePattern({ cmd: "getAllComerEvents" })

@@ -25,13 +25,8 @@ let ComerAdjudirecController = class ComerAdjudirecController {
         this.service = service;
         this.logger = logger;
     }
-    createComerAdjudirec(comerEvent) {
-        const comer = this.service.createComerAdjudirec(comerEvent);
-        return (comer !== null && comer !== void 0 ? comer : {
-            statusCode: 503,
-            message: "This comer adjudirec was not created",
-            error: "Create Error",
-        });
+    async createComerAdjudirec(comerEvent) {
+        return await this.service.createComerAdjudirec(comerEvent);
     }
     async getAllComersAdjudirec({ inicio, pageSize }) {
         return await this.service.getAllComersAdjudirec({ inicio, pageSize });
@@ -41,7 +36,7 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerAdjudirec" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [comer_adjudirec_dto_1.ComerAdjudirecDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ComerAdjudirecController.prototype, "createComerAdjudirec", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'getAllComersAdjudirec' }),

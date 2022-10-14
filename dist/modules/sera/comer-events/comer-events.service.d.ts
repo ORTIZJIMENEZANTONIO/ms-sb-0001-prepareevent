@@ -10,7 +10,9 @@ export declare class ComerEventsService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerEventEntity>, logger: Logger, counter: Counter<string>);
-    createComerEvent(comerEvent: ComerEventDto): Promise<ComerEventDto & ComerEventEntity>;
+    createComerEvent(comerEvent: ComerEventDto): Promise<(ComerEventDto & ComerEventEntity) | {
+        error: any;
+    }>;
     getAllComerEvents(pagination: PaginationDto): Promise<{
         data: ComerEventEntity[];
         count: number;

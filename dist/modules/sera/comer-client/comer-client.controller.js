@@ -26,12 +26,7 @@ let ComerClientController = class ComerClientController {
         this.logger = logger;
     }
     createComerClient(comerClient) {
-        const comer = this.service.createComerClient(comerClient);
-        return (comer !== null && comer !== void 0 ? comer : {
-            statusCode: 503,
-            message: "This comer event was not created",
-            error: "Create Error",
-        });
+        return this.service.createComerClient(comerClient);
     }
     async getAllComersClient({ inicio, pageSize }) {
         return await this.service.getAllComersClient({ inicio, pageSize });

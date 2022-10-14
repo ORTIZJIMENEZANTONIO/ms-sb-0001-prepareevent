@@ -27,7 +27,12 @@ let ComerClientService = class ComerClientService {
         this.counter = counter;
     }
     async createComerClient(comer) {
-        return await this.entity.save(comer);
+        try {
+            return await this.entity.save(comer);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComersClient({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({

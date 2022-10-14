@@ -26,12 +26,7 @@ let ComerRejectedPropertyController = class ComerRejectedPropertyController {
         this.logger = logger;
     }
     createComerRejectedProperty(comerEvent) {
-        const zipCodeCreated = this.service.createComerRejectedProperty(comerEvent);
-        return (zipCodeCreated !== null && zipCodeCreated !== void 0 ? zipCodeCreated : {
-            statusCode: 503,
-            message: "This comer rejected was not created",
-            error: "Create Error",
-        });
+        return this.service.createComerRejectedProperty(comerEvent);
     }
     async getAllComersRejectedProperties({ inicio, pageSize }) {
         return await this.service.getAllComersRejectedProperties({

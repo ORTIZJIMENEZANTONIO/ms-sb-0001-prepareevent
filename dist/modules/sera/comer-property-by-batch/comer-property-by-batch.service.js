@@ -27,7 +27,12 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         this.counter = counter;
     }
     async createComerGoodXLot(comerEvent) {
-        return await this.entity.save(comerEvent);
+        try {
+            return await this.entity.save(comerEvent);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComerGoodXLots({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
@@ -41,15 +46,19 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         };
     }
     async getComerXLotByLotId(comerEvent) {
+        var _a, _b;
         const { lotId, inicio = 1, pageSize = 10 } = comerEvent;
-        const events = await this.entity
+        const result = await this.entity
             .createQueryBuilder("table")
             .where({ lotId })
             .take(pageSize)
             .skip((inicio - 1) * pageSize || 0)
             .orderBy("table.goodsId", "DESC")
-            .getMany();
-        return events;
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0
+        };
     }
 };
 ComerPropertyByBatchService = __decorate([

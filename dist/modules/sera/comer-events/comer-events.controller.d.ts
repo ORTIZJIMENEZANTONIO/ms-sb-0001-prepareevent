@@ -7,11 +7,9 @@ export declare class ComerEventsController {
     private readonly service;
     private readonly logger;
     constructor(service: ComerEventsService, logger: Logger);
-    createComerEvent(comerEvent: ComerEventDto): Promise<ComerEventDto & import("./entities/comer-events.entity").ComerEventEntity> | {
-        statusCode: number;
-        message: string;
-        error: string;
-    };
+    createComerEvent(comerEvent: ComerEventDto): Promise<(ComerEventDto & import("./entities/comer-events.entity").ComerEventEntity) | {
+        error: any;
+    }>;
     getAllComerEvents(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-events.entity").ComerEventEntity[];
         count: number;

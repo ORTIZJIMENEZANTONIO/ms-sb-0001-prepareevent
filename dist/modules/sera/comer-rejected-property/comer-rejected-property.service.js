@@ -28,7 +28,12 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
         this.counter = counter;
     }
     async createComerRejectedProperty(comerRejected) {
-        return await this.entity.save(comerRejected);
+        try {
+            return await this.entity.save(comerRejected);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
     async getAllComersRejectedProperties(pagination) {
         var _a, _b;

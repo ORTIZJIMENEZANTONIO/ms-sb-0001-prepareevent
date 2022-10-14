@@ -20,7 +20,11 @@ export class ComerBatchService {
   ) {}
 
   async createComerLot(comerEvent: ComerLotsDto) {
-    return await this.entity.save(comerEvent);
+    try {
+      return await this.entity.save(comerEvent);
+    } catch (error) {
+      return { error: error.detail };
+    }
   }
 
   async getAllComersLot(pagination: PaginationDto) {
