@@ -11,6 +11,7 @@ import { ComerEventEntity } from "./entities/comer-events.entity";
 import { Reference } from "src/shared/functions/reference";
 import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
 import { Text } from "src/shared/functions/text";
+import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 // comer_tpeventos pending
 // comer_estatusvta pending
 @Injectable()
@@ -84,16 +85,22 @@ export class ComerEventsService {
     //);
   }
 
-  async getComerEventByAddressAndId(comerEvent: ComerEventDto) {
+  async getComerEventByAddressAndId(comerEvent: UpdateComerEventDto) {
     const { address, eventId } = comerEvent;
     const result = await this.entity
       .createQueryBuilder("table")
       .where({ eventId })
-      .andWhere({ address })
+      .andWhere(
+        `${Text.formatTextDb("table.address")} like '%${Text.formatText(
+          address
+        )}%' `
+      )
       .orderBy("table.eventId", "DESC")
       .getManyAndCount();
 
-    return {
+    return result[0] 
+    ? { statusCode: 404, message: "ComerEvent not found"}
+    : {
       data: result[0] ?? [],
       count: result[1] ?? 0,
     };
@@ -124,9 +131,9 @@ export class ComerEventsService {
       .skip((inicio - 1) * pageSize || 0)
       .orderBy("t.eventId", "DESC")
       .getManyAndCount();
-
-    return subQuery.length < 1
-      ? []
+    console.log( result[0] )
+    return subQuery.length < 1 || result[0].length < 1
+      ? { statusCode: 404, message: "ComerEvent not found"}
       : {
           data: result[0] ?? [],
           count: result[1] ?? 0,

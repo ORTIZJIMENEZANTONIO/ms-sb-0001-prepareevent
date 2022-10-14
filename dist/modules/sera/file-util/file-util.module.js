@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileUtilModule = void 0;
 const common_1 = require("@nestjs/common");
+const nestjs_prometheus_1 = require("nestjs-prometheus");
 const file_util_controller_1 = require("./file-util.controller");
 const file_util_service_1 = require("./file-util.service");
 let FileUtilModule = class FileUtilModule {
@@ -15,7 +16,13 @@ let FileUtilModule = class FileUtilModule {
 FileUtilModule = __decorate([
     (0, common_1.Module)({
         controllers: [file_util_controller_1.FileUtilController],
-        providers: [file_util_service_1.FileUtilService]
+        providers: [
+            file_util_service_1.FileUtilService,
+            (0, nestjs_prometheus_1.makeCounterProvider)({
+                name: "file_util_served",
+                help: "file_util_help",
+            }),
+        ],
     })
 ], FileUtilModule);
 exports.FileUtilModule = FileUtilModule;

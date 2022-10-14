@@ -1,5 +1,4 @@
 import {
-  IsDateString,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -40,7 +39,7 @@ export class ComerEventDto {
   @IsOptional()
   address: string | null;
 
-  @IsDateString()
+  @IsString()
   @IsOptional()
   failureDate: Date | null;
 
@@ -49,7 +48,7 @@ export class ComerEventDto {
   @IsOptional()
   place: string | null;
 
-  @IsDateString()
+  @IsString()
   @IsOptional()
   eventDate: Date | null;
 
@@ -128,11 +127,11 @@ export class ComerEventDto {
   @IsOptional()
   thirdId: number | null;
 
-  @IsDateString()
+  @IsString()
   @IsOptional()
   fechaNotificacion: Date | null;
 
-  @IsDateString()
+  @IsString()
   @IsOptional()
   eventClosingDate: Date | null;
 

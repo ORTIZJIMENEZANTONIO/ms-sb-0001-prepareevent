@@ -50,7 +50,7 @@ __decorate([
     __metadata("design:type", String)
 ], ComerEventDto.prototype, "address", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], ComerEventDto.prototype, "failureDate", void 0);
@@ -61,7 +61,7 @@ __decorate([
     __metadata("design:type", String)
 ], ComerEventDto.prototype, "place", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], ComerEventDto.prototype, "eventDate", void 0);
@@ -156,12 +156,12 @@ __decorate([
     __metadata("design:type", Number)
 ], ComerEventDto.prototype, "thirdId", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], ComerEventDto.prototype, "fechaNotificacion", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], ComerEventDto.prototype, "eventClosingDate", void 0);

@@ -7,6 +7,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventsService } from "./comer-events.service";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 
 @Controller("comer-events")
 export class ComerEventsController {
@@ -31,7 +32,7 @@ export class ComerEventsController {
   }
 
   @MessagePattern({ cmd: "getComerEventByAddressAndId" })
-  async getComerEventByAddressAndId(comerEvent: ComerEventDto) {
+  async getComerEventByAddressAndId(comerEvent: UpdateComerEventDto) {
     return await this.service.getComerEventByAddressAndId(comerEvent);
   }
 
