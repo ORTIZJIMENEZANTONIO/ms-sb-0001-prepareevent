@@ -27,13 +27,17 @@ let ComerEventsService = class ComerEventsService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerEvent(comerEvent) {
-        try {
-            return await this.entity.save(comerEvent);
+    async createComerEvent(comer) {
+        const comerExisting = await this.entity.findOneBy({
+            eventId: comer.eventId
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerEvent existing",
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComerEvents(pagination) {
         var _a, _b;
@@ -109,8 +113,7 @@ let ComerEventsService = class ComerEventsService {
                 count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
             };
     }
-    async updateComerEvent() {
-    }
+    async updateComerEvent() { }
     async deleteComerEvent(comer) {
         const { eventId } = comer;
         return await this.entity.delete({ eventId });

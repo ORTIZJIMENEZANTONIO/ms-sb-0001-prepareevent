@@ -26,13 +26,18 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerGoodXLot(comerEvent) {
-        try {
-            return await this.entity.save(comerEvent);
+    async createComerGoodXLot(comer) {
+        const comerExisting = await this.entity.findOneBy({
+            goodsId: comer.goodsId,
+            lotId: comer.lotId,
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerGoodXLot existing",
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComerGoodXLots({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
@@ -57,11 +62,10 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
             .getManyAndCount();
         return {
             data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
-            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
-    async updateComerXLot() {
-    }
+    async updateComerXLot() { }
     async deleteComerXLot(comer) {
         const { goodsId, lotId } = comer;
         return await this.entity.delete({ goodsId, lotId });

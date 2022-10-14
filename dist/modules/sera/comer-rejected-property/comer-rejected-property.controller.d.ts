@@ -7,7 +7,8 @@ export declare class ComerRejectedPropertyController {
     private readonly logger;
     constructor(service: ComerRejectedPropertyService, logger: Logger);
     createComerRejectedProperty(comerEvent: ComerRejectedGoodDto): Promise<(ComerRejectedGoodDto & import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity) | {
-        error: any;
+        statusCode: number;
+        message: string;
     }>;
     getAllComersRejectedProperties(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity[];

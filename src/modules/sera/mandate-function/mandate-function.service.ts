@@ -22,7 +22,6 @@ export class MandateFunctionService {
 
   async updateMandate(params: MandateFunctionDto) {
     const { lotId, goodId } = params;
-    console.log( lotId, goodId )
     if (goodId == 1) {
       const transferentNums = await this.comerLotsRepository.query(`
         UPDATE	sera.COMER_BIENESXLOTE BXL
@@ -32,7 +31,7 @@ export class MandateFunctionService {
             WHERE		EXP.NO_EXPEDIENTE = BIE1.NO_EXPEDIENTE
             AND			BXL.NO_BIEN       = BIE1.NO_BIEN
         )
-        WHERE			BXL.ID_LOTE = ${'22199'};
+        WHERE			BXL.ID_LOTE = ${'22025'};
       `);
       console.log(transferentNums)
     }
@@ -44,7 +43,7 @@ export class MandateFunctionService {
           SELECT	NO_TRANSFERENTE
           FROM		COMER_BIENESXLOTE BXL
           WHERE		BXL.ID_LOTE = :COMER_LOTES.ID_LOTE
-          AND			ROWNUM 			= 1
+          AND			LIMIT 1
         )
         WHERE		LOT.ID_LOTE = :COMER_LOTES.ID_LOTE;
       `)

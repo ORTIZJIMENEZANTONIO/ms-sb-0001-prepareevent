@@ -27,13 +27,17 @@ let ComerBatchService = class ComerBatchService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerLot(comerEvent) {
-        try {
-            return await this.entity.save(comerEvent);
+    async createComerLot(comer) {
+        const comerExisting = await this.entity.findOneBy({
+            lotId: comer.lotId
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerLot existing",
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComersLot(pagination) {
         var _a, _b;

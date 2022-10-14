@@ -7,7 +7,8 @@ export declare class ComerClientController {
     private readonly logger;
     constructor(service: ComerClientService, logger: Logger);
     createComerClient(comerClient: ComerClientDto): Promise<(ComerClientDto & import("./entities/comer-client.entity").ComerClientEntity) | {
-        error: any;
+        statusCode: number;
+        message: string;
     }>;
     getAllComersClient({ inicio, pageSize }: PaginationDto): Promise<{
         data: import("./entities/comer-client.entity").ComerClientEntity[];

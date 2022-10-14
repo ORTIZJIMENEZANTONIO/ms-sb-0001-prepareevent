@@ -7,7 +7,8 @@ export declare class ComerAgreementEventsController {
     private readonly logger;
     constructor(service: ComerAgreementEventsService, logger: Logger);
     createComerConvEvent(comerEvent: ComerConvEventDto): Promise<(ComerConvEventDto & import("./entities/comer-agreement-events.entity").ComerConvEventEntity) | {
-        error: any;
+        statusCode: number;
+        message: string;
     }>;
     getAllComerConvEvents(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-agreement-events.entity").ComerConvEventEntity[];

@@ -18,12 +18,20 @@ export class ComerPropertyByBatchService {
     @InjectMetric("comer_goods_x_lot_served") public counter: Counter<string>
   ) {}
 
-  async createComerGoodXLot(comerEvent: ComerGoodsXLotDto) {
-    try {
-      return await this.entity.save(comerEvent);
-    } catch (error) {
-      return {error: error.detail}
+  async createComerGoodXLot(comer: ComerGoodsXLotDto) {
+    const comerExisting = await this.entity.findOneBy({
+      goodsId: comer.goodsId,
+      lotId: comer.lotId,
+    });
+
+    if (comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerGoodXLot existing",
+      };
     }
+
+    return await this.entity.save(comer);
   }
 
   async getAllComerGoodXLots({ inicio, pageSize }: PaginationDto) {
@@ -39,7 +47,7 @@ export class ComerPropertyByBatchService {
   }
 
   async getComerXLotByLotId(comerEvent: ComerGoodsXLotDto & PaginationDto) {
-    const { lotId, inicio = 1, pageSize = 10  } = comerEvent;
+    const { lotId, inicio = 1, pageSize = 10 } = comerEvent;
     const result = await this.entity
       .createQueryBuilder("table")
       .where({ lotId })
@@ -50,13 +58,11 @@ export class ComerPropertyByBatchService {
 
     return {
       data: result[0] ?? [],
-      count: result[1] ?? 0
+      count: result[1] ?? 0,
     };
   }
 
-  async updateComerXLot() {
-    
-  }
+  async updateComerXLot() {}
 
   async deleteComerXLot(comer: ComerGoodsXLotDto) {
     const { goodsId, lotId } = comer;

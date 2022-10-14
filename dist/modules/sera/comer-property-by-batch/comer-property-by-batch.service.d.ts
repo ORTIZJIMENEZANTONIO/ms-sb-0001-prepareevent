@@ -9,8 +9,9 @@ export declare class ComerPropertyByBatchService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerGoodsXLotEntity>, logger: Logger, counter: Counter<string>);
-    createComerGoodXLot(comerEvent: ComerGoodsXLotDto): Promise<(ComerGoodsXLotDto & ComerGoodsXLotEntity) | {
-        error: any;
+    createComerGoodXLot(comer: ComerGoodsXLotDto): Promise<(ComerGoodsXLotDto & ComerGoodsXLotEntity) | {
+        statusCode: number;
+        message: string;
     }>;
     getAllComerGoodXLots({ inicio, pageSize }: PaginationDto): Promise<{
         data: ComerGoodsXLotEntity[];

@@ -27,12 +27,16 @@ let ComerClientService = class ComerClientService {
         this.counter = counter;
     }
     async createComerClient(comer) {
-        try {
-            return await this.entity.save(comer);
+        const comerExisting = await this.entity.findOneBy({
+            clientId: comer.clientId
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerClient existing",
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComersClient({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
@@ -45,8 +49,7 @@ let ComerClientService = class ComerClientService {
             count: total,
         };
     }
-    async updateComerClient() {
-    }
+    async updateComerClient() { }
     async deleteComerClient(comer) {
         const { clientId } = comer;
         return await this.entity.delete({ clientId });

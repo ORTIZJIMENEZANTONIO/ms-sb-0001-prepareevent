@@ -27,13 +27,17 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerRejectedProperty(comerRejected) {
-        try {
-            return await this.entity.save(comerRejected);
+    async createComerRejectedProperty(comer) {
+        const comerExisting = await this.entity.findOneBy({
+            rejectedGoodId: comer.rejectedGoodId
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerRejected existing",
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComersRejectedProperties(pagination) {
         var _a, _b;

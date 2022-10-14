@@ -20,12 +20,20 @@ export class ComerRejectedPropertyService {
     public counter: Counter<string>
   ) {}
 
-  async createComerRejectedProperty(comerRejected: ComerRejectedGoodDto) {
-    try {
-      return await this.entity.save(comerRejected);
-    } catch (error) {
-      return { error: error.detail };
+  async createComerRejectedProperty(comer: ComerRejectedGoodDto) {
+    const comerExisting = await this.entity.findOneBy({
+      rejectedGoodId: comer.rejectedGoodId
+    });
+
+    if (comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerRejected existing",
+      };
     }
+    
+    return await this.entity.save(comer);
+    
   }
 
   async getAllComersRejectedProperties(pagination: PaginationDto) {

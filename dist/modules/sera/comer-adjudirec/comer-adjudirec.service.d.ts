@@ -9,8 +9,9 @@ export declare class ComerAdjudirecService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerAdjudirecEntity>, logger: Logger, counter: Counter<string>);
-    createComerAdjudirec(comerEvent: ComerAdjudirecDto): Promise<(ComerAdjudirecDto & ComerAdjudirecEntity) | {
-        error: any;
+    createComerAdjudirec(comer: ComerAdjudirecDto): Promise<(ComerAdjudirecDto & ComerAdjudirecEntity) | {
+        statusCode: number;
+        message: string;
     }>;
     getAllComersAdjudirec(pagination: PaginationDto): Promise<{
         data: ComerAdjudirecEntity[];

@@ -7,7 +7,8 @@ export declare class ComerAdjudirecController {
     private readonly logger;
     constructor(service: ComerAdjudirecService, logger: Logger);
     createComerAdjudirec(comerEvent: ComerAdjudirecDto): Promise<(ComerAdjudirecDto & import("./entities/comer-adjudirec.entity").ComerAdjudirecEntity) | {
-        error: any;
+        statusCode: number;
+        message: string;
     }>;
     getAllComersAdjudirec(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-adjudirec.entity").ComerAdjudirecEntity[];

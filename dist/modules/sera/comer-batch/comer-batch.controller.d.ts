@@ -7,7 +7,8 @@ export declare class ComerBatchController {
     private readonly logger;
     constructor(service: ComerBatchService, logger: Logger);
     createComerLot(comerEvent: ComerLotsDto): Promise<(ComerLotsDto & import("./entities/comer-batch.entity").ComerLotsEntity) | {
-        error: any;
+        statusCode: number;
+        message: string;
     }>;
     getAllComersLot(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-batch.entity").ComerLotsEntity[];

@@ -19,11 +19,18 @@ export class ComerClientService {
   ) {}
 
   async createComerClient(comer: ComerClientDto) {
-    try {
-      return await this.entity.save(comer);
-    } catch (error) {
-      return { error: error.detail };
+    const comerExisting = await this.entity.findOneBy({
+      clientId: comer.clientId
+    });
+
+    if (comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerClient existing",
+      };
     }
+    
+    return await this.entity.save(comer);
   }
 
   async getAllComersClient({ inicio, pageSize }: PaginationDto) {
@@ -38,9 +45,7 @@ export class ComerClientService {
     };
   }
 
-  async updateComerClient() {
-    
-  }
+  async updateComerClient() {}
 
   async deleteComerClient(comer: ComerClientDto) {
     const { clientId } = comer;

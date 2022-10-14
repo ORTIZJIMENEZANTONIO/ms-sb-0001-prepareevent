@@ -19,12 +19,19 @@ export class ComerBatchService {
     @InjectMetric("comer_lot_served") public counter: Counter<string>
   ) {}
 
-  async createComerLot(comerEvent: ComerLotsDto) {
-    try {
-      return await this.entity.save(comerEvent);
-    } catch (error) {
-      return { error: error.detail };
+  async createComerLot(comer: ComerLotsDto) {
+    const comerExisting = await this.entity.findOneBy({
+      lotId: comer.lotId
+    });
+
+    if (comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerLot existing",
+      };
     }
+
+    return await this.entity.save(comer);
   }
 
   async getAllComersLot(pagination: PaginationDto) {

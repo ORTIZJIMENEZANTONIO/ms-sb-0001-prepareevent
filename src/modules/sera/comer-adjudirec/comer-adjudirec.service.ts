@@ -18,16 +18,23 @@ export class ComerAdjudirecService {
     @InjectMetric("comer_adjudirec_served") public counter: Counter<string>
   ) {}
 
-  async createComerAdjudirec(comerEvent: ComerAdjudirecDto) {
-    try {
-      return await this.entity.save(comerEvent);
-    } catch (error) {
-      return { error: error.detail };
+  async createComerAdjudirec(comer: ComerAdjudirecDto) {
+    const comerExisting = await this.entity.findOneBy({
+      eventId: comer.eventId,
+    });
+
+    if(comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerAdjudirec existing"
+      }
     }
+
+    return await this.entity.save(comer);
   }
 
   async getAllComersAdjudirec(pagination: PaginationDto) {
-    const { inicio = 1, pageSize = 10} = pagination;
+    const { inicio = 1, pageSize = 10 } = pagination;
     const [result, total] = await this.entity.findAndCount({
       order: { eventId: "DESC" },
       take: pageSize,
@@ -43,6 +50,6 @@ export class ComerAdjudirecService {
 
   async deleteComerAdjudirec(comer: ComerAdjudirecDto) {
     const { eventId } = comer;
-    return await this.entity.delete({eventId})
+    return await this.entity.delete({ eventId });
   }
 }

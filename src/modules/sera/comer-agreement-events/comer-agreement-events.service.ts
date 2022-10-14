@@ -25,12 +25,20 @@ export class ComerAgreementEventsService {
     @InjectMetric("comer_conv_event_served") public counter: Counter<string>
   ) {}
 
-  async createComerConvEvent(comerEvent: ComerConvEventDto) {
-    try {
-      return await this.entity.save(comerEvent);
-    } catch (error) {
-      return { error: error.detail };
+  async createComerConvEvent(comer: ComerConvEventDto) {
+    const comerExisting = await this.entity.findOneBy({
+      eventId: comer.eventId,
+      announcementEventId: comer.announcementEventId,
+    });
+
+    if (comerExisting) {
+      return {
+        statusCode: 501,
+        message: "ComerConvEvent existing",
+      };
     }
+
+    return await this.entity.save(comer);
   }
 
   async getAllComerConvEvents(pagination: PaginationDto) {

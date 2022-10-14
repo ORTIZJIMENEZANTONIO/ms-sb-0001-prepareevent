@@ -26,13 +26,17 @@ let ComerAdjudirecService = class ComerAdjudirecService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerAdjudirec(comerEvent) {
-        try {
-            return await this.entity.save(comerEvent);
+    async createComerAdjudirec(comer) {
+        const comerExisting = await this.entity.findOneBy({
+            eventId: comer.eventId,
+        });
+        if (comerExisting) {
+            return {
+                statusCode: 501,
+                message: "ComerAdjudirec existing"
+            };
         }
-        catch (error) {
-            return { error: error.detail };
-        }
+        return await this.entity.save(comer);
     }
     async getAllComersAdjudirec(pagination) {
         const { inicio = 1, pageSize = 10 } = pagination;

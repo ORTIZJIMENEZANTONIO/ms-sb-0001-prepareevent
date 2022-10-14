@@ -9,8 +9,9 @@ export declare class ComerRejectedPropertyService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerRejectedPropertyEntity>, logger: Logger, counter: Counter<string>);
-    createComerRejectedProperty(comerRejected: ComerRejectedGoodDto): Promise<(ComerRejectedGoodDto & ComerRejectedPropertyEntity) | {
-        error: any;
+    createComerRejectedProperty(comer: ComerRejectedGoodDto): Promise<(ComerRejectedGoodDto & ComerRejectedPropertyEntity) | {
+        statusCode: number;
+        message: string;
     }>;
     getAllComersRejectedProperties(pagination: PaginationDto): Promise<{
         data: ComerRejectedPropertyEntity[];
