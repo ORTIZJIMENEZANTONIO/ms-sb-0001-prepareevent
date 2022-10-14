@@ -16,7 +16,6 @@ class ComerAdjudirecDto {
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.MaxLength)(7),
     __metadata("design:type", Number)
 ], ComerAdjudirecDto.prototype, "eventId", void 0);
 __decorate([

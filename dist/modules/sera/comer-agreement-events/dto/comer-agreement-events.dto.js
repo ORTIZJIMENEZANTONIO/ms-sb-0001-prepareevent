@@ -10,12 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerConvEventDto = void 0;
-const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class ComerConvEventDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "ex" }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], ComerConvEventDto.prototype, "eventId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], ComerConvEventDto.prototype, "announcementEventId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(200),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ComerConvEventDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ComerConvEventDto.prototype, "dates", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(70),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ComerConvEventDto.prototype, "schedule", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(200),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ComerConvEventDto.prototype, "place", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(500),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ComerConvEventDto.prototype, "restriction", void 0);
 exports.ComerConvEventDto = ComerConvEventDto;
 //# sourceMappingURL=comer-agreement-events.dto.js.map
