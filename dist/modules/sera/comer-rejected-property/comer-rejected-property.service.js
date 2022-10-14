@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_rejected_property_entity_1 = require("./entities/comer-rejected-property.entity");
+const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -29,22 +30,51 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     async createComerRejectedProperty(comerRejected) {
         return await this.entity.save(comerRejected);
     }
-    async getAllComersRejectedProperties({ inicio, pageSize }) {
+    async getAllComersRejectedProperties(pagination) {
+        var _a, _b;
         this.counter.inc();
-        const [result, total] = await this.entity.findAndCount({
-            skip: inicio ? inicio - 1 : Number(0),
-            take: pageSize,
-            order: { rejectedGoodId: "DESC" },
-        });
+        const { inicio = 1, pageSize = 10 } = pagination;
+        const result = await this.entity
+            .createQueryBuilder("crp")
+            .innerJoinAndMapOne("crp.eventId", comer_events_entity_1.ComerEventEntity, "ce", "crp.eventId = ce.eventId")
+            .orderBy({ "crp.rejectedGoodId": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
         return {
-            data: result,
-            count: total,
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
-    async getComerRejectedPropertyById(id) {
-        return await this.entity.findOne({
-            where: { rejectedGoodId: id },
-        });
+    async getComerRejectedPropertyById(comer) {
+        var _a, _b;
+        const { rejectedGoodId } = comer;
+        const result = await this.entity
+            .createQueryBuilder("crp")
+            .innerJoinAndMapOne("crp.eventId", comer_events_entity_1.ComerEventEntity, "ce", "crp.eventId = ce.eventId")
+            .where({ rejectedGoodId })
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+        };
+    }
+    async getComerRejectedPropertyByEventId(comer) {
+        var _a, _b;
+        this.counter.inc();
+        const { eventId, inicio = 1, pageSize = 10 } = comer;
+        const result = await this.entity
+            .createQueryBuilder("crp")
+            .innerJoinAndMapOne("crp.eventId", comer_events_entity_1.ComerEventEntity, "ce", "crp.eventId = ce.eventId")
+            .where({ eventId })
+            .orderBy({ "crp.noProperty": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+        };
     }
     async deleteComerRejectedProperty(rejectedGoodId) {
         return await this.entity.delete(rejectedGoodId);

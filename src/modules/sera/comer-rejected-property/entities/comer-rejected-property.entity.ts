@@ -15,7 +15,7 @@ export class ComerRejectedPropertyEntity {
   rejectedGoodId: number;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
-  idEvent: number;
+  eventId: number;
 
   @Column("numeric", { name: "no_bien", precision: 10, scale: 0 })
   noProperty: number;

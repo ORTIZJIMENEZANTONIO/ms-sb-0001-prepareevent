@@ -4,7 +4,7 @@ export class ComerRejectedGoodDto {
   @ApiProperty({ example: 1 })
   rejectedGoodId: number;
 
-  idEvent: number;
+  eventId: number;
 
   noProperty: number;
 

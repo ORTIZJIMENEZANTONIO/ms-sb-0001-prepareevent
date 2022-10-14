@@ -10,10 +10,17 @@ export declare class ComerRejectedPropertyService {
     counter: Counter<string>;
     constructor(entity: Repository<ComerRejectedPropertyEntity>, logger: Logger, counter: Counter<string>);
     createComerRejectedProperty(comerRejected: ComerRejectedGoodDto): Promise<ComerRejectedGoodDto & ComerRejectedPropertyEntity>;
-    getAllComersRejectedProperties({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComersRejectedProperties(pagination: PaginationDto): Promise<{
         data: ComerRejectedPropertyEntity[];
         count: number;
     }>;
-    getComerRejectedPropertyById(id: number): Promise<ComerRejectedPropertyEntity>;
+    getComerRejectedPropertyById(comer: ComerRejectedGoodDto): Promise<{
+        data: ComerRejectedPropertyEntity[];
+        count: number;
+    }>;
+    getComerRejectedPropertyByEventId(comer: PaginationDto & ComerRejectedGoodDto): Promise<{
+        data: ComerRejectedPropertyEntity[];
+        count: number;
+    }>;
     deleteComerRejectedProperty(rejectedGoodId: number): Promise<import("typeorm").DeleteResult>;
 }

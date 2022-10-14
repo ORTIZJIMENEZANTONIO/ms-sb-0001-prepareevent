@@ -15,4 +15,8 @@ export declare class ComerRejectedPropertyController {
         data: import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity[];
         count: number;
     }>;
+    getComerRejectedPropertyByEventId(comer: PaginationDto & ComerRejectedGoodDto): Promise<{
+        data: import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity[];
+        count: number;
+    }>;
 }

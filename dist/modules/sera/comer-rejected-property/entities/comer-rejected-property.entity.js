@@ -25,7 +25,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
     __metadata("design:type", Number)
-], ComerRejectedPropertyEntity.prototype, "idEvent", void 0);
+], ComerRejectedPropertyEntity.prototype, "eventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)

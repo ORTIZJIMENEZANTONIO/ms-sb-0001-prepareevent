@@ -34,7 +34,13 @@ let ComerRejectedPropertyController = class ComerRejectedPropertyController {
         });
     }
     async getAllComersRejectedProperties({ inicio, pageSize }) {
-        return await this.service.getAllComersRejectedProperties({ inicio, pageSize });
+        return await this.service.getAllComersRejectedProperties({
+            inicio,
+            pageSize,
+        });
+    }
+    async getComerRejectedPropertyByEventId(comer) {
+        return await this.service.getComerRejectedPropertyByEventId(comer);
     }
 };
 __decorate([
@@ -44,13 +50,19 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ComerRejectedPropertyController.prototype, "createComerRejectedProperty", null);
 __decorate([
-    (0, microservices_1.MessagePattern)({ cmd: 'getAllComersRejectedProperties' }),
+    (0, microservices_1.MessagePattern)({ cmd: "getAllComersRejectedProperties" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
     __metadata("design:returntype", Promise)
 ], ComerRejectedPropertyController.prototype, "getAllComersRejectedProperties", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "getComerRejectedPropertyByEventId" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], ComerRejectedPropertyController.prototype, "getComerRejectedPropertyByEventId", null);
 ComerRejectedPropertyController = __decorate([
-    (0, common_1.Controller)('comer-rejected-property'),
+    (0, common_1.Controller)("comer-rejected-property"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __metadata("design:paramtypes", [comer_rejected_property_service_1.ComerRejectedPropertyService,
         winston_1.Logger])

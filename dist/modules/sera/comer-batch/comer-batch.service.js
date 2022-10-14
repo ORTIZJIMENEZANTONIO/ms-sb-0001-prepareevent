@@ -32,6 +32,7 @@ let ComerBatchService = class ComerBatchService {
     }
     async getAllComersLot(pagination) {
         var _a, _b;
+        this.counter.inc();
         const { inicio = 1, pageSize = 10 } = pagination;
         const result = await this.entity
             .createQueryBuilder("cl")

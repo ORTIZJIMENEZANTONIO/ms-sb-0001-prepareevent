@@ -1,6 +1,6 @@
 export declare class ComerRejectedGoodDto {
     rejectedGoodId: number;
-    idEvent: number;
+    eventId: number;
     noProperty: number;
     origin: string | null;
     description: string | null;

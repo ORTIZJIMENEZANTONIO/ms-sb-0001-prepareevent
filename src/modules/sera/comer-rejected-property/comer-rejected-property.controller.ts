@@ -7,7 +7,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyService } from "./comer-rejected-property.service";
 
-@Controller('comer-rejected-property')
+@Controller("comer-rejected-property")
 export class ComerRejectedPropertyController {
   constructor(
     private readonly service: ComerRejectedPropertyService,
@@ -26,8 +26,18 @@ export class ComerRejectedPropertyController {
     );
   }
 
-  @MessagePattern({ cmd: 'getAllComersRejectedProperties' })
-  async getAllComersRejectedProperties( {inicio, pageSize}: PaginationDto ) {
-    return await this.service.getAllComersRejectedProperties( {inicio, pageSize} );
+  @MessagePattern({ cmd: "getAllComersRejectedProperties" })
+  async getAllComersRejectedProperties({ inicio, pageSize }: PaginationDto) {
+    return await this.service.getAllComersRejectedProperties({
+      inicio,
+      pageSize,
+    });
+  }
+
+  @MessagePattern({ cmd: "getComerRejectedPropertyByEventId" })
+  async getComerRejectedPropertyByEventId(
+    comer: PaginationDto & ComerRejectedGoodDto
+  ) {
+    return await this.service.getComerRejectedPropertyByEventId(comer);
   }
 }
