@@ -1,3 +1,3 @@
-export declare class ComerBatchDto {
-    idBatchToUpdt: number;
+export declare class UpdateComerBatchDto {
+    lotIdToUpdt: number;
 }

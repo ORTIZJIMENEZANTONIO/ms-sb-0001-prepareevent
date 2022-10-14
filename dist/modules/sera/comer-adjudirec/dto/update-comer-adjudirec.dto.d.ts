@@ -1,3 +1,3 @@
 export declare class ComerAdjudirecDto {
-    idEvent: string;
+    eventIdToUpdt: number;
 }

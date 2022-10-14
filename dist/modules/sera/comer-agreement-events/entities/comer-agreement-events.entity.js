@@ -30,7 +30,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerConvEventEntity.prototype, "noAnnouncementEvent", void 0);
+], ComerConvEventEntity.prototype, "announcementEventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "descripcion",

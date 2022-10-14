@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerBatchEntity = void 0;
+exports.ComerLotsEntity = void 0;
 const typeorm_1 = require("typeorm");
-let ComerBatchEntity = class ComerBatchEntity {
+let ComerLotsEntity = class ComerLotsEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({
         name: "id_lote",
     }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "lotId", void 0);
+], ComerLotsEntity.prototype, "lotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "id_estatusvta", length: 4 }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "idEstatusvta", void 0);
+], ComerLotsEntity.prototype, "idEstatusvta", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "eventId", void 0);
+], ComerLotsEntity.prototype, "eventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "lote_publico", precision: 8, scale: 0 }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "publicLot", void 0);
+], ComerLotsEntity.prototype, "publicLot", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "descripcion",
@@ -38,11 +38,11 @@ __decorate([
         length: 1250,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "description", void 0);
+], ComerLotsEntity.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "valor_base", precision: 33, scale: 2 }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "valorBase", void 0);
+], ComerLotsEntity.prototype, "valorBase", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_transferente",
@@ -51,7 +51,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "noTransferente", void 0);
+], ComerLotsEntity.prototype, "noTransferente", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_cliente",
@@ -60,7 +60,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "clientId", void 0);
+], ComerLotsEntity.prototype, "clientId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_avaluo_ref",
@@ -69,7 +69,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "precioAvaluoRef", void 0);
+], ComerLotsEntity.prototype, "precioAvaluoRef", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_garantia",
@@ -78,14 +78,14 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "precioGarantia", void 0);
+], ComerLotsEntity.prototype, "precioGarantia", void 0);
 __decorate([
     (0, typeorm_1.Column)("timestamp without time zone", {
         name: "fecha_entrega",
         nullable: true,
     }),
     __metadata("design:type", Date)
-], ComerBatchEntity.prototype, "fechaEntrega", void 0);
+], ComerLotsEntity.prototype, "fechaEntrega", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_final",
@@ -94,7 +94,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "precioFinal", void 0);
+], ComerLotsEntity.prototype, "precioFinal", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "referenciag",
@@ -102,7 +102,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "referenciag", void 0);
+], ComerLotsEntity.prototype, "referenciag", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "referencial",
@@ -110,7 +110,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "referencial", void 0);
+], ComerLotsEntity.prototype, "referencial", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "acumulado",
@@ -120,7 +120,7 @@ __decorate([
         default: () => "0",
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "acumulado", void 0);
+], ComerLotsEntity.prototype, "acumulado", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "valido_sistema",
@@ -128,7 +128,7 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "validoSistema", void 0);
+], ComerLotsEntity.prototype, "validoSistema", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "iva_lote",
@@ -137,7 +137,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "ivaLote", void 0);
+], ComerLotsEntity.prototype, "ivaLote", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_app_iva",
@@ -146,7 +146,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "montoAppIva", void 0);
+], ComerLotsEntity.prototype, "montoAppIva", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_noapp_iva",
@@ -155,7 +155,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "montoNoappIva", void 0);
+], ComerLotsEntity.prototype, "montoNoappIva", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "porc_app_iva",
@@ -164,7 +164,7 @@ __decorate([
         scale: 9,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "porcAppIva", void 0);
+], ComerLotsEntity.prototype, "porcAppIva", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "porc_noapp_iva",
@@ -173,7 +173,7 @@ __decorate([
         scale: 9,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "porcNoappIva", void 0);
+], ComerLotsEntity.prototype, "porcNoappIva", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "coordinacion_reg",
@@ -181,7 +181,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "coordinacionReg", void 0);
+], ComerLotsEntity.prototype, "coordinacionReg", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "coordinador_reg",
@@ -189,7 +189,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "coordinadorReg", void 0);
+], ComerLotsEntity.prototype, "coordinadorReg", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "dato_fisc_mand",
@@ -197,7 +197,7 @@ __decorate([
         length: 200,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "datoFiscMand", void 0);
+], ComerLotsEntity.prototype, "datoFiscMand", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "ubicacion",
@@ -205,7 +205,7 @@ __decorate([
         length: 250,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "ubicacion", void 0);
+], ComerLotsEntity.prototype, "ubicacion", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "anticipo",
@@ -214,7 +214,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "anticipo", void 0);
+], ComerLotsEntity.prototype, "anticipo", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_sin_iva",
@@ -223,7 +223,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "montoSinIva", void 0);
+], ComerLotsEntity.prototype, "montoSinIva", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "nooficionotifica",
@@ -232,7 +232,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "nooficionotifica", void 0);
+], ComerLotsEntity.prototype, "nooficionotifica", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "imprimenotifica",
@@ -240,7 +240,7 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "imprimenotifica", void 0);
+], ComerLotsEntity.prototype, "imprimenotifica", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "idestatusvtant",
@@ -248,7 +248,7 @@ __decorate([
         length: 4,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "idestatusvtant", void 0);
+], ComerLotsEntity.prototype, "idestatusvtant", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "num_bienes",
@@ -257,7 +257,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "numBienes", void 0);
+], ComerLotsEntity.prototype, "numBienes", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "excede_falta",
@@ -266,7 +266,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "excedeFalta", void 0);
+], ComerLotsEntity.prototype, "excedeFalta", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "esasignado",
@@ -274,7 +274,7 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "esasignado", void 0);
+], ComerLotsEntity.prototype, "esasignado", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "eschatarra",
@@ -282,11 +282,11 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "eschatarra", void 0);
+], ComerLotsEntity.prototype, "eschatarra", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "solicita", nullable: true, length: 60 }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "solicita", void 0);
+], ComerLotsEntity.prototype, "solicita", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_retenido",
@@ -295,7 +295,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "montoRetenido", void 0);
+], ComerLotsEntity.prototype, "montoRetenido", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_delegacion",
@@ -304,7 +304,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "noDelegacion", void 0);
+], ComerLotsEntity.prototype, "noDelegacion", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "lote_origen",
@@ -313,7 +313,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "loteOrigen", void 0);
+], ComerLotsEntity.prototype, "loteOrigen", void 0);
 __decorate([
     (0, typeorm_1.Column)("double precision", {
         name: "cubrelotes",
@@ -321,7 +321,7 @@ __decorate([
         precision: 53,
     }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "cubrelotes", void 0);
+], ComerLotsEntity.prototype, "cubrelotes", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "paleta",
@@ -330,7 +330,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "paleta", void 0);
+], ComerLotsEntity.prototype, "paleta", void 0);
 __decorate([
     (0, typeorm_1.Column)("double precision", {
         name: "garantia_asig",
@@ -338,7 +338,7 @@ __decorate([
         precision: 53,
     }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "garantiaAsig", void 0);
+], ComerLotsEntity.prototype, "garantiaAsig", void 0);
 __decorate([
     (0, typeorm_1.Column)("double precision", {
         name: "monto_liq",
@@ -346,11 +346,11 @@ __decorate([
         precision: 53,
     }),
     __metadata("design:type", Number)
-], ComerBatchEntity.prototype, "montoLiq", void 0);
+], ComerLotsEntity.prototype, "montoLiq", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "fase", nullable: true, precision: 2, scale: 0 }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "fase", void 0);
+], ComerLotsEntity.prototype, "fase", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_parcialidades",
@@ -359,7 +359,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "noParcialidades", void 0);
+], ComerLotsEntity.prototype, "noParcialidades", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "puntos_porcen",
@@ -368,7 +368,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "puntosPorcen", void 0);
+], ComerLotsEntity.prototype, "puntosPorcen", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "porc_anticipo",
@@ -377,13 +377,13 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "porcAnticipo", void 0);
+], ComerLotsEntity.prototype, "porcAnticipo", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "a_iva", nullable: true, length: 2 }),
     __metadata("design:type", String)
-], ComerBatchEntity.prototype, "aIva", void 0);
-ComerBatchEntity = __decorate([
+], ComerLotsEntity.prototype, "aIva", void 0);
+ComerLotsEntity = __decorate([
     (0, typeorm_1.Entity)("comer_lotes", { schema: "sera" })
-], ComerBatchEntity);
-exports.ComerBatchEntity = ComerBatchEntity;
+], ComerLotsEntity);
+exports.ComerLotsEntity = ComerLotsEntity;
 //# sourceMappingURL=comer-batch.entity.js.map

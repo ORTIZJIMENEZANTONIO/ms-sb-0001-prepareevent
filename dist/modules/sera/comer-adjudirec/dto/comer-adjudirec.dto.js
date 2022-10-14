@@ -15,7 +15,7 @@ class ComerAdjudirecDto {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "ex" }),
-    __metadata("design:type", String)
-], ComerAdjudirecDto.prototype, "idEvent", void 0);
+    __metadata("design:type", Number)
+], ComerAdjudirecDto.prototype, "eventId", void 0);
 exports.ComerAdjudirecDto = ComerAdjudirecDto;
 //# sourceMappingURL=comer-adjudirec.dto.js.map

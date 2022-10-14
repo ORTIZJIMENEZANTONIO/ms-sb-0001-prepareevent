@@ -1,17 +1,16 @@
-import { Column, Entity, Index, JoinColumn, OneToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 //import { ComerEventos } from "./ComerEventos";
 //
 //@Index("comer_adjudirec_pkey", ["idEvento"], { unique: true })
 //@Index("isia154p1_comer_adj", ["idEvento"], { unique: true })
 @Entity("comer_adjudirec", { schema: "sera" })
 export class ComerAdjudirecEntity {
-  @Column("numeric", {
-    primary: true,
+  @PrimaryColumn("numeric", {
     name: "id_evento",
     precision: 7,
     scale: 0,
   })
-  eventId: string;
+  eventId: number;
 
   @Column("character varying", { name: "comite", nullable: true, length: 1 })
   committee: string | null;
@@ -62,7 +61,7 @@ export class ComerAdjudirecEntity {
   observation: string | null;
 
   @Column("numeric", { name: "valudi", nullable: true, precision: 6, scale: 3 })
-  valudi: string | null;
+  valudi: number | null;
 
   @Column("numeric", {
     name: "montoudis",
@@ -70,7 +69,7 @@ export class ComerAdjudirecEntity {
     precision: 15,
     scale: 2,
   })
-  amountDis: string | null;
+  amountDis: number | null;
 
   @Column("character varying", { name: "licitado", nullable: true, length: 2 })
   tendered: string | null;
@@ -114,7 +113,7 @@ export class ComerAdjudirecEntity {
     precision: 15,
     scale: 2,
   })
-  valMaxUdi: string | null;
+  valMaxUdi: number | null;
 
   @Column("character varying", { name: "causa", nullable: true, length: 100 })
   cause: string | null;

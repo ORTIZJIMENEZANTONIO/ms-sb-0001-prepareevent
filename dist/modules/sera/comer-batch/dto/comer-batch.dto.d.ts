@@ -1,4 +1,4 @@
-export declare class ComerBatchDto {
+export declare class ComerLotsDto {
     lotId: number;
     idEstatusvta: string;
     eventId: number;

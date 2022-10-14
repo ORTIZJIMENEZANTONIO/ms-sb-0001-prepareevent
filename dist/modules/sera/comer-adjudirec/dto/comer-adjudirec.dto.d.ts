@@ -1,5 +1,5 @@
 export declare class ComerAdjudirecDto {
-    idEvent: string;
+    eventId: number;
     committee: string | null;
     sessionDate: string | null;
     noSession: string | null;
@@ -8,8 +8,8 @@ export declare class ComerAdjudirecDto {
     userWhoFormulated: string | null;
     physicalCondition: string | null;
     observation: string | null;
-    valudi: string | null;
-    amountDis: string | null;
+    valudi: number | null;
+    amountDis: number | null;
     tendered: string | null;
     udiDate: string | null;
     wayToPay: string | null;
@@ -18,6 +18,6 @@ export declare class ComerAdjudirecDto {
     text3: string | null;
     receptionDate: string | null;
     bookValue: string | null;
-    valMaxUdi: string | null;
+    valMaxUdi: number | null;
     cause: string | null;
 }

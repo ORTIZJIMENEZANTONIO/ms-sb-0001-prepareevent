@@ -1,4 +1,4 @@
-export declare class ComerBatchEntity {
+export declare class ComerLotsEntity {
     lotId: number;
     idEstatusvta: string;
     eventId: number;

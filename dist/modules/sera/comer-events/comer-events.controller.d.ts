@@ -2,7 +2,7 @@ import { Logger } from "winston";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventsService } from "./comer-events.service";
 import { ComerEventDto } from "./dto/comer-events.dto";
-import { ComerBatchDto } from "../comer-batch/dto/comer-batch.dto";
+import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
 export declare class ComerEventsController {
     private readonly service;
     private readonly logger;
@@ -18,5 +18,5 @@ export declare class ComerEventsController {
     }>;
     getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<import("./entities/comer-events.entity").ComerEventEntity[]>;
     getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<import("./entities/comer-events.entity").ComerEventEntity[]>;
-    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerBatchDto & PaginationDto): Promise<any[] | import("./entities/comer-events.entity").ComerEventEntity[]>;
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | import("./entities/comer-events.entity").ComerEventEntity[]>;
 }

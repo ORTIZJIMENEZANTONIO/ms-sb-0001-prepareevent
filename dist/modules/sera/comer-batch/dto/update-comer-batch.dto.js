@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerBatchDto = void 0;
-class ComerBatchDto {
+exports.UpdateComerBatchDto = void 0;
+class UpdateComerBatchDto {
 }
-exports.ComerBatchDto = ComerBatchDto;
+exports.UpdateComerBatchDto = UpdateComerBatchDto;
 //# sourceMappingURL=update-comer-batch.dto.js.map

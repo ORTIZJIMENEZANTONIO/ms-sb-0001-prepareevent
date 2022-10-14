@@ -26,16 +26,15 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
         this.logger = logger;
         this.counter = counter;
     }
-    async createComerRejectedProperty(warehouseDto) {
-        const rejectedPropertyCreated = await this.entity.save(warehouseDto);
-        return rejectedPropertyCreated;
+    async createComerRejectedProperty(comerRejected) {
+        return await this.entity.save(comerRejected);
     }
-    async getAllComerRejectedPropertys({ inicio, pageSize }) {
+    async getAllComersRejectedProperties({ inicio, pageSize }) {
         this.counter.inc();
         const [result, total] = await this.entity.findAndCount({
             skip: inicio ? inicio - 1 : Number(0),
             take: pageSize,
-            order: { idRejectedProperty: "DESC" },
+            order: { rejectedGoodId: "DESC" },
         });
         return {
             data: result,
@@ -44,21 +43,11 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async getComerRejectedPropertyById(id) {
         return await this.entity.findOne({
-            where: { idRejectedProperty: id },
+            where: { rejectedGoodId: id },
         });
     }
-    async updateComerRejectedProperty(id, updatewarehouseDto) {
-        const ComerRejectedPropertyFound = await this.entity.findOne({
-            where: { idRejectedProperty: id },
-        });
-        if (ComerRejectedPropertyFound) {
-            this.entity.merge(ComerRejectedPropertyFound, updatewarehouseDto);
-            return await this.entity.save(ComerRejectedPropertyFound);
-        }
-        return false;
-    }
-    async deleteComerRejectedProperty(id) {
-        return await this.entity.delete(id);
+    async deleteComerRejectedProperty(rejectedGoodId) {
+        return await this.entity.delete(rejectedGoodId);
     }
 };
 ComerRejectedPropertyService = __decorate([

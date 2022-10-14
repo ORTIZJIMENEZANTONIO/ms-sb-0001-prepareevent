@@ -1,3 +1,3 @@
-export declare class ComerClientDto {
+export declare class UpdateComerClientDto {
     idClientToUpdt: number;
 }

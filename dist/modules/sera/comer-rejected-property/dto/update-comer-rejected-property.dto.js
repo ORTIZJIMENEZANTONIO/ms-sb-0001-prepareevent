@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerRejectedPropertyDto = void 0;
-class ComerRejectedPropertyDto {
+exports.UpdateComerRejectedGoodDto = void 0;
+class UpdateComerRejectedGoodDto {
 }
-exports.ComerRejectedPropertyDto = ComerRejectedPropertyDto;
+exports.UpdateComerRejectedGoodDto = UpdateComerRejectedGoodDto;
 //# sourceMappingURL=update-comer-rejected-property.dto.js.map

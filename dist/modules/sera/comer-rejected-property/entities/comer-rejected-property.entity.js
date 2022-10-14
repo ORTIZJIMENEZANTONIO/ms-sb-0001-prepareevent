@@ -21,14 +21,14 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerRejectedPropertyEntity.prototype, "idRejectedProperty", void 0);
+], ComerRejectedPropertyEntity.prototype, "rejectedGoodId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "idEvent", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "noProperty", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "origen", nullable: true, length: 15 }),
@@ -57,7 +57,7 @@ __decorate([
         precision: 10,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "event", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -66,7 +66,7 @@ __decorate([
         precision: 10,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "batchPublic", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -75,7 +75,7 @@ __decorate([
         precision: 1,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "rejectedReason", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -84,7 +84,7 @@ __decorate([
         precision: 10,
         scale: 0,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "batchOrigin", void 0);
 ComerRejectedPropertyEntity = __decorate([
     (0, typeorm_1.Entity)("comer_bienesrechazados", { schema: "sera" })

@@ -1,6 +1,6 @@
 export declare class ComerConvEventEntity {
     eventId: number;
-    noAnnouncementEvent: number;
+    announcementEventId: number;
     description: string | null;
     dates: string | null;
     schedule: string | null;

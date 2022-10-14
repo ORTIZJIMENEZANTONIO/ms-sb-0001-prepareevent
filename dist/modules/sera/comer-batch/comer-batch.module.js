@@ -17,13 +17,13 @@ let ComerBatchModule = class ComerBatchModule {
 };
 ComerBatchModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([comer_batch_entity_1.ComerBatchEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([comer_batch_entity_1.ComerLotsEntity])],
         controllers: [comer_batch_controller_1.ComerBatchController],
         providers: [
             comer_batch_service_1.ComerBatchService,
             (0, nestjs_prometheus_1.makeCounterProvider)({
-                name: "comer_batch_served",
-                help: "comer_batch_help",
+                name: "comer_lot_served",
+                help: "comer_lot_help",
             }),
         ]
     })

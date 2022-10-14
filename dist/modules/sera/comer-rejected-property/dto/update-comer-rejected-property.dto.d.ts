@@ -1,3 +1,3 @@
-export declare class ComerRejectedPropertyDto {
-    idPropertyToUpdt: number;
+export declare class UpdateComerRejectedGoodDto {
+    rejectedGoodIdToUpdt: number;
 }

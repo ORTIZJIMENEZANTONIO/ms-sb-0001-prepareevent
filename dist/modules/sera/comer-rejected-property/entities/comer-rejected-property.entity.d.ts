@@ -1,13 +1,13 @@
 export declare class ComerRejectedPropertyEntity {
-    idRejectedProperty: number;
-    idEvent: string;
-    noProperty: string;
+    rejectedGoodId: number;
+    idEvent: number;
+    noProperty: number;
     origin: string | null;
     description: string | null;
     status: string | null;
     cause: string | null;
-    event: string | null;
-    batchPublic: string | null;
-    rejectedReason: string | null;
-    batchOrigin: string | null;
+    event: number | null;
+    batchPublic: number | null;
+    rejectedReason: number | null;
+    batchOrigin: number | null;
 }

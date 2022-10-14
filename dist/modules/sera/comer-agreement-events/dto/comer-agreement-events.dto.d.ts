@@ -1,6 +1,6 @@
 export declare class ComerConvEventDto {
     eventId: number;
-    noAnnouncementEvent: number;
+    announcementEventId: number;
     description: string | null;
     dates: string | null;
     schedule: string | null;

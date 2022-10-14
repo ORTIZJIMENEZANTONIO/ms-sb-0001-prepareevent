@@ -14,14 +14,13 @@ const typeorm_1 = require("typeorm");
 let ComerAdjudirecEntity = class ComerAdjudirecEntity {
 };
 __decorate([
-    (0, typeorm_1.Column)("numeric", {
-        primary: true,
+    (0, typeorm_1.PrimaryColumn)("numeric", {
         name: "id_evento",
         precision: 7,
         scale: 0,
     }),
-    __metadata("design:type", String)
-], ComerAdjudirecEntity.prototype, "idEvent", void 0);
+    __metadata("design:type", Number)
+], ComerAdjudirecEntity.prototype, "eventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "comite", nullable: true, length: 1 }),
     __metadata("design:type", String)
@@ -80,7 +79,7 @@ __decorate([
 ], ComerAdjudirecEntity.prototype, "observation", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "valudi", nullable: true, precision: 6, scale: 3 }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerAdjudirecEntity.prototype, "valudi", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
@@ -89,7 +88,7 @@ __decorate([
         precision: 15,
         scale: 2,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerAdjudirecEntity.prototype, "amountDis", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "licitado", nullable: true, length: 2 }),
@@ -142,7 +141,7 @@ __decorate([
         precision: 15,
         scale: 2,
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], ComerAdjudirecEntity.prototype, "valMaxUdi", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "causa", nullable: true, length: 100 }),
