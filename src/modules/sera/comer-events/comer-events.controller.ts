@@ -41,4 +41,16 @@ export class ComerEventsController {
   ) {
     return await this.service.getComerEventByTpEvent(comerEvent);
   }
+
+  @MessagePattern({ cmd: "deleteComerEvent" })
+  async deleteComerEvent(comer: ComerEventDto) {
+    const { affected } = await this.service.deleteComerEvent(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "ComerEvent not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
 }

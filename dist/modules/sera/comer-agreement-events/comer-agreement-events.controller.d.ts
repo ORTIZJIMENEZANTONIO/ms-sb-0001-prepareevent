@@ -13,5 +13,14 @@ export declare class ComerAgreementEventsController {
         data: import("./entities/comer-agreement-events.entity").ComerConvEventEntity[];
         count: number;
     }>;
-    getComerConvEventById(comerConvEvent: ComerConvEventDto): Promise<any[] | import("./entities/comer-agreement-events.entity").ComerConvEventEntity>;
+    getComerConvEventById(comerConvEvent: ComerConvEventDto): Promise<import("./entities/comer-agreement-events.entity").ComerConvEventEntity>;
+    deleteComerConvEvent(comer: ComerConvEventDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

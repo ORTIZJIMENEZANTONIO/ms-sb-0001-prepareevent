@@ -28,4 +28,16 @@ export class ComerAgreementEventsController {
   async getComerConvEventById(comerConvEvent: ComerConvEventDto) {
     return await this.service.getComerConvEventById(comerConvEvent);
   }
+
+  @MessagePattern({ cmd: "deleteComerConvEvent" })
+  async deleteComerConvEvent(comer: ComerConvEventDto) {
+    const { affected } = await this.service.deleteComerConvEvent(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "ComerConvEvent not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
 }

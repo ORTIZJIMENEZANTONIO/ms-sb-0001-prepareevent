@@ -28,8 +28,18 @@ let ComerAdjudirecController = class ComerAdjudirecController {
     async createComerAdjudirec(comerEvent) {
         return await this.service.createComerAdjudirec(comerEvent);
     }
-    async getAllComersAdjudirec({ inicio, pageSize }) {
-        return await this.service.getAllComersAdjudirec({ inicio, pageSize });
+    async getAllComersAdjudirec(pagination) {
+        return await this.service.getAllComersAdjudirec(pagination);
+    }
+    async deleteComerAdjudirec(comer) {
+        const { affected } = await this.service.deleteComerAdjudirec(comer);
+        return affected == 0
+            ? {
+                statusCode: 404,
+                message: "ComerAdjudirec not found",
+                error: "Not found",
+            }
+            : { statusCode: 200, message: "Successfully deleted" };
     }
 };
 __decorate([
@@ -39,11 +49,17 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ComerAdjudirecController.prototype, "createComerAdjudirec", null);
 __decorate([
-    (0, microservices_1.MessagePattern)({ cmd: 'getAllComersAdjudirec' }),
+    (0, microservices_1.MessagePattern)({ cmd: "getAllComersAdjudirec" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
     __metadata("design:returntype", Promise)
 ], ComerAdjudirecController.prototype, "getAllComersAdjudirec", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "deleteComerAdjudirec" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_adjudirec_dto_1.ComerAdjudirecDto]),
+    __metadata("design:returntype", Promise)
+], ComerAdjudirecController.prototype, "deleteComerAdjudirec", null);
 ComerAdjudirecController = __decorate([
     (0, common_1.Controller)("comer-adjudirec"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

@@ -28,4 +28,16 @@ export class ComerBatchController {
   async getComerLotByEventId( comer: ComerLotsDto & PaginationDto ) {
     return await this.service.getComerLotByEventId( comer );
   }
+
+  @MessagePattern({ cmd: "deleteComerLot" })
+  async deleteComerLot(comer: ComerLotsDto) {
+    const { affected } = await this.service.deleteComerLot(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "ComerConvEvent not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
 }

@@ -19,8 +19,20 @@ export class ComerAdjudirecController {
     return await this.service.createComerAdjudirec(comerEvent);
   }
 
-  @MessagePattern({ cmd: 'getAllComersAdjudirec' })
-  async getAllComersAdjudirec( {inicio, pageSize}: PaginationDto ) {
-    return await this.service.getAllComersAdjudirec( {inicio, pageSize} );
+  @MessagePattern({ cmd: "getAllComersAdjudirec" })
+  async getAllComersAdjudirec(pagination: PaginationDto) {
+    return await this.service.getAllComersAdjudirec(pagination);
+  }
+
+  @MessagePattern({ cmd: "deleteComerAdjudirec" })
+  async deleteComerAdjudirec(comer: ComerAdjudirecDto) {
+    const { affected } = await this.service.deleteComerAdjudirec(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "ComerAdjudirec not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
   }
 }

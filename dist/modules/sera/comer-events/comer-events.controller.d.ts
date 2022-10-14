@@ -26,4 +26,13 @@ export declare class ComerEventsController {
         data: import("./entities/comer-events.entity").ComerEventEntity[];
         count: number;
     }>;
+    deleteComerEvent(comer: ComerEventDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

@@ -34,16 +34,22 @@ let ComerAdjudirecService = class ComerAdjudirecService {
             return { error: error.detail };
         }
     }
-    async getAllComersAdjudirec({ inicio, pageSize }) {
+    async getAllComersAdjudirec(pagination) {
+        const { inicio = 1, pageSize = 10 } = pagination;
         const [result, total] = await this.entity.findAndCount({
             order: { eventId: "DESC" },
-            take: pageSize || 10,
+            take: pageSize,
             skip: (inicio - 1) * pageSize || 0,
         });
         return {
             data: result,
             count: total,
         };
+    }
+    async updateComerAdjudirec() { }
+    async deleteComerAdjudirec(comer) {
+        const { eventId } = comer;
+        return await this.entity.delete({ eventId });
     }
 };
 ComerAdjudirecService = __decorate([

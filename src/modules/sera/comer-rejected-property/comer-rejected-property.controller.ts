@@ -30,4 +30,16 @@ export class ComerRejectedPropertyController {
   ) {
     return await this.service.getComerRejectedPropertyByEventId(comer);
   }
+
+  @MessagePattern({ cmd: "deleteComerRejectedProperty" })
+  async deleteComerRejectedProperty(comer: ComerRejectedGoodDto) {
+    const { affected } = await this.service.deleteComerRejectedProperty(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "Comer rejected not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
 }

@@ -34,6 +34,16 @@ let ComerBatchController = class ComerBatchController {
     async getComerLotByEventId(comer) {
         return await this.service.getComerLotByEventId(comer);
     }
+    async deleteComerLot(comer) {
+        const { affected } = await this.service.deleteComerLot(comer);
+        return affected == 0
+            ? {
+                statusCode: 404,
+                message: "ComerConvEvent not found",
+                error: "Not found",
+            }
+            : { statusCode: 200, message: "Successfully deleted" };
+    }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerLot" }),
@@ -53,6 +63,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ComerBatchController.prototype, "getComerLotByEventId", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "deleteComerLot" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_batch_dto_1.ComerLotsDto]),
+    __metadata("design:returntype", Promise)
+], ComerBatchController.prototype, "deleteComerLot", null);
 ComerBatchController = __decorate([
     (0, common_1.Controller)('comer-batch'),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

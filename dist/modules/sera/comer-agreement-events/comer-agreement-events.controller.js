@@ -34,6 +34,16 @@ let ComerAgreementEventsController = class ComerAgreementEventsController {
     async getComerConvEventById(comerConvEvent) {
         return await this.service.getComerConvEventById(comerConvEvent);
     }
+    async deleteComerConvEvent(comer) {
+        const { affected } = await this.service.deleteComerConvEvent(comer);
+        return affected == 0
+            ? {
+                statusCode: 404,
+                message: "ComerConvEvent not found",
+                error: "Not found",
+            }
+            : { statusCode: 200, message: "Successfully deleted" };
+    }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerConvEvent" }),
@@ -53,6 +63,12 @@ __decorate([
     __metadata("design:paramtypes", [comer_agreement_events_dto_1.ComerConvEventDto]),
     __metadata("design:returntype", Promise)
 ], ComerAgreementEventsController.prototype, "getComerConvEventById", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "deleteComerConvEvent" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_agreement_events_dto_1.ComerConvEventDto]),
+    __metadata("design:returntype", Promise)
+], ComerAgreementEventsController.prototype, "deleteComerConvEvent", null);
 ComerAgreementEventsController = __decorate([
     (0, common_1.Controller)("comer-agreement-events"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

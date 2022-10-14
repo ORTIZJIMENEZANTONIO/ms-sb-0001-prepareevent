@@ -67,6 +67,11 @@ let ComerBatchService = class ComerBatchService {
             count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
+    async updateComerLot() { }
+    async deleteComerLot(comer) {
+        const { lotId } = comer;
+        return await this.entity.delete({ lotId });
+    }
 };
 ComerBatchService = __decorate([
     (0, common_1.Injectable)(),

@@ -17,4 +17,13 @@ export declare class ComerBatchController {
         data: import("./entities/comer-batch.entity").ComerLotsEntity[];
         count: number;
     }>;
+    deleteComerLot(comer: ComerLotsDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

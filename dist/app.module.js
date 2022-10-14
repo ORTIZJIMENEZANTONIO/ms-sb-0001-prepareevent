@@ -22,6 +22,7 @@ const comer_batch_module_1 = require("./modules/sera/comer-batch/comer-batch.mod
 const comer_adjudirec_module_1 = require("./modules/sera/comer-adjudirec/comer-adjudirec.module");
 const comer_client_module_1 = require("./modules/sera/comer-client/comer-client.module");
 const comer_rejected_property_module_1 = require("./modules/sera/comer-rejected-property/comer-rejected-property.module");
+const mandate_function_module_1 = require("./modules/sera/mandate-function/mandate-function.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -59,6 +60,7 @@ AppModule = __decorate([
             comer_adjudirec_module_1.ComerAdjudirecModule,
             comer_client_module_1.ComerClientModule,
             comer_rejected_property_module_1.ComerRejectedPropertyModule,
+            mandate_function_module_1.MandateFunctionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -12,8 +12,10 @@ export declare class ComerAdjudirecService {
     createComerAdjudirec(comerEvent: ComerAdjudirecDto): Promise<(ComerAdjudirecDto & ComerAdjudirecEntity) | {
         error: any;
     }>;
-    getAllComersAdjudirec({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComersAdjudirec(pagination: PaginationDto): Promise<{
         data: ComerAdjudirecEntity[];
         count: number;
     }>;
+    updateComerAdjudirec(): Promise<void>;
+    deleteComerAdjudirec(comer: ComerAdjudirecDto): Promise<import("typeorm").DeleteResult>;
 }

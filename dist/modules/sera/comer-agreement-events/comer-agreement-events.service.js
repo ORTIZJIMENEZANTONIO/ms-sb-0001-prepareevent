@@ -52,8 +52,12 @@ let ComerAgreementEventsService = class ComerAgreementEventsService {
         };
     }
     async getComerConvEventById({ eventId }) {
-        const event = await this.entity.findOneBy({ eventId });
-        return event !== null && event !== void 0 ? event : [];
+        return await this.entity.findOneBy({ eventId });
+    }
+    async updateComerConvEvent() { }
+    async deleteComerConvEvent(comer) {
+        const { eventId, announcementEventId } = comer;
+        return await this.entity.delete({ eventId, announcementEventId });
     }
 };
 ComerAgreementEventsService = __decorate([

@@ -23,4 +23,16 @@ export class ComerClientController {
   async getAllComersClient( {inicio, pageSize}: PaginationDto ) {
     return await this.service.getAllComersClient( {inicio, pageSize} );
   }
+
+  @MessagePattern({ cmd: "deleteComerClient" })
+  async deleteComerClient(comer: ComerClientDto) {
+    const { affected } = await this.service.deleteComerClient(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "ComerClient not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
 }

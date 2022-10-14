@@ -15,6 +15,7 @@ import { ComerBatchModule } from './modules/sera/comer-batch/comer-batch.module'
 import { ComerAdjudirecModule } from './modules/sera/comer-adjudirec/comer-adjudirec.module';
 import { ComerClientModule } from './modules/sera/comer-client/comer-client.module';
 import { ComerRejectedPropertyModule } from './modules/sera/comer-rejected-property/comer-rejected-property.module';
+import { MandateFunctionModule } from './modules/sera/mandate-function/mandate-function.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { ComerRejectedPropertyModule } from './modules/sera/comer-rejected-prope
     ComerAdjudirecModule,
     ComerClientModule,
     ComerRejectedPropertyModule,
+    MandateFunctionModule,
     //
     ],
     controllers: [AppController],

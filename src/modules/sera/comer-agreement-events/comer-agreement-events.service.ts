@@ -1,4 +1,11 @@
-import { Injectable, Inject, Logger, NotFoundException, HttpException, HttpStatus } from "@nestjs/common";
+import {
+  Injectable,
+  Inject,
+  Logger,
+  NotFoundException,
+  HttpException,
+  HttpStatus,
+} from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -22,7 +29,7 @@ export class ComerAgreementEventsService {
     try {
       return await this.entity.save(comerEvent);
     } catch (error) {
-      return {error: error.detail}
+      return { error: error.detail };
     }
   }
 
@@ -49,7 +56,13 @@ export class ComerAgreementEventsService {
   }
 
   async getComerConvEventById({ eventId }: ComerConvEventDto) {
-    const event = await this.entity.findOneBy({ eventId });
-    return event ?? [];
+    return await this.entity.findOneBy({ eventId });
+  }
+
+  async updateComerConvEvent() {}
+
+  async deleteComerConvEvent(comer: ComerConvEventDto) {
+    const { eventId, announcementEventId } = comer;
+    return await this.entity.delete({ eventId, announcementEventId });
   }
 }

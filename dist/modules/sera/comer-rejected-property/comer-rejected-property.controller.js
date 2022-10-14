@@ -34,6 +34,16 @@ let ComerRejectedPropertyController = class ComerRejectedPropertyController {
     async getComerRejectedPropertyByEventId(comer) {
         return await this.service.getComerRejectedPropertyByEventId(comer);
     }
+    async deleteComerRejectedProperty(comer) {
+        const { affected } = await this.service.deleteComerRejectedProperty(comer);
+        return affected == 0
+            ? {
+                statusCode: 404,
+                message: "Comer rejected not found",
+                error: "Not found",
+            }
+            : { statusCode: 200, message: "Successfully deleted" };
+    }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerRejectedProperty" }),
@@ -53,6 +63,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ComerRejectedPropertyController.prototype, "getComerRejectedPropertyByEventId", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "deleteComerRejectedProperty" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_rejected_property_dto_1.ComerRejectedGoodDto]),
+    __metadata("design:returntype", Promise)
+], ComerRejectedPropertyController.prototype, "deleteComerRejectedProperty", null);
 ComerRejectedPropertyController = __decorate([
     (0, common_1.Controller)("comer-rejected-property"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

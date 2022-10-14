@@ -24,5 +24,6 @@ export declare class ComerRejectedPropertyService {
         data: ComerRejectedPropertyEntity[];
         count: number;
     }>;
-    deleteComerRejectedProperty(rejectedGoodId: number): Promise<import("typeorm").DeleteResult>;
+    updateComerRejectedProperty(): Promise<void>;
+    deleteComerRejectedProperty(comerRejected: ComerRejectedGoodDto): Promise<import("typeorm").DeleteResult>;
 }

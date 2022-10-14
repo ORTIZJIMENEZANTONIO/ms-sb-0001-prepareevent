@@ -16,5 +16,7 @@ export declare class ComerAgreementEventsService {
         data: ComerConvEventEntity[];
         count: number;
     }>;
-    getComerConvEventById({ eventId }: ComerConvEventDto): Promise<any[] | ComerConvEventEntity>;
+    getComerConvEventById({ eventId }: ComerConvEventDto): Promise<ComerConvEventEntity>;
+    updateComerConvEvent(): Promise<void>;
+    deleteComerConvEvent(comer: ComerConvEventDto): Promise<import("typeorm").DeleteResult>;
 }

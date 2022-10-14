@@ -13,4 +13,13 @@ export declare class ComerClientController {
         data: import("./entities/comer-client.entity").ComerClientEntity[];
         count: number;
     }>;
+    deleteComerClient(comer: ComerClientDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

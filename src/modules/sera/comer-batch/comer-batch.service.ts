@@ -70,4 +70,11 @@ export class ComerBatchService {
       count: result[1] ?? 0,
     };
   }
+
+  async updateComerLot() {}
+
+  async deleteComerLot(comer: ComerLotsDto) {
+    const { lotId } = comer;
+    return await this.entity.delete({ lotId });
+  }
 }

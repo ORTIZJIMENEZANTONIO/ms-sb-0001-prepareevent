@@ -10,6 +10,7 @@ import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
 import { Reference } from "src/shared/functions/reference";
 import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { Text } from "src/shared/functions/text";
 // comer_tpeventos pending
 // comer_estatusvta pending
 @Injectable()
@@ -55,7 +56,11 @@ export class ComerEventsService {
     const { address, inicio = 1, pageSize = 10 } = comerEvent;
     const result = await this.entity
       .createQueryBuilder("table")
-      .where({ address: address })
+      .where(
+        `${Text.formatTextDb("table.address")} like '%${Text.formatText(
+          address
+        )}%' `
+      )
       .take(pageSize)
       .skip((inicio - 1) * pageSize || 0)
       .orderBy("table.eventTpId", "DESC")
@@ -119,5 +124,14 @@ export class ComerEventsService {
           data: result[0] ?? [],
           count: result[1] ?? 0,
         };
+  }
+
+  async updateComerEvent() {
+    
+  }
+
+  async deleteComerEvent(comer: ComerEventDto) {
+    const { eventId } = comer;
+    return await this.entity.delete({ eventId });
   }
 }

@@ -37,4 +37,13 @@ export class ComerClientService {
       count: total,
     };
   }
+
+  async updateComerClient() {
+    
+  }
+
+  async deleteComerClient(comer: ComerClientDto) {
+    const { clientId } = comer;
+    return await this.entity.delete({ clientId });
+  }
 }

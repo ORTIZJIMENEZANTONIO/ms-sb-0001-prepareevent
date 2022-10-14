@@ -17,4 +17,13 @@ export declare class ComerRejectedPropertyController {
         data: import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity[];
         count: number;
     }>;
+    deleteComerRejectedProperty(comer: ComerRejectedGoodDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

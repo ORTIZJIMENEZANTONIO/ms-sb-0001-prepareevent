@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_events_entity_1 = require("./entities/comer-events.entity");
+const text_1 = require("../../../shared/functions/text");
 let ComerEventsService = class ComerEventsService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -54,7 +55,7 @@ let ComerEventsService = class ComerEventsService {
         const { address, inicio = 1, pageSize = 10 } = comerEvent;
         const result = await this.entity
             .createQueryBuilder("table")
-            .where({ address: address })
+            .where(`${text_1.Text.formatTextDb("table.address")} like '%${text_1.Text.formatText(address)}%' `)
             .take(pageSize)
             .skip((inicio - 1) * pageSize || 0)
             .orderBy("table.eventTpId", "DESC")
@@ -107,6 +108,12 @@ let ComerEventsService = class ComerEventsService {
                 data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
                 count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
             };
+    }
+    async updateComerEvent() {
+    }
+    async deleteComerEvent(comer) {
+        const { eventId } = comer;
+        return await this.entity.delete({ eventId });
     }
 };
 ComerEventsService = __decorate([

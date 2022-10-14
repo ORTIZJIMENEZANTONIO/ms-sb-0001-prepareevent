@@ -45,6 +45,12 @@ let ComerClientService = class ComerClientService {
             count: total,
         };
     }
+    async updateComerClient() {
+    }
+    async deleteComerClient(comer) {
+        const { clientId } = comer;
+        return await this.entity.delete({ clientId });
+    }
 };
 ComerClientService = __decorate([
     (0, common_1.Injectable)(),

@@ -94,7 +94,11 @@ export class ComerRejectedPropertyService {
     };
   }
 
-  async deleteComerRejectedProperty(rejectedGoodId: number) {
-    return await this.entity.delete(rejectedGoodId);
+  async updateComerRejectedProperty() {
+    
+  }
+
+  async deleteComerRejectedProperty(comerRejected: ComerRejectedGoodDto) {
+    return await this.entity.delete(comerRejected);
   }
 }

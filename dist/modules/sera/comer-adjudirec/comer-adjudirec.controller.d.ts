@@ -9,8 +9,17 @@ export declare class ComerAdjudirecController {
     createComerAdjudirec(comerEvent: ComerAdjudirecDto): Promise<(ComerAdjudirecDto & import("./entities/comer-adjudirec.entity").ComerAdjudirecEntity) | {
         error: any;
     }>;
-    getAllComersAdjudirec({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComersAdjudirec(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-adjudirec.entity").ComerAdjudirecEntity[];
         count: number;
+    }>;
+    deleteComerAdjudirec(comer: ComerAdjudirecDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
     }>;
 }

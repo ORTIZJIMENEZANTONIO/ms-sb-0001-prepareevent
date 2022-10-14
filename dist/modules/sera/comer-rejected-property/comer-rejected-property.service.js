@@ -81,8 +81,10 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
             count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
-    async deleteComerRejectedProperty(rejectedGoodId) {
-        return await this.entity.delete(rejectedGoodId);
+    async updateComerRejectedProperty() {
+    }
+    async deleteComerRejectedProperty(comerRejected) {
+        return await this.entity.delete(comerRejected);
     }
 };
 ComerRejectedPropertyService = __decorate([

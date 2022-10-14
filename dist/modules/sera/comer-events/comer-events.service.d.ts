@@ -29,4 +29,6 @@ export declare class ComerEventsService {
         data: ComerEventEntity[];
         count: number;
     }>;
+    updateComerEvent(): Promise<void>;
+    deleteComerEvent(comer: ComerEventDto): Promise<import("typeorm").DeleteResult>;
 }

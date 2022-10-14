@@ -16,4 +16,6 @@ export declare class ComerClientService {
         data: ComerClientEntity[];
         count: number;
     }>;
+    updateComerClient(): Promise<void>;
+    deleteComerClient(comer: ComerClientDto): Promise<import("typeorm").DeleteResult>;
 }

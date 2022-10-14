@@ -17,4 +17,13 @@ export declare class ComerPropertyByBatchController {
         data: import("./entities/comer-property-by-batch.entity").ComerGoodsXLotEntity[];
         count: number;
     }>;
+    deleteComerXLot(comer: ComerGoodsXLotDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
 }

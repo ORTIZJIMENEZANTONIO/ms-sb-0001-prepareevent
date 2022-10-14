@@ -20,4 +20,6 @@ export declare class ComerBatchService {
         data: ComerLotsEntity[];
         count: number;
     }>;
+    updateComerLot(): Promise<void>;
+    deleteComerLot(comer: ComerLotsDto): Promise<import("typeorm").DeleteResult>;
 }

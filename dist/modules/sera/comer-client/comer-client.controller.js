@@ -31,6 +31,16 @@ let ComerClientController = class ComerClientController {
     async getAllComersClient({ inicio, pageSize }) {
         return await this.service.getAllComersClient({ inicio, pageSize });
     }
+    async deleteComerClient(comer) {
+        const { affected } = await this.service.deleteComerClient(comer);
+        return affected == 0
+            ? {
+                statusCode: 404,
+                message: "ComerClient not found",
+                error: "Not found",
+            }
+            : { statusCode: 200, message: "Successfully deleted" };
+    }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerClient" }),
@@ -44,6 +54,12 @@ __decorate([
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
     __metadata("design:returntype", Promise)
 ], ComerClientController.prototype, "getAllComersClient", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "deleteComerClient" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_client_dto_1.ComerClientDto]),
+    __metadata("design:returntype", Promise)
+], ComerClientController.prototype, "deleteComerClient", null);
 ComerClientController = __decorate([
     (0, common_1.Controller)('comer-client'),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

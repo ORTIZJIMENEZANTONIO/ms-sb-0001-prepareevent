@@ -29,4 +29,16 @@ export class ComerPropertyByBatchController {
     return await this.service.getComerXLotByLotId(comerEvent);
   }
 
+  @MessagePattern({ cmd: "deleteComerXLot" })
+  async deleteComerXLot(comer: ComerGoodsXLotDto) {
+    const { affected } = await this.service.deleteComerXLot(comer);
+    return affected == 0
+      ? {
+          statusCode: 404,
+          message: "Comer X Lot not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
+
 }
