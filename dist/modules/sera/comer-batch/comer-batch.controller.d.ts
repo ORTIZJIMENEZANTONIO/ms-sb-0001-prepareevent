@@ -11,7 +11,11 @@ export declare class ComerBatchController {
         message: string;
         error: string;
     };
-    getAllComersLot({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComersLot(pagination: PaginationDto): Promise<{
+        data: import("./entities/comer-batch.entity").ComerLotsEntity[];
+        count: number;
+    }>;
+    getComerLotByEventId(comer: ComerLotsDto & PaginationDto): Promise<{
         data: import("./entities/comer-batch.entity").ComerLotsEntity[];
         count: number;
     }>;

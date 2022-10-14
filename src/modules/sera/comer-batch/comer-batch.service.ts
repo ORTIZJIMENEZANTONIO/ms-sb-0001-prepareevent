@@ -6,9 +6,10 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { PaginationDto } from "src/shared/dto/pagination.dto";
-import { ComerLotsDto } from './dto/comer-batch.dto';
+import { ComerLotsDto } from "./dto/comer-batch.dto";
 import { ComerLotsEntity } from "./entities/comer-batch.entity";
-
+import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+// comer_estatusvta pending to join
 @Injectable()
 export class ComerBatchService {
   constructor(
@@ -22,15 +23,46 @@ export class ComerBatchService {
     return await this.entity.save(comerEvent);
   }
 
-  async getAllComersLot({ inicio, pageSize }: PaginationDto) {
-    const [result, total] = await this.entity.findAndCount({
-      order: { eventId: "DESC" },
-      take: pageSize || 10,
-      skip: (inicio - 1) * pageSize || 0,
-    });
+  async getAllComersLot(pagination: PaginationDto) {
+    const { inicio = 1, pageSize = 10 } = pagination;
+    const result = await this.entity
+      .createQueryBuilder("cl")
+      .innerJoinAndMapOne(
+        "cl.eventId",
+        ComerEventEntity,
+        "ce",
+        "cl.eventId = ce.eventId"
+      )
+      .orderBy({ "cl.publicLot": "DESC" })
+      .skip((inicio - 1) * pageSize || 0)
+      .take(pageSize)
+      .getManyAndCount();
+
     return {
-      data: result,
-      count: total,
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
+    };
+  }
+
+  async getComerLotByEventId(comer: ComerLotsDto & PaginationDto) {
+    const { eventId, inicio = 1, pageSize = 19 } = comer;
+    const result = await this.entity
+      .createQueryBuilder("cl")
+      .innerJoinAndMapOne(
+        "cl.eventId",
+        ComerEventEntity,
+        "ce",
+        "cl.eventId = ce.eventId"
+      )
+      .where({ eventId })
+      .orderBy({ "cl.publicLot": "DESC" })
+      .skip((inicio - 1) * pageSize || 0)
+      .take(pageSize)
+      .getManyAndCount();
+
+    return {
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
     };
   }
 }

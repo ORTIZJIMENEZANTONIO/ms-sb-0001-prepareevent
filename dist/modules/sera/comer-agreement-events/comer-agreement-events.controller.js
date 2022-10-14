@@ -26,8 +26,8 @@ let ComerAgreementEventsController = class ComerAgreementEventsController {
         this.logger = logger;
     }
     createComerConvEvent(comerEvent) {
-        const zipCodeCreated = this.service.createComerConvEvent(comerEvent);
-        return (zipCodeCreated !== null && zipCodeCreated !== void 0 ? zipCodeCreated : {
+        const comerCreated = this.service.createComerConvEvent(comerEvent);
+        return (comerCreated !== null && comerCreated !== void 0 ? comerCreated : {
             statusCode: 503,
             message: "This comer conv event was not created",
             error: "Create Error",

@@ -27,7 +27,12 @@ export class ComerBatchController {
   }
 
   @MessagePattern({ cmd: 'getAllComersLot' })
-  async getAllComersLot( {inicio, pageSize}: PaginationDto ) {
-    return await this.service.getAllComersLot( {inicio, pageSize} );
+  async getAllComersLot( pagination: PaginationDto ) {
+    return await this.service.getAllComersLot( pagination );
+  }
+
+  @MessagePattern({ cmd: 'getComerLotByEventId' })
+  async getComerLotByEventId( comer: ComerLotsDto & PaginationDto ) {
+    return await this.service.getComerLotByEventId( comer );
   }
 }

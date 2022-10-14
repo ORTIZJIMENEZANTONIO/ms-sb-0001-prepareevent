@@ -16,9 +16,9 @@ export class ComerAgreementEventsController {
 
   @MessagePattern({ cmd: "createComerConvEvent" })
   createComerConvEvent(comerEvent: ComerConvEventDto) {
-    const zipCodeCreated = this.service.createComerConvEvent(comerEvent);
+    const comerCreated = this.service.createComerConvEvent(comerEvent);
     return (
-      zipCodeCreated ?? {
+      comerCreated ?? {
         statusCode: 503,
         message: "This comer conv event was not created",
         error: "Create Error",

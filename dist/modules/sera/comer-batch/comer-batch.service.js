@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_batch_entity_1 = require("./entities/comer-batch.entity");
+const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 let ComerBatchService = class ComerBatchService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -29,15 +30,35 @@ let ComerBatchService = class ComerBatchService {
     async createComerLot(comerEvent) {
         return await this.entity.save(comerEvent);
     }
-    async getAllComersLot({ inicio, pageSize }) {
-        const [result, total] = await this.entity.findAndCount({
-            order: { eventId: "DESC" },
-            take: pageSize || 10,
-            skip: (inicio - 1) * pageSize || 0,
-        });
+    async getAllComersLot(pagination) {
+        var _a, _b;
+        const { inicio = 1, pageSize = 10 } = pagination;
+        const result = await this.entity
+            .createQueryBuilder("cl")
+            .innerJoinAndMapOne("cl.eventId", comer_events_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
+            .orderBy({ "cl.publicLot": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
         return {
-            data: result,
-            count: total,
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
+        };
+    }
+    async getComerLotByEventId(comer) {
+        var _a, _b;
+        const { eventId, inicio = 1, pageSize = 19 } = comer;
+        const result = await this.entity
+            .createQueryBuilder("cl")
+            .innerJoinAndMapOne("cl.eventId", comer_events_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
+            .where({ eventId })
+            .orderBy({ "cl.publicLot": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
+        return {
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
 };

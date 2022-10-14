@@ -1,4 +1,12 @@
-import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 //import { ComerEventos } from "./ComerEventos";
 //
 //@Index("comer_adjudirec_pkey", ["idEvento"], { unique: true })
@@ -120,7 +128,7 @@ export class ComerAdjudirecEntity {
 
   //@Column("character", { name: "trial455", nullable: true, length: 1 })
   //trial455: string | null;
-//
+  //
   //@OneToOne(() => ComerEventos, (comerEventos) => comerEventos.comerAdjudirec)
   //@JoinColumn([{ name: "id_evento", referencedColumnName: "idEvento" }])
   //idEvento2: ComerEventos;
