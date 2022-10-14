@@ -16,6 +16,7 @@ import { ComerAdjudirecModule } from './modules/sera/comer-adjudirec/comer-adjud
 import { ComerClientModule } from './modules/sera/comer-client/comer-client.module';
 import { ComerRejectedPropertyModule } from './modules/sera/comer-rejected-property/comer-rejected-property.module';
 import { MandateFunctionModule } from './modules/sera/mandate-function/mandate-function.module';
+import { FileUtilModule } from './modules/sera/file-util/file-util.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { MandateFunctionModule } from './modules/sera/mandate-function/mandate-f
     ComerClientModule,
     ComerRejectedPropertyModule,
     MandateFunctionModule,
+    FileUtilModule,
     //
     ],
     controllers: [AppController],

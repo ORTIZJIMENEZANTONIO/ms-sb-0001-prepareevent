@@ -6,6 +6,10 @@ export declare class MandateFunctionController {
     private readonly logger;
     constructor(service: MandateFunctionService, logger: Logger);
     updateMandate(params: MandateFunctionDto): Promise<{
-        success: boolean;
-    }>;
+        transferentNums: any;
+        lotUpdt: any;
+    }> | {
+        statusCode: number;
+        message: string;
+    };
 }

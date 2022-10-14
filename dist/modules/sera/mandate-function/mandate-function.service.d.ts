@@ -11,6 +11,7 @@ export declare class MandateFunctionService {
     counter: Counter<string>;
     constructor(comerGoodsXLotRepository: Repository<ComerGoodsXLotEntity>, comerLotsRepository: Repository<ComerLotsEntity>, logger: Logger, counter: Counter<string>);
     updateMandate(params: MandateFunctionDto): Promise<{
-        success: boolean;
+        transferentNums: any;
+        lotUpdt: any;
     }>;
 }
