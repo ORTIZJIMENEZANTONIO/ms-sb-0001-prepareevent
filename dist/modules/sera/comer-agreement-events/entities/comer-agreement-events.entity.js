@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", Number)
 ], ComerConvEventEntity.prototype, "eventId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("numeric", {
+    (0, typeorm_1.PrimaryColumn)("numeric", {
         primary: true,
         name: "no_evento_convocatoria",
         precision: 7,

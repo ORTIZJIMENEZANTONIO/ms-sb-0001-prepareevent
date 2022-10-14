@@ -6,12 +6,10 @@ export declare class ComerAgreementEventsController {
     private readonly service;
     private readonly logger;
     constructor(service: ComerAgreementEventsService, logger: Logger);
-    createComerConvEvent(comerEvent: ComerConvEventDto): Promise<ComerConvEventDto & import("./entities/comer-agreement-events.entity").ComerConvEventEntity> | {
-        statusCode: number;
-        message: string;
-        error: string;
-    };
-    getAllComerConvEvents({ inicio, pageSize }: PaginationDto): Promise<{
+    createComerConvEvent(comerEvent: ComerConvEventDto): Promise<(ComerConvEventDto & import("./entities/comer-agreement-events.entity").ComerConvEventEntity) | {
+        error: any;
+    }>;
+    getAllComerConvEvents(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-agreement-events.entity").ComerConvEventEntity[];
         count: number;
     }>;

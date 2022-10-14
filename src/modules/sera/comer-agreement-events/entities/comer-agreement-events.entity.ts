@@ -8,6 +8,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typ
 //@Index("comer_conv_eventos_pkey", ["idEvento", "noEventoConvocatoria"], {
 //  unique: true,
 //})
+// autoincrement
 @Entity("comer_conv_eventos", { schema: "sera" })
 export class ComerConvEventEntity {
   @PrimaryColumn("numeric", {
@@ -18,7 +19,7 @@ export class ComerConvEventEntity {
   })
   eventId: number;
 
-  @Column("numeric", {
+  @PrimaryColumn("numeric", {
     primary: true,
     name: "no_evento_convocatoria",
     precision: 7,

@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_agreement_events_entity_1 = require("./entities/comer-agreement-events.entity");
+const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 let ComerAgreementEventsService = class ComerAgreementEventsService {
     constructor(entity, logger, counter) {
         this.entity = entity;
@@ -27,17 +28,27 @@ let ComerAgreementEventsService = class ComerAgreementEventsService {
         this.counter = counter;
     }
     async createComerConvEvent(comerEvent) {
-        return await this.entity.save(comerEvent);
+        try {
+            return await this.entity.save(comerEvent);
+        }
+        catch (error) {
+            return { error: error.detail };
+        }
     }
-    async getAllComerConvEvents({ inicio, pageSize }) {
-        const [result, total] = await this.entity.findAndCount({
-            order: { eventId: "DESC" },
-            take: pageSize || 10,
-            skip: (inicio - 1) * pageSize || 0,
-        });
+    async getAllComerConvEvents(pagination) {
+        var _a, _b;
+        this.counter.inc();
+        const { inicio = 1, pageSize = 10 } = pagination;
+        const result = await this.entity
+            .createQueryBuilder("ccv")
+            .innerJoinAndMapOne("ccv.eventId", comer_events_entity_1.ComerEventEntity, "ce", "ccv.eventId = ce.eventId")
+            .orderBy({ "ccv.announcementEventId": "DESC" })
+            .skip((inicio - 1) * pageSize || 0)
+            .take(pageSize)
+            .getManyAndCount();
         return {
-            data: result,
-            count: total,
+            data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
+            count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
     async getComerConvEventById({ eventId }) {

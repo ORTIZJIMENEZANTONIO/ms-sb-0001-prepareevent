@@ -9,8 +9,10 @@ export declare class ComerAgreementEventsService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerConvEventEntity>, logger: Logger, counter: Counter<string>);
-    createComerConvEvent(comerEvent: ComerConvEventDto): Promise<ComerConvEventDto & ComerConvEventEntity>;
-    getAllComerConvEvents({ inicio, pageSize }: PaginationDto): Promise<{
+    createComerConvEvent(comerEvent: ComerConvEventDto): Promise<(ComerConvEventDto & ComerConvEventEntity) | {
+        error: any;
+    }>;
+    getAllComerConvEvents(pagination: PaginationDto): Promise<{
         data: ComerConvEventEntity[];
         count: number;
     }>;

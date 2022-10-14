@@ -1,4 +1,4 @@
-import { Injectable, Inject, Logger, NotFoundException } from "@nestjs/common";
+import { Injectable, Inject, Logger, NotFoundException, HttpException, HttpStatus } from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -8,6 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerConvEventEntity } from "./entities/comer-agreement-events.entity";
 import { ComerConvEventDto } from "./dto/comer-agreement-events.dto";
+import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 @Injectable()
 export class ComerAgreementEventsService {
   constructor(
@@ -18,23 +19,37 @@ export class ComerAgreementEventsService {
   ) {}
 
   async createComerConvEvent(comerEvent: ComerConvEventDto) {
-    return await this.entity.save(comerEvent);
+    try {
+      return await this.entity.save(comerEvent);
+    } catch (error) {
+      return {error: error.detail}
+    }
   }
 
-  async getAllComerConvEvents({ inicio, pageSize }: PaginationDto) {
-    const [result, total] = await this.entity.findAndCount({
-      order: { eventId: "DESC" },
-      take: pageSize || 10,
-      skip: (inicio - 1) * pageSize || 0,
-    });
+  async getAllComerConvEvents(pagination: PaginationDto) {
+    this.counter.inc();
+    const { inicio = 1, pageSize = 10 } = pagination;
+    const result = await this.entity
+      .createQueryBuilder("ccv")
+      .innerJoinAndMapOne(
+        "ccv.eventId",
+        ComerEventEntity,
+        "ce",
+        "ccv.eventId = ce.eventId"
+      )
+      .orderBy({ "ccv.announcementEventId": "DESC" })
+      .skip((inicio - 1) * pageSize || 0)
+      .take(pageSize)
+      .getManyAndCount();
+
     return {
-      data: result,
-      count: total,
+      data: result[0] ?? [],
+      count: result[1] ?? 0,
     };
   }
 
   async getComerConvEventById({ eventId }: ComerConvEventDto) {
-    const event = await this.entity.findOneBy({eventId});
+    const event = await this.entity.findOneBy({ eventId });
     return event ?? [];
   }
 }

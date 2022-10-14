@@ -25,16 +25,11 @@ let ComerAgreementEventsController = class ComerAgreementEventsController {
         this.service = service;
         this.logger = logger;
     }
-    createComerConvEvent(comerEvent) {
-        const comerCreated = this.service.createComerConvEvent(comerEvent);
-        return (comerCreated !== null && comerCreated !== void 0 ? comerCreated : {
-            statusCode: 503,
-            message: "This comer conv event was not created",
-            error: "Create Error",
-        });
+    async createComerConvEvent(comerEvent) {
+        return await this.service.createComerConvEvent(comerEvent);
     }
-    async getAllComerConvEvents({ inicio, pageSize }) {
-        return await this.service.getAllComerConvEvents({ inicio, pageSize });
+    async getAllComerConvEvents(pagination) {
+        return await this.service.getAllComerConvEvents(pagination);
     }
     async getComerConvEventById(comerConvEvent) {
         return await this.service.getComerConvEventById(comerConvEvent);
@@ -44,10 +39,10 @@ __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createComerConvEvent" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [comer_agreement_events_dto_1.ComerConvEventDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ComerAgreementEventsController.prototype, "createComerConvEvent", null);
 __decorate([
-    (0, microservices_1.MessagePattern)({ cmd: 'getAllComerConvEvents' }),
+    (0, microservices_1.MessagePattern)({ cmd: "getAllComerConvEvents" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
     __metadata("design:returntype", Promise)
