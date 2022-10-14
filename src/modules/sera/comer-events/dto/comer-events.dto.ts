@@ -1,7 +1,17 @@
-import { ApiProperty } from "@nestjs/swagger";
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsString,
+  MaxLength,
+} from "class-validator";
 
 export class ComerEventDto {
-  @ApiProperty({ example: "No. Evento" })
+  @IsNumber()
+  @IsPositive()
+  @IsNotEmpty()
   eventId: number;
 
   eventTpId: number;
