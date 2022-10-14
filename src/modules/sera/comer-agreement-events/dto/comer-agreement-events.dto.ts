@@ -5,7 +5,7 @@ export class ComerConvEventDto {
   @ApiProperty({ example: "ex" })
   eventId: number;
 
-  noAnnouncementEvent: number;
+  announcementEventId: number;
 
   description: string | null;
 

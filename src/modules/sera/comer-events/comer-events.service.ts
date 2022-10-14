@@ -9,7 +9,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
 import { Reference } from "src/shared/functions/reference";
-import { ComerBatchDto } from "../comer-batch/dto/comer-batch.dto";
+import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
 
 @Injectable()
 export class ComerEventsService {
@@ -66,7 +66,7 @@ export class ComerEventsService {
     return events;
   }
 
-  async getComerEventByTpEvent(comerEvent: ComerEventDto & ComerBatchDto & PaginationDto) {
+  async getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto) {
     const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
     const subQueryDeep = await this.entity.query(`
       SELECT 1

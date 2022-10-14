@@ -24,7 +24,7 @@ export class ComerConvEventEntity {
     precision: 7,
     scale: 0,
   })
-  noAnnouncementEvent: number;
+  announcementEventId: number;
 
   @Column("character varying", {
     name: "descripcion",

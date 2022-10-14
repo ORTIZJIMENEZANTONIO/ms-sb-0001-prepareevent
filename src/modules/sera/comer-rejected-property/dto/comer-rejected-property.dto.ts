@@ -1,11 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerRejectedPropertyDto {
-  idRejectedProperty: number;
+export class ComerRejectedGoodDto {
+  @ApiProperty({ example: 1 })
+  rejectedGoodId: number;
 
-  idEvent: string;
+  idEvent: number;
 
-  noProperty: string;
+  noProperty: number;
 
   origin: string | null;
 
@@ -15,12 +16,12 @@ export class ComerRejectedPropertyDto {
 
   cause: string | null;
 
-  event: string | null;
+  event: number| null;
 
-  batchPublic: string | null;
+  batchPublic: number | null;
 
-  rejectedReason: string | null;
+  rejectedReason: number | null;
 
-  batchOrigin: string | null;
+  batchOrigin: number | null;
 
 }

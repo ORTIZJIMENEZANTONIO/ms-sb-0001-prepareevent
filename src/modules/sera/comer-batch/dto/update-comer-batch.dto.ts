@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerBatchDto {
+export class UpdateComerBatchDto {
   
-  idBatchToUpdt: number;
+  lotIdToUpdt: number;
 }

@@ -6,7 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { PaginationDto } from "src/shared/dto/pagination.dto";
-import { ComerRejectedPropertyDto } from "./dto/comer-rejected-property.dto";
+import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyEntity } from "./entities/comer-rejected-property.entity";
 
 @Injectable()
@@ -17,17 +17,16 @@ export class ComerRejectedPropertyService {
     @InjectMetric("comer_rejected_property_served") public counter: Counter<string>
   ) {}
 
-  async createComerRejectedProperty(warehouseDto: ComerRejectedPropertyDto) {
-    const rejectedPropertyCreated = await this.entity.save(warehouseDto);
-    return rejectedPropertyCreated;
+  async createComerRejectedProperty(comerRejected: ComerRejectedGoodDto) {
+    return await this.entity.save(comerRejected);
   }
 
-  async getAllComerRejectedPropertys({ inicio, pageSize }: PaginationDto) {
+  async getAllComersRejectedProperties({ inicio, pageSize }: PaginationDto) {
     this.counter.inc();
     const [result, total] = await this.entity.findAndCount({
       skip: inicio ? inicio - 1 : Number(0),
       take: pageSize,
-      order: { idRejectedProperty: "DESC" },
+      order: { rejectedGoodId: "DESC" },
     });
 
     return {
@@ -38,23 +37,11 @@ export class ComerRejectedPropertyService {
 
   async getComerRejectedPropertyById(id: number) {
     return await this.entity.findOne({
-      where: { idRejectedProperty: id },
+      where: { rejectedGoodId: id },
     });
   }
 
-  async updateComerRejectedProperty(id: number, updatewarehouseDto: ComerRejectedPropertyDto) {
-    const ComerRejectedPropertyFound = await this.entity.findOne({
-      where: { idRejectedProperty: id },
-    });
-
-    if (ComerRejectedPropertyFound) {
-      this.entity.merge(ComerRejectedPropertyFound, updatewarehouseDto);
-      return await this.entity.save(ComerRejectedPropertyFound);
-    }
-    return false;
-  }
-
-  async deleteComerRejectedProperty(id: number) {
-    return await this.entity.delete(id);
+  async deleteComerRejectedProperty(rejectedGoodId: number) {
+    return await this.entity.delete(rejectedGoodId);
   }
 }

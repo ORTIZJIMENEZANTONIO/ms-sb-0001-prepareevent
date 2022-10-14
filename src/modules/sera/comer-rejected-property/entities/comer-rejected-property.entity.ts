@@ -12,13 +12,13 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  idRejectedProperty: number;
+  rejectedGoodId: number;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
-  idEvent: string;
+  idEvent: number;
 
   @Column("numeric", { name: "no_bien", precision: 10, scale: 0 })
-  noProperty: string;
+  noProperty: number;
 
   @Column("character varying", { name: "origen", nullable: true, length: 15 })
   origin: string | null;
@@ -42,7 +42,7 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  event: string | null;
+  event: number| null;
 
   @Column("numeric", {
     name: "lote_publico",
@@ -50,7 +50,7 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  batchPublic: string | null;
+  batchPublic: number | null;
 
   @Column("numeric", {
     name: "rechazadopor",
@@ -58,7 +58,7 @@ export class ComerRejectedPropertyEntity {
     precision: 1,
     scale: 0,
   })
-  rejectedReason: string | null;
+  rejectedReason: number | null;
 
   @Column("numeric", {
     name: "lote_origen",
@@ -66,7 +66,7 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  batchOrigin: string | null;
+  batchOrigin: number | null;
 
   //@Column("character", { name: "trial709", nullable: true, length: 1 })
   //trial709: string | null;

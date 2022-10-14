@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerRejectedPropertyDto {
-  idPropertyToUpdt: number;
+export class UpdateComerRejectedGoodDto {
+  rejectedGoodIdToUpdt: number;
 }

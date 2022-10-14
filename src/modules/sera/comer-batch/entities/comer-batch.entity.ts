@@ -12,7 +12,7 @@ import {
 // @Index("idx$$_da800001", ["idEstatusvta", "idEvento", "lotId"], {})
 // @Index("comer_lotes_pkey", ["idLote"], { unique: true })
 @Entity("comer_lotes", { schema: "sera" })
-export class ComerBatchEntity {
+export class ComerLotsEntity {
   @PrimaryGeneratedColumn({
     name: "id_lote",
   })

@@ -11,7 +11,7 @@ export class ComerAdjudirecEntity {
     precision: 7,
     scale: 0,
   })
-  idEvent: string;
+  eventId: string;
 
   @Column("character varying", { name: "comite", nullable: true, length: 1 })
   committee: string | null;
