@@ -4,7 +4,7 @@ export class ComerLotsDto {
   
   lotId: number;
 
-  idEstatusvta: string;
+  statusId: string;
 
   eventId: number;
 
@@ -12,88 +12,88 @@ export class ComerLotsDto {
 
   description: string | null;
 
-  valorBase: string;
+  baseValue: number;
 
-  noTransferente: string | null;
+  transferenceId: number | null;
 
-  clientId: string | null;
+  customerId: number | null;
 
-  precioAvaluoRef: string | null;
+  refAppraisalPrice: number | null;
 
-  precioGarantia: string | null;
+  warrantyPrice: number | null;
+  
+  deliveryDate: Date | null;
 
-  fechaEntrega: Date | null;
+  finalPrice: number | null;
 
-  precioFinal: string | null;
+  agReference: string | null;
 
-  referenciag: string | null;
+  referential: string | null;
 
-  referencial: string | null;
+  accumulated: number | null;
 
-  acumulado: string | null;
+  systemValid: string | null;
 
-  validoSistema: string | null;
+  lotTax: number | null;
 
-  ivaLote: string | null;
+  appTaxAmount: number | null;
 
-  montoAppIva: string | null;
+  appTaxAmountId: number | null;
 
-  montoNoappIva: string | null;
+  porcAppTax: number | null;
 
-  porcAppIva: string | null;
+  porcAppTaxId: number | null;
 
-  porcNoappIva: string | null;
+  regCoordination: string | null;
 
-  coordinacionReg: string | null;
+  regCoordinator: string | null;
 
-  coordinadorReg: string | null;
+  FiscMandFact: string | null;
 
-  datoFiscMand: string | null;
+  ubication: string | null;
 
-  ubicacion: string | null;
+  advance: number | null;
 
-  anticipo: string | null;
+  amountWithoutTax: number | null;
 
-  montoSinIva: string | null;
+  notifyOfficeId: number | null;
 
-  nooficionotifica: string | null;
+  notifyPrint: string | null;
 
-  imprimenotifica: string | null;
+  statusVtantId: string | null;
 
-  idestatusvtant: string | null;
+  goodsNumber: number | null;
 
-  numBienes: string | null;
+  faultExceeds: number | null;
 
-  excedeFalta: string | null;
+  assignedEs: string | null;
 
-  esasignado: string | null;
+  scrapEs: string | null;
 
-  eschatarra: string | null;
+  request: string | null;
 
-  solicita: string | null;
+  withheldAmount: number | null;
 
-  montoRetenido: string | null;
+  delegationId: number | null;
 
-  noDelegacion: string | null;
+  originLot: number | null;
 
-  loteOrigen: string | null;
+  lotCover: number | null;
 
-  cubrelotes: number | null;
+  palette: number | null;
 
-  paleta: string | null;
+  assignedWarranty: number | null;
 
-  garantiaAsig: number | null;
+  liqAmount: number | null;
 
-  montoLiq: number | null;
+  phase: number | null;
 
-  fase: string | null;
+  partialitiesId: number | null;
 
-  noParcialidades: string | null;
+  percentPoints: number | null;
 
-  puntosPorcen: string | null;
+  advancePercent: number | null;
 
-  porcAnticipo: string | null;
-
-  aIva: string | null;
+  taxA: string | null;
 
 }

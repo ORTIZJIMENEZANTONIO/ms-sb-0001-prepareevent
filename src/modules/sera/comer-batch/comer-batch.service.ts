@@ -9,7 +9,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotsDto } from "./dto/comer-batch.dto";
 import { ComerLotsEntity } from "./entities/comer-batch.entity";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
-// comer_estatusvta pending to join
+// comer_estatusvta pending to join adn autoincrement
 @Injectable()
 export class ComerBatchService {
   constructor(
