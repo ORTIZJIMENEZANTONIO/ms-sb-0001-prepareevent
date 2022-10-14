@@ -9,7 +9,7 @@ export declare class ComerRejectedPropertyController {
     createComerRejectedProperty(comerEvent: ComerRejectedGoodDto): Promise<(ComerRejectedGoodDto & import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity) | {
         error: any;
     }>;
-    getAllComersRejectedProperties({ inicio, pageSize }: PaginationDto): Promise<{
+    getAllComersRejectedProperties(pagination: PaginationDto): Promise<{
         data: import("./entities/comer-rejected-property.entity").ComerRejectedPropertyEntity[];
         count: number;
     }>;

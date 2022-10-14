@@ -28,11 +28,8 @@ let ComerRejectedPropertyController = class ComerRejectedPropertyController {
     createComerRejectedProperty(comerEvent) {
         return this.service.createComerRejectedProperty(comerEvent);
     }
-    async getAllComersRejectedProperties({ inicio, pageSize }) {
-        return await this.service.getAllComersRejectedProperties({
-            inicio,
-            pageSize,
-        });
+    async getAllComersRejectedProperties(pagination) {
+        return await this.service.getAllComersRejectedProperties(pagination);
     }
     async getComerRejectedPropertyByEventId(comer) {
         return await this.service.getComerRejectedPropertyByEventId(comer);

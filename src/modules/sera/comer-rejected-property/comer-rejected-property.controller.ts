@@ -20,11 +20,8 @@ export class ComerRejectedPropertyController {
   }
 
   @MessagePattern({ cmd: "getAllComersRejectedProperties" })
-  async getAllComersRejectedProperties({ inicio, pageSize }: PaginationDto) {
-    return await this.service.getAllComersRejectedProperties({
-      inicio,
-      pageSize,
-    });
+  async getAllComersRejectedProperties(pagination: PaginationDto) {
+    return await this.service.getAllComersRejectedProperties(pagination);
   }
 
   @MessagePattern({ cmd: "getComerRejectedPropertyByEventId" })
