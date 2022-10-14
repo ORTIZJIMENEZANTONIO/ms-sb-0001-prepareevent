@@ -9,11 +9,15 @@ import {
 } from "class-validator";
 
 export class ComerEventDto {
+  // pk auto
+  @IsNumber()
+  @IsPositive()
+  @IsOptional()
+  eventId: number | null;
+
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  eventId: number;
-
   eventTpId: number;
 
   statusVtaId: string;

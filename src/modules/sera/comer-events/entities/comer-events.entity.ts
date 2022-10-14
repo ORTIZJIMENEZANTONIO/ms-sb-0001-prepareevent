@@ -4,7 +4,7 @@ import { ApiProperty } from "@nestjs/swagger";
 @Entity("comer_eventos", { schema: "sera" })
 export class ComerEventEntity {
   @ApiProperty({ example: "No. Evento" })
-  @PrimaryColumn({
+  @PrimaryGeneratedColumn({
     name: "id_evento",
   })
   eventId: number;

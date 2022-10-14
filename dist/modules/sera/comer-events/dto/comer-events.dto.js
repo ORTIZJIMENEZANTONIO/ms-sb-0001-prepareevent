@@ -16,8 +16,14 @@ class ComerEventDto {
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], ComerEventDto.prototype, "eventId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], ComerEventDto.prototype, "eventTpId", void 0);
 exports.ComerEventDto = ComerEventDto;
 //# sourceMappingURL=comer-events.dto.js.map

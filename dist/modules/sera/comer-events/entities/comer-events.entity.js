@@ -16,7 +16,7 @@ let ComerEventEntity = class ComerEventEntity {
 };
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "No. Evento" }),
-    (0, typeorm_1.PrimaryColumn)({
+    (0, typeorm_1.PrimaryGeneratedColumn)({
         name: "id_evento",
     }),
     __metadata("design:type", Number)
