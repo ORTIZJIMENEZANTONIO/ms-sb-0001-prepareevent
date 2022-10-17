@@ -29,4 +29,10 @@ export class FileUtilController {
     const file = this.service.calculateGoodPrice(params);
     return file ?? { statusCode: 400, message: "File failed" };
   }
+
+  @MessagePattern({ cmd: "createThirdBaseFile" })
+  createThirdBaseFile(params: { fileName: string, eventNumber: number }) {
+    const file = this.service.createThirdBaseFile(params.fileName, params.eventNumber);
+    return file ?? { statusCode: 400, message: "File failed" };
+  }
 }

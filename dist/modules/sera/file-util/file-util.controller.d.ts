@@ -34,4 +34,11 @@ export declare class FileUtilController {
         statusCode: number;
         message: string;
     };
+    createThirdBaseFile(params: {
+        fileName: string;
+        eventNumber: number;
+    }): Promise<{}> | {
+        statusCode: number;
+        message: string;
+    };
 }

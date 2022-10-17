@@ -35,6 +35,10 @@ let FileUtilController = class FileUtilController {
         const file = this.service.calculateGoodPrice(params);
         return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
     }
+    createThirdBaseFile(params) {
+        const file = this.service.createThirdBaseFile(params.fileName, params.eventNumber);
+        return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
+    }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createXlsx" }),
@@ -54,6 +58,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], FileUtilController.prototype, "calculateGoodPrice", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "createThirdBaseFile" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], FileUtilController.prototype, "createThirdBaseFile", null);
 FileUtilController = __decorate([
     (0, common_1.Controller)("file-util"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

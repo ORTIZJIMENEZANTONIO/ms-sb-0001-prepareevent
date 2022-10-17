@@ -16,6 +16,8 @@ import { FilesEntity } from "./entities/files.entity";
 import { CatTransferentEntity } from "./entities/cat-transferent.entity";
 import { WarehouseEntity } from "./entities/cat-warehouse.entity";
 import { LabelEntity } from "./entities/cat-label.entity";
+import { Reference } from "src/shared/functions/reference";
+
 @Injectable()
 export class FileUtilService {
   constructor(
@@ -217,6 +219,61 @@ export class FileUtilService {
     const params = await query;
     const num = 1 + params[0].valor / 100;
     return num ?? 1.15;
+  }
+
+  async createThirdBaseFile(fileName: string, eventNumber: number) {
+    console.log(fileName, eventNumber);
+    const queryForniture = await this.entityComerEvent.query(`
+      SELECT 
+        lot.referenciag, 
+        lot.referencial,
+        cat.cvman, lot.lote_publico base,
+        lot.descripcion, 
+        cat.clave,
+        eve.cve_proceso,  clie.nom_razon,
+        clie.rfc, clie.curp, clie.calle,
+        clie.colonia, clie.delegacion,
+        clie.estado, clie.cp, 
+        clie.telefono, 
+        clie.correoweb,
+        clie.esta_id cve_estado
+      FROM 
+        sera.comer_eventos eve,
+        sera.cat_transferente cat,
+        sera.comer_clientes clie
+        left join sera.comer_lotes lot on lot.id_cliente = clie.id_cliente
+      WHERE eve.id_evento = ${eventNumber}
+      AND eve.id_evento = lot.id_evento
+      AND lot.lote_publico > 0
+      AND cat.no_transferente = 541;`);
+
+    const queryFornitureRef = await this.entityComerEvent.query(`
+      SELECT 
+        lot.referenciag as loRefg,            
+        lot.referencial as loRefl,
+        coalesce(cat.cvman,'000000') as loCvman,    
+        lot.id_estatusvta as loStatus,
+        lot.id_lote as loLot
+      FROM
+        sera.comer_eventos eve,
+        sera.comer_lotes lot,
+        sera.cat_transferente cat
+      WHERE eve.id_evento = ${eventNumber}
+      AND eve.id_evento = lot.id_evento
+      AND lot.lote_publico > 0
+      AND cat.no_transferente = 541;
+    `);
+
+    queryFornitureRef.map((el, index) => {
+      console.log(el)
+      if( el.loStatus == 'PREP' ) {
+        if( el.loRefg == null || el.loRefg == '' ) {
+          el.loRefg = Reference.calculateReference("",el.loLot,el.loCvman, 'G')
+        }
+      }
+    });
+
+    return {};
   }
 
   async calculateGoodPrice(params: { eventId: number; lotId: number }) {

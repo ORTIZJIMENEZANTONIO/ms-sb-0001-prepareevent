@@ -28,6 +28,7 @@ export declare class FileUtilService {
         };
     }>;
     getGlobalParams(): Promise<number>;
+    createThirdBaseFile(fileName: string, eventNumber: number): Promise<{}>;
     calculateGoodPrice(params: {
         eventId: number;
         lotId: number;
