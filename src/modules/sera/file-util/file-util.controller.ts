@@ -13,8 +13,20 @@ export class FileUtilController {
   ) {}
 
   @MessagePattern({ cmd: "createXlsx" })
-  createXlsx( ) {
-    const file = this.service.makeFile("hi");
+  createXlsx() {
+    const file = this.service.makeFile("hi", "name");
+    return file ?? { statusCode: 400, message: "File failed" };
+  }
+
+  @MessagePattern({ cmd: "createThirdFile" })
+  createThirdFile(params: { eventId: number; fileName: string }) {
+    const file = this.service.createThirdFile(params.fileName, params.eventId);
+    return file ?? { statusCode: 400, message: "File failed" };
+  }
+
+  @MessagePattern({ cmd: "calculateGoodPrice" })
+  calculateGoodPrice(params: { eventId: number; lotId: number }) {
+    const file = this.service.calculateGoodPrice(params);
     return file ?? { statusCode: 400, message: "File failed" };
   }
 }

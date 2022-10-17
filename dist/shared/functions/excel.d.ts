@@ -1,5 +1,5 @@
 export declare class File {
-    static makeFile(data: any, path: any): Promise<{
+    static makeFile(data: any): Promise<{
         data: {
             campo1: string[];
         }[];

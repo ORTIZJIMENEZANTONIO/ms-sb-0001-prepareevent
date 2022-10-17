@@ -5,14 +5,32 @@ export declare class FileUtilController {
     private readonly logger;
     constructor(service: FileUtilService, logger: Logger);
     createXlsx(): Promise<{
-        data: {
-            campo1: string[];
-        }[];
+        data: any;
         file: {
             name: string;
             base64: string;
         };
     }> | {
+        statusCode: number;
+        message: string;
+    };
+    createThirdFile(params: {
+        eventId: number;
+        fileName: string;
+    }): Promise<{
+        data: any;
+        file: {
+            name: string;
+            base64: string;
+        };
+    }> | {
+        statusCode: number;
+        message: string;
+    };
+    calculateGoodPrice(params: {
+        eventId: number;
+        lotId: number;
+    }): Promise<{}> | {
         statusCode: number;
         message: string;
     };
