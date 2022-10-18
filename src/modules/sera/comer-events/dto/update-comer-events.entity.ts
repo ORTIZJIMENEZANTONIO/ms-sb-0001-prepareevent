@@ -1,8 +1,10 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { IsNumber, IsPositive } from "class-validator";
 
 import { ComerEventDto } from "./comer-events.dto";
 
 export class UpdateComerEventDto extends PartialType(ComerEventDto) {
-  @ApiProperty({ example: "No. Evento" })
-  idEventToUpdt: number | null;
+  @IsNumber()
+  @IsPositive()
+  eventIdToUpdt: number;
 }

@@ -24,16 +24,18 @@ let MandateFunctionController = class MandateFunctionController {
         this.service = service;
         this.logger = logger;
     }
-    updateMandate(params) {
-        const mandate = this.service.updateMandate(params);
-        return mandate !== null && mandate !== void 0 ? mandate : { statusCode: 400, message: "Updated  failed" };
+    async updateMandate(params) {
+        const mandate = await this.service.updateMandate(params);
+        return mandate
+            ? { statusCode: 200, message: "Updates successfully" }
+            : { statusCode: 400, message: "Updated  failed" };
     }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "updateMandate" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [mandate_function_dto_1.MandateFunctionDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], MandateFunctionController.prototype, "updateMandate", null);
 MandateFunctionController = __decorate([
     (0, common_1.Controller)("mandate-function"),

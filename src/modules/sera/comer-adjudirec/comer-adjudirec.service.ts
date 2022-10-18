@@ -8,6 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerAdjudirecDto } from "./dto/comer-adjudirec.dto";
 import { ComerAdjudirecEntity } from "./entities/comer-adjudirec.entity";
+import { UpdateComerAdjudirecDto } from "./dto/update-comer-adjudirec.dto";
 
 @Injectable()
 export class ComerAdjudirecService {
@@ -23,11 +24,11 @@ export class ComerAdjudirecService {
       eventId: comer.eventId,
     });
 
-    if(comerExisting) {
+    if (comerExisting) {
       return {
         statusCode: 501,
-        message: "ComerAdjudirec existing"
-      }
+        message: "ComerAdjudirec existing",
+      };
     }
 
     return await this.entity.save(comer);
@@ -46,7 +47,20 @@ export class ComerAdjudirecService {
     };
   }
 
-  async updateComerAdjudirec() {}
+  async updateComerAdjudirec(
+    { eventIdToUpdt }: UpdateComerAdjudirecDto,
+    comer: ComerAdjudirecDto
+  ) {
+    const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+
+    if (data) {
+      delete comer.eventId;
+      this.entity.merge(data, comer);
+      return this.entity.save(data);
+    }
+
+    return null;
+  }
 
   async deleteComerAdjudirec(comer: ComerAdjudirecDto) {
     const { eventId } = comer;

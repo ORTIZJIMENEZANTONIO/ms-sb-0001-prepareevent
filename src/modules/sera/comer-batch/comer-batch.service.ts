@@ -79,14 +79,14 @@ export class ComerBatchService {
     };
   }
 
-  async updateComerLot(comer: UpdateComerBatchDto, body: ComerLotsEntity) {
+  async updateComerLot({lotIdToUpdt}: UpdateComerBatchDto, comer: ComerLotsEntity) {
     const data = await this.entity.findOne({
-      where: { lotId: comer.lotIdToUpdt },
+      where: { lotId: lotIdToUpdt },
     });
 
     if (data) {
-      delete body.lotId;
-      this.entity.merge(data, body);
+      delete comer.lotId;
+      this.entity.merge(data, comer);
       return this.entity.save(data);
     }
     return false;

@@ -16,6 +16,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerConvEventEntity } from "./entities/comer-agreement-events.entity";
 import { ComerConvEventDto } from "./dto/comer-agreement-events.dto";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { UpdateComerConvEventDto } from "./dto/update-comer-agreement-events.dto";
 @Injectable()
 export class ComerAgreementEventsService {
   constructor(
@@ -67,7 +68,24 @@ export class ComerAgreementEventsService {
     return await this.entity.findOneBy({ eventId });
   }
 
-  async updateComerConvEvent() {}
+  async updateComerConvEvent(
+    { eventIdToUpdt, announcementEventIdToUpdt }: UpdateComerConvEventDto,
+    comer: ComerConvEventDto
+  ) {
+    const data = await this.entity.findOneBy({
+      eventId: eventIdToUpdt,
+      announcementEventId: announcementEventIdToUpdt,
+    });
+
+    if (data) {
+      delete comer.eventId;
+      delete comer.announcementEventId;
+      this.entity.merge(data, comer);
+      return this.entity.save(data);
+    }
+
+    return null;
+  }
 
   async deleteComerConvEvent(comer: ComerConvEventDto) {
     const { eventId, announcementEventId } = comer;

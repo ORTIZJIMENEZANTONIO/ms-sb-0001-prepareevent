@@ -11,8 +11,7 @@ import {
 export class ComerAdjudirecDto {
 
   @IsNumber()
-  @IsNotEmpty()
-  eventId: number;
+  eventId: number | null;
 
   @IsString()
   @MaxLength(1)

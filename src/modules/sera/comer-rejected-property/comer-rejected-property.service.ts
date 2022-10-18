@@ -9,6 +9,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyEntity } from "./entities/comer-rejected-property.entity";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { UpdateComerRejectedGoodDto } from "./dto/update-comer-rejected-property.dto";
 
 @Injectable()
 export class ComerRejectedPropertyService {
@@ -22,7 +23,7 @@ export class ComerRejectedPropertyService {
 
   async createComerRejectedProperty(comer: ComerRejectedGoodDto) {
     const comerExisting = await this.entity.findOneBy({
-      rejectedGoodId: comer.rejectedGoodId
+      rejectedGoodId: comer.rejectedGoodId,
     });
 
     if (comerExisting) {
@@ -31,9 +32,8 @@ export class ComerRejectedPropertyService {
         message: "ComerRejected existing",
       };
     }
-    
+
     return await this.entity.save(comer);
-    
   }
 
   async getAllComersRejectedProperties(pagination: PaginationDto) {
@@ -102,8 +102,20 @@ export class ComerRejectedPropertyService {
     };
   }
 
-  async updateComerRejectedProperty() {
-    
+  async updateComerRejectedProperty(
+    { rejectedGoodIdToUpdt }: UpdateComerRejectedGoodDto,
+    comer: ComerRejectedGoodDto
+  ) {
+    const data = await this.entity.findOneBy({
+      rejectedGoodId: rejectedGoodIdToUpdt,
+    });
+
+    if (data) {
+      delete comer.rejectedGoodId;
+      this.entity.merge(data, comer);
+      return this.entity.save(data);
+    }
+    return null;
   }
 
   async deleteComerRejectedProperty(comerRejected: ComerRejectedGoodDto) {

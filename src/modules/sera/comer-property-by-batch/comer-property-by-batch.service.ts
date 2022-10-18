@@ -8,6 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerGoodsXLotEntity } from "./entities/comer-property-by-batch.entity";
 import { ComerGoodsXLotDto } from "./dto/comer-property-by-batch.dto";
+import { UpdateComerGoodsXLotDto } from "./dto/update-comer-property-by-batch.dto";
 
 @Injectable()
 export class ComerPropertyByBatchService {
@@ -62,7 +63,17 @@ export class ComerPropertyByBatchService {
     };
   }
 
-  async updateComerXLot() {}
+  async updateComerXLot({goodsIdToUpdt, lotIdToUpdt}: UpdateComerGoodsXLotDto, comer: ComerGoodsXLotDto) {
+    const data = await this.entity.findOneBy({ goodsId: goodsIdToUpdt, lotId: lotIdToUpdt });
+
+    if (data) {
+      delete comer.goodsId;
+      delete comer.lotId;
+      this.entity.merge(data, comer);
+      return this.entity.save(data);
+    }
+    return null;
+  }
 
   async deleteComerXLot(comer: ComerGoodsXLotDto) {
     const { goodsId, lotId } = comer;

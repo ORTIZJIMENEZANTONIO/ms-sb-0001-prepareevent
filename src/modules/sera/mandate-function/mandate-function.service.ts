@@ -21,13 +21,13 @@ export class MandateFunctionService {
   ) {}
 
   async updateMandate(params: MandateFunctionDto) {
-    const { lotId, goodId } = params;
+    const { lotId, goodId, lotIdToUdate } = params;
     const elementsUpdated = {
       transferentNums: null,
       lotUpdt: null
     }
     if (goodId == 1) {
-      const transferentNums = await this.comerLotsRepository.query(`
+      elementsUpdated.transferentNums = await this.comerLotsRepository.query(`
         UPDATE	sera.COMER_BIENESXLOTE BXL
         SET			NO_TRANSFERENTE = (	
           SELECT	NO_TRANSFERENTE
@@ -35,29 +35,26 @@ export class MandateFunctionService {
             WHERE		EXP.NO_EXPEDIENTE = BIE1.NO_EXPEDIENTE
             AND			BXL.NO_BIEN       = BIE1.NO_BIEN
         )
-        WHERE			BXL.ID_LOTE = ${'22025'};
+        WHERE			BXL.ID_LOTE = ${lotIdToUdate}
       `);
-      elementsUpdated.transferentNums = transferentNums;
+      
     }
 
     if (lotId == 1) {
-      const lotUpdt = this.comerLotsRepository.query(`
-        UPDATE	COMER_LOTES LOT
+      elementsUpdated.lotUpdt = await this.comerLotsRepository.query(`
+        UPDATE	sera.COMER_LOTES LOT
         SET			NO_TRANSFERENTE = (	
           SELECT	NO_TRANSFERENTE
-          FROM		COMER_BIENESXLOTE BXL
-          WHERE		BXL.ID_LOTE = :COMER_LOTES.ID_LOTE
-          AND			LIMIT 1
+          FROM		sera.COMER_BIENESXLOTE BXL
+          WHERE		BXL.ID_LOTE = ${lotIdToUdate}
+          LIMIT 1
         )
-        WHERE		LOT.ID_LOTE = :COMER_LOTES.ID_LOTE;
+        WHERE		LOT.ID_LOTE = ${lotIdToUdate}
       `)
-      elementsUpdated.lotUpdt = lotUpdt;
     }
-    
-    if( elementsUpdated.lotUpdt || elementsUpdated.transferentNums ) {
-      return elementsUpdated;
-    }
+    //console.log( elementsUpdated )
+    if( elementsUpdated.lotUpdt == null && elementsUpdated.transferentNums == null) return null
 
-    return null;
+    return elementsUpdated;
   }
 }

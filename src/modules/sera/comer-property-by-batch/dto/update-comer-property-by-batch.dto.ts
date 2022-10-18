@@ -1,8 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 // Pending
-export class UpdateComerPropertyByBatchDto {
-  @ApiProperty({ example: "No. bien por lote" })
-  goodsLotIdToUpdt: number;
+export class UpdateComerGoodsXLotDto {
 
   goodsIdToUpdt: number;
 
