@@ -4,16 +4,6 @@ export declare class FileUtilController {
     private readonly service;
     private readonly logger;
     constructor(service: FileUtilService, logger: Logger);
-    createXlsx(): Promise<{
-        data: any;
-        file: {
-            name: string;
-            base64: string;
-        };
-    }> | {
-        statusCode: number;
-        message: string;
-    };
     createThirdFile(params: {
         eventId: number;
         fileName: string;
@@ -23,22 +13,26 @@ export declare class FileUtilController {
             name: string;
             base64: string;
         };
-    }> | {
+    } | {
         statusCode: number;
         message: string;
-    };
+    }>;
     calculateGoodPrice(params: {
         eventId: number;
         lotId: number;
-    }): Promise<{}> | {
-        statusCode: number;
-        message: string;
-    };
+    }): Promise<{}>;
     createThirdBaseFile(params: {
         fileName: string;
         eventNumber: number;
-    }): Promise<{}> | {
+        bankName: string;
+    }): Promise<{
+        data: any;
+        file: {
+            name: string;
+            base64: string;
+        };
+    } | {
         statusCode: number;
         message: string;
-    };
+    }>;
 }

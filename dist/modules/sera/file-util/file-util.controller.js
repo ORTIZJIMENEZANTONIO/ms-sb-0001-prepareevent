@@ -23,46 +23,36 @@ let FileUtilController = class FileUtilController {
         this.service = service;
         this.logger = logger;
     }
-    createXlsx() {
-        const file = this.service.makeFile("hi", "name");
-        return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
+    async createThirdFile(params) {
+        const file = await this.service.createThirdFile(params.fileName, params.eventId);
+        return file !== null && file !== void 0 ? file : { statusCode: 404, message: "Data not found" };
     }
-    createThirdFile(params) {
-        const file = this.service.createThirdFile(params.fileName, params.eventId);
-        return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
+    async calculateGoodPrice(params) {
+        const file = await this.service.calculateGoodPrice(params);
+        return file !== null && file !== void 0 ? file : { statusCode: 404, message: "Data not found" };
     }
-    calculateGoodPrice(params) {
-        const file = this.service.calculateGoodPrice(params);
-        return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
-    }
-    createThirdBaseFile(params) {
-        const file = this.service.createThirdBaseFile(params.fileName, params.eventNumber);
-        return file !== null && file !== void 0 ? file : { statusCode: 400, message: "File failed" };
+    async createThirdBaseFile(params) {
+        const file = await this.service.createThirdBaseFile(params.fileName, params.eventNumber, params.bankName);
+        return file !== null && file !== void 0 ? file : { statusCode: 404, message: "Data not found" };
     }
 };
-__decorate([
-    (0, microservices_1.MessagePattern)({ cmd: "createXlsx" }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], FileUtilController.prototype, "createXlsx", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createThirdFile" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], FileUtilController.prototype, "createThirdFile", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "calculateGoodPrice" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], FileUtilController.prototype, "calculateGoodPrice", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "createThirdBaseFile" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], FileUtilController.prototype, "createThirdBaseFile", null);
 FileUtilController = __decorate([
     (0, common_1.Controller)("file-util"),

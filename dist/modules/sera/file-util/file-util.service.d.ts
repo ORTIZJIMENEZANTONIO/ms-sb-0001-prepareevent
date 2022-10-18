@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { UpdateComerBatchDto } from "../comer-batch/dto/update-comer-batch.dto";
 export declare class FileUtilService {
     private entityGoodXLot;
     private entityComerLot;
@@ -11,15 +12,6 @@ export declare class FileUtilService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entityGoodXLot: Repository<ComerGoodsXLotEntity>, entityComerLot: Repository<ComerLotsEntity>, entityComerEvent: Repository<ComerEventEntity>, logger: Logger, counter: Counter<string>);
-    private path;
-    makeFile(data: any, fileName: string): Promise<{
-        data: any;
-        file: {
-            name: string;
-            base64: string;
-        };
-    }>;
-    createThirdFileTemp(fileName: string, eventNumber: number): Promise<any[]>;
     createThirdFile(fileName: string, eventNumber: number): Promise<{
         data: any;
         file: {
@@ -28,9 +20,16 @@ export declare class FileUtilService {
         };
     }>;
     getGlobalParams(): Promise<number>;
-    createThirdBaseFile(fileName: string, eventNumber: number): Promise<{}>;
+    createThirdBaseFile(fileName: string, eventNumber: number, bankName: string): Promise<{
+        data: any;
+        file: {
+            name: string;
+            base64: string;
+        };
+    }>;
     calculateGoodPrice(params: {
         eventId: number;
         lotId: number;
     }): Promise<{}>;
+    updateComerLot(comer: UpdateComerBatchDto, body: UpdateComerBatchDto): Promise<false | ComerLotsEntity>;
 }

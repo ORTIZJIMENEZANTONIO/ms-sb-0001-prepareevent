@@ -19,16 +19,11 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
-const xlsx = require("xlsx");
-const fs = require("fs");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
-const goods_entity_1 = require("./entities/goods.entity");
-const files_entity_1 = require("./entities/files.entity");
-const cat_transferent_entity_1 = require("./entities/cat-transferent.entity");
-const cat_label_entity_1 = require("./entities/cat-label.entity");
 const reference_1 = require("../../../shared/functions/reference");
+const excel_1 = require("../../../shared/functions/excel");
 let FileUtilService = class FileUtilService {
     constructor(entityGoodXLot, entityComerLot, entityComerEvent, logger, counter) {
         this.entityGoodXLot = entityGoodXLot;
@@ -36,80 +31,6 @@ let FileUtilService = class FileUtilService {
         this.entityComerEvent = entityComerEvent;
         this.logger = logger;
         this.counter = counter;
-        this.path = "src/files/";
-    }
-    async makeFile(data, fileName) {
-        const workSheet = xlsx.utils.json_to_sheet(data);
-        const workBook = xlsx.utils.book_new();
-        const name = `${this.path}${fileName !== null && fileName !== void 0 ? fileName : new Date().getTime()}.xlsx`;
-        xlsx.utils.book_append_sheet(workBook, workSheet, "getQueryToExcel");
-        await xlsx.write(workBook, { bookType: "xlsx", type: "buffer" });
-        await xlsx.write(workBook, { bookType: "xlsx", type: "binary" });
-        await xlsx.writeFile(workBook, name);
-        const f = fs.readFileSync(name, { encoding: "base64" });
-        return {
-            data,
-            file: {
-                name,
-                base64: data.length > 0 ? f : "",
-            },
-        };
-    }
-    async createThirdFileTemp(fileName, eventNumber) {
-        const clasification = await this.entityGoodXLot.query(`
-      SELECT 
-        TAL.NO_TIPOBIEN_ALTERNO, 
-        CTA.NO_CLASIFICACION_ALTERNA, 
-        CTA.NO_CLASIF_BIEN
-      FROM 
-        sera.CLASIF_EN_TIPOBIEN_ALTERNO CTA, 
-        sera.TIPOBIEN_ALTERNO TAL
-      WHERE CTA.NO_CLASIFICACION_ALTERNA    = TAL.NO_CLASIFICACION_ALTERNA
-        AND CTA.NO_CLASIFICACION_ALTERNA = 4
-        AND CTA.NO_TIPOBIEN_ALTERNO         = TAL.NO_TIPOBIEN_ALTERNO
-    `);
-        console.log(clasification);
-        const queryBuilder = this.entityGoodXLot.createQueryBuilder("bxl").select([
-            "coalesce(cat.cvman,'0') as cvman",
-            "lot.publicLot as publicLot",
-            "bxl.goodsId as goodsId",
-            "coalesce(bxl.quantity, bie.quantity) as quantity",
-            "coalesce(bxl.camp1, bie.description) as description",
-            "coalesce(bxl.camp2, lot.description) as genericDescription",
-            "bxl.camp3 as type",
-            "bxl.camp4 as brand",
-            "bxl.camp5 as subBrand",
-            "bxl.camp6 as model",
-            "bxl.camp7 as noSerte",
-            "bxl.camp8 as noMotor",
-            "bxl.camp9 as noCabin",
-            "coalesce(alm.description,'DESCONOCIDA') as UBICA",
-            "bie.status as status",
-            "bxl.consignmentEventId as consignment",
-            "lot.publicLot as LOTEREM",
-            "TO_CHAR(bxl.creationDate,'DD/MM/YYYY') as date",
-            "bie.unit as unit",
-            "CASE WHEN (LOT.ID_ESTATUSVTA = 'PAG' OR LOT.ID_ESTATUSVTA = 'PAGE') THEN 'S' ELSE 'N' END as VENDIDO",
-            "exp.transferringId as NO_TRANSFERENTE",
-            "cat.keyCode as CLAVE",
-            "erm.processCve as PROCESO",
-            "g.description as DESCRIPCION",
-            "bie.goodsClassId as goodsClassId",
-        ]);
-        queryBuilder.addFrom(goods_entity_1.GoodsEntity, "bie");
-        queryBuilder.addFrom(comer_batch_entity_1.ComerLotsEntity, "lot");
-        queryBuilder.addFrom(comer_events_entity_1.ComerEventEntity, "erm");
-        queryBuilder.addFrom(files_entity_1.FilesEntity, "exp");
-        queryBuilder.addFrom(cat_transferent_entity_1.CatTransferentEntity, "cat");
-        queryBuilder.addFrom(cat_label_entity_1.LabelEntity, "g");
-        queryBuilder.andWhere("lot.eventId = erm.eventId");
-        queryBuilder.andWhere("bxl.lotId = lot.lotId");
-        queryBuilder.where("bxl.goodsId = bie.goodsID");
-        queryBuilder.andWhere("bie.fileId = exp.filesId");
-        queryBuilder.andWhere("lot.publicLot > 0");
-        queryBuilder.take(10);
-        console.log(queryBuilder.getQuery());
-        return await queryBuilder.getRawMany();
     }
     async createThirdFile(fileName, eventNumber) {
         const query = this.entityGoodXLot.query(`
@@ -182,8 +103,7 @@ let FileUtilService = class FileUtilService {
         AND DRM.ETAPA_EDO               = sera.FA_ETAPACREDA(BXL.FECHA_CREACION)
     `);
         const data = await query;
-        console.log("data", data);
-        return this.makeFile(data, fileName);
+        return data.length > 0 ? excel_1.File.makeFile(data, fileName) : null;
     }
     async getGlobalParams() {
         const query = this.entityComerLot.query(`
@@ -199,8 +119,7 @@ let FileUtilService = class FileUtilService {
         const num = 1 + params[0].valor / 100;
         return num !== null && num !== void 0 ? num : 1.15;
     }
-    async createThirdBaseFile(fileName, eventNumber) {
-        console.log(fileName, eventNumber);
+    async createThirdBaseFile(fileName, eventNumber, bankName) {
         const queryForniture = await this.entityComerEvent.query(`
       SELECT 
         lot.referenciag, 
@@ -241,14 +160,19 @@ let FileUtilService = class FileUtilService {
       AND cat.no_transferente = 541;
     `);
         queryFornitureRef.map((el, index) => {
-            console.log(el);
-            if (el.loStatus == 'PREP') {
-                if (el.loRefg == null || el.loRefg == '') {
-                    el.loRefg = reference_1.Reference.calculateReference("", el.loLot, el.loCvman, 'G');
+            if (el.loStatus == "PREP") {
+                if (el.loRefg == null || el.loRefg == "") {
+                    el.loRefg = reference_1.Reference.calculateReference(bankName, el.loLot, el.loCvman, "G");
                 }
+                if (el.loRefl == null || el.loRefl == "") {
+                    el.loRefl = reference_1.Reference.calculateReference(bankName, el.loLot, el.loCvman, "L");
+                }
+                this.updateComerLot({ lotIdToUpdt: el.loLot }, { agReference: el.loRefg, referential: el.loRefl });
             }
         });
-        return {};
+        return queryForniture.length > 0
+            ? excel_1.File.makeFile(queryForniture, fileName)
+            : null;
     }
     async calculateGoodPrice(params) {
         var _a;
@@ -289,6 +213,17 @@ let FileUtilService = class FileUtilService {
         const goods1 = await queryGood1.getRawMany();
         console.log(lots1, goods1, G_IVA, n_ID_TPEVENT, BIE_PCT);
         return {};
+    }
+    async updateComerLot(comer, body) {
+        const data = await this.entityComerLot.findOne({
+            where: { lotId: comer.lotIdToUpdt },
+        });
+        if (data) {
+            delete body.lotId;
+            this.entityComerLot.merge(data, body);
+            return this.entityComerLot.save(data);
+        }
+        return false;
     }
 };
 FileUtilService = __decorate([

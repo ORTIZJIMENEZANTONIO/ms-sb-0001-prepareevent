@@ -1,6 +1,8 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
 
-export class UpdateComerBatchDto {
+import { ComerLotsDto } from "./comer-batch.dto";
+
+export class UpdateComerBatchDto extends PartialType(ComerLotsDto) {
   
-  lotIdToUpdt: number;
+  lotIdToUpdt?: number;
 }

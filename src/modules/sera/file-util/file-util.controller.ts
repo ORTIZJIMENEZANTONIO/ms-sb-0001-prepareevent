@@ -12,27 +12,21 @@ export class FileUtilController {
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger
   ) {}
 
-  @MessagePattern({ cmd: "createXlsx" })
-  createXlsx() {
-    const file = this.service.makeFile("hi", "name");
-    return file ?? { statusCode: 400, message: "File failed" };
-  }
-
   @MessagePattern({ cmd: "createThirdFile" })
-  createThirdFile(params: { eventId: number; fileName: string }) {
-    const file = this.service.createThirdFile(params.fileName, params.eventId);
-    return file ?? { statusCode: 400, message: "File failed" };
+  async createThirdFile(params: { eventId: number, fileName: string }) {
+    const file = await this.service.createThirdFile(params.fileName, params.eventId);
+    return file ?? { statusCode: 404, message: "Data not found" };
   }
 
   @MessagePattern({ cmd: "calculateGoodPrice" })
-  calculateGoodPrice(params: { eventId: number; lotId: number }) {
-    const file = this.service.calculateGoodPrice(params);
-    return file ?? { statusCode: 400, message: "File failed" };
+  async  calculateGoodPrice(params: { eventId: number; lotId: number }) {
+    const file = await this.service.calculateGoodPrice(params);
+    return file ?? { statusCode: 404, message: "Data not found" };
   }
 
   @MessagePattern({ cmd: "createThirdBaseFile" })
-  createThirdBaseFile(params: { fileName: string, eventNumber: number }) {
-    const file = this.service.createThirdBaseFile(params.fileName, params.eventNumber);
-    return file ?? { statusCode: 400, message: "File failed" };
+  async  createThirdBaseFile(params: { fileName: string, eventNumber: number, bankName: string }) {
+    const file = await this.service.createThirdBaseFile(params.fileName, params.eventNumber, params.bankName);
+    return file ?? { statusCode: 404, message: "Data not found" };
   }
 }

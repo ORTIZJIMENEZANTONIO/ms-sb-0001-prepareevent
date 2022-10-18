@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotsDto } from "./dto/comer-batch.dto";
 import { ComerLotsEntity } from "./entities/comer-batch.entity";
+import { UpdateComerBatchDto } from "./dto/update-comer-batch.dto";
 export declare class ComerBatchService {
     private entity;
     private readonly logger;
@@ -21,6 +22,6 @@ export declare class ComerBatchService {
         data: ComerLotsEntity[];
         count: number;
     }>;
-    updateComerLot(): Promise<void>;
+    updateComerLot(comer: UpdateComerBatchDto, body: ComerLotsEntity): Promise<false | ComerLotsEntity>;
     deleteComerLot(comer: ComerLotsDto): Promise<import("typeorm").DeleteResult>;
 }
