@@ -9,6 +9,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotsDto } from "./dto/comer-batch.dto";
 import { ComerLotsEntity } from "./entities/comer-batch.entity";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { UpdateComerBatchDto } from "./dto/update-comer-batch.dto";
 // comer_estatusvta pending to join adn autoincrement
 @Injectable()
 export class ComerBatchService {
@@ -21,7 +22,7 @@ export class ComerBatchService {
 
   async createComerLot(comer: ComerLotsDto) {
     const comerExisting = await this.entity.findOneBy({
-      lotId: comer.lotId
+      lotId: comer.lotId,
     });
 
     if (comerExisting) {
@@ -78,7 +79,18 @@ export class ComerBatchService {
     };
   }
 
-  async updateComerLot() {}
+  async updateComerLot(comer: UpdateComerBatchDto, body: ComerLotsEntity) {
+    const data = await this.entity.findOne({
+      where: { lotId: comer.lotIdToUpdt },
+    });
+
+    if (data) {
+      delete body.lotId;
+      this.entity.merge(data, body);
+      return this.entity.save(data);
+    }
+    return false;
+  }
 
   async deleteComerLot(comer: ComerLotsDto) {
     const { lotId } = comer;

@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerEvents}}/address/?address=A&inicio=1&pageSize=3",
+							"raw": "{{port}}{{comerEvents}}/address/?address=á&inicio=1&pageSize=2",
 							"host": [
 								"{{port}}{{comerEvents}}"
 							],
@@ -26,7 +26,7 @@
 							"query": [
 								{
 									"key": "address",
-									"value": "A"
+									"value": "á"
 								},
 								{
 									"key": "inicio",
@@ -34,7 +34,7 @@
 								},
 								{
 									"key": "pageSize",
-									"value": "3"
+									"value": "2"
 								}
 							]
 						}
@@ -47,7 +47,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerEvents}}/adress-and-eventid/?address=A&eventId=23190",
+							"raw": "{{port}}{{comerEvents}}/adress-and-eventid/?address=a&eventId=23190",
 							"host": [
 								"{{port}}{{comerEvents}}"
 							],
@@ -58,7 +58,7 @@
 							"query": [
 								{
 									"key": "address",
-									"value": "A"
+									"value": "a"
 								},
 								{
 									"key": "eventId",
@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"eventTpId\": 6,\n    \"lotId\": 10914,\n    \"address\": \"M\",\n    \"inicio\": 1,\n    \"pageSize\": 2\n}",
+							"raw": "{\n    \"eventTpId\": 6,\n    \"lotId\": 10914,\n    \"address\": \"M\",\n    \"inicio\": 1,\n    \"pageSize\": 2\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -122,6 +122,53 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getAllComerEvents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerEvents}}?inicio=1&pageSize=2",
+							"host": [
+								"{{port}}{{comerEvents}}"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createComerEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 23264,\n    \"eventTpId\": \"6\",\n    \"statusVtaId\": \"PREP\",\n    \"processCve\": \"SEAF 16/22\",\n    \"observations\": \"SUBASTA ELECTRÓNICA\",\n    \"address\": \"A\",\n    \"failureDate\": null,\n    \"place\": \"CIUDAD DE MÉXICO\",\n    \"eventDate\": null,\n    \"texto1\": null,\n    \"texto2\": null,\n    \"firmante\": null,\n    \"firmanteCargo\": null,\n    \"notes\": null,\n    \"textofin3\": null,\n    \"textofin4\": null,\n    \"baseCost\": \"1\",\n    \"numBaseVend\": null,\n    \"user\": \"JLPEREZ\",\n    \"month\": \"3\",\n    \"year\": \"2022\",\n    \"delegationId\": \"11\",\n    \"faseInmu\": null,\n    \"thirdId\": 1,\n    \"fechaNotificacion\": null,\n    \"eventClosingDate\": null,\n    \"tpsolavalId\": 1,\n    \"ivaApplies\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerEvents}}",
+							"host": [
+								"{{port}}{{comerEvents}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -129,14 +176,24 @@
 			"name": "comer-conv-event",
 			"item": [
 				{
-					"name": "getComerConvEventById",
+					"name": "getAllComerConvEvents",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerConvEvent}}",
+							"raw": "{{port}}{{comerConvEvent}}?incio=1&pageSize=2",
 							"host": [
 								"{{port}}{{comerConvEvent}}"
+							],
+							"query": [
+								{
+									"key": "incio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -148,13 +205,192 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerConvEvent}}/by-id/?eventId=1",
+							"raw": "{{port}}{{comerConvEvent}}/by-id/?eventId=9999999",
 							"host": [
 								"{{port}}{{comerConvEvent}}"
 							],
 							"path": [
 								"by-id",
 								""
+							],
+							"query": [
+								{
+									"key": "eventId",
+									"value": "9999999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createComerConvEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": 9999999,\n  \"announcementEventId\": 12,\n  \"description\": \"test\",\n  \"dates\": \"2022-10-14\",\n  \"schedule\": null,\n  \"place\": \"test place\",\n  \"restriction\": null\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerConvEvent}}",
+							"host": [
+								"{{port}}{{comerConvEvent}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comer-goods-x-lot",
+			"item": [
+				{
+					"name": "getComerEventByLotId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerPropertyByBatch}}/lot-id/?lotId=10914&inicio=1&pageSize=2",
+							"host": [
+								"{{port}}{{comerPropertyByBatch}}"
+							],
+							"path": [
+								"lot-id",
+								""
+							],
+							"query": [
+								{
+									"key": "lotId",
+									"value": "10914"
+								},
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllComerEvents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerPropertyByBatch}}?incio=1&pageSize=2",
+							"host": [
+								"{{port}}{{comerPropertyByBatch}}"
+							],
+							"query": [
+								{
+									"key": "incio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createComerGoodsXLot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goodsLotId\": \"1617544\",\n    \"goodsId\": \"2336531\",\n    \"lotId\": \"68949\",\n    \"baseValue\": \"315.00\",\n    \"valueReferential\": null,\n    \"finalPrice\": \"315.01\",\n    \"baseTax\": null,\n    \"finalTax\": \"41.09\",\n    \"taxPercent\": null,\n    \"camp1\": \"CUBIERTA DE CRISTAL\",\n    \"camp2\": \"PAQUETE DE MOBILIARIO 060802 CUAUTLA\",\n    \"camp3\": \"ST\",\n    \"camp4\": \"SM\",\n    \"camp5\": \"SSM\",\n    \"camp6\": \"N/D\",\n    \"camp7\": \"SNS\",\n    \"camp8\": \"SNM\",\n    \"camp9\": \"SNC\",\n    \"quantity\": \"7.000\",\n    \"storeNo\": null,\n    \"expertiseCve\": null,\n    \"appraiserEnterprise\": null,\n    \"inventoryId\": null,\n    \"noTaxPrice\": \"273.92\",\n    \"taxAppAmount\": null,\n    \"taxAmountId\": \"0.00\",\n    \"antStatus\": \"CPV\",\n    \"appraiserDate\": null,\n    \"calcStatus\": null,\n    \"warrantyPrice\": null,\n    \"eatStatus\": \"CPV\",\n    \"transferenceId\": \"31\",\n    \"advance\": null,\n    \"lotPcts\": null,\n    \"creationDate\": \"2008-07-02T05:00:00.000Z\",\n    \"eatLotId\": null,\n    \"eatEventId\": null,\n    \"consignmentEventId\": \"1181\",\n    \"consignmentLotId\": \"66844\",\n    \"consignmentGoodsId\": \"1571079\",\n    \"sold\": \"S\",\n    \"observation\": null,\n    \"billId\": \"H8269\",\n    \"billDate\": \"2008-08-19T05:00:00.000Z\",\n    \"selected\": null,\n    \"annex\": null,\n    \"cylindersId\": null,\n    \"origin\": null,\n    \"originCountry\": null,\n    \"loteDescription\": null,\n    \"delegationId\": null,\n    \"observations2\": null,\n    \"appraisalId\": null,\n    \"taxA\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerPropertyByBatch}}",
+							"host": [
+								"{{port}}{{comerPropertyByBatch}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comer-adjudirec",
+			"item": [
+				{
+					"name": "getAllComersAdjudirec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerAdjudirec}}?inicio=1&pageSize=3",
+							"host": [
+								"{{port}}{{comerAdjudirec}}"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAdjudirec",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": \"3\",\n    \"committee\": null,\n    \"sessionDate\": null,\n    \"noSession\": null,\n    \"creationUser\": null,\n    \"userWhoProposed\": null,\n    \"userWhoFormulated\": null,\n    \"physicalCondition\": null,\n    \"observation\": null,\n    \"valudi\": null,\n    \"amountDis\": null,\n    \"tendered\": null,\n    \"udiDate\": null,\n    \"wayToPay\": null,\n    \"text1\": \"test\",\n    \"text2\": null,\n    \"text3\": null,\n    \"receptionDate\": null,\n    \"bookValue\": null,\n    \"valMaxUdi\": null,\n    \"cause\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerAdjudirec}}",
+							"host": [
+								"{{port}}{{comerAdjudirec}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAdjudirec",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerAdjudirec}}?eventId=1",
+							"host": [
+								"{{port}}{{comerAdjudirec}}"
 							],
 							"query": [
 								{
@@ -169,26 +405,26 @@
 			]
 		},
 		{
-			"name": "comer-goods-x-lot",
+			"name": "comer-lots",
 			"item": [
 				{
-					"name": "getComerEventByAddress",
+					"name": "getAllComersLot",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerPropertyByBatch}}/lot-id/?lotId=1",
+							"raw": "{{port}}{{comerBatch}}?incio=1&pageSize=2",
 							"host": [
-								"{{port}}{{comerPropertyByBatch}}"
-							],
-							"path": [
-								"lot-id",
-								""
+								"{{port}}{{comerBatch}}"
 							],
 							"query": [
 								{
-									"key": "lotId",
+									"key": "incio",
 									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
 								}
 							]
 						}
@@ -196,14 +432,168 @@
 					"response": []
 				},
 				{
-					"name": "getAllComerEvents",
+					"name": "createComerBatch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"idEstatusvta\": \"PAG\",\n    \"eventId\": \"17565\",\n    \"publicLot\": \"1\",\n    \"description\": \"LOTE PARA RESERVAR VEHICULO DIF TEST\",\n    \"valorBase\": \"0.00\",\n    \"noTransferente\": \"120\",\n    \"clientId\": null,\n    \"precioAvaluoRef\": null,\n    \"precioGarantia\": null,\n    \"fechaEntrega\": null,\n    \"precioFinal\": null,\n    \"referenciag\": null,\n    \"referencial\": null,\n    \"acumulado\": \"0.00\",\n    \"validoSistema\": null,\n    \"ivaLote\": null,\n    \"montoAppIva\": null,\n    \"montoNoappIva\": null,\n    \"porcAppIva\": null,\n    \"porcNoappIva\": null,\n    \"coordinacionReg\": null,\n    \"coordinadorReg\": null,\n    \"datoFiscMand\": null,\n    \"ubicacion\": null,\n    \"anticipo\": null,\n    \"montoSinIva\": null,\n    \"nooficionotifica\": null,\n    \"imprimenotifica\": null,\n    \"idestatusvtant\": \"APRO\",\n    \"numBienes\": null,\n    \"excedeFalta\": null,\n    \"esasignado\": null,\n    \"eschatarra\": null,\n    \"solicita\": null,\n    \"montoRetenido\": null,\n    \"noDelegacion\": null,\n    \"loteOrigen\": null,\n    \"cubrelotes\": null,\n    \"paleta\": null,\n    \"garantiaAsig\": null,\n    \"montoLiq\": null,\n    \"fase\": null,\n    \"noParcialidades\": null,\n    \"puntosPorcen\": null,\n    \"porcAnticipo\": null,\n    \"aIva\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{comerBatch}}",
+							"host": [
+								"{{port}}{{comerBatch}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComerLotByEventId",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{port}}{{comerPropertyByBatch}}",
+							"raw": "{{port}}{{comerBatch}}/by-event-id/?incio=1&pageSize=2&eventId=11801",
 							"host": [
-								"{{port}}{{comerPropertyByBatch}}"
+								"{{port}}{{comerBatch}}"
+							],
+							"path": [
+								"by-event-id",
+								""
+							],
+							"query": [
+								{
+									"key": "incio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "eventId",
+									"value": "11801"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comer-rejected-goods",
+			"item": [
+				{
+					"name": "getAllComersRejectedProperties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerRejectedProperty}}?inicio=1&pageSize=2",
+							"host": [
+								"{{port}}{{comerRejectedProperty}}"
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComerRejectedPropertyByEventId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}{{comerRejectedProperty}}/event-id/?inicio=1&pageSize=2&eventId=50",
+							"host": [
+								"{{port}}{{comerRejectedProperty}}"
+							],
+							"path": [
+								"event-id",
+								""
+							],
+							"query": [
+								{
+									"key": "inicio",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "eventId",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mandate-function",
+			"item": [
+				{
+					"name": "updateMandate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lotId\": 1,\n    \"goodId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{mandateFunction}}",
+							"host": [
+								"{{port}}{{mandateFunction}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file-util",
+			"item": [
+				{
+					"name": "createFile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}/api/v1/file-util",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"file-util"
 							]
 						}
 					},
@@ -248,6 +638,22 @@
 		{
 			"key": "comerPropertyByBatch",
 			"value": "/api/v1/comer-property-by-batch"
+		},
+		{
+			"key": "comerAdjudirec",
+			"value": "/api/v1/comer-adjudirec"
+		},
+		{
+			"key": "comerBatch",
+			"value": "/api/v1/comer-batch"
+		},
+		{
+			"key": "comerRejectedProperty",
+			"value": "/api/v1/comer-rejected-property"
+		},
+		{
+			"key": "mandateFunction",
+			"value": "/api/v1/mandate-function"
 		}
 	]
 }

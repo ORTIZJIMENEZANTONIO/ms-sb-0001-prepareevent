@@ -15,6 +15,7 @@ export class MandateFunctionController {
 
   @MessagePattern({ cmd: "updateMandate" })
   updateMandate(params: MandateFunctionDto) {
-    return this.service.updateMandate(params)
+    const mandate = this.service.updateMandate(params);
+    return mandate ?? { statusCode: 400, message: "Updated  failed" };
   }
 }

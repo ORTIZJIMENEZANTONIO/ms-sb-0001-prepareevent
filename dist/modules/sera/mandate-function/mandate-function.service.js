@@ -30,6 +30,10 @@ let MandateFunctionService = class MandateFunctionService {
     }
     async updateMandate(params) {
         const { lotId, goodId } = params;
+        const elementsUpdated = {
+            transferentNums: null,
+            lotUpdt: null
+        };
         if (goodId == 1) {
             const transferentNums = await this.comerLotsRepository.query(`
         UPDATE	sera.COMER_BIENESXLOTE BXL
@@ -41,10 +45,10 @@ let MandateFunctionService = class MandateFunctionService {
         )
         WHERE			BXL.ID_LOTE = ${'22025'};
       `);
-            console.log(transferentNums);
+            elementsUpdated.transferentNums = transferentNums;
         }
         if (lotId == 1) {
-            this.comerLotsRepository.query(`
+            const lotUpdt = this.comerLotsRepository.query(`
         UPDATE	COMER_LOTES LOT
         SET			NO_TRANSFERENTE = (	
           SELECT	NO_TRANSFERENTE
@@ -54,8 +58,12 @@ let MandateFunctionService = class MandateFunctionService {
         )
         WHERE		LOT.ID_LOTE = :COMER_LOTES.ID_LOTE;
       `);
+            elementsUpdated.lotUpdt = lotUpdt;
         }
-        return { success: true };
+        if (elementsUpdated.lotUpdt || elementsUpdated.transferentNums) {
+            return elementsUpdated;
+        }
+        return null;
     }
 };
 MandateFunctionService = __decorate([

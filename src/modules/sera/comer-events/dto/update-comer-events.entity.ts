@@ -1,6 +1,8 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
 
-export class UpdateComerEventDto {
+import { ComerEventDto } from "./comer-events.dto";
+
+export class UpdateComerEventDto extends PartialType(ComerEventDto) {
   @ApiProperty({ example: "No. Evento" })
-  idEventToUpdt: number;
+  idEventToUpdt: number | null;
 }

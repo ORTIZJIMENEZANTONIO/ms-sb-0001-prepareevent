@@ -5,6 +5,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
 import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 export declare class ComerEventsService {
     private entity;
     private readonly logger;
@@ -22,13 +23,27 @@ export declare class ComerEventsService {
         data: ComerEventEntity[];
         count: number;
     }>;
-    getComerEventByAddressAndId(comerEvent: ComerEventDto): Promise<{
+    getComerEventByAddressAndId(comerEvent: UpdateComerEventDto): Promise<{
+        statusCode: number;
+        message: string;
+        data?: undefined;
+        count?: undefined;
+    } | {
         data: ComerEventEntity[];
         count: number;
+        statusCode?: undefined;
+        message?: undefined;
     }>;
-    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<any[] | {
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<{
+        statusCode: number;
+        message: string;
+        data?: undefined;
+        count?: undefined;
+    } | {
         data: ComerEventEntity[];
         count: number;
+        statusCode?: undefined;
+        message?: undefined;
     }>;
     updateComerEvent(): Promise<void>;
     deleteComerEvent(comer: ComerEventDto): Promise<import("typeorm").DeleteResult>;

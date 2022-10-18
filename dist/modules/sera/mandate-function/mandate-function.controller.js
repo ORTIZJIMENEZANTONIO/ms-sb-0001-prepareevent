@@ -25,7 +25,8 @@ let MandateFunctionController = class MandateFunctionController {
         this.logger = logger;
     }
     updateMandate(params) {
-        return this.service.updateMandate(params);
+        const mandate = this.service.updateMandate(params);
+        return mandate !== null && mandate !== void 0 ? mandate : { statusCode: 400, message: "Updated  failed" };
     }
 };
 __decorate([

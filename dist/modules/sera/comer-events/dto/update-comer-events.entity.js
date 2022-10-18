@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateComerEventDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-class UpdateComerEventDto {
+const comer_events_dto_1 = require("./comer-events.dto");
+class UpdateComerEventDto extends (0, swagger_1.PartialType)(comer_events_dto_1.ComerEventDto) {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({ example: "No. Evento" }),
