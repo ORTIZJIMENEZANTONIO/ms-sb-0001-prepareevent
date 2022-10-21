@@ -1,24 +1,23 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ComerGoodsXLotDto {
-  @ApiProperty({ example: "No. bien por lote" })
-  goodsLotId: number;
+  propertyByLotId: number;
 
-  goodsId: number;
+  goodId: number;
 
   lotId: number;
 
   baseValue: number | null;
 
-  valueReferential: number | null;
+  appraisalPriceRef: number | null;
 
   finalPrice: number | null;
 
-  baseTax: number | null;
+  baseVat: number | null;
 
-  finalTax: number | null;
+  finalVat: number | null;
 
-  taxPercent: number | null;
+  vatPercent: number | null;
 
   camp1: string | null;
 
@@ -40,21 +39,21 @@ export class ComerGoodsXLotDto {
 
   quantity: number | null;
 
-  storeNo: number | null;
+  storeNumber: number | null;
 
-  expertiseCve: string | null;
+  surveyJurCve: string | null;
 
-  appraiserEnterprise: string | null;
+  appraiserCompany: string | null;
 
-  inventoryId: string | null;
+  inventoryNumber: string | null;
 
-  noTaxPrice: number;
+  priceWithoutVat: number;
 
-  taxAppAmount: number | null;
+  amountAppVat: number | null;
 
-  taxAmountId: number | null;
+  amountNoAppVat: number | null;
 
-  antStatus: string | null;
+  previousStatus: string | null;
 
   appraiserDate: Date | null;
 
@@ -62,9 +61,9 @@ export class ComerGoodsXLotDto {
 
   warrantyPrice: number | null;
 
-  eatStatus: string | null;
+  status: string | null;
 
-  transferenceId: number | null;
+  transferenceNumber: number | null;
 
   advance: number | null;
 
@@ -72,9 +71,9 @@ export class ComerGoodsXLotDto {
 
   creationDate: Date | null;
 
-  eatLotId: number | null;
+  comerLotNumber: number | null;
 
-  eatEventId: number | null;
+  comerEventId: number | null;
 
   consignmentEventId: number | null;
 
@@ -86,7 +85,7 @@ export class ComerGoodsXLotDto {
 
   observation: string | null;
 
-  billId: string | null;
+  billNumber: string | null;
 
   billDate: Date | null;
 
@@ -94,19 +93,19 @@ export class ComerGoodsXLotDto {
 
   annex: string | null;
 
-  cylindersId: string | null;
+  cylindersNumber: string | null;
 
   origin: string | null;
 
   originCountry: string | null;
 
-  loteDescription: string | null;
+  lotDescription: string | null;
 
-  delegationId: number | null;
+  delegationNumber: number | null;
 
   observations2: string | null;
 
   appraisalId: number | null;
 
-  taxA: string | null;
+  vatA: string | null;
 }

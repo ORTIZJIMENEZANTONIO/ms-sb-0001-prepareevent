@@ -20,11 +20,11 @@ __decorate([
         name: "id_bienxlote",
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "goodsLotId", void 0);
+], ComerGoodsXLotEntity.prototype, "propertyByLotId", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "goodsId", void 0);
+], ComerGoodsXLotEntity.prototype, "goodId", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", { name: "id_lote", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
@@ -46,7 +46,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "valueReferential", void 0);
+], ComerGoodsXLotEntity.prototype, "appraisalPriceRef", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_final",
@@ -64,7 +64,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "baseTax", void 0);
+], ComerGoodsXLotEntity.prototype, "baseVat", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "iva_final",
@@ -74,7 +74,7 @@ __decorate([
         default: () => "0",
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "finalTax", void 0);
+], ComerGoodsXLotEntity.prototype, "finalVat", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "porc_iva",
@@ -83,7 +83,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "taxPercent", void 0);
+], ComerGoodsXLotEntity.prototype, "vatPercent", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "campo1", nullable: true, length: 1250 }),
     __metadata("design:type", String)
@@ -137,7 +137,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "storeNo", void 0);
+], ComerGoodsXLotEntity.prototype, "storeNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "cve_peritaje_jur",
@@ -145,7 +145,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "expertiseCve", void 0);
+], ComerGoodsXLotEntity.prototype, "surveyJurCve", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "empresa_valuadora",
@@ -153,7 +153,7 @@ __decorate([
         length: 60,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "appraiserEnterprise", void 0);
+], ComerGoodsXLotEntity.prototype, "appraiserCompany", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_inventario",
@@ -161,7 +161,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "inventoryId", void 0);
+], ComerGoodsXLotEntity.prototype, "inventoryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "precio_sin_iva",
@@ -170,7 +170,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "noTaxPrice", void 0);
+], ComerGoodsXLotEntity.prototype, "priceWithoutVat", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_app_iva",
@@ -179,7 +179,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "taxAppAmount", void 0);
+], ComerGoodsXLotEntity.prototype, "amountAppVat", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "monto_noapp_iva",
@@ -189,7 +189,7 @@ __decorate([
         default: () => "0",
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "taxAmountId", void 0);
+], ComerGoodsXLotEntity.prototype, "amountNoAppVat", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "estatus_ant",
@@ -197,7 +197,7 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "antStatus", void 0);
+], ComerGoodsXLotEntity.prototype, "previousStatus", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fecha_avaluo", nullable: true }),
     __metadata("design:type", Date)
@@ -226,7 +226,7 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "eatStatus", void 0);
+], ComerGoodsXLotEntity.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_transferente",
@@ -235,7 +235,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "transferenceId", void 0);
+], ComerGoodsXLotEntity.prototype, "transferenceNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "anticipo",
@@ -266,7 +266,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "eatLotId", void 0);
+], ComerGoodsXLotEntity.prototype, "comerLotNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_evento_comer",
@@ -275,7 +275,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "eatEventId", void 0);
+], ComerGoodsXLotEntity.prototype, "comerEventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_evento_remesa",
@@ -322,7 +322,7 @@ __decorate([
         length: 10,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "billId", void 0);
+], ComerGoodsXLotEntity.prototype, "billNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("timestamp without time zone", {
         name: "fecha_factura",
@@ -349,7 +349,7 @@ __decorate([
         length: 10,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "cylindersId", void 0);
+], ComerGoodsXLotEntity.prototype, "cylindersNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "procedencia",
@@ -373,7 +373,7 @@ __decorate([
         length: 255,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "loteDescription", void 0);
+], ComerGoodsXLotEntity.prototype, "lotDescription", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_delegacionrem",
@@ -382,7 +382,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "delegationId", void 0);
+], ComerGoodsXLotEntity.prototype, "delegationNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "observaciones_2",
@@ -403,7 +403,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "a_iva", nullable: true, length: 2 }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "taxA", void 0);
+], ComerGoodsXLotEntity.prototype, "vatA", void 0);
 ComerGoodsXLotEntity = __decorate([
     (0, typeorm_1.Entity)("comer_bienesxlote", { schema: "sera" })
 ], ComerGoodsXLotEntity);

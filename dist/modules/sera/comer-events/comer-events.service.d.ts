@@ -45,6 +45,6 @@ export declare class ComerEventsService {
         statusCode?: undefined;
         message?: undefined;
     }>;
-    updateComerEvent(): Promise<void>;
+    updateComerEvent({ eventIdToUpdt }: UpdateComerEventDto, comer: ComerEventDto): Promise<ComerEventEntity>;
     deleteComerEvent(comer: ComerEventDto): Promise<import("typeorm").DeleteResult>;
 }

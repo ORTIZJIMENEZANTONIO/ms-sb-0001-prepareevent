@@ -106,6 +106,7 @@ let FileUtilService = class FileUtilService {
         return data.length > 0 ? excel_1.File.makeFile(data, fileName) : null;
     }
     async getGlobalParams() {
+        var _a;
         const query = this.entityComerLot.query(`
     SELECT
       VALOR
@@ -116,8 +117,7 @@ let FileUtilService = class FileUtilService {
       AND PAR.DIRECCION = 'C'
     `);
         const params = await query;
-        const num = 1 + params[0].valor / 100;
-        return num !== null && num !== void 0 ? num : 1.15;
+        return ((_a = params[0]) === null || _a === void 0 ? void 0 : _a.valor) ? 1 + params[0].valor / 100 : 1.15;
     }
     async createThirdBaseFile(fileName, eventNumber, bankName) {
         const queryForniture = await this.entityComerEvent.query(`
@@ -167,7 +167,11 @@ let FileUtilService = class FileUtilService {
                 if (el.loRefl == null || el.loRefl == "") {
                     el.loRefl = reference_1.Reference.calculateReference(bankName, el.loLot, el.loCvman, "L");
                 }
-                this.updateComerLot({ lotIdToUpdt: el.loLot }, { agReference: el.loRefg, referential: el.loRefl });
+                this.updateComerLot({
+                    lotIdToUpdt: el.loLot,
+                    referenceG: el.loRefg,
+                    referential: el.loRefl,
+                });
             }
         });
         return queryForniture.length > 0
@@ -175,9 +179,76 @@ let FileUtilService = class FileUtilService {
             : null;
     }
     async calculateGoodPrice(params) {
-        var _a;
         const { eventId, lotId } = params;
-        const queryLots1 = this.entityComerLot
+        const bie = {
+            value: 0,
+            total: 0,
+            pct: 0,
+            vat: 0,
+            acum: 0,
+            residue: 0,
+        };
+        const lots1 = await this.getLots(eventId, lotId);
+        const vat = await this.getGlobalParams();
+        const idTPevent = await this.getIdTpEvent(eventId);
+        const nIdTPevent = idTPevent ? idTPevent : 1;
+        const G_IVA = nIdTPevent == 5 ? 1 : vat;
+        const rowsUpdated = [];
+        for (const [index, lot] of lots1.entries()) {
+            let cont = 0;
+            bie.value = 0;
+            bie.acum = 0;
+            bie.total = 0;
+            bie.pct = lot.LOT_FINAL / lot.LOT_VB || 1;
+            const goods = await this.getGoods(lot.lot_idlote);
+            if (goods.length > 0) {
+                for (const good of goods) {
+                    cont++;
+                    bie.acum = 0;
+                    bie.total = 0;
+                    if (cont <= lot.LOT_NUMB) {
+                        bie.value = bie.pct * good.BIE_PRECIO;
+                        if (lot.LOT_IVA > 0) {
+                            bie.vat = bie.value - bie.value / G_IVA;
+                            bie.value = bie.value - bie.vat;
+                            bie.total = bie.value + bie.vat;
+                        }
+                        else {
+                            bie.vat = 0;
+                        }
+                        bie.acum = +bie.total;
+                    }
+                    if (cont == lot.LOT_NUMB) {
+                        if (bie.acum != lot.LOT_FINAL) {
+                            bie.residue = lot.LOT_FINAL + bie.acum;
+                            if (lot.LOT_IVA > 0) {
+                                bie.value = bie.value + bie.vat + bie.residue;
+                                bie.vat = bie.value - bie.value / G_IVA;
+                                bie.value = bie.value - bie.vat;
+                                bie.total = bie.value + bie.vat;
+                            }
+                            else {
+                                bie.value = +bie.residue;
+                            }
+                        }
+                    }
+                    const body = {
+                        lotIdToUpdt: lot.lot_idlot,
+                        goodIdToUpdt: good.BIE_BIEN,
+                        finalPrice: bie.total,
+                        priceWithoutVat: bie.value,
+                        baseValue: good.BIE_PRECIO
+                    };
+                    rowsUpdated.push(await this.updateComerLot(body));
+                }
+            }
+        }
+        return rowsUpdated.length > 0
+            ? { message: `Updated successfully ${rowsUpdated.length} rows ` }
+            : null;
+    }
+    async getLots(eventId, lotId) {
+        return await this.entityComerLot
             .createQueryBuilder("lot")
             .select([
             "ID_LOTE as LOT_IDLOTE",
@@ -189,17 +260,10 @@ let FileUtilService = class FileUtilService {
         ])
             .where(`ID_EVENTO = ${eventId}`)
             .andWhere(`LOTE_PUBLICO = coalesce(${lotId}, LOTE_PUBLICO)`)
-            .orderBy("LOTE_PUBLICO");
-        const lots1 = await queryLots1.getRawMany();
-        const queryTpEvent = await this.entityComerEvent
-            .createQueryBuilder()
-            .select("ID_TPEVENTO", "tpEventId")
-            .where(`ID_EVENTO  = ${eventId}`)
-            .getRawOne();
-        const n_ID_TPEVENT = (_a = queryTpEvent.tpEventId) !== null && _a !== void 0 ? _a : 1;
-        const vat = await this.getGlobalParams();
-        const G_IVA = n_ID_TPEVENT == 5 ? 1 : vat;
-        const BIE_PCT = lots1[0].LOT_FINAL / lots1[0].LOT_VB || 1;
+            .orderBy("LOTE_PUBLICO")
+            .getRawMany();
+    }
+    getGoods(idLot) {
         const queryGood1 = this.entityGoodXLot
             .createQueryBuilder("bxl")
             .select([
@@ -207,21 +271,43 @@ let FileUtilService = class FileUtilService {
             "coalesce(VALOR_BASE, 0.01) as BIE_PRECIO",
             "NO_BIEN as BIE_NOBIEN",
         ])
-            .where(`ID_LOTE = :lot`, { lot: lots1[0].lot_idlote })
+            .where(`ID_LOTE = ${idLot}`)
             .andWhere("coalesce(VALOR_BASE,0) >= 0")
-            .orderBy("NO_BIEN");
-        const goods1 = await queryGood1.getRawMany();
-        console.log(lots1, goods1, G_IVA, n_ID_TPEVENT, BIE_PCT);
-        return {};
+            .orderBy("NO_BIEN")
+            .getRawMany();
+        return queryGood1;
     }
-    async updateComerLot(comer, body) {
+    async getIdTpEvent(eventId) {
+        const idTpEvent = await this.entityComerEvent
+            .createQueryBuilder("ce")
+            .select(["ce.ID_TPEVENTO as tpEventId"])
+            .where(`ce.ID_EVENTO  = ${eventId}`)
+            .getRawOne();
+        return idTpEvent !== null && idTpEvent !== void 0 ? idTpEvent : 0;
+    }
+    async updateComerLot(comer) {
         const data = await this.entityComerLot.findOne({
-            where: { lotId: comer.lotIdToUpdt },
+            where: { id: comer.lotIdToUpdt },
         });
         if (data) {
-            delete body.lotId;
-            this.entityComerLot.merge(data, body);
+            delete comer.id;
+            delete comer.lotIdToUpdt;
+            this.entityComerLot.merge(data, comer);
             return this.entityComerLot.save(data);
+        }
+        return false;
+    }
+    async updateComerPropertyByLot(comer) {
+        const data = await this.entityGoodXLot.findOne({
+            where: { lotId: comer.lotIdToUpdt, propertyByLotId: comer.goodIdToUpdt },
+        });
+        if (data) {
+            delete comer.lotId;
+            delete comer.goodId;
+            delete comer.lotIdToUpdt;
+            delete comer.goodIdToUpdt;
+            this.entityGoodXLot.merge(data, comer);
+            return this.entityGoodXLot.save(data);
         }
         return false;
     }

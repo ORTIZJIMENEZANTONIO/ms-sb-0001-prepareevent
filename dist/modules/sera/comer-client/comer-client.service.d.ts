@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerClientEntity } from "./entities/comer-client.entity";
 import { ComerClientDto } from "./dto/comer-client.dto.";
+import { UpdateComerClientDto } from "./dto/update-comer-client.dto.";
 export declare class ComerClientService {
     private entity;
     private readonly logger;
@@ -17,6 +18,6 @@ export declare class ComerClientService {
         data: ComerClientEntity[];
         count: number;
     }>;
-    updateComerClient(): Promise<void>;
+    updateComerClient({ clientIdToUpdt }: UpdateComerClientDto, comer: ComerClientDto): Promise<ComerClientEntity>;
     deleteComerClient(comer: ComerClientDto): Promise<import("typeorm").DeleteResult>;
 }

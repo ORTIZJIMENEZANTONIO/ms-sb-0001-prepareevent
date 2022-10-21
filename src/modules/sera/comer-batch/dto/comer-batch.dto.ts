@@ -7,16 +7,17 @@ import {
   IsString,
   MaxLength,
 } from "class-validator";
+import { IsNullable } from "src/shared/custom-validators/custom-validator";
 export class ComerLotsDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  lotId: number;
+  id: number;
 
   @IsString()
   @MaxLength(4)
   @IsNotEmpty()
-  statusId: string;
+  saleStatusId: string;
 
   @IsNumber()
   @IsPositive()
@@ -31,214 +32,255 @@ export class ComerLotsDto {
   @IsString()
   @MaxLength(1250)
   @IsOptional()
+  @IsNullable()
   description: string | null;
 
   @IsNumber()
-  @IsPositive()
   @IsNotEmpty()
   baseValue: number;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  transferenceId: number | null;
+  @IsNullable()
+  transferenceNumber: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   customerId: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  refAppraisalPrice: number | null;
+  @IsNullable()
+  appraisalPriceRef: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   warrantyPrice: number | null;
 
   @IsDateString()
   @IsOptional()
+  @IsNullable()
   deliveryDate: Date | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   finalPrice: number | null;
 
   @IsString()
   @MaxLength(30)
   @IsOptional()
-  agReference: string | null;
+  @IsNullable()
+  referenceG: string | null;
 
   @IsString()
   @MaxLength(30)
   @IsOptional()
+  @IsNullable()
   referential: string | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   accumulated: number | null;
 
   @IsString()
   @MaxLength(1)
   @IsOptional()
+  @IsNullable()
   systemValid: string | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  lotTax: number | null;
+  @IsNullable()
+  lotVat: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  appTaxAmount: number | null;
+  @IsNullable()
+  amountAppVat: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  appTaxAmountId: number | null;
+  @IsNullable()
+  amountNoAppVat: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  porcAppTax: number | null;
+  @IsNullable()
+  vatAppPercentage: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  porcAppTaxId: number | null;
+  @IsNullable()
+  vatNoAppPercentage: number | null;
 
   @IsString()
   @MaxLength(50)
   @IsOptional()
+  @IsNullable()
   regCoordination: string | null;
 
   @IsString()
   @MaxLength(50)
   @IsOptional()
+  @IsNullable()@IsNullable()
   regCoordinator: string | null;
 
   @IsString()
   @MaxLength(200)
   @IsOptional()
-  FiscMandFact: string | null;
-
+  @IsNullable()@IsNullable()
+  fiscMandFact: string | null;
+  
   @IsString()
   @MaxLength(250)
   @IsOptional()
+  @IsNullable()
   ubication: string | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   advance: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  amountWithoutTax: number | null;
+  @IsNullable()
+  amountWithoutVat: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  notifyOfficeId: number | null;
+  @IsNullable()
+  notifyOfficeNumber: number | null;
 
   @IsString()
   @MaxLength(1)
   @IsOptional()
+  @IsNullable()
   notifyPrint: string | null;
 
   @IsString()
   @MaxLength(4)
   @IsOptional()
+  @IsNullable()
   statusVtantId: string | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   goodsNumber: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   faultExceeds: number | null;
 
   @IsString()
   @MaxLength(1)
   @IsOptional()
+  @IsNullable()
   assignedEs: string | null;
 
   @IsString()
   @MaxLength(1)
   @IsOptional()
+  @IsNullable()
   scrapEs: string | null;
 
   @IsString()
   @MaxLength(60)
   @IsOptional()
+  @IsNullable()
   request: string | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   withheldAmount: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  delegationId: number | null;
+  @IsNullable()
+  delegationNumber: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   originLot: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   lotCover: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   palette: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   assignedWarranty: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   liqAmount: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   phase: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  partialitiesId: number | null;
+  @IsNullable()
+  partialitiesNumber: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   percentPoints: number | null;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @IsNullable()
   advancePercent: number | null;
 
   @IsString()
   @MaxLength(2)
   @IsOptional()
-  taxA: string | null;
+  @IsNullable()
+  vatA: string | null;
 }

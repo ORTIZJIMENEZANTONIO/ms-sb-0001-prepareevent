@@ -29,7 +29,7 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async createComerRejectedProperty(comer) {
         const comerExisting = await this.entity.findOneBy({
-            rejectedGoodId: comer.rejectedGoodId
+            rejectedGoodId: comer.rejectedGoodId,
         });
         if (comerExisting) {
             return {
@@ -85,7 +85,16 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
             count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
-    async updateComerRejectedProperty() {
+    async updateComerRejectedProperty({ rejectedGoodIdToUpdt }, comer) {
+        const data = await this.entity.findOneBy({
+            rejectedGoodId: rejectedGoodIdToUpdt,
+        });
+        if (data) {
+            delete comer.rejectedGoodId;
+            this.entity.merge(data, comer);
+            return this.entity.save(data);
+        }
+        return null;
     }
     async deleteComerRejectedProperty(comerRejected) {
         return await this.entity.delete(comerRejected);

@@ -2,6 +2,7 @@ import { Logger } from "winston";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyService } from "./comer-rejected-property.service";
+import { UpdateComerRejectedGoodDto } from "./dto/update-comer-rejected-property.dto";
 export declare class ComerRejectedPropertyController {
     private readonly service;
     private readonly logger;
@@ -19,6 +20,15 @@ export declare class ComerRejectedPropertyController {
         count: number;
     }>;
     deleteComerRejectedProperty(comer: ComerRejectedGoodDto): Promise<{
+        statusCode: number;
+        message: string;
+        error: string;
+    } | {
+        statusCode: number;
+        message: string;
+        error?: undefined;
+    }>;
+    updateComerRejectedProperty(body: ComerRejectedGoodDto & UpdateComerRejectedGoodDto): Promise<{
         statusCode: number;
         message: string;
         error: string;

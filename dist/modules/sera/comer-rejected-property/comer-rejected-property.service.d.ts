@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyEntity } from "./entities/comer-rejected-property.entity";
+import { UpdateComerRejectedGoodDto } from "./dto/update-comer-rejected-property.dto";
 export declare class ComerRejectedPropertyService {
     private entity;
     private readonly logger;
@@ -25,6 +26,6 @@ export declare class ComerRejectedPropertyService {
         data: ComerRejectedPropertyEntity[];
         count: number;
     }>;
-    updateComerRejectedProperty(): Promise<void>;
+    updateComerRejectedProperty({ rejectedGoodIdToUpdt }: UpdateComerRejectedGoodDto, comer: ComerRejectedGoodDto): Promise<ComerRejectedPropertyEntity>;
     deleteComerRejectedProperty(comerRejected: ComerRejectedGoodDto): Promise<import("typeorm").DeleteResult>;
 }

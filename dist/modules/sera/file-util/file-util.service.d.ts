@@ -5,6 +5,7 @@ import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { UpdateComerBatchDto } from "../comer-batch/dto/update-comer-batch.dto";
+import { UpdateComerGoodsXLotDto } from "../comer-property-by-batch/dto/update-comer-property-by-batch.dto";
 export declare class FileUtilService {
     private entityGoodXLot;
     private entityComerLot;
@@ -30,6 +31,12 @@ export declare class FileUtilService {
     calculateGoodPrice(params: {
         eventId: number;
         lotId: number;
-    }): Promise<{}>;
-    updateComerLot(comer: UpdateComerBatchDto, body: UpdateComerBatchDto): Promise<false | ComerLotsEntity>;
+    }): Promise<{
+        message: string;
+    }>;
+    getLots(eventId: number, lotId: number): Promise<any[]>;
+    getGoods(idLot: number): Promise<any[]>;
+    getIdTpEvent(eventId: number): Promise<any>;
+    updateComerLot(comer: UpdateComerBatchDto): Promise<false | ComerLotsEntity>;
+    updateComerPropertyByLot(comer: UpdateComerGoodsXLotDto): Promise<false | ComerGoodsXLotEntity>;
 }

@@ -1,13 +1,13 @@
 export declare class ComerClientEntity {
-    clientId: number;
+    id: number;
     reasonName: string;
     rfc: string;
     sellerId: number | null;
     street: string | null;
     city: string | null;
     colony: string | null;
-    delegacion: string | null;
-    cp: string | null;
+    delegation: string | null;
+    zipCode: string | null;
     country: string | null;
     fax: string | null;
     phone: string | null;
@@ -17,8 +17,8 @@ export declare class ComerClientEntity {
     blackList: string | null;
     paternalSurname: string | null;
     maternalSurname: string | null;
-    muniId: number | null;
-    estaId: number | null;
+    municipalityId: number | null;
+    stateId: number | null;
     blackListDate: Date | null;
     releaseDate: Date | null;
     penaltyId: number | null;
@@ -26,20 +26,20 @@ export declare class ComerClientEntity {
     approvedRfc: string | null;
     userFree: string | null;
     freeDate: Date | null;
-    registerId: number | null;
-    economicActCve: string | null;
+    registerNumber: number | null;
+    economicAgreementKey: string | null;
     identificationType: number | null;
     identificationNumber: string | null;
     agentId: number | null;
-    outsideNo: string | null;
-    insisdeNo: string | null;
+    outsideNumber: string | null;
+    insisdeNumber: string | null;
     password: string | null;
     user: string | null;
     interbankKey: string | null;
     bank: string | null;
     branch: string | null;
     checksAccount: string | null;
-    penaltyInDate: Date | null;
-    penaltyOutDate: Date | null;
+    penaltyInitDate: Date | null;
+    penaltyEndDate: Date | null;
     penalizeUser: string | null;
 }

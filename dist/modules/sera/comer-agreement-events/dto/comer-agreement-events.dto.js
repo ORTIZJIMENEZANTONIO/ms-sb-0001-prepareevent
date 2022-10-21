@@ -32,8 +32,8 @@ __decorate([
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)({ message: "Formato incorrecto" }),
+    (0, class_validator_1.IsNotEmpty)({ message: "fechas requerida" }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "dates", void 0);
 __decorate([

@@ -10,12 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateComerClientDto = void 0;
-const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class UpdateComerClientDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "No. Cliente" }),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
-], UpdateComerClientDto.prototype, "idClientToUpdt", void 0);
+], UpdateComerClientDto.prototype, "clientIdToUpdt", void 0);
 exports.UpdateComerClientDto = UpdateComerClientDto;
 //# sourceMappingURL=update-comer-client.dto..js.map

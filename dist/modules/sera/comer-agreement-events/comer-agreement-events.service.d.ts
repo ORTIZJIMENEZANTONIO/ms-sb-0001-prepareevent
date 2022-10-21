@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerConvEventEntity } from "./entities/comer-agreement-events.entity";
 import { ComerConvEventDto } from "./dto/comer-agreement-events.dto";
+import { UpdateComerConvEventDto } from "./dto/update-comer-agreement-events.dto";
 export declare class ComerAgreementEventsService {
     private entity;
     private readonly logger;
@@ -18,6 +19,6 @@ export declare class ComerAgreementEventsService {
         count: number;
     }>;
     getComerConvEventById({ eventId }: ComerConvEventDto): Promise<ComerConvEventEntity>;
-    updateComerConvEvent(): Promise<void>;
+    updateComerConvEvent({ eventIdToUpdt, announcementEventIdToUpdt }: UpdateComerConvEventDto, comer: ComerConvEventDto): Promise<ComerConvEventEntity>;
     deleteComerConvEvent(comer: ComerConvEventDto): Promise<import("typeorm").DeleteResult>;
 }

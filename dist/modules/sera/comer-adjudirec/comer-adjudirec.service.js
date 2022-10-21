@@ -33,7 +33,7 @@ let ComerAdjudirecService = class ComerAdjudirecService {
         if (comerExisting) {
             return {
                 statusCode: 501,
-                message: "ComerAdjudirec existing"
+                message: "ComerAdjudirec existing",
             };
         }
         return await this.entity.save(comer);
@@ -50,7 +50,15 @@ let ComerAdjudirecService = class ComerAdjudirecService {
             count: total,
         };
     }
-    async updateComerAdjudirec() { }
+    async updateComerAdjudirec({ eventIdToUpdt }, comer) {
+        const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+        if (data) {
+            delete comer.eventId;
+            this.entity.merge(data, comer);
+            return this.entity.save(data);
+        }
+        return null;
+    }
     async deleteComerAdjudirec(comer) {
         const { eventId } = comer;
         return await this.entity.delete({ eventId });

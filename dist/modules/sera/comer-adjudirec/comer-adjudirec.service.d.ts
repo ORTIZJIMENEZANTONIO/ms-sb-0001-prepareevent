@@ -4,6 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerAdjudirecDto } from "./dto/comer-adjudirec.dto";
 import { ComerAdjudirecEntity } from "./entities/comer-adjudirec.entity";
+import { UpdateComerAdjudirecDto } from "./dto/update-comer-adjudirec.dto";
 export declare class ComerAdjudirecService {
     private entity;
     private readonly logger;
@@ -17,6 +18,6 @@ export declare class ComerAdjudirecService {
         data: ComerAdjudirecEntity[];
         count: number;
     }>;
-    updateComerAdjudirec(): Promise<void>;
+    updateComerAdjudirec({ eventIdToUpdt }: UpdateComerAdjudirecDto, comer: ComerAdjudirecDto): Promise<ComerAdjudirecEntity>;
     deleteComerAdjudirec(comer: ComerAdjudirecDto): Promise<import("typeorm").DeleteResult>;
 }

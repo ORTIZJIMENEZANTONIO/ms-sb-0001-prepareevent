@@ -1,4 +1,4 @@
 export declare class UpdateComerConvEventDto {
-    idEvent: string;
-    noAnnouncementEvent: string;
+    eventIdToUpdt: number;
+    announcementEventIdToUpdt: number;
 }

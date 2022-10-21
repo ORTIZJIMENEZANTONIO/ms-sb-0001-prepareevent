@@ -1,5 +1,5 @@
 export declare class ComerAdjudirecDto {
-    eventId: number;
+    eventId: number | null;
     committee: string | null;
     sessionDate: string | null;
     noSession: string | null;

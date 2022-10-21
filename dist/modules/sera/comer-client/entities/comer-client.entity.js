@@ -20,7 +20,7 @@ __decorate([
         name: "id_cliente",
     }),
     __metadata("design:type", Number)
-], ComerClientEntity.prototype, "clientId", void 0);
+], ComerClientEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "nom_razon", length: 100 }),
     __metadata("design:type", String)
@@ -57,11 +57,11 @@ __decorate([
         length: 49,
     }),
     __metadata("design:type", String)
-], ComerClientEntity.prototype, "delegacion", void 0);
+], ComerClientEntity.prototype, "delegation", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "cp", nullable: true, length: 6 }),
     __metadata("design:type", String)
-], ComerClientEntity.prototype, "cp", void 0);
+], ComerClientEntity.prototype, "zipCode", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "pais", nullable: true, length: 22 }),
     __metadata("design:type", String)
@@ -123,7 +123,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerClientEntity.prototype, "muniId", void 0);
+], ComerClientEntity.prototype, "municipalityId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "esta_id",
@@ -132,7 +132,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerClientEntity.prototype, "estaId", void 0);
+], ComerClientEntity.prototype, "stateId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fecha_lista_negra", nullable: true }),
     __metadata("design:type", Date)
@@ -176,7 +176,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_registro", nullable: true }),
     __metadata("design:type", Number)
-], ComerClientEntity.prototype, "registerId", void 0);
+], ComerClientEntity.prototype, "registerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "cve_act_economica",
@@ -184,7 +184,7 @@ __decorate([
         length: 20,
     }),
     __metadata("design:type", String)
-], ComerClientEntity.prototype, "economicActCve", void 0);
+], ComerClientEntity.prototype, "economicAgreementKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "tipo_identificacion",
@@ -218,7 +218,7 @@ __decorate([
         length: 40,
     }),
     __metadata("design:type", String)
-], ComerClientEntity.prototype, "outsideNo", void 0);
+], ComerClientEntity.prototype, "outsideNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_interior",
@@ -226,7 +226,7 @@ __decorate([
         length: 40,
     }),
     __metadata("design:type", String)
-], ComerClientEntity.prototype, "insisdeNo", void 0);
+], ComerClientEntity.prototype, "insisdeNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "password", nullable: true, length: 50 }),
     __metadata("design:type", String)
@@ -262,11 +262,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_ini_penalizacion", nullable: true }),
     __metadata("design:type", Date)
-], ComerClientEntity.prototype, "penaltyInDate", void 0);
+], ComerClientEntity.prototype, "penaltyInitDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_fin_penalizacion", nullable: true }),
     __metadata("design:type", Date)
-], ComerClientEntity.prototype, "penaltyOutDate", void 0);
+], ComerClientEntity.prototype, "penaltyEndDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "usu_penaliza",

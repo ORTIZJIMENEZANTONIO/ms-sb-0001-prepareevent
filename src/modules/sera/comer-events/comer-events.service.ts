@@ -25,7 +25,7 @@ export class ComerEventsService {
 
   async createComerEvent(comer: ComerEventDto) {
     const comerExisting = await this.entity.findOneBy({
-      eventId: comer.eventId
+      eventId: comer.eventId,
     });
 
     if (comerExisting) {
@@ -98,18 +98,19 @@ export class ComerEventsService {
       .orderBy("table.eventId", "DESC")
       .getManyAndCount();
 
-    return result[0] 
-    ? { statusCode: 404, message: "ComerEvent not found"}
-    : {
-      data: result[0] ?? [],
-      count: result[1] ?? 0,
-    };
+    return result[0]
+      ? { statusCode: 404, message: "ComerEvent not found" }
+      : {
+          data: result[0] ?? [],
+          count: result[1] ?? 0,
+        };
   }
 
   async getComerEventByTpEvent(
     comerEvent: ComerEventDto & ComerLotsDto & PaginationDto
   ) {
-    const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
+    const { eventTpId, id, address, inicio = 1, pageSize = 10 } = comerEvent;
+    const lotId = id;
     const subQueryDeep = await this.entity.query(`
       SELECT 1
       FROM   sera.COMER_BIENESXLOTE BXL
@@ -131,16 +132,19 @@ export class ComerEventsService {
       .skip((inicio - 1) * pageSize || 0)
       .orderBy("t.eventId", "DESC")
       .getManyAndCount();
-    console.log( result[0] )
+    console.log(result[0]);
     return subQuery.length < 1 || result[0].length < 1
-      ? { statusCode: 404, message: "ComerEvent not found"}
+      ? { statusCode: 404, message: "ComerEvent not found" }
       : {
           data: result[0] ?? [],
           count: result[1] ?? 0,
         };
   }
 
-  async updateComerEvent({eventIdToUpdt}:UpdateComerEventDto, comer: ComerEventDto) {
+  async updateComerEvent(
+    { eventIdToUpdt }: UpdateComerEventDto,
+    comer: ComerEventDto
+  ) {
     const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
 
     if (data) {
