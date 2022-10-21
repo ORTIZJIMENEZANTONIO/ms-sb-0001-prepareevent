@@ -559,7 +559,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"lotId\": 1,\n    \"goodId\": 1\n}",
+							"raw": "{\n    \"lotId\": 0,\n    \"goodId\": 1,\n    \"lotIdToUdate\": 16049\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -581,19 +581,79 @@
 			"name": "file-util",
 			"item": [
 				{
-					"name": "createFile",
+					"name": "createThirdFile",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 16,\n    \"fileName\": \"exampleName107\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{port}}/api/v1/file-util",
+							"raw": "{{port}}{{fileUtil}}/third-file",
 							"host": [
-								"{{port}}"
+								"{{port}}{{fileUtil}}"
 							],
 							"path": [
-								"api",
-								"v1",
-								"file-util"
+								"third-file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calculateGoodPrice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 6447,\n    \"lotId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{fileUtil}}/calculate-good-price/",
+							"host": [
+								"{{port}}{{fileUtil}}"
+							],
+							"path": [
+								"calculate-good-price",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createThirdBaseFile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fileName\": \"Test2\",\n    \"eventNumber\": 1,\n    \"bankName\": \"HSBC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}{{fileUtil}}/third-base-file",
+							"host": [
+								"{{port}}{{fileUtil}}"
+							],
+							"path": [
+								"third-base-file"
 							]
 						}
 					},
@@ -654,6 +714,10 @@
 		{
 			"key": "mandateFunction",
 			"value": "/api/v1/mandate-function"
+		},
+		{
+			"key": "fileUtil",
+			"value": "/api/v1/file-util"
 		}
 	]
 }

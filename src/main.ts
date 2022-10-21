@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
@@ -11,6 +12,12 @@ async function bootstrap() {
       port:3002
     }
   });
+  app.useGlobalPipes(new ValidationPipe({ 
+    transform: true, 
+    transformOptions:{ 
+      enableImplicitConversion: true 
+    } 
+  }))
   app.listen();
 }
 bootstrap();

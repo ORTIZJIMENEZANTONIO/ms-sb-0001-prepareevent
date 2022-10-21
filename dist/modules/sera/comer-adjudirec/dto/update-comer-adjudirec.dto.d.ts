@@ -1,3 +1,3 @@
-export declare class ComerAdjudirecDto {
+export declare class UpdateComerAdjudirecDto {
     eventIdToUpdt: number;
 }

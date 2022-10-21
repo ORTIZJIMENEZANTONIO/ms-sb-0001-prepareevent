@@ -20,7 +20,12 @@ export declare class FileUtilController {
     calculateGoodPrice(params: {
         eventId: number;
         lotId: number;
-    }): Promise<{}>;
+    }): Promise<{
+        message: string;
+    } | {
+        statusCode: number;
+        message: string;
+    }>;
     createThirdBaseFile(params: {
         fileName: string;
         eventNumber: number;

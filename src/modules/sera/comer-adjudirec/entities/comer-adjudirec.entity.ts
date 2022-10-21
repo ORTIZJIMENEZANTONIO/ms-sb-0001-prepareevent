@@ -13,10 +13,9 @@ import {
 //@Index("isia154p1_comer_adj", ["idEvento"], { unique: true })
 @Entity("comer_adjudirec", { schema: "sera" })
 export class ComerAdjudirecEntity {
-  @PrimaryColumn("numeric", {
+  @PrimaryGeneratedColumn( {
+    type: "numeric",
     name: "id_evento",
-    precision: 7,
-    scale: 0,
   })
   eventId: number;
 

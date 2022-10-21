@@ -14,10 +14,10 @@ export class ComerGoodsXLotEntity {
   @Column({
     name: "id_bienxlote",
   })
-  goodsLotId: number;
+  propertyByLotId: number;
 
   @PrimaryColumn("numeric", { name: "no_bien", precision: 10, scale: 0 })
-  goodsId: number;
+  goodId: number;
 
   @PrimaryColumn("numeric", { name: "id_lote", precision: 10, scale: 0 })
   lotId: number;
@@ -36,7 +36,7 @@ export class ComerGoodsXLotEntity {
     precision: 15,
     scale: 2,
   })
-  valueReferential: number | null;
+  appraisalPriceRef: number | null;
 
   @Column("numeric", {
     name: "precio_final",
@@ -52,7 +52,7 @@ export class ComerGoodsXLotEntity {
     precision: 13,
     scale: 2,
   })
-  baseTax: number | null;
+  baseVat: number | null;
 
   @Column("numeric", {
     name: "iva_final",
@@ -61,7 +61,7 @@ export class ComerGoodsXLotEntity {
     scale: 2,
     default: () => "0",
   })
-  finalTax: number | null;
+  finalVat: number | null;
 
   @Column("numeric", {
     name: "porc_iva",
@@ -69,7 +69,7 @@ export class ComerGoodsXLotEntity {
     precision: 2,
     scale: 0,
   })
-  taxPercent: number | null;
+  vatPercent: number | null;
 
   @Column("character varying", { name: "campo1", nullable: true, length: 1250 })
   camp1: string | null;
@@ -112,28 +112,28 @@ export class ComerGoodsXLotEntity {
     precision: 5,
     scale: 0,
   })
-  storeNo: number | null;
+  storeNumber: number | null;
 
   @Column("character varying", {
     name: "cve_peritaje_jur",
     nullable: true,
     length: 30,
   })
-  expertiseCve: string | null;
+  surveyJurCve: string | null;
 
   @Column("character varying", {
     name: "empresa_valuadora",
     nullable: true,
     length: 60,
   })
-  appraiserEnterprise: string | null;
+  appraiserCompany: string | null;
 
   @Column("character varying", {
     name: "no_inventario",
     nullable: true,
     length: 50,
   })
-  inventoryId: string | null;
+  inventoryNumber: string | null;
 
   @Column("numeric", {
     name: "precio_sin_iva",
@@ -141,7 +141,7 @@ export class ComerGoodsXLotEntity {
     precision: 15,
     scale: 2,
   })
-  noTaxPrice: number;
+  priceWithoutVat: number;
 
   @Column("numeric", {
     name: "monto_app_iva",
@@ -149,7 +149,7 @@ export class ComerGoodsXLotEntity {
     precision: 15,
     scale: 2,
   })
-  taxAppAmount: number | null;
+  amountAppVat: number | null;
 
   @Column("numeric", {
     name: "monto_noapp_iva",
@@ -158,14 +158,14 @@ export class ComerGoodsXLotEntity {
     scale: 2,
     default: () => "0",
   })
-  taxAmountId: number | null;
+  amountNoAppVat: number | null;
 
   @Column("character varying", {
     name: "estatus_ant",
     nullable: true,
     length: 3,
   })
-  antStatus: string | null;
+  previousStatus: string | null;
 
   @Column({ type: Date, name: "fecha_avaluo", nullable: true })
   appraiserDate: Date | null;
@@ -190,7 +190,7 @@ export class ComerGoodsXLotEntity {
     nullable: true,
     length: 3,
   })
-  eatStatus: string | null;
+  status: string | null;
 
   @Column("numeric", {
     name: "no_transferente",
@@ -198,7 +198,7 @@ export class ComerGoodsXLotEntity {
     precision: 5,
     scale: 0,
   })
-  transferenceId: number | null;
+  transferenceNumber: number | null;
 
   @Column("numeric", {
     name: "anticipo",
@@ -225,7 +225,7 @@ export class ComerGoodsXLotEntity {
     precision: 10,
     scale: 0,
   })
-  eatLotId: number | null;
+  comerLotNumber: number | null;
 
   @Column("numeric", {
     name: "id_evento_comer",
@@ -233,7 +233,7 @@ export class ComerGoodsXLotEntity {
     precision: 10,
     scale: 0,
   })
-  eatEventId: number | null;
+  comerEventId: number | null;
 
   @Column("numeric", {
     name: "id_evento_remesa",
@@ -274,7 +274,7 @@ export class ComerGoodsXLotEntity {
     nullable: true,
     length: 10,
   })
-  billId: string | null;
+  billNumber: string | null;
 
   @Column("timestamp without time zone", {
     name: "fecha_factura",
@@ -297,7 +297,7 @@ export class ComerGoodsXLotEntity {
     nullable: true,
     length: 10,
   })
-  cylindersId: string | null;
+  cylindersNumber: string | null;
 
   @Column("character varying", {
     name: "procedencia",
@@ -318,7 +318,7 @@ export class ComerGoodsXLotEntity {
     nullable: true,
     length: 255,
   })
-  loteDescription: string | null;
+  lotDescription: string | null;
 
   @Column("numeric", {
     name: "no_delegacionrem",
@@ -326,7 +326,7 @@ export class ComerGoodsXLotEntity {
     precision: 3,
     scale: 0,
   })
-  delegationId: number | null;
+  delegationNumber: number | null;
 
   @Column("character varying", {
     name: "observaciones_2",
@@ -344,5 +344,5 @@ export class ComerGoodsXLotEntity {
   appraisalId: number | null;
 
   @Column("character varying", { name: "a_iva", nullable: true, length: 2 })
-  taxA: string | null;
+  vatA: string | null;
 }

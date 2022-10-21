@@ -11,11 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerEventEntity = void 0;
 const typeorm_1 = require("typeorm");
-const swagger_1 = require("@nestjs/swagger");
 let ComerEventEntity = class ComerEventEntity {
 };
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "No. Evento" }),
     (0, typeorm_1.PrimaryGeneratedColumn)({
         name: "id_evento",
     }),

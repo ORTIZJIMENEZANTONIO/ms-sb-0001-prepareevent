@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IsNumber } from "class-validator";
 
 export class UpdateComerClientDto {
-  @ApiProperty({ example: "No. Cliente" })
-  idClientToUpdt: number;
+  @IsNumber()
+  clientIdToUpdt: number;
 }

@@ -29,7 +29,7 @@ let ComerBatchService = class ComerBatchService {
     }
     async createComerLot(comer) {
         const comerExisting = await this.entity.findOneBy({
-            lotId: comer.lotId,
+            id: comer.id,
         });
         if (comerExisting) {
             return {
@@ -71,20 +71,20 @@ let ComerBatchService = class ComerBatchService {
             count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
     }
-    async updateComerLot(comer, body) {
+    async updateComerLot({ lotIdToUpdt }, comer) {
         const data = await this.entity.findOne({
-            where: { lotId: comer.lotIdToUpdt },
+            where: { id: lotIdToUpdt },
         });
         if (data) {
-            delete body.lotId;
-            this.entity.merge(data, body);
+            delete comer.id;
+            this.entity.merge(data, comer);
             return this.entity.save(data);
         }
         return false;
     }
     async deleteComerLot(comer) {
-        const { lotId } = comer;
-        return await this.entity.delete({ lotId });
+        const { id } = comer;
+        return await this.entity.delete({ id });
     }
 };
 ComerBatchService = __decorate([

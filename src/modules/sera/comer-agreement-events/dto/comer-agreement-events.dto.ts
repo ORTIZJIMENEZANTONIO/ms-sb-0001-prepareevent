@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import {
   IsDateString,
   IsNotEmpty,
@@ -7,6 +8,7 @@ import {
   IsString,
   MaxLength,
 } from "class-validator";
+import { toDate, toLowerCase } from "src/shared/common/helper/cast.helper";
 
 export class ComerConvEventDto {
   @IsNumber()
@@ -24,9 +26,10 @@ export class ComerConvEventDto {
   @IsOptional()
   description: string | null;
 
-  @IsDateString()
-  @IsOptional()
-  dates: string | null;
+  //@Transform(({ value }) => toDate(value))
+  @IsDateString({message: "Formato incorrecto"})
+  @IsNotEmpty({message: "fechas requerida"})
+  dates: string;
 
   @IsString()
   @MaxLength(70)

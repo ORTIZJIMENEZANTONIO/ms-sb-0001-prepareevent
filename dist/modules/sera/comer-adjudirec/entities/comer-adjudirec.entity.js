@@ -14,10 +14,9 @@ const typeorm_1 = require("typeorm");
 let ComerAdjudirecEntity = class ComerAdjudirecEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryColumn)("numeric", {
+    (0, typeorm_1.PrimaryGeneratedColumn)({
+        type: "numeric",
         name: "id_evento",
-        precision: 7,
-        scale: 0,
     }),
     __metadata("design:type", Number)
 ], ComerAdjudirecEntity.prototype, "eventId", void 0);

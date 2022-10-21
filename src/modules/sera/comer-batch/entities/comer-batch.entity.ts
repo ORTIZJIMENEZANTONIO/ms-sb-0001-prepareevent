@@ -1,18 +1,21 @@
-import {Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-// import { ComerEstatusvta } from "./ComerEstatusvta";
-// import { ComerEventos } from "./ComerEventos";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
-// @Index("idx$$_da800001", ["idEstatusvta", "idEvento", "lotId"], {})
-// @Index("comer_lotes_pkey", ["idLote"], { unique: true })
 @Entity("comer_lotes", { schema: "sera" })
 export class ComerLotsEntity {
-  @PrimaryGeneratedColumn( {
-    name: "id_lote"
+  @PrimaryGeneratedColumn({
+    name: "id_lote",
   })
-  lotId: number;
+  id: number;
 
   @Column("character varying", { name: "id_estatusvta", length: 4 })
-  statusId: string;
+  saleStatusId: string;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
   eventId: number;
@@ -36,7 +39,7 @@ export class ComerLotsEntity {
     precision: 5,
     scale: 0,
   })
-  transferenceId: number | null;
+  transferenceNumber: number | null;
 
   @Column("numeric", {
     name: "id_cliente",
@@ -52,7 +55,7 @@ export class ComerLotsEntity {
     precision: 11,
     scale: 2,
   })
-  refAppraisalPrice: number | null;
+  appraisalPriceRef: number | null;
 
   @Column("numeric", {
     name: "precio_garantia",
@@ -81,7 +84,7 @@ export class ComerLotsEntity {
     nullable: true,
     length: 30,
   })
-  agReference: string | null;
+  referenceG: string | null;
 
   @Column("character varying", {
     name: "referencial",
@@ -112,7 +115,7 @@ export class ComerLotsEntity {
     precision: 11,
     scale: 2,
   })
-  lotTax: number | null;
+  lotVat: number | null;
 
   @Column("numeric", {
     name: "monto_app_iva",
@@ -120,7 +123,7 @@ export class ComerLotsEntity {
     precision: 15,
     scale: 2,
   })
-  appTaxAmount: number | null;
+  amountAppVat: number | null;
 
   @Column("numeric", {
     name: "monto_noapp_iva",
@@ -128,7 +131,7 @@ export class ComerLotsEntity {
     precision: 15,
     scale: 2,
   })
-  appTaxAmountId: number | null;
+  amountNoAppVat: number | null;
 
   @Column("numeric", {
     name: "porc_app_iva",
@@ -136,7 +139,7 @@ export class ComerLotsEntity {
     precision: 12,
     scale: 9,
   })
-  porcAppTax: number | null;
+  vatAppPercentage: number | null;
 
   @Column("numeric", {
     name: "porc_noapp_iva",
@@ -144,7 +147,7 @@ export class ComerLotsEntity {
     precision: 12,
     scale: 9,
   })
-  porcAppTaxId: number | null;
+  vatNoAppPercentage: number | null;
 
   @Column("character varying", {
     name: "coordinacion_reg",
@@ -165,7 +168,7 @@ export class ComerLotsEntity {
     nullable: true,
     length: 200,
   })
-  FiscMandFact: string | null;
+  fiscMandFact: string | null;
 
   @Column("character varying", {
     name: "ubicacion",
@@ -188,7 +191,7 @@ export class ComerLotsEntity {
     precision: 15,
     scale: 2,
   })
-  amountWithoutTax: number | null;
+  amountWithoutVat: number | null;
 
   @Column("numeric", {
     name: "nooficionotifica",
@@ -196,7 +199,7 @@ export class ComerLotsEntity {
     precision: 6,
     scale: 0,
   })
-  notifyOfficeId: number | null;
+  notifyOfficeNumber: number | null;
 
   @Column("character varying", {
     name: "imprimenotifica",
@@ -259,7 +262,7 @@ export class ComerLotsEntity {
     precision: 2,
     scale: 0,
   })
-  delegationId: number | null;
+  delegationNumber: number | null;
 
   @Column("numeric", {
     name: "lote_origen",
@@ -307,7 +310,7 @@ export class ComerLotsEntity {
     precision: 2,
     scale: 0,
   })
-  partialitiesId: number | null;
+  partialitiesNumber: number | null;
 
   @Column("numeric", {
     name: "puntos_porcen",
@@ -326,19 +329,6 @@ export class ComerLotsEntity {
   advancePercent: number | null;
 
   @Column("character varying", { name: "a_iva", nullable: true, length: 2 })
-  taxA: string | null;
+  vatA: string | null;
 
-  // @Column("character", { name: "trial058", nullable: true, length: 1 })
-  // trial058: string | null;
-  //
-  // @ManyToOne(
-  //     () => ComerEstatusvta,
-  //     (comerEstatusvta) => comerEstatusvta.comerLotes
-  // )
-  // @JoinColumn([{ name: "id_estatusvta", referencedColumnName: "idEstatusvta" }])
-  // idEstatusvta2: ComerEstatusvta;
-  //
-  // @ManyToOne(() => ComerEventos, (comerEventos) => comerEventos.comerLotes)
-  // @JoinColumn([{ name: "id_evento", referencedColumnName: "idEvento" }])
-  // idEvento2: ComerEventos;
 }

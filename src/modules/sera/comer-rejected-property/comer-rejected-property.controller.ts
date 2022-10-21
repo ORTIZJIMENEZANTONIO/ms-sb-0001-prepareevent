@@ -6,6 +6,7 @@ import { MessagePattern } from "@nestjs/microservices";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyService } from "./comer-rejected-property.service";
+import { UpdateComerRejectedGoodDto } from "./dto/update-comer-rejected-property.dto";
 
 @Controller("comer-rejected-property")
 export class ComerRejectedPropertyController {
@@ -35,6 +36,20 @@ export class ComerRejectedPropertyController {
   async deleteComerRejectedProperty(comer: ComerRejectedGoodDto) {
     const { affected } = await this.service.deleteComerRejectedProperty(comer);
     return affected == 0
+      ? {
+          statusCode: 404,
+          message: "Comer rejected not found",
+          error: "Not found",
+        }
+      : { statusCode: 200, message: "Successfully deleted" };
+  }
+
+  @MessagePattern({ cmd: "updateComerRejectedProperty" })
+  async updateComerRejectedProperty(body: ComerRejectedGoodDto & UpdateComerRejectedGoodDto) {
+    const comer = {...body};
+    const {rejectedGoodIdToUpdt} = body; 
+    const affected = await this.service.updateComerRejectedProperty( {rejectedGoodIdToUpdt}, comer);
+    return affected
       ? {
           statusCode: 404,
           message: "Comer rejected not found",

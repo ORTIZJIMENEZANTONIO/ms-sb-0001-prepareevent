@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 //import { ComerEventos } from "./ComerEventos";
 
 //@Index("isia162p1_comer_bie", ["idBienrechazado"], { unique: true })
@@ -6,11 +6,9 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 //@Index("isia162s1_comer_bie", ["idEvento"], {})
 @Entity("comer_bienesrechazados", { schema: "sera" })
 export class ComerRejectedPropertyEntity {
-  @Column("numeric", {
-    primary: true,
-    name: "id_bienrechazado",
-    precision: 10,
-    scale: 0,
+  @PrimaryGeneratedColumn({
+    type: "numeric",
+    name: "id_bienrechazado"
   })
   rejectedGoodId: number;
 

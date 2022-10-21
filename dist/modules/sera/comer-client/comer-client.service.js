@@ -28,7 +28,7 @@ let ComerClientService = class ComerClientService {
     }
     async createComerClient(comer) {
         const comerExisting = await this.entity.findOneBy({
-            clientId: comer.clientId
+            id: comer.clientId,
         });
         if (comerExisting) {
             return {
@@ -40,7 +40,7 @@ let ComerClientService = class ComerClientService {
     }
     async getAllComersClient({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
-            order: { clientId: "DESC" },
+            order: { id: "DESC" },
             take: pageSize || 10,
             skip: (inicio - 1) * pageSize || 0,
         });
@@ -49,10 +49,20 @@ let ComerClientService = class ComerClientService {
             count: total,
         };
     }
-    async updateComerClient() { }
+    async updateComerClient({ clientIdToUpdt }, comer) {
+        const data = await this.entity.findOneBy({
+            id: clientIdToUpdt,
+        });
+        if (data) {
+            delete comer.clientId;
+            this.entity.merge(data, comer);
+            return this.entity.save(data);
+        }
+        return null;
+    }
     async deleteComerClient(comer) {
         const { clientId } = comer;
-        return await this.entity.delete({ clientId });
+        return await this.entity.delete({ id: clientId });
     }
 };
 ComerClientService = __decorate([

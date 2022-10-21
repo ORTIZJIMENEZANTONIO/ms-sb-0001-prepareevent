@@ -29,7 +29,7 @@ let ComerEventsService = class ComerEventsService {
     }
     async createComerEvent(comer) {
         const comerExisting = await this.entity.findOneBy({
-            eventId: comer.eventId
+            eventId: comer.eventId,
         });
         if (comerExisting) {
             return {
@@ -88,7 +88,8 @@ let ComerEventsService = class ComerEventsService {
     }
     async getComerEventByTpEvent(comerEvent) {
         var _a, _b;
-        const { eventTpId, lotId, address, inicio = 1, pageSize = 10 } = comerEvent;
+        const { eventTpId, id, address, inicio = 1, pageSize = 10 } = comerEvent;
+        const lotId = id;
         const subQueryDeep = await this.entity.query(`
       SELECT 1
       FROM   sera.COMER_BIENESXLOTE BXL
@@ -116,7 +117,15 @@ let ComerEventsService = class ComerEventsService {
                 count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
             };
     }
-    async updateComerEvent() { }
+    async updateComerEvent({ eventIdToUpdt }, comer) {
+        const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+        if (data) {
+            delete comer.eventId;
+            this.entity.merge(data, comer);
+            return this.entity.save(data);
+        }
+        return null;
+    }
     async deleteComerEvent(comer) {
         const { eventId } = comer;
         return await this.entity.delete({ eventId });

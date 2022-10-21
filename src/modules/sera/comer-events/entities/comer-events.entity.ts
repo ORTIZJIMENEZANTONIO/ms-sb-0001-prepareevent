@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 // autoincrement
 @Entity("comer_eventos", { schema: "sera" })
 export class ComerEventEntity {
-  @ApiProperty({ example: "No. Evento" })
+
   @PrimaryGeneratedColumn({
     name: "id_evento",
   })

@@ -8,19 +8,13 @@ import {
 } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 
-// @Index("isia178s2_comer1_cli", ["curp", "tipoPersona"], {})
-// @Index("isia178p1_comer_cli", ["idCliente"], { unique: true })
-// @Index("comer_clientes_pkey", ["idCliente", "rfc"], { unique: true })
-// @Index("isia178s1_comer_cli", ["idVendedor"], {})
-// @Index("isia178s3_comer_cli", ["nomRazon"], {})
-// @Index("isia178p2_comer_cli", ["rfc"], { unique: true })
 @Entity("comer_clientes", { schema: "sera" })
 export class ComerClientEntity {
   @ApiProperty({ example: "No. Cliente" })
   @PrimaryGeneratedColumn({
     name: "id_cliente",
   })
-  clientId: number;
+  id: number;
 
   @Column("character varying", { name: "nom_razon", length: 100 })
   reasonName: string;
@@ -50,10 +44,10 @@ export class ComerClientEntity {
     nullable: true,
     length: 49,
   })
-  delegacion: string | null;
+  delegation: string | null;
 
   @Column("character varying", { name: "cp", nullable: true, length: 6 })
-  cp: string | null;
+  zipCode: string | null;
 
   @Column("character varying", { name: "pais", nullable: true, length: 22 })
   country: string | null;
@@ -105,7 +99,7 @@ export class ComerClientEntity {
     precision: 5,
     scale: 0,
   })
-  muniId: number | null;
+  municipalityId: number | null;
 
   @Column("numeric", {
     name: "esta_id",
@@ -113,7 +107,7 @@ export class ComerClientEntity {
     precision: 5,
     scale: 0,
   })
-  estaId: number | null;
+  stateId: number | null;
 
   @Column({ type: Date, name: "fecha_lista_negra", nullable: true })
   blackListDate: Date | null;
@@ -149,14 +143,14 @@ export class ComerClientEntity {
   freeDate: Date | null;
 
   @Column("numeric", { name: "no_registro", nullable: true })
-  registerId: number | null;
+  registerNumber: number | null;
 
   @Column("character varying", {
     name: "cve_act_economica",
     nullable: true,
     length: 20,
   })
-  economicActCve: string | null;
+  economicAgreementKey: string | null;
 
   @Column("numeric", {
     name: "tipo_identificacion",
@@ -186,14 +180,14 @@ export class ComerClientEntity {
     nullable: true,
     length: 40,
   })
-  outsideNo: string | null;
+  outsideNumber: string | null;
 
   @Column("character varying", {
     name: "no_interior",
     nullable: true,
     length: 40,
   })
-  insisdeNo: string | null;
+  insisdeNumber: string | null;
 
   @Column("character varying", { name: "password", nullable: true, length: 50 })
   password: string | null;
@@ -222,10 +216,10 @@ export class ComerClientEntity {
   checksAccount: string | null;
 
   @Column({ type: Date, name: "fec_ini_penalizacion", nullable: true })
-  penaltyInDate: Date | null;
+  penaltyInitDate: Date | null;
 
   @Column({ type: Date, name: "fec_fin_penalizacion", nullable: true })
-  penaltyOutDate: Date | null;
+  penaltyEndDate: Date | null;
 
   @Column("character varying", {
     name: "usu_penaliza",
@@ -233,13 +227,4 @@ export class ComerClientEntity {
     length: 30,
   })
   penalizeUser: string | null;
-
-  // @Column("character", { name: "trial846", nullable: true, length: 1 })
-  // trial846: string | null;
-
-  // @OneToMany(
-  //   () => ComerPenalizaciones,
-  //   (comerPenalizaciones) => comerPenalizaciones.idCliente2
-  // )
-  // comerPenalizaciones: ComerPenalizaciones[];
 }

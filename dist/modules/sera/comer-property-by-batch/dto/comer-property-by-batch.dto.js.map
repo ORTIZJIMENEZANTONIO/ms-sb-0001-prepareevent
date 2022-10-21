@@ -1,1 +1,1 @@
-{"version":3,"file":"comer-property-by-batch.dto.js","sourceRoot":"","sources":["../../../../../src/modules/sera/comer-property-by-batch/dto/comer-property-by-batch.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAE9C,MAAa,iBAAiB;CA6G7B;AA5GC;IAAC,IAAA,qBAAW,EAAC,EAAE,OAAO,EAAE,mBAAmB,EAAE,CAAC;;qDAC3B;AAFrB,8CA6GC"}
+{"version":3,"file":"comer-property-by-batch.dto.js","sourceRoot":"","sources":["../../../../../src/modules/sera/comer-property-by-batch/dto/comer-property-by-batch.dto.ts"],"names":[],"mappings":";;;AAEA,MAAa,iBAAiB;CA4G7B;AA5GD,8CA4GC"}

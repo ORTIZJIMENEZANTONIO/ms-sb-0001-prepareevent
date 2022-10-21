@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class ComerAdjudirecDto {
+export class UpdateComerAdjudirecDto {
   @ApiProperty({ example: "ex" })
   eventIdToUpdt: number;
 }

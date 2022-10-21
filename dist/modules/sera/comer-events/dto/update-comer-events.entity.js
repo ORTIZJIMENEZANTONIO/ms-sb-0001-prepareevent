@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateComerEventDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 const comer_events_dto_1 = require("./comer-events.dto");
 class UpdateComerEventDto extends (0, swagger_1.PartialType)(comer_events_dto_1.ComerEventDto) {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "No. Evento" }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsPositive)(),
     __metadata("design:type", Number)
-], UpdateComerEventDto.prototype, "idEventToUpdt", void 0);
+], UpdateComerEventDto.prototype, "eventIdToUpdt", void 0);
 exports.UpdateComerEventDto = UpdateComerEventDto;
 //# sourceMappingURL=update-comer-events.entity.js.map

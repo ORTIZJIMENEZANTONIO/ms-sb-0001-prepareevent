@@ -22,16 +22,15 @@ export class ComerBatchService {
 
   async createComerLot(comer: ComerLotsDto) {
     const comerExisting = await this.entity.findOneBy({
-      lotId: comer.lotId,
+      id: comer.id,
     });
-
+    
     if (comerExisting) {
       return {
         statusCode: 501,
         message: "ComerLot existing",
       };
     }
-
     return await this.entity.save(comer);
   }
 
@@ -79,21 +78,21 @@ export class ComerBatchService {
     };
   }
 
-  async updateComerLot(comer: UpdateComerBatchDto, body: ComerLotsEntity) {
+  async updateComerLot({lotIdToUpdt}: UpdateComerBatchDto, comer: ComerLotsEntity) {
     const data = await this.entity.findOne({
-      where: { lotId: comer.lotIdToUpdt },
+      where: { id: lotIdToUpdt },
     });
 
     if (data) {
-      delete body.lotId;
-      this.entity.merge(data, body);
+      delete comer.id;
+      this.entity.merge(data, comer);
       return this.entity.save(data);
     }
     return false;
   }
 
   async deleteComerLot(comer: ComerLotsDto) {
-    const { lotId } = comer;
-    return await this.entity.delete({ lotId });
+    const { id } = comer;
+    return await this.entity.delete({ id });
   }
 }

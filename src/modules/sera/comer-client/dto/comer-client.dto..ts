@@ -10,9 +10,7 @@ import {
 
 export class ComerClientDto {
   @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
-  clientId: number;
+  clientId: number | null;
 
   @IsString()
   @MaxLength(100)

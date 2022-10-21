@@ -22,6 +22,6 @@ export declare class ComerBatchService {
         data: ComerLotsEntity[];
         count: number;
     }>;
-    updateComerLot(comer: UpdateComerBatchDto, body: ComerLotsEntity): Promise<false | ComerLotsEntity>;
+    updateComerLot({ lotIdToUpdt }: UpdateComerBatchDto, comer: ComerLotsEntity): Promise<false | ComerLotsEntity>;
     deleteComerLot(comer: ComerLotsDto): Promise<import("typeorm").DeleteResult>;
 }

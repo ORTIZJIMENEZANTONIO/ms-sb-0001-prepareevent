@@ -14,11 +14,9 @@ const typeorm_1 = require("typeorm");
 let ComerRejectedPropertyEntity = class ComerRejectedPropertyEntity {
 };
 __decorate([
-    (0, typeorm_1.Column)("numeric", {
-        primary: true,
-        name: "id_bienrechazado",
-        precision: 10,
-        scale: 0,
+    (0, typeorm_1.PrimaryGeneratedColumn)({
+        type: "numeric",
+        name: "id_bienrechazado"
     }),
     __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "rejectedGoodId", void 0);

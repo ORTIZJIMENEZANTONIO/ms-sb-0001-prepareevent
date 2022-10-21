@@ -1,5 +1,5 @@
 export declare class ComerClientDto {
-    clientId: number;
+    clientId: number | null;
     reasonName: string;
     rfc: string;
     sellerId: number | null;

@@ -8,6 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerClientEntity } from "./entities/comer-client.entity";
 import { ComerClientDto } from "./dto/comer-client.dto.";
+import { UpdateComerClientDto } from "./dto/update-comer-client.dto.";
 
 @Injectable()
 export class ComerClientService {
@@ -20,7 +21,7 @@ export class ComerClientService {
 
   async createComerClient(comer: ComerClientDto) {
     const comerExisting = await this.entity.findOneBy({
-      clientId: comer.clientId
+      id: comer.clientId,
     });
 
     if (comerExisting) {
@@ -29,13 +30,13 @@ export class ComerClientService {
         message: "ComerClient existing",
       };
     }
-    
+
     return await this.entity.save(comer);
   }
 
   async getAllComersClient({ inicio, pageSize }: PaginationDto) {
     const [result, total] = await this.entity.findAndCount({
-      order: { clientId: "DESC" },
+      order: { id: "DESC" },
       take: pageSize || 10,
       skip: (inicio - 1) * pageSize || 0,
     });
@@ -45,10 +46,25 @@ export class ComerClientService {
     };
   }
 
-  async updateComerClient() {}
+  async updateComerClient(
+    { clientIdToUpdt }: UpdateComerClientDto,
+    comer: ComerClientDto
+  ) {
+    const data = await this.entity.findOneBy({
+      id: clientIdToUpdt,
+    });
+
+    if (data) {
+      delete comer.clientId;
+      this.entity.merge(data, comer);
+      return this.entity.save(data);
+    }
+
+    return null;
+  }
 
   async deleteComerClient(comer: ComerClientDto) {
     const { clientId } = comer;
-    return await this.entity.delete({ clientId });
+    return await this.entity.delete({ id: clientId });
   }
 }

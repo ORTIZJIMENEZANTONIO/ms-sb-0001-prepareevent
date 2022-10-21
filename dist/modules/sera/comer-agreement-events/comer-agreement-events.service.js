@@ -59,7 +59,19 @@ let ComerAgreementEventsService = class ComerAgreementEventsService {
     async getComerConvEventById({ eventId }) {
         return await this.entity.findOneBy({ eventId });
     }
-    async updateComerConvEvent() { }
+    async updateComerConvEvent({ eventIdToUpdt, announcementEventIdToUpdt }, comer) {
+        const data = await this.entity.findOneBy({
+            eventId: eventIdToUpdt,
+            announcementEventId: announcementEventIdToUpdt,
+        });
+        if (data) {
+            delete comer.eventId;
+            delete comer.announcementEventId;
+            this.entity.merge(data, comer);
+            return this.entity.save(data);
+        }
+        return null;
+    }
     async deleteComerConvEvent(comer) {
         const { eventId, announcementEventId } = comer;
         return await this.entity.delete({ eventId, announcementEventId });
