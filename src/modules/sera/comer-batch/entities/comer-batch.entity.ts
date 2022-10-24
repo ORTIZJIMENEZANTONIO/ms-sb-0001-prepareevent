@@ -15,7 +15,7 @@ export class ComerLotsEntity {
   id: number;
 
   @Column("character varying", { name: "id_estatusvta", length: 4 })
-  saleStatusId: string;
+  statusVtaId: string;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
   eventId: number;

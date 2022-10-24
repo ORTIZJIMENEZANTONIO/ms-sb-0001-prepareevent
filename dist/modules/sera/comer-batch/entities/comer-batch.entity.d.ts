@@ -1,6 +1,6 @@
 export declare class ComerLotsEntity {
     id: number;
-    saleStatusId: string;
+    statusVtaId: string;
     eventId: number;
     publicLot: number;
     description: string | null;

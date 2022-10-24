@@ -1,6 +1,6 @@
 export declare class ComerGoodsXLotDto {
     propertyByLotId: number;
-    goodId: number;
+    goodNumber: number;
     lotId: number;
     baseValue: number | null;
     appraisalPriceRef: number | null;
@@ -19,7 +19,7 @@ export declare class ComerGoodsXLotDto {
     camp9: string | null;
     quantity: number | null;
     storeNumber: number | null;
-    surveyJurCve: string | null;
+    surveyJurKey: string | null;
     appraiserCompany: string | null;
     inventoryNumber: string | null;
     priceWithoutVat: number;
@@ -34,7 +34,7 @@ export declare class ComerGoodsXLotDto {
     advance: number | null;
     lotPcts: number | null;
     creationDate: Date | null;
-    comerLotNumber: number | null;
+    comerLotId: number | null;
     comerEventId: number | null;
     consignmentEventId: number | null;
     consignmentLotId: number | null;

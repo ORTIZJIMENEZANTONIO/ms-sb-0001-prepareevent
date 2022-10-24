@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 export class ComerGoodsXLotDto {
   propertyByLotId: number;
 
-  goodId: number;
+  goodNumber: number;
 
   lotId: number;
 
@@ -41,7 +41,7 @@ export class ComerGoodsXLotDto {
 
   storeNumber: number | null;
 
-  surveyJurCve: string | null;
+  surveyJurKey: string | null;
 
   appraiserCompany: string | null;
 
@@ -71,7 +71,7 @@ export class ComerGoodsXLotDto {
 
   creationDate: Date | null;
 
-  comerLotNumber: number | null;
+  comerLotId: number | null;
 
   comerEventId: number | null;
 

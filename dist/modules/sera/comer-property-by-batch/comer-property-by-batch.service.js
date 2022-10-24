@@ -28,7 +28,7 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
     }
     async createComerGoodXLot(comer) {
         const comerExisting = await this.entity.findOneBy({
-            goodId: comer.goodId,
+            goodNumber: comer.goodNumber,
             lotId: comer.lotId,
         });
         if (comerExisting) {
@@ -41,7 +41,7 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
     }
     async getAllComerGoodXLots({ inicio, pageSize }) {
         const [result, total] = await this.entity.findAndCount({
-            order: { goodId: "DESC" },
+            order: { goodNumber: "DESC" },
             take: pageSize || 10,
             skip: (inicio - 1) * pageSize || 0,
         });
@@ -66,9 +66,9 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         };
     }
     async updateComerXLot({ goodIdToUpdt, lotIdToUpdt }, comer) {
-        const data = await this.entity.findOneBy({ goodId: goodIdToUpdt, lotId: lotIdToUpdt });
+        const data = await this.entity.findOneBy({ goodNumber: goodIdToUpdt, lotId: lotIdToUpdt });
         if (data) {
-            delete comer.goodId;
+            delete comer.goodNumber;
             delete comer.lotId;
             this.entity.merge(data, comer);
             return this.entity.save(data);
@@ -76,8 +76,8 @@ let ComerPropertyByBatchService = class ComerPropertyByBatchService {
         return null;
     }
     async deleteComerXLot(comer) {
-        const { goodId, lotId } = comer;
-        return await this.entity.delete({ goodId, lotId });
+        const { goodNumber, lotId } = comer;
+        return await this.entity.delete({ goodNumber, lotId });
     }
 };
 ComerPropertyByBatchService = __decorate([

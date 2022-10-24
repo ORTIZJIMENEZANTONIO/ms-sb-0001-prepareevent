@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "goodId", void 0);
+], ComerGoodsXLotEntity.prototype, "goodNumber", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", { name: "id_lote", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
@@ -145,7 +145,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerGoodsXLotEntity.prototype, "surveyJurCve", void 0);
+], ComerGoodsXLotEntity.prototype, "surveyJurKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "empresa_valuadora",
@@ -266,7 +266,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerGoodsXLotEntity.prototype, "comerLotNumber", void 0);
+], ComerGoodsXLotEntity.prototype, "comerLotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_evento_comer",
