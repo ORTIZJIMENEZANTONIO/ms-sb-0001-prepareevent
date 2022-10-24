@@ -7,6 +7,7 @@ import { Counter } from "prom-client";
 
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { GoodNotDeliveredDto } from "./dto/good-not-delivered.dto";
 
 @Injectable()
 export class GoodNotDeliveredService {
@@ -22,13 +23,13 @@ export class GoodNotDeliveredService {
   /****************************************************************
     CAMBIAR EL BIEN NO ENTREGADO AL LOTE CANCELADO Y EN LA REMESA
   *****************************************************************/
-  async changeGoodNotDeliveredToTheCanceledLot(
-    lotIdNew: number,
-    lotId: number,
-    bxlId: number,
-    lotConsignment: number,
-    bxlConsignment: number
-  ) {
+  async updateGoodNotDeliveredToTheCanceledLot({
+    lotIdNew,
+    lotId,
+    bxlId,
+    lotConsignment,
+    bxlConsignment,
+  }: GoodNotDeliveredDto) {
     await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
     await this.updateConsignmentToPointToGoodCanceled(
       lotIdNew,
@@ -37,7 +38,7 @@ export class GoodNotDeliveredService {
     );
     await this.updateFinalPriceLot(lotId);
     await this.updateFinalPriceLot(lotIdNew);
-    
+
     return {};
   }
 

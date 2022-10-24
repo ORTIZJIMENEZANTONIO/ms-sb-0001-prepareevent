@@ -6,6 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { PartialPropertyDelivered } from "./dto/partial-property-delivered.dto";
 
 @Injectable()
 export class PartialPropertyDeliveredService {
@@ -20,12 +21,12 @@ export class PartialPropertyDeliveredService {
   /**************************************************************
     INSERTAR EL BIEN QUE SE PARCIALIZO Y SE ENTREGO EN EL LOTE
   ***************************************************************/
-  async insertNewPartialGood(
-    lotId: number,
-    goodNumber: number,
-    ldevcant: number,
-    previosGood: number
-  ) {
+  async createNewPartialGood({
+    lotId,
+    goodNumber,
+    ldevcant,
+    previosGood,
+  }: PartialPropertyDelivered) {
     const globalVat = 0.15;
     const locInbBxlId = this.getLastId(lotId);
     const values = {
