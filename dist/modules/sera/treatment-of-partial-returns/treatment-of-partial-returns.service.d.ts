@@ -2,16 +2,20 @@ import { Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Counter } from "prom-client";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
 import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.entity";
+import { PartialPropertyDeliveredService } from "../partial-property-delivered/partial-property-delivered.service";
+import { GoodNotDeliveredService } from "../good-not-delivered/good-not-delivered.service";
 export declare class TreatmentOfPartialReturnsService {
     private entityGoodXLot;
-    private entityComerLot;
     private entityGoodPartialDelivery;
     private readonly logger;
     counter: Counter<string>;
-    constructor(entityGoodXLot: Repository<ComerGoodsXLotEntity>, entityComerLot: Repository<ComerLotsEntity>, entityGoodPartialDelivery: Repository<GoodPartialDeliveryEntity>, logger: Logger, counter: Counter<string>);
-    treatmentOfPartialReturns(pGood: any): Promise<void>;
-    geReturnLots(pGood: number): Promise<any[]>;
-    getGoodsPArtialDelivery(goodNumber: number): Promise<any[]>;
+    private partialPropertyDeliveredService;
+    private goodNotDeliveredService;
+    constructor(entityGoodXLot: Repository<ComerGoodsXLotEntity>, entityGoodPartialDelivery: Repository<GoodPartialDeliveryEntity>, logger: Logger, counter: Counter<string>, partialPropertyDeliveredService: PartialPropertyDeliveredService, goodNotDeliveredService: GoodNotDeliveredService);
+    treatmentOfPartialReturns(goodNumber: number): Promise<{
+        cruds: any[];
+    }>;
+    getReturnLots(goodNumber: number): Promise<any>;
+    getGoodsPartialDelivery(goodNumber: number): Promise<any>;
 }

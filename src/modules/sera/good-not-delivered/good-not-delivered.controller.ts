@@ -14,7 +14,7 @@ export class GoodNotDeliveredController {
   ) {}
 
   @MessagePattern({ cmd: "updateGoodNotDeliveredToTheCanceledLot" })
-  updateGoodNotDeliveredToTheCanceledLot(comer: GoodNotDeliveredDto) {
-    return this.service.updateGoodNotDeliveredToTheCanceledLot(comer);
+  async updateGoodNotDeliveredToTheCanceledLot(comer: GoodNotDeliveredDto) {
+    return await this.service.updateGoodNotDeliveredToTheCanceledLot(comer);
   }
 }

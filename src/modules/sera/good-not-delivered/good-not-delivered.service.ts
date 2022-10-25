@@ -30,16 +30,31 @@ export class GoodNotDeliveredService {
     lotConsignment,
     bxlConsignment,
   }: GoodNotDeliveredDto) {
-    await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
-    await this.updateConsignmentToPointToGoodCanceled(
-      lotIdNew,
-      lotConsignment,
-      bxlConsignment
-    );
-    await this.updateFinalPriceLot(lotId);
-    await this.updateFinalPriceLot(lotIdNew);
+    try {
+      const elementUpdated = [];
+      elementUpdated.push(
+        await this.updateGoodToCancelLot(lotIdNew, lotId, bxlId)
+      );
+      elementUpdated.push(
+        await this.updateConsignmentToPointToGoodCanceled(
+          lotIdNew,
+          lotConsignment,
+          bxlConsignment
+        )
+      );
+      elementUpdated.push(await this.updateFinalPriceLot(lotId));
+      elementUpdated.push(await this.updateFinalPriceLot(lotIdNew));
 
-    return {};
+      const rowsAffected = elementUpdated.reduce(
+        (el, carry) => el + carry.affected ?? 0,
+        0
+      );
+
+      return { message: `${rowsAffected} elements updated` };
+    } catch (error) {
+      console.error(error);
+      return { statusCode: 506, message: "Wrong parameters" };
+    }
   }
 
   async updateGoodToCancelLot(lotIdNew: number, lotId: number, bxlId: number) {
@@ -69,17 +84,21 @@ export class GoodNotDeliveredService {
   }
 
   async updateFinalPriceLot(lotId: number) {
-    const finalPrice = await this.entity
+    const queryFinalPrice = await this.entity
       .createQueryBuilder("bxl")
-      .select("coalesce(SUM(bxl.finalPrice), 0) as finalPrice")
+      .select(`coalesce(SUM(bxl.finalPrice), 0) as "finalPrice"`)
       .where(`bxl.ID_LOTE = ${lotId}`)
-      .getOne();
+      .getRawOne();
+
+    if (!queryFinalPrice) {
+      return queryFinalPrice;
+    }
 
     const propertyQuery = this.entityLot
-      .createQueryBuilder("lot")
+      .createQueryBuilder()
       .update(ComerLotsEntity)
-      .set({ finalPrice: finalPrice[0] })
-      .where(`lot.ID_LOTE = ${lotId}`);
+      .set({ finalPrice: queryFinalPrice.finalPrice })
+      .where(`ID_LOTE = ${lotId}`);
 
     return await propertyQuery.execute();
   }

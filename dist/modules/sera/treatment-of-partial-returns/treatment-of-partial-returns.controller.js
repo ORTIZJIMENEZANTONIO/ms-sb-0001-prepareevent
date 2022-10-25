@@ -23,16 +23,16 @@ let TreatmentOfPartialReturnsController = class TreatmentOfPartialReturnsControl
         this.service = service;
         this.logger = logger;
     }
-    createComerGoodXLot(comer) {
-        return this.service.treatmentOfPartialReturns(comer);
+    treatmentOfPartialReturns(goodNumber) {
+        return this.service.treatmentOfPartialReturns(goodNumber);
     }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "treatmentOfPartialReturns" }),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], TreatmentOfPartialReturnsController.prototype, "createComerGoodXLot", null);
+], TreatmentOfPartialReturnsController.prototype, "treatmentOfPartialReturns", null);
 TreatmentOfPartialReturnsController = __decorate([
     (0, common_1.Controller)("treatment-of-partial-returns"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

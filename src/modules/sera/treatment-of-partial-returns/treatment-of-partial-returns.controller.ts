@@ -13,7 +13,7 @@ export class TreatmentOfPartialReturnsController {
   ) {}
 
   @MessagePattern({ cmd: "treatmentOfPartialReturns" })
-  createComerGoodXLot(comer) {
-    return this.service.treatmentOfPartialReturns(comer);
+  treatmentOfPartialReturns(goodNumber: number) {
+    return this.service.treatmentOfPartialReturns(goodNumber);
   }
 }
