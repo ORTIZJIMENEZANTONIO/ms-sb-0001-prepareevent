@@ -28,7 +28,7 @@ let GoodNotDeliveredService = class GoodNotDeliveredService {
         this.logger = logger;
         this.counter = counter;
     }
-    async changeGoodNotDeliveredToTheCanceledLot(lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment) {
+    async updateGoodNotDeliveredToTheCanceledLot({ lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment, }) {
         await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
         await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotConsignment, bxlConsignment);
         await this.updateFinalPriceLot(lotId);

@@ -6,7 +6,7 @@ import { Column, Entity, Index } from "typeorm";
 //  { unique: true }
 //)
 @Entity("bienes_entrega_parcial", { schema: "sera" })
-export class GoodPartialDelivery {
+export class GoodPartialDeliveryEntity {
   @Column("numeric", {
     primary: true,
     name: "no_bien",

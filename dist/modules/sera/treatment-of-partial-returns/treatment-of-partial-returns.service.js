@@ -21,7 +21,7 @@ const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
-const good_partial_delivery_dto_1 = require("./dto/good-partial-delivery.dto");
+const good_partial_delivery_entity_1 = require("./entities/good-partial-delivery.entity");
 const goods_entity_1 = require("../file-util/entities/goods.entity");
 let TreatmentOfPartialReturnsService = class TreatmentOfPartialReturnsService {
     constructor(entityGoodXLot, entityComerLot, entityGoodPartialDelivery, logger, counter) {
@@ -69,7 +69,7 @@ TreatmentOfPartialReturnsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(comer_property_by_batch_entity_1.ComerGoodsXLotEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(comer_batch_entity_1.ComerLotsEntity)),
-    __param(2, (0, typeorm_1.InjectRepository)(good_partial_delivery_dto_1.GoodPartialDelivery)),
+    __param(2, (0, typeorm_1.InjectRepository)(good_partial_delivery_entity_1.GoodPartialDeliveryEntity)),
     __param(3, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __param(4, (0, nestjs_prometheus_1.InjectMetric)("treatment_of_partial_returns_served")),
     __metadata("design:paramtypes", [typeorm_2.Repository,

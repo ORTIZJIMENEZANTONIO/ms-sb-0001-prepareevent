@@ -1,4 +1,4 @@
-export declare class GoodPartialDeliveryDto {
+export declare class GoodPartialDeliveryEntity {
     id: string;
     nePartialGoddNumber: string;
     enPartialGoddNumber: string;

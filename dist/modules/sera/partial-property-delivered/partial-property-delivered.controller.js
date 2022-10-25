@@ -16,13 +16,25 @@ exports.PartialPropertyDeliveredController = void 0;
 const common_1 = require("@nestjs/common");
 const nest_winston_1 = require("nest-winston");
 const winston_1 = require("winston");
+const microservices_1 = require("@nestjs/microservices");
 const partial_property_delivered_service_1 = require("./partial-property-delivered.service");
+const partial_property_delivered_dto_1 = require("./dto/partial-property-delivered.dto");
 let PartialPropertyDeliveredController = class PartialPropertyDeliveredController {
     constructor(service, logger) {
         this.service = service;
         this.logger = logger;
     }
+    async createNewPartialGood(comer) {
+        const good = await this.service.createNewPartialGood(comer);
+        return good !== null && good !== void 0 ? good : { statusCode: 404, message: "Element not found" };
+    }
 };
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "createNewPartialGood" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [partial_property_delivered_dto_1.PartialPropertyDelivered]),
+    __metadata("design:returntype", Promise)
+], PartialPropertyDeliveredController.prototype, "createNewPartialGood", null);
 PartialPropertyDeliveredController = __decorate([
     (0, common_1.Controller)('partial-property-delivered'),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

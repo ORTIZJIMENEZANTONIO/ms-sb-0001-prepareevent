@@ -26,75 +26,87 @@ let PartialPropertyDeliveredService = class PartialPropertyDeliveredService {
         this.logger = logger;
         this.counter = counter;
     }
-    async insertNewPartialGood(lotId, goodNumber, ldevcant, previosGood) {
+    async createNewPartialGood({ lotId, goodNumber, ldevcant, previosGood, }) {
+        var _a;
         const globalVat = 0.15;
-        const locInbBxlId = this.getLastId(lotId);
-        const values = Object.assign({ propertyByLotId: locInbBxlId, goodNumber,
-            lotId }, this.getLotValues(lotId, ldevcant, globalVat, previosGood));
-        console.log(values);
-        return {};
+        const restBody = await this.getLotValues(lotId, ldevcant, globalVat, previosGood);
+        const lotInbBxlId = await this.getLastId(lotId);
+        if (!restBody || !lotInbBxlId) {
+            return null;
+        }
+        const values = Object.assign(Object.assign({}, restBody), { propertyByLotId: lotInbBxlId.max, goodNumber,
+            lotId });
+        try {
+            return await this.entity.save(values);
+        }
+        catch (error) {
+            return {
+                statusCode: 506,
+                message: (_a = error.detail) !== null && _a !== void 0 ? _a : "Wrong parameters to insert"
+            };
+        }
     }
     async getLastId(lotId) {
         return await this.entity
-            .createQueryBuilder()
-            .select([`MAX(BXL.ID_BIENXLOTE) + 1`])
-            .where(`BXL.ID_LOTE = ${lotId}`)
+            .createQueryBuilder("bxl")
+            .select([`MAX(bxl.ID_BIENXLOTE) + 1 as max`])
+            .where(`bxl.ID_LOTE = ${lotId}`)
             .getRawOne();
     }
     async getLotValues(lotId, ldevcant, globalVat, previosGood) {
-        return await this.entity
+        const lot = this.entity
             .createQueryBuilder()
             .select([
-            `((baseValue/quantity)*${ldevcant}) AS baseValue`,
-            `appraisalPriceRef`,
-            `((finalPrice/quantity)*${ldevcant}) as finalPrice`,
-            `baseVat`,
-            `( (finalPrice/quantity)*${ldevcant} - ROUND( ( (finalPrice/quantity)*${ldevcant}) / ${globalVat}, 2 ) ) as finalVat`,
-            `camp1`,
-            `camp2`,
-            `camp3`,
-            `camp4`,
-            `camp5`,
-            `surveyJurKey`,
-            `storeNumber`,
-            `${ldevcant} as quantity`,
-            `vatPercent`,
-            `inventoryNumber`,
-            `camp6`,
-            `ROUND( ( (finalPrice/quantity)*${ldevcant} ) / ${globalVat}, 2 ) as priceWithoutVat`,
-            `( (amountNoAppVat/quantity)*${ldevcant} ) as amountNoAppVat`,
-            `previousStatus`,
-            `camp8`,
-            `camp9`,
-            `appraiserCompany`,
-            `appraiserDate`,
-            `( (amountAppVat/quantity)*${ldevcant} ) as amountAppVat`,
-            `comerEventId`,
-            `warrantyPrice`,
-            `camp7`,
-            `status`,
-            `transferenceNumber`,
-            `current_date as creationDate`,
-            `comerLotId`,
-            `consignmentEventId`,
-            `consignmentLotId`,
-            `advance`,
-            `lotPcts`,
-            `sold`,
-            `observation`,
-            `billDate`,
-            `consignmentGoodsId`,
-            `billNumber`,
-            `annex`,
-            `selected`,
-            `cylindersNumber`,
-            `origin`,
-            `originCountry`,
-            `lotDescription`,
+            `( (valor_base/cantidad)*${ldevcant} ) AS "baseValue"`,
+            `PRECIO_AVALUO_REF as "appraisalPriceRef"`,
+            `( (PRECIO_FINAL / CANTIDAD)*${ldevcant} ) as "finalPrice"`,
+            `IVA_BASE as "baseVat"`,
+            `( (PRECIO_FINAL / CANTIDAD)*${ldevcant} - ROUND( ( (PRECIO_FINAL / CANTIDAD)*${ldevcant}) / ${globalVat}, 2 ) ) as "finalVat"`,
+            `CAMPO1 as "camp1"`,
+            `CAMPO2 as "camp2"`,
+            `CAMPO3 as "camp3"`,
+            `CAMPO4 as "camp4"`,
+            `CAMPO5 as "camp5"`,
+            `CVE_PERITAJE_JUR as "surveyJurKey"`,
+            `NO_ALMACEN as "storeNumber"`,
+            `${ldevcant} as "quantity"`,
+            `PORC_IVA as "vatPercent"`,
+            `NO_INVENTARIO as "inventoryNumber"`,
+            `CAMPO6 as "camp6"`,
+            `ROUND( ( (PRECIO_FINAL / CANTIDAD)*${ldevcant} ) / ${globalVat}, 2 ) as "priceWithoutVat"`,
+            `( (MONTO_NOAPP_IVA / CANTIDAD)*${ldevcant} ) as "amountNoAppVat"`,
+            `ESTATUS_ANT as "previousStatus"`,
+            `CAMPO8 as "camp8"`,
+            `CAMPO9 as "camp9"`,
+            `EMPRESA_VALUADORA as "appraiserCompany"`,
+            `FECHA_AVALUO as "appraiserDate"`,
+            `( (MONTO_APP_IVA / CANTIDAD)*${ldevcant} ) as "amountAppVat"`,
+            `ID_EVENTO_COMER as "comerEventId"`,
+            `PRECIO_GARANTIA as "warrantyPrice"`,
+            `CAMPO7 as "camp7"`,
+            `ESTATUS_COMER as "status"`,
+            `NO_TRANSFERENTE as "transferenceNumber"`,
+            `current_date as "creationDate"`,
+            `ID_LOTE_COMER as "comerLotId"`,
+            `ID_EVENTO_REMESA as "consignmentEventId"`,
+            `ID_LOTE_REMESA as "consignmentLotId"`,
+            `ANTICIPO as "advance"`,
+            `PCTSLOTE as "lotPcts"`,
+            `VENDIDO as "sold"`,
+            `OBSERVACIONES as "observation"`,
+            `FECHA_FACTURA as "billDate"`,
+            `ID_BIENXLOTE_REMESA as "consignmentGoodsId"`,
+            `NO_FACTURA as "billNumber"`,
+            `ANEXO as "annex"`,
+            `SELECCIONADO as "selected"`,
+            `NO_CILINDROS as "cylindersNumber"`,
+            `PROCEDENCIA as "origin"`,
+            `PAIS_PROCEDENCIA as "originCountry"`,
+            `DESCRIPCION_LOTE as "lotDescription"`,
         ])
             .where(`ID_LOTE = ${lotId}`)
-            .andWhere(`NO_BIEN = ${previosGood}`)
-            .getRawOne();
+            .andWhere(`NO_BIEN = ${previosGood}`);
+        return await lot.getRawOne();
     }
 };
 PartialPropertyDeliveredService = __decorate([

@@ -12,7 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
-const good_partial_delivery_dto_1 = require("./dto/good-partial-delivery.dto");
+const good_partial_delivery_entity_1 = require("./entities/good-partial-delivery.entity");
 const treatment_of_partial_returns_controller_1 = require("./treatment-of-partial-returns.controller");
 const treatment_of_partial_returns_service_1 = require("./treatment-of-partial-returns.service");
 let TreatmentOfPartialReturnsModule = class TreatmentOfPartialReturnsModule {
@@ -23,7 +23,7 @@ TreatmentOfPartialReturnsModule = __decorate([
             typeorm_1.TypeOrmModule.forFeature([
                 comer_property_by_batch_entity_1.ComerGoodsXLotEntity,
                 comer_batch_entity_1.ComerLotsEntity,
-                good_partial_delivery_dto_1.GoodPartialDelivery
+                good_partial_delivery_entity_1.GoodPartialDeliveryEntity
             ]),
         ],
         controllers: [treatment_of_partial_returns_controller_1.TreatmentOfPartialReturnsController],

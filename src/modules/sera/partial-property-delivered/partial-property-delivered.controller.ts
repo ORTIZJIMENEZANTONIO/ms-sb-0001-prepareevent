@@ -14,7 +14,8 @@ export class PartialPropertyDeliveredController {
   ) {}
 
   @MessagePattern({ cmd: "createNewPartialGood" })
-  createNewPartialGood(comer: PartialPropertyDelivered) {
-    return this.service.createNewPartialGood(comer);
+  async createNewPartialGood(comer: PartialPropertyDelivered) {
+    const good = await this.service.createNewPartialGood(comer);
+    return good ?? { statusCode: 404, message: "Element not found" }
   }
 }

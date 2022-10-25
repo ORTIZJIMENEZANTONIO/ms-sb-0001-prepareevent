@@ -7,7 +7,7 @@ import {
 
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { GoodPartialDelivery } from "./dto/good-partial-delivery.dto";
+import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.entity";
 import { TreatmentOfPartialReturnsController } from "./treatment-of-partial-returns.controller";
 import { TreatmentOfPartialReturnsService } from "./treatment-of-partial-returns.service";
 
@@ -16,7 +16,7 @@ import { TreatmentOfPartialReturnsService } from "./treatment-of-partial-returns
     TypeOrmModule.forFeature([
       ComerGoodsXLotEntity,
       ComerLotsEntity,
-      GoodPartialDelivery
+      GoodPartialDeliveryEntity
     ]),
   ],
   controllers: [TreatmentOfPartialReturnsController],

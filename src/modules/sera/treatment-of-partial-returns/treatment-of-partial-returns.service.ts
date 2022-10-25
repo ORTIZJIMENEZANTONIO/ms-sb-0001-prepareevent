@@ -6,7 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
-import { GoodPartialDelivery } from "./dto/good-partial-delivery.dto";
+import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.entity";
 import { GoodsEntity } from "../file-util/entities/goods.entity";
 
 @Injectable()
@@ -16,8 +16,8 @@ export class TreatmentOfPartialReturnsService {
     private entityGoodXLot: Repository<ComerGoodsXLotEntity>,
     @InjectRepository(ComerLotsEntity)
     private entityComerLot: Repository<ComerLotsEntity>,
-    @InjectRepository(GoodPartialDelivery)
-    private entityGoodPartialDelivery: Repository<GoodPartialDelivery>,
+    @InjectRepository(GoodPartialDeliveryEntity)
+    private entityGoodPartialDelivery: Repository<GoodPartialDeliveryEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
     @InjectMetric("treatment_of_partial_returns_served")
     public counter: Counter<string>

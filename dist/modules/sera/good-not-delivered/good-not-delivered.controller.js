@@ -16,15 +16,26 @@ exports.GoodNotDeliveredController = void 0;
 const common_1 = require("@nestjs/common");
 const nest_winston_1 = require("nest-winston");
 const winston_1 = require("winston");
+const microservices_1 = require("@nestjs/microservices");
 const good_not_delivered_service_1 = require("./good-not-delivered.service");
+const good_not_delivered_dto_1 = require("./dto/good-not-delivered.dto");
 let GoodNotDeliveredController = class GoodNotDeliveredController {
     constructor(service, logger) {
         this.service = service;
         this.logger = logger;
     }
+    updateGoodNotDeliveredToTheCanceledLot(comer) {
+        return this.service.updateGoodNotDeliveredToTheCanceledLot(comer);
+    }
 };
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "updateGoodNotDeliveredToTheCanceledLot" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [good_not_delivered_dto_1.GoodNotDeliveredDto]),
+    __metadata("design:returntype", void 0)
+], GoodNotDeliveredController.prototype, "updateGoodNotDeliveredToTheCanceledLot", null);
 GoodNotDeliveredController = __decorate([
-    (0, common_1.Controller)('good-not-delivered'),
+    (0, common_1.Controller)("good-not-delivered"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __metadata("design:paramtypes", [good_not_delivered_service_1.GoodNotDeliveredService,
         winston_1.Logger])
