@@ -30,16 +30,23 @@ export class GoodNotDeliveredService {
     lotConsignment,
     bxlConsignment,
   }: GoodNotDeliveredDto) {
-    await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
-    await this.updateConsignmentToPointToGoodCanceled(
+    try {
+      await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
+     await this.updateConsignmentToPointToGoodCanceled(
       lotIdNew,
       lotConsignment,
       bxlConsignment
     );
     await this.updateFinalPriceLot(lotId);
     await this.updateFinalPriceLot(lotIdNew);
-
     return {};
+    } catch(error) {
+      console.error(error)
+      return { statusCode: 506, message: "Wrong parameters" }
+    }
+    
+
+    
   }
 
   async updateGoodToCancelLot(lotIdNew: number, lotId: number, bxlId: number) {

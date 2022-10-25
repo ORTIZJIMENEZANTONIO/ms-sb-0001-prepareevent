@@ -10,7 +10,13 @@ export declare class GoodNotDeliveredService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entity: Repository<ComerGoodsXLotEntity>, entityLot: Repository<ComerLotsEntity>, logger: Logger, counter: Counter<string>);
-    updateGoodNotDeliveredToTheCanceledLot({ lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment, }: GoodNotDeliveredDto): Promise<{}>;
+    updateGoodNotDeliveredToTheCanceledLot({ lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment, }: GoodNotDeliveredDto): Promise<{
+        statusCode?: undefined;
+        message?: undefined;
+    } | {
+        statusCode: number;
+        message: string;
+    }>;
     updateGoodToCancelLot(lotIdNew: number, lotId: number, bxlId: number): Promise<import("typeorm").UpdateResult>;
     updateConsignmentToPointToGoodCanceled(lotIdNew: number, lotConsignment: number, bxlConsignment: number): Promise<import("typeorm").UpdateResult>;
     updateFinalPriceLot(lotId: number): Promise<import("typeorm").UpdateResult>;

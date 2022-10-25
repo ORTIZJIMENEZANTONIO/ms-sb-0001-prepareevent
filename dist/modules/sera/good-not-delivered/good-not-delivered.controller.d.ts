@@ -5,5 +5,11 @@ export declare class GoodNotDeliveredController {
     private readonly service;
     private readonly logger;
     constructor(service: GoodNotDeliveredService, logger: Logger);
-    updateGoodNotDeliveredToTheCanceledLot(comer: GoodNotDeliveredDto): Promise<{}>;
+    updateGoodNotDeliveredToTheCanceledLot(comer: GoodNotDeliveredDto): Promise<{
+        statusCode?: undefined;
+        message?: undefined;
+    } | {
+        statusCode: number;
+        message: string;
+    }>;
 }

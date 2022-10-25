@@ -29,11 +29,17 @@ let GoodNotDeliveredService = class GoodNotDeliveredService {
         this.counter = counter;
     }
     async updateGoodNotDeliveredToTheCanceledLot({ lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment, }) {
-        await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
-        await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotConsignment, bxlConsignment);
-        await this.updateFinalPriceLot(lotId);
-        await this.updateFinalPriceLot(lotIdNew);
-        return {};
+        try {
+            await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotId, bxlId);
+            await this.updateConsignmentToPointToGoodCanceled(lotIdNew, lotConsignment, bxlConsignment);
+            await this.updateFinalPriceLot(lotId);
+            await this.updateFinalPriceLot(lotIdNew);
+            return {};
+        }
+        catch (error) {
+            console.error(error);
+            return { statusCode: 506, message: "Wrong parameters" };
+        }
     }
     async updateGoodToCancelLot(lotIdNew, lotId, bxlId) {
         const propertyQuery = this.entity
