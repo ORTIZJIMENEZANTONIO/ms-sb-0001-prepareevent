@@ -11,16 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GoodsEntity = void 0;
 const typeorm_1 = require("typeorm");
-const swagger_1 = require("@nestjs/swagger");
 let GoodsEntity = class GoodsEntity {
 };
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "No. Bien" }),
-    (0, typeorm_1.PrimaryGeneratedColumn)({
+    (0, typeorm_1.PrimaryColumn)({
         name: "no_bien",
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "goodsID", void 0);
+], GoodsEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_inventario",
@@ -28,7 +26,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "inventoryId", void 0);
+], GoodsEntity.prototype, "inventoryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "descripcion",
@@ -237,7 +235,7 @@ __decorate([
         length: 500,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "goodsCategory", void 0);
+], GoodsEntity.prototype, "goodCategory", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "senalamientos_origen",
@@ -257,7 +255,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_dictamen", nullable: true }),
     __metadata("design:type", Date)
-], GoodsEntity.prototype, "dictDate", void 0);
+], GoodsEntity.prototype, "dateOpinion", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "perito_dictamen",
@@ -265,7 +263,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "proficientDictum", void 0);
+], GoodsEntity.prototype, "proficientOpinion", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "valuador_dictamen",
@@ -273,7 +271,7 @@ __decorate([
         length: 60,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "valuerDictum", void 0);
+], GoodsEntity.prototype, "valuerOpinion", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "dictamen",
@@ -281,7 +279,7 @@ __decorate([
         length: 500,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "dictum", void 0);
+], GoodsEntity.prototype, "opinion", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "valor_avaluo",
@@ -290,7 +288,7 @@ __decorate([
         scale: 2,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "valuerWorth", void 0);
+], GoodsEntity.prototype, "appraisedValue", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_gaveta",
@@ -299,7 +297,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "drawerId", void 0);
+], GoodsEntity.prototype, "drawerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_boveda",
@@ -308,7 +306,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "vaultId", void 0);
+], GoodsEntity.prototype, "vaultNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_bien_referencia",
@@ -317,7 +315,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "goodsReferenceId", void 0);
+], GoodsEntity.prototype, "goodReferenceNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "cve_moneda_avaluo",
@@ -325,7 +323,7 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "appraisalCurrencyCve", void 0);
+], GoodsEntity.prototype, "appraisalCurrencyKey", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_avaluo_vig", nullable: true }),
     __metadata("design:type", Date)
@@ -441,7 +439,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_incosteabilidad", nullable: true }),
     __metadata("design:type", Date)
-], GoodsEntity.prototype, "fecIncosteabilidad", void 0);
+], GoodsEntity.prototype, "fecUnaffordability", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "criterio_incosteabilidad",
@@ -457,7 +455,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "useApproveUsr", void 0);
+], GoodsEntity.prototype, "userApproveUse", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_aprobo_utilizacion", nullable: true }),
     __metadata("design:type", Date)
@@ -473,7 +471,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_solic_cambio_numerario", nullable: true }),
     __metadata("design:type", Date)
-], GoodsEntity.prototype, "fecSolicCambioNumerario", void 0);
+], GoodsEntity.prototype, "dateRequestChangeNumerary", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "usuario_solic_cambio_numerario",
@@ -566,7 +564,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "fileId", void 0);
+], GoodsEntity.prototype, "fileNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_exp_asociado",
@@ -575,7 +573,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "associatedExpId", void 0);
+], GoodsEntity.prototype, "associatedFileNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_rack",
@@ -584,7 +582,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "rackId", void 0);
+], GoodsEntity.prototype, "rackNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_almacen",
@@ -593,7 +591,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "storeId", void 0);
+], GoodsEntity.prototype, "storeNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_lote",
@@ -602,11 +600,11 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "lotId", void 0);
+], GoodsEntity.prototype, "lotNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_clasif_bien", precision: 5, scale: 0 }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "goodsClassId", void 0);
+], GoodsEntity.prototype, "goodClassNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_subdelegacion",
@@ -615,7 +613,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "subDelegationId", void 0);
+], GoodsEntity.prototype, "subDelegationNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_delegacion",
@@ -624,7 +622,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "delegationId", void 0);
+], GoodsEntity.prototype, "delegationNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_recepcion_fisica", nullable: true }),
     __metadata("design:type", Date)
@@ -640,11 +638,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_judicial", nullable: true }),
     __metadata("design:type", Date)
-], GoodsEntity.prototype, "fecJudicial", void 0);
+], GoodsEntity.prototype, "judicialDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_vencimiento_abandono", nullable: true }),
     __metadata("design:type", Date)
-], GoodsEntity.prototype, "judicialDate", void 0);
+], GoodsEntity.prototype, "abandonmentDueDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_aprobo_destruccion", nullable: true }),
     __metadata("design:type", Date)
@@ -673,11 +671,11 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "destinyId", void 0);
+], GoodsEntity.prototype, "destinyNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_registro", nullable: true }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "registryId", void 0);
+], GoodsEntity.prototype, "registryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_acuerdo_aseg", nullable: true }),
     __metadata("design:type", Date)
@@ -689,7 +687,7 @@ __decorate([
         length: 3,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "dictumType", void 0);
+], GoodsEntity.prototype, "opinionType", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_presentacion", nullable: true }),
     __metadata("design:type", Date)
@@ -726,7 +724,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "goodsPartializationFatherId", void 0);
+], GoodsEntity.prototype, "goodsPartializationFatherNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "declaracion_abn_sera",
@@ -836,7 +834,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "labelId", void 0);
+], GoodsEntity.prototype, "labelNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_volante",
@@ -845,7 +843,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], GoodsEntity.prototype, "flierId", void 0);
+], GoodsEntity.prototype, "flyerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_reg_insert", nullable: true }),
     __metadata("design:type", Date)
@@ -883,7 +881,7 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], GoodsEntity.prototype, "ExtDomProcess", void 0);
+], GoodsEntity.prototype, "extDomProcess", void 0);
 GoodsEntity = __decorate([
     (0, typeorm_1.Entity)("bienes", { schema: "sera" })
 ], GoodsEntity);

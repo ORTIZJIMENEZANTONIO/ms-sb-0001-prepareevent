@@ -1,32 +1,18 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
-import { ApiProperty } from "@nestjs/swagger";
+import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-// @Index(
-//   "isia041s2_bienes",
-//   ["declaracionAbnSera", "estatus", "noBien", "noEtiqueta", "noInventario"],
-//   {}
-// )
-// @Index(
-//   "isia041s3_bienes",
-//   ["declaracionAbnSera", "estatus", "noEtiqueta", "noInventario"],
-//   {}
-// )
-// @Index("isia041s1_bienes", ["noBien"], {})
-// @Index("bienes_pkey", ["noBien"], { unique: true })
 @Entity("bienes", { schema: "sera" })
 export class GoodsEntity {
-  @ApiProperty({ example: "No. Bien" })
-  @PrimaryGeneratedColumn({
+  @PrimaryColumn({
     name: "no_bien",
   })
-  goodsID: number;
+  id: number;
 
   @Column("character varying", {
     name: "no_inventario",
     nullable: true,
     length: 30,
   })
-  inventoryId: string | null;
+  inventoryNumber: string | null;
 
   @Column("character varying", {
     name: "descripcion",
@@ -187,7 +173,7 @@ export class GoodsEntity {
     nullable: true,
     length: 500,
   })
-  goodsCategory: string | null;
+  goodCategory: string | null;
 
   @Column("character varying", {
     name: "senalamientos_origen",
@@ -204,28 +190,28 @@ export class GoodsEntity {
   registerInscrSol: string | null;
 
   @Column({ type: Date, name: "fec_dictamen", nullable: true })
-  dictDate: Date | null;
+  dateOpinion: Date | null;
 
   @Column("character varying", {
     name: "perito_dictamen",
     nullable: true,
     length: 30,
   })
-  proficientDictum: string | null;
+  proficientOpinion: string | null;
 
   @Column("character varying", {
     name: "valuador_dictamen",
     nullable: true,
     length: 60,
   })
-  valuerDictum: string | null;
+  valuerOpinion: string | null;
 
   @Column("character varying", {
     name: "dictamen",
     nullable: true,
     length: 500,
   })
-  dictum: string | null;
+  opinion: string | null;
 
   @Column("numeric", {
     name: "valor_avaluo",
@@ -233,7 +219,7 @@ export class GoodsEntity {
     precision: 15,
     scale: 2,
   })
-  valuerWorth: number | null;
+  appraisedValue: number | null;
 
   @Column("numeric", {
     name: "no_gaveta",
@@ -241,7 +227,7 @@ export class GoodsEntity {
     precision: 3,
     scale: 0,
   })
-  drawerId: number | null;
+  drawerNumber: number | null;
 
   @Column("numeric", {
     name: "no_boveda",
@@ -249,7 +235,7 @@ export class GoodsEntity {
     precision: 5,
     scale: 0,
   })
-  vaultId: number | null;
+  vaultNumber: number | null;
 
   @Column("numeric", {
     name: "no_bien_referencia",
@@ -257,14 +243,14 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  goodsReferenceId: number | null;
+  goodReferenceNumber: number | null;
 
   @Column("character varying", {
     name: "cve_moneda_avaluo",
     nullable: true,
     length: 15,
   })
-  appraisalCurrencyCve: string | null;
+  appraisalCurrencyKey: string | null;
 
   @Column({ type: Date, name: "fec_avaluo_vig", nullable: true })
   appraisalVigDate: Date | null;
@@ -361,7 +347,7 @@ export class GoodsEntity {
   resolution: string | null;
 
   @Column({ type: Date, name: "fec_incosteabilidad", nullable: true })
-  fecIncosteabilidad: Date | null;
+  fecUnaffordability: Date | null;
 
   @Column("character varying", {
     name: "criterio_incosteabilidad",
@@ -375,7 +361,7 @@ export class GoodsEntity {
     nullable: true,
     length: 30,
   })
-  useApproveUsr: string | null;
+  userApproveUse: string | null;
 
   @Column({ type: Date, name: "fec_aprobo_utilizacion", nullable: true })
   useApproveDate: Date | null;
@@ -388,7 +374,7 @@ export class GoodsEntity {
   useObservations: string | null;
 
   @Column({ type: Date, name: "fec_solic_cambio_numerario", nullable: true })
-  fecSolicCambioNumerario: Date | null;
+  dateRequestChangeNumerary: Date | null;
 
   @Column("character varying", {
     name: "usuario_solic_cambio_numerario",
@@ -468,7 +454,7 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  fileId: number | null;
+  fileNumber: number | null;
 
   @Column("numeric", {
     name: "no_exp_asociado",
@@ -476,7 +462,7 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  associatedExpId: number | null;
+  associatedFileNumber: number | null;
 
   @Column("numeric", {
     name: "no_rack",
@@ -484,7 +470,7 @@ export class GoodsEntity {
     precision: 2,
     scale: 0,
   })
-  rackId: number | null;
+  rackNumber: number | null;
 
   @Column("numeric", {
     name: "no_almacen",
@@ -492,7 +478,7 @@ export class GoodsEntity {
     precision: 5,
     scale: 0,
   })
-  storeId: number | null;
+  storeNumber: number | null;
 
   @Column("numeric", {
     name: "no_lote",
@@ -500,10 +486,10 @@ export class GoodsEntity {
     precision: 3,
     scale: 0,
   })
-  lotId: number | null;
+  lotNumber: number | null;
 
   @Column("numeric", { name: "no_clasif_bien", precision: 5, scale: 0 })
-  goodsClassId: number;
+  goodClassNumber: number;
 
   @Column("numeric", {
     name: "no_subdelegacion",
@@ -511,7 +497,7 @@ export class GoodsEntity {
     precision: 2,
     scale: 0,
   })
-  subDelegationId: number | null;
+  subDelegationNumber: number | null;
 
   @Column("numeric", {
     name: "no_delegacion",
@@ -519,7 +505,7 @@ export class GoodsEntity {
     precision: 2,
     scale: 0,
   })
-  delegationId: number | null;
+  delegationNumber: number | null;
 
   @Column({ type: Date, name: "fec_recepcion_fisica", nullable: true })
   physicalReceptionDate: Date | null;
@@ -532,10 +518,10 @@ export class GoodsEntity {
   statusResourceReview: string | null;
 
   @Column({ type: Date, name: "fec_judicial", nullable: true })
-  fecJudicial: Date | null;
+  judicialDate: Date | null;
 
   @Column({ type: Date, name: "fec_vencimiento_abandono", nullable: true })
-  judicialDate: Date | null;
+  abandonmentDueDate: Date | null;
 
   @Column({ type: Date, name: "fec_aprobo_destruccion", nullable: true })
   destructionApproveDate: Date | null;
@@ -560,23 +546,20 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  destinyId: number | null;
+  destinyNumber: number | null;
 
   @Column("numeric", { name: "no_registro", nullable: true })
-  registryId: number | null;
+  registryNumber: number | null;
 
   @Column({ type: Date, name: "fec_acuerdo_aseg", nullable: true })
   agreementDate: Date | null;
-
-  // @Column("numeric", { name: "estado", nullable: true, precision: 2, scale: 0 })
-  // status: number | null;
 
   @Column("character varying", {
     name: "tipo_dictamen",
     nullable: true,
     length: 3,
   })
-  dictumType: string | null;
+  opinionType: string | null;
 
   @Column({ type: Date, name: "fec_presentacion", nullable: true })
   presentationDate: Date | null;
@@ -607,7 +590,7 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  goodsPartializationFatherId: number | null;
+  goodsPartializationFatherNumber: number | null;
 
   @Column("character varying", {
     name: "declaracion_abn_sera",
@@ -698,7 +681,7 @@ export class GoodsEntity {
     precision: 2,
     scale: 0,
   })
-  labelId: number | null;
+  labelNumber: number | null;
 
   @Column("numeric", {
     name: "no_volante",
@@ -706,7 +689,7 @@ export class GoodsEntity {
     precision: 10,
     scale: 0,
   })
-  flierId: number | null;
+  flyerNumber: number | null;
 
   @Column({ type: Date, name: "fec_reg_insert", nullable: true })
   insertRegDate: Date | null;
@@ -738,8 +721,5 @@ export class GoodsEntity {
     nullable: true,
     length: 15,
   })
-  ExtDomProcess: string | null;
-
-  // @Column("character", { name: "trial251", nullable: true, length: 1 })
-  // trial251: string | null;
+  extDomProcess: string | null;
 }

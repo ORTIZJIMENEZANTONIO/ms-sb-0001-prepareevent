@@ -12,6 +12,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
+const good_not_delivered_service_1 = require("../good-not-delivered/good-not-delivered.service");
+const partial_property_delivered_service_1 = require("../partial-property-delivered/partial-property-delivered.service");
 const good_partial_delivery_entity_1 = require("./entities/good-partial-delivery.entity");
 const treatment_of_partial_returns_controller_1 = require("./treatment-of-partial-returns.controller");
 const treatment_of_partial_returns_service_1 = require("./treatment-of-partial-returns.service");
@@ -29,9 +31,19 @@ TreatmentOfPartialReturnsModule = __decorate([
         controllers: [treatment_of_partial_returns_controller_1.TreatmentOfPartialReturnsController],
         providers: [
             treatment_of_partial_returns_service_1.TreatmentOfPartialReturnsService,
+            partial_property_delivered_service_1.PartialPropertyDeliveredService,
+            good_not_delivered_service_1.GoodNotDeliveredService,
             (0, nestjs_prometheus_1.makeCounterProvider)({
                 name: "treatment_of_partial_returns_served",
                 help: "treatment_of_partial_returns_help",
+            }),
+            (0, nestjs_prometheus_1.makeCounterProvider)({
+                name: "partial_property_delivered_served",
+                help: "partial_property_delivered_help",
+            }),
+            (0, nestjs_prometheus_1.makeCounterProvider)({
+                name: "good_not_delivered_served",
+                help: "good_not_delivered_help",
             }),
         ],
     })

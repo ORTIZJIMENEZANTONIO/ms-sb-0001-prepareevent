@@ -1,10 +1,5 @@
 import { Column, Entity, Index } from "typeorm";
 
-//@Index(
-//  "bienes_entrega_parcial_pkey",
-//  ["noBien", "noBienParcialEn", "noBienParcialNe"],
-//  { unique: true }
-//)
 @Entity("bienes_entrega_parcial", { schema: "sera" })
 export class GoodPartialDeliveryEntity {
   @Column("numeric", {

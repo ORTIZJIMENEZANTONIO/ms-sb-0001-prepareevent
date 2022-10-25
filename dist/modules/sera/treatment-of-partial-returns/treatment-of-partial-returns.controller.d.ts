@@ -4,5 +4,7 @@ export declare class TreatmentOfPartialReturnsController {
     private readonly service;
     private readonly logger;
     constructor(service: TreatmentOfPartialReturnsService, logger: Logger);
-    createComerGoodXLot(comer: any): Promise<void>;
+    treatmentOfPartialReturns(goodNumber: number): Promise<{
+        cruds: any[];
+    }>;
 }
