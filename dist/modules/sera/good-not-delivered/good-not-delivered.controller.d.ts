@@ -6,8 +6,8 @@ export declare class GoodNotDeliveredController {
     private readonly logger;
     constructor(service: GoodNotDeliveredService, logger: Logger);
     updateGoodNotDeliveredToTheCanceledLot(comer: GoodNotDeliveredDto): Promise<{
+        message: string;
         statusCode?: undefined;
-        message?: undefined;
     } | {
         statusCode: number;
         message: string;

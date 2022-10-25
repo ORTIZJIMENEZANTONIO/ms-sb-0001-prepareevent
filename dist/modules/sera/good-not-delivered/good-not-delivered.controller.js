@@ -24,15 +24,15 @@ let GoodNotDeliveredController = class GoodNotDeliveredController {
         this.service = service;
         this.logger = logger;
     }
-    updateGoodNotDeliveredToTheCanceledLot(comer) {
-        return this.service.updateGoodNotDeliveredToTheCanceledLot(comer);
+    async updateGoodNotDeliveredToTheCanceledLot(comer) {
+        return await this.service.updateGoodNotDeliveredToTheCanceledLot(comer);
     }
 };
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: "updateGoodNotDeliveredToTheCanceledLot" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [good_not_delivered_dto_1.GoodNotDeliveredDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], GoodNotDeliveredController.prototype, "updateGoodNotDeliveredToTheCanceledLot", null);
 GoodNotDeliveredController = __decorate([
     (0, common_1.Controller)("good-not-delivered"),
