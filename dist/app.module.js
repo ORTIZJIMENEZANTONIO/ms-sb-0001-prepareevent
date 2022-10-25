@@ -24,6 +24,9 @@ const comer_client_module_1 = require("./modules/sera/comer-client/comer-client.
 const comer_rejected_property_module_1 = require("./modules/sera/comer-rejected-property/comer-rejected-property.module");
 const mandate_function_module_1 = require("./modules/sera/mandate-function/mandate-function.module");
 const file_util_module_1 = require("./modules/sera/file-util/file-util.module");
+const treatment_of_partial_returns_module_1 = require("./modules/sera/treatment-of-partial-returns/treatment-of-partial-returns.module");
+const good_not_delivered_module_1 = require("./modules/sera/good-not-delivered/good-not-delivered.module");
+const partial_property_delivered_module_1 = require("./modules/sera/partial-property-delivered/partial-property-delivered.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -63,6 +66,9 @@ AppModule = __decorate([
             comer_rejected_property_module_1.ComerRejectedPropertyModule,
             mandate_function_module_1.MandateFunctionModule,
             file_util_module_1.FileUtilModule,
+            treatment_of_partial_returns_module_1.TreatmentOfPartialReturnsModule,
+            good_not_delivered_module_1.GoodNotDeliveredModule,
+            partial_property_delivered_module_1.PartialPropertyDeliveredModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

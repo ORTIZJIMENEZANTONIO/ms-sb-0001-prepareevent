@@ -25,7 +25,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(4),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], ComerLotsDto.prototype, "saleStatusId", void 0);
+], ComerLotsDto.prototype, "statusVtaId", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsPositive)(),

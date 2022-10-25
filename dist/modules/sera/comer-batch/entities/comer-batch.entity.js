@@ -22,7 +22,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "id_estatusvta", length: 4 }),
     __metadata("design:type", String)
-], ComerLotsEntity.prototype, "saleStatusId", void 0);
+], ComerLotsEntity.prototype, "statusVtaId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
     __metadata("design:type", Number)

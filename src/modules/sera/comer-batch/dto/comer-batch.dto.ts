@@ -17,7 +17,7 @@ export class ComerLotsDto {
   @IsString()
   @MaxLength(4)
   @IsNotEmpty()
-  saleStatusId: string;
+  statusVtaId: string;
 
   @IsNumber()
   @IsPositive()

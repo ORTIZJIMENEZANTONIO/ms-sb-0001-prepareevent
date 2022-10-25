@@ -17,6 +17,9 @@ import { ComerClientModule } from './modules/sera/comer-client/comer-client.modu
 import { ComerRejectedPropertyModule } from './modules/sera/comer-rejected-property/comer-rejected-property.module';
 import { MandateFunctionModule } from './modules/sera/mandate-function/mandate-function.module';
 import { FileUtilModule } from './modules/sera/file-util/file-util.module';
+import { TreatmentOfPartialReturnsModule } from './modules/sera/treatment-of-partial-returns/treatment-of-partial-returns.module';
+import { GoodNotDeliveredModule } from './modules/sera/good-not-delivered/good-not-delivered.module';
+import { PartialPropertyDeliveredModule } from './modules/sera/partial-property-delivered/partial-property-delivered.module';
 
 @Module({
   imports: [
@@ -60,6 +63,9 @@ import { FileUtilModule } from './modules/sera/file-util/file-util.module';
     ComerRejectedPropertyModule,
     MandateFunctionModule,
     FileUtilModule,
+    TreatmentOfPartialReturnsModule,
+    GoodNotDeliveredModule,
+    PartialPropertyDeliveredModule,
     //
     ],
     controllers: [AppController],

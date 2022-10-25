@@ -341,7 +341,7 @@ export class FileUtilService {
 
     if (data) {
       delete comer.lotId;
-      delete comer.goodId;
+      delete comer.goodNumber;
       delete comer.lotIdToUpdt;
       delete comer.goodIdToUpdt;
       this.entityGoodXLot.merge(data, comer);

@@ -17,7 +17,7 @@ export class ComerGoodsXLotEntity {
   propertyByLotId: number;
 
   @PrimaryColumn("numeric", { name: "no_bien", precision: 10, scale: 0 })
-  goodId: number;
+  goodNumber: number;
 
   @PrimaryColumn("numeric", { name: "id_lote", precision: 10, scale: 0 })
   lotId: number;
@@ -119,7 +119,7 @@ export class ComerGoodsXLotEntity {
     nullable: true,
     length: 30,
   })
-  surveyJurCve: string | null;
+  surveyJurKey: string | null;
 
   @Column("character varying", {
     name: "empresa_valuadora",
@@ -225,7 +225,7 @@ export class ComerGoodsXLotEntity {
     precision: 10,
     scale: 0,
   })
-  comerLotNumber: number | null;
+  comerLotId: number | null;
 
   @Column("numeric", {
     name: "id_evento_comer",

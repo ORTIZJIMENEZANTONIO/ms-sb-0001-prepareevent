@@ -5,8 +5,8 @@ import {
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
 
-import { MandateFunctionService } from './mandate-function.service';
-import { MandateFunctionController } from './mandate-function.controller';
+import { MandateFunctionService } from "./mandate-function.service";
+import { MandateFunctionController } from "./mandate-function.controller";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
 

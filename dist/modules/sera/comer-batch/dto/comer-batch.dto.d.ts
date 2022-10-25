@@ -1,6 +1,6 @@
 export declare class ComerLotsDto {
     id: number;
-    saleStatusId: string;
+    statusVtaId: string;
     eventId: number;
     publicLot: number;
     description: string | null;
