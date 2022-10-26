@@ -25,14 +25,16 @@ const good_partial_delivery_entity_1 = require("./entities/good-partial-delivery
 const goods_entity_1 = require("../file-util/entities/goods.entity");
 const partial_property_delivered_service_1 = require("../partial-property-delivered/partial-property-delivered.service");
 const good_not_delivered_service_1 = require("../good-not-delivered/good-not-delivered.service");
+const comer_batch_service_1 = require("../comer-batch/comer-batch.service");
 let TreatmentOfPartialReturnsService = class TreatmentOfPartialReturnsService {
-    constructor(entityGoodXLot, entityGoodPartialDelivery, logger, counter, partialPropertyDeliveredService, goodNotDeliveredService) {
+    constructor(entityGoodXLot, entityGoodPartialDelivery, logger, counter, partialPropertyDeliveredService, goodNotDeliveredService, comerBatchService) {
         this.entityGoodXLot = entityGoodXLot;
         this.entityGoodPartialDelivery = entityGoodPartialDelivery;
         this.logger = logger;
         this.counter = counter;
         this.partialPropertyDeliveredService = partialPropertyDeliveredService;
         this.goodNotDeliveredService = goodNotDeliveredService;
+        this.comerBatchService = comerBatchService;
     }
     async treatmentOfPartialReturns(goodNumber) {
         const returnLot = await this.getReturnLots(goodNumber);
@@ -45,6 +47,12 @@ let TreatmentOfPartialReturnsService = class TreatmentOfPartialReturnsService {
                 bxlId: 1,
                 lotConsignment: returnLot.consignmentGoodsId,
                 bxlConsignment: returnLot.consignmentLotId,
+            }));
+            cruds.push(await this.comerBatchService.createComerLotCanceled({
+                pLotId: returnLot.previosGood,
+                pEventId: returnLot.eventId,
+                pLotPubId: returnLot.lotPub,
+                pGood: goodNumber,
             }));
         }
         if (goodsPartialDelivery && returnLot) {
@@ -97,7 +105,8 @@ TreatmentOfPartialReturnsService = __decorate([
         common_1.Logger,
         prom_client_1.Counter,
         partial_property_delivered_service_1.PartialPropertyDeliveredService,
-        good_not_delivered_service_1.GoodNotDeliveredService])
+        good_not_delivered_service_1.GoodNotDeliveredService,
+        comer_batch_service_1.ComerBatchService])
 ], TreatmentOfPartialReturnsService);
 exports.TreatmentOfPartialReturnsService = TreatmentOfPartialReturnsService;
 //# sourceMappingURL=treatment-of-partial-returns.service.js.map

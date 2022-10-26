@@ -6,6 +6,7 @@ import { MessagePattern } from "@nestjs/microservices";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotsDto } from './dto/comer-batch.dto';
 import { ComerBatchService } from "./comer-batch.service";
+import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
 
 @Controller('comer-batch')
 export class ComerBatchController {
@@ -15,8 +16,13 @@ export class ComerBatchController {
   ) {}
 
   @MessagePattern({ cmd: "createComerLot" })
-  createComerLot(comerEvent: ComerLotsDto) {
-    return this.service.createComerLot(comerEvent);
+  createComerLot(comer: ComerLotsDto) {
+    return this.service.createComerLot(comer);
+  }
+
+  @MessagePattern({ cmd: "createComerLotCanceled" })
+  createComerLotCanceled(comer: ComerLotCanceledDto) {
+    return this.service.createComerLotCanceled(comer);
   }
 
   @MessagePattern({ cmd: 'getAllComersLot' })

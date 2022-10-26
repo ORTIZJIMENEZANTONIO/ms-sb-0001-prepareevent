@@ -10,6 +10,7 @@ import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.enti
 import { GoodsEntity } from "../file-util/entities/goods.entity";
 import { PartialPropertyDeliveredService } from "../partial-property-delivered/partial-property-delivered.service";
 import { GoodNotDeliveredService } from "../good-not-delivered/good-not-delivered.service";
+import { ComerBatchService } from "../comer-batch/comer-batch.service";
 
 @Injectable()
 export class TreatmentOfPartialReturnsService {
@@ -22,7 +23,8 @@ export class TreatmentOfPartialReturnsService {
     @InjectMetric("treatment_of_partial_returns_served")
     public counter: Counter<string>,
     private partialPropertyDeliveredService: PartialPropertyDeliveredService,
-    private goodNotDeliveredService: GoodNotDeliveredService
+    private goodNotDeliveredService: GoodNotDeliveredService,
+    private comerBatchService: ComerBatchService
   ) {}
 
   async treatmentOfPartialReturns(goodNumber: number) {
@@ -31,7 +33,7 @@ export class TreatmentOfPartialReturnsService {
     const goodsPartialDelivery = await this.getGoodsPartialDelivery(goodNumber);
 
     const cruds = [];
-    // DEV_LOTNEW := CREAR_LOTE_CAN(DEV_LOTANT, DEV_EVENTO, DEV_LOTPUB, P_BIEN);
+    
     if (returnLot) {
       cruds.push(
         await this.goodNotDeliveredService.updateGoodNotDeliveredToTheCanceledLot(
@@ -44,6 +46,15 @@ export class TreatmentOfPartialReturnsService {
           }
         )
       );
+
+      cruds.push(
+        await this.comerBatchService.createComerLotCanceled({
+          pLotId: returnLot.previosGood,
+          pEventId: returnLot.eventId,
+          pLotPubId: returnLot.lotPub,
+          pGood: goodNumber,
+        })
+      );
     }
 
     if (goodsPartialDelivery && returnLot) {
@@ -54,12 +65,12 @@ export class TreatmentOfPartialReturnsService {
           ldevcant: goodsPartialDelivery.quantity,
           previosGood: goodNumber,
         })
-      )
+      );
     }
 
     console.log(cruds);
 
-    return {cruds};
+    return { cruds };
   }
 
   async getReturnLots(goodNumber: number) {

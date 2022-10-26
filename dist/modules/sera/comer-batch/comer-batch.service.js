@@ -21,11 +21,24 @@ const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_batch_entity_1 = require("./entities/comer-batch.entity");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
+const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 let ComerBatchService = class ComerBatchService {
     constructor(entity, logger, counter) {
         this.entity = entity;
         this.logger = logger;
         this.counter = counter;
+    }
+    async createComerLotCanceled({ pLotId, pEventId, pLotPubId, pGood, }) {
+        const clcLotId = await this.entity.query(`SELECT NEXTVAL('sera.SEQ_COMER_LOTES') as val;`);
+        const clcLotPubId = await this.entity
+            .createQueryBuilder()
+            .select([`MAX(LOTE_PUBLICO) + 1 AS max`])
+            .where(`ID_EVENTO = ${pEventId}`)
+            .getRawOne();
+        const clcDescription = `DEVOLUCION PARCIAL DEL BIEN ${pGood} LOTE ${pLotPubId}`;
+        const lotToCancel = await this.getLotToCancel(pLotId, pGood);
+        const body = Object.assign({ description: clcDescription, publicLot: clcLotPubId.max, id: clcLotId[0].val, originLot: pLotId, statusVtaId: 'CAN', goodsNumber: 1 }, lotToCancel);
+        return await this.entity.save(body);
     }
     async createComerLot(comer) {
         const comerExisting = await this.entity.findOneBy({
@@ -70,6 +83,41 @@ let ComerBatchService = class ComerBatchService {
             data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
             count: (_b = result[1]) !== null && _b !== void 0 ? _b : 0,
         };
+    }
+    async getLotToCancel(lotId, goodNumber) {
+        const lotQuery = this.entity
+            .createQueryBuilder("lot")
+            .select([
+            `LOT.ID_EVENTO as "eventId"`,
+            `LOT.VALOR_BASE as "baseValue"`,
+            `LOT.ID_CLIENTE as "customerId"`,
+            `LOT.PRECIO_GARANTIA as "warrantyPrice"`,
+            `BXL.NO_TRANSFERENTE as "transferenceNumber"`,
+            `BXL.PRECIO_FINAL as "finalPrice"`,
+            `BXL.IVA_FINAL as "lotVat"`,
+            `BXL.PRECIO_SIN_IVA as "amountAppVat"`,
+            `BXL.MONTO_NOAPP_IVA as "amountWithoutVat"`,
+            `LOT.REFERENCIAG as "referenceG"`,
+            `LOT.REFERENCIAL as "referential"`,
+            `LOT.VALIDO_SISTEMA as "systemValid"`,
+            `BXL.MONTO_NOAPP_IVA as "amountNoAppVat"`,
+            `LOT.PORC_APP_IVA as "vatAppPercentage"`,
+            `LOT.PORC_NOAPP_IVA as "vatNoAppPercentage"`,
+            `LOT.COORDINACION_REG as "regCoordination"`,
+            `LOT.COORDINADOR_REG as "regCoordinator"`,
+            `LOT.DATO_FISC_MAND as "fiscMandFact"`,
+            `LOT.UBICACION as "ubication"`,
+            `LOT.ESASIGNADO as "assignedEs"`,
+            `LOT.ESCHATARRA as "scrapEs"`,
+            `LOT.NO_DELEGACION as "delegationNumber"`,
+            `LOT.SOLICITA as "request"`,
+            `LOT.MONTO_RETENIDO as "withheldAmount"`,
+        ])
+            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "bxl")
+            .where(`LOT.ID_LOTE = BXL.ID_LOTE`)
+            .andWhere(`LOT.ID_LOTE = ${lotId}`)
+            .andWhere(`BXL.NO_BIEN = ${goodNumber}`);
+        return await lotQuery.getRawOne();
     }
     async updateComerLot({ lotIdToUpdt }, comer) {
         const data = await this.entity.findOne({
