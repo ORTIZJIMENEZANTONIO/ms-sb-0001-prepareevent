@@ -154,7 +154,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"eventId\": 23264,\n    \"eventTpId\": \"6\",\n    \"statusVtaId\": \"PREP\",\n    \"processCve\": \"SEAF 16/22\",\n    \"observations\": \"SUBASTA ELECTRÓNICA\",\n    \"address\": \"A\",\n    \"failureDate\": null,\n    \"place\": \"CIUDAD DE MÉXICO\",\n    \"eventDate\": null,\n    \"texto1\": null,\n    \"texto2\": null,\n    \"firmante\": null,\n    \"firmanteCargo\": null,\n    \"notes\": null,\n    \"textofin3\": null,\n    \"textofin4\": null,\n    \"baseCost\": \"1\",\n    \"numBaseVend\": null,\n    \"user\": \"JLPEREZ\",\n    \"month\": \"3\",\n    \"year\": \"2022\",\n    \"delegationId\": \"11\",\n    \"faseInmu\": null,\n    \"thirdId\": 1,\n    \"fechaNotificacion\": null,\n    \"eventClosingDate\": null,\n    \"tpsolavalId\": 1,\n    \"ivaApplies\": null\n}",
+							"raw": "{\n    \n    \"eventTpId\": \"6\",\n    \"statusVtaId\": \"PREP\",\n    \"processCve\": \"SEAF 16/22\",\n    \"observations\": \"SUBASTA ELECTRÓNICA\",\n    \"address\": \"A\",\n    \"failureDate\": null,\n    \"place\": \"CIUDAD DE MÉXICO\",\n    \"eventDate\": null,\n    \"texto1\": null,\n    \"texto2\": null,\n    \"firmante\": null,\n    \"firmanteCargo\": null,\n    \"notes\": null,\n    \"textofin3\": null,\n    \"textofin4\": null,\n    \"baseCost\": \"1\",\n    \"numBaseVend\": null,\n    \"user\": \"JLPEREZ\",\n    \"month\": \"3\",\n    \"year\": \"2022\",\n    \"delegationId\": \"11\",\n    \"faseInmu\": null,\n    \"thirdId\": 1,\n    \"fechaNotificacion\": null,\n    \"eventClosingDate\": null,\n    \"tpsolavalId\": 1,\n    \"ivaApplies\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -230,7 +230,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"eventId\": 9999999,\n  \"announcementEventId\": 12,\n  \"description\": \"test\",\n  \"dates\": \"2022-10-14\",\n  \"schedule\": null,\n  \"place\": \"test place\",\n  \"restriction\": null\n}\n",
+							"raw": "{\n  \"eventId\": 9999999,\n  \"announcementEventId\": 43,\n  \"description\": \"test\",\n  \"dates\": \"2022-10-20\",\n  \"schedule\": null,\n  \"place\": \"test place\",\n  \"restriction\": null\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -314,7 +314,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"goodsLotId\": \"1617544\",\n    \"goodsId\": \"2336531\",\n    \"lotId\": \"68949\",\n    \"baseValue\": \"315.00\",\n    \"valueReferential\": null,\n    \"finalPrice\": \"315.01\",\n    \"baseTax\": null,\n    \"finalTax\": \"41.09\",\n    \"taxPercent\": null,\n    \"camp1\": \"CUBIERTA DE CRISTAL\",\n    \"camp2\": \"PAQUETE DE MOBILIARIO 060802 CUAUTLA\",\n    \"camp3\": \"ST\",\n    \"camp4\": \"SM\",\n    \"camp5\": \"SSM\",\n    \"camp6\": \"N/D\",\n    \"camp7\": \"SNS\",\n    \"camp8\": \"SNM\",\n    \"camp9\": \"SNC\",\n    \"quantity\": \"7.000\",\n    \"storeNo\": null,\n    \"expertiseCve\": null,\n    \"appraiserEnterprise\": null,\n    \"inventoryId\": null,\n    \"noTaxPrice\": \"273.92\",\n    \"taxAppAmount\": null,\n    \"taxAmountId\": \"0.00\",\n    \"antStatus\": \"CPV\",\n    \"appraiserDate\": null,\n    \"calcStatus\": null,\n    \"warrantyPrice\": null,\n    \"eatStatus\": \"CPV\",\n    \"transferenceId\": \"31\",\n    \"advance\": null,\n    \"lotPcts\": null,\n    \"creationDate\": \"2008-07-02T05:00:00.000Z\",\n    \"eatLotId\": null,\n    \"eatEventId\": null,\n    \"consignmentEventId\": \"1181\",\n    \"consignmentLotId\": \"66844\",\n    \"consignmentGoodsId\": \"1571079\",\n    \"sold\": \"S\",\n    \"observation\": null,\n    \"billId\": \"H8269\",\n    \"billDate\": \"2008-08-19T05:00:00.000Z\",\n    \"selected\": null,\n    \"annex\": null,\n    \"cylindersId\": null,\n    \"origin\": null,\n    \"originCountry\": null,\n    \"loteDescription\": null,\n    \"delegationId\": null,\n    \"observations2\": null,\n    \"appraisalId\": null,\n    \"taxA\": null\n}",
+							"raw": "{\n    \"goodsLotId\": \"1617546\",\n    \"goodId\": \"2336532\",\n    \"lotId\": 1,\n    \"baseValue\": \"315.00\",\n    \"valueReferential\": null,\n    \"finalPrice\": \"315.01\",\n    \"baseTax\": null,\n    \"finalTax\": \"41.09\",\n    \"taxPercent\": null,\n    \"camp1\": null,\n    \"camp2\": \"PAQUETE DE MOBILIARIO 060802 CUAUTLA\",\n    \"camp3\": \"ST\",\n    \"camp4\": \"SM\",\n    \"camp5\": \"SSM\",\n    \"camp6\": \"N/D\",\n    \"camp7\": \"SNS\",\n    \"camp8\": \"SNM\",\n    \"camp9\": \"SNC\",\n    \"quantity\": \"7.000\",\n    \"storeNo\": null,\n    \"expertiseCve\": null,\n    \"appraiserEnterprise\": null,\n    \"inventoryId\": null,\n    \"noTaxPrice\": \"273.92\",\n    \"taxAppAmount\": null,\n    \"taxAmountId\": \"0.00\",\n    \"antStatus\": \"CPV\",\n    \"appraiserDate\": null,\n    \"calcStatus\": null,\n    \"warrantyPrice\": null,\n    \"eatStatus\": \"CPV\",\n    \"transferenceId\": \"31\",\n    \"advance\": null,\n    \"lotPcts\": null,\n    \"creationDate\": \"2008-07-02T05:00:00.000Z\",\n    \"eatLotId\": null,\n    \"eatEventId\": null,\n    \"consignmentEventId\": \"1181\",\n    \"consignmentLotId\": \"66844\",\n    \"consignmentGoodsId\": \"1571079\",\n    \"sold\": \"S\",\n    \"observation\": null,\n    \"billId\": \"H8269\",\n    \"billDate\": \"2008-08-19T05:00:00.000Z\",\n    \"selected\": null,\n    \"annex\": null,\n    \"cylindersId\": null,\n    \"origin\": null,\n    \"originCountry\": null,\n    \"loteDescription\": null,\n    \"delegationId\": null,\n    \"observations2\": null,\n    \"appraisalId\": null,\n    \"taxA\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -438,7 +438,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \n    \"idEstatusvta\": \"PAG\",\n    \"eventId\": \"17565\",\n    \"publicLot\": \"1\",\n    \"description\": \"LOTE PARA RESERVAR VEHICULO DIF TEST\",\n    \"valorBase\": \"0.00\",\n    \"noTransferente\": \"120\",\n    \"clientId\": null,\n    \"precioAvaluoRef\": null,\n    \"precioGarantia\": null,\n    \"fechaEntrega\": null,\n    \"precioFinal\": null,\n    \"referenciag\": null,\n    \"referencial\": null,\n    \"acumulado\": \"0.00\",\n    \"validoSistema\": null,\n    \"ivaLote\": null,\n    \"montoAppIva\": null,\n    \"montoNoappIva\": null,\n    \"porcAppIva\": null,\n    \"porcNoappIva\": null,\n    \"coordinacionReg\": null,\n    \"coordinadorReg\": null,\n    \"datoFiscMand\": null,\n    \"ubicacion\": null,\n    \"anticipo\": null,\n    \"montoSinIva\": null,\n    \"nooficionotifica\": null,\n    \"imprimenotifica\": null,\n    \"idestatusvtant\": \"APRO\",\n    \"numBienes\": null,\n    \"excedeFalta\": null,\n    \"esasignado\": null,\n    \"eschatarra\": null,\n    \"solicita\": null,\n    \"montoRetenido\": null,\n    \"noDelegacion\": null,\n    \"loteOrigen\": null,\n    \"cubrelotes\": null,\n    \"paleta\": null,\n    \"garantiaAsig\": null,\n    \"montoLiq\": null,\n    \"fase\": null,\n    \"noParcialidades\": null,\n    \"puntosPorcen\": null,\n    \"porcAnticipo\": null,\n    \"aIva\": null\n}",
+							"raw": "{\n    \"id\": 1,\n    \"saleStatusId\": \"PAG\",\n    \"eventId\": 6447,\n    \"publicLot\": 1,\n    \"description\": null,\n    \"baseValue\": \"0.00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -481,6 +481,35 @@
 									"key": "eventId",
 									"value": "11801"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createComerLotCanceled",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pLotId\": 1,\n  \"pEventId\": 1,\n  \"pLotPubId\": 1,\n  \"pGood\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/comer-batch/lot-canceled",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comer-batch",
+								"lot-canceled"
 							]
 						}
 					},
@@ -654,6 +683,105 @@
 							],
 							"path": [
 								"third-base-file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "partial-property-delivered",
+			"item": [
+				{
+					"name": "createNewPartialGood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"lotId\": 22199,\n  \"goodNumber\": 445407,\n  \"ldevcant\": 1,\n  \"previosGood\": 445403\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/partial-property-delivered",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partial-property-delivered"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "good-not-delivered",
+			"item": [
+				{
+					"name": "updateGoodNotDeliveredToTheCanceledLot",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"lotIdNew\": 1,\n  \"lotId\": 22199,\n  \"bxlId\": 1,\n  \"lotConsignment\": 1,\n  \"bxlConsignment\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/good-not-delivered",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"good-not-delivered"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "treatment-of-partial-returns",
+			"item": [
+				{
+					"name": "treatmentOfPartialReturns",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"goodNumber\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/treatment-of-partial-returns",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"treatment-of-partial-returns"
 							]
 						}
 					},
