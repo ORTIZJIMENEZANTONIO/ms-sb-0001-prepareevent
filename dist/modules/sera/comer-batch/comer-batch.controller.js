@@ -20,13 +20,17 @@ const microservices_1 = require("@nestjs/microservices");
 const pagination_dto_1 = require("../../../shared/dto/pagination.dto");
 const comer_batch_dto_1 = require("./dto/comer-batch.dto");
 const comer_batch_service_1 = require("./comer-batch.service");
+const comer_lot_canceled_dto_1 = require("./dto/comer-lot-canceled.dto");
 let ComerBatchController = class ComerBatchController {
     constructor(service, logger) {
         this.service = service;
         this.logger = logger;
     }
-    createComerLot(comerEvent) {
-        return this.service.createComerLot(comerEvent);
+    createComerLot(comer) {
+        return this.service.createComerLot(comer);
+    }
+    createComerLotCanceled(comer) {
+        return this.service.createComerLotCanceled(comer);
     }
     async getAllComersLot(pagination) {
         return await this.service.getAllComersLot(pagination);
@@ -51,6 +55,12 @@ __decorate([
     __metadata("design:paramtypes", [comer_batch_dto_1.ComerLotsDto]),
     __metadata("design:returntype", void 0)
 ], ComerBatchController.prototype, "createComerLot", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "createComerLotCanceled" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [comer_lot_canceled_dto_1.ComerLotCanceledDto]),
+    __metadata("design:returntype", void 0)
+], ComerBatchController.prototype, "createComerLotCanceled", null);
 __decorate([
     (0, microservices_1.MessagePattern)({ cmd: 'getAllComersLot' }),
     __metadata("design:type", Function),
