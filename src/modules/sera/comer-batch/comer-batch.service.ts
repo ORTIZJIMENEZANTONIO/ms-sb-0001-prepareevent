@@ -12,7 +12,7 @@ import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { UpdateComerBatchDto } from "./dto/update-comer-batch.dto";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
-// comer_estatusvta pending to join adn autoincrement
+
 @Injectable()
 export class ComerBatchService {
   constructor(

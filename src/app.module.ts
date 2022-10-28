@@ -20,6 +20,7 @@ import { FileUtilModule } from './modules/sera/file-util/file-util.module';
 import { TreatmentOfPartialReturnsModule } from './modules/sera/treatment-of-partial-returns/treatment-of-partial-returns.module';
 import { GoodNotDeliveredModule } from './modules/sera/good-not-delivered/good-not-delivered.module';
 import { PartialPropertyDeliveredModule } from './modules/sera/partial-property-delivered/partial-property-delivered.module';
+import { PaProcessModule } from './modules/sera/pa-process/pa-process.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { PartialPropertyDeliveredModule } from './modules/sera/partial-property-
     TreatmentOfPartialReturnsModule,
     GoodNotDeliveredModule,
     PartialPropertyDeliveredModule,
+    PaProcessModule,
     //
     ],
     controllers: [AppController],
