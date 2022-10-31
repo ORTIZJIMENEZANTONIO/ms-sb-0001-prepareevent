@@ -29,13 +29,13 @@ let PaProcessController = class PaProcessController {
     }
 };
 __decorate([
-    (0, microservices_1.MessagePattern)('paReject'),
+    (0, microservices_1.MessagePattern)({ cmd: "paReject" }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [reject_dto_1.PaRejectDto]),
     __metadata("design:returntype", Promise)
 ], PaProcessController.prototype, "paReject", null);
 PaProcessController = __decorate([
-    (0, common_1.Controller)('pa-process'),
+    (0, common_1.Controller)("pa-process"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __metadata("design:paramtypes", [pa_process_service_1.PaProcessService,
         winston_1.Logger])

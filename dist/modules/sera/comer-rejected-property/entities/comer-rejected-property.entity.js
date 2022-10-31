@@ -19,7 +19,7 @@ __decorate([
         name: "id_bienrechazado"
     }),
     __metadata("design:type", Number)
-], ComerRejectedPropertyEntity.prototype, "rejectedGoodId", void 0);
+], ComerRejectedPropertyEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
     __metadata("design:type", Number)
@@ -27,7 +27,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_bien", precision: 10, scale: 0 }),
     __metadata("design:type", Number)
-], ComerRejectedPropertyEntity.prototype, "noProperty", void 0);
+], ComerRejectedPropertyEntity.prototype, "propertyNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "origen", nullable: true, length: 15 }),
     __metadata("design:type", String)

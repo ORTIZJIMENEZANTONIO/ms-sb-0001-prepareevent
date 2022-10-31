@@ -26,11 +26,14 @@ const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/ent
 const cat_transferent_entity_1 = require("./entities/cat-transferent.entity");
 const record_entity_1 = require("./entities/record.entity");
 const comer_parameter_mod_entity_1 = require("./entities/comer-parameter-mod.entity");
+const cat_label_entity_1 = require("./entities/cat-label.entity");
+const comer_rejected_property_entity_1 = require("../comer-rejected-property/entities/comer-rejected-property.entity");
 let PaProcessService = class PaProcessService {
-    constructor(entityComerEvent, entityGoods, entityComerLot, logger, counter) {
+    constructor(entityComerEvent, entityGoods, entityComerLot, entityComerRejected, logger, counter) {
         this.entityComerEvent = entityComerEvent;
         this.entityGoods = entityGoods;
         this.entityComerLot = entityComerLot;
+        this.entityComerRejected = entityComerRejected;
         this.logger = logger;
         this.counter = counter;
     }
@@ -52,19 +55,137 @@ let PaProcessService = class PaProcessService {
             .getRawOne();
     }
     async paReject(params) {
+        var _a;
         const { eventId, goodNumber, eventType, lotId, address, origin, pubLot } = params;
-        const prQuery = this.entityGoods
-            .createQueryBuilder("BIE")
-            .select([`BIE.NO_BIEN`, `BIE.DESCRIPCION`, `BIE.ESTATUS`, ``])
-            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "BL")
-            .addFrom(cat_transferent_entity_1.CatTransferentEntity, "CAT")
-            .addFrom(record_entity_1.RecordEntity, "EXD")
-            .addFrom(comer_parameter_mod_entity_1.ParameterModEntity, "PAR ")
-            .where(`NOT EXISTS (SELECT 1 FROM BIENES_TRANS_AVA AVA WHERE AVA.NO_BIEN = BIE.NO_BIEN)`)
-            .andWhere(`BL.NO_BIEN = BIE.NO_BIEN`)
-            .andWhere(`BL.ID_LOTE=${lotId}`)
-            .andWhere(`BL.NO_BIEN=${goodNumber})`);
-        console.log(prQuery.getQuery());
+        const whereBase = `BL.NO_BIEN=BIE.NO_BIEN AND BL.ID_LOTE=${lotId} AND BL.NO_BIEN=${goodNumber}`;
+        const queryResult = {
+            created: 0,
+            createdErrors: 0,
+            updated: 0,
+            updatedErrors: 0
+        };
+        const prQuery1 = this.entityGoods
+            .createQueryBuilder(`bie`)
+            .select([
+            `bie.NO_BIEN`,
+            `bie.DESCRIPCION`,
+            `bie.ESTATUS`,
+            `'||''''||EL MANDATO '||''''||' '||
+        '||'||CAT.CVMAN||'||'||''''||' NO SE PUEDE COMERCIALIZAR'||''''||'' as causa, 3 as tipo, NULL as EVENTOLOT , NULL as LOTEPUB `,
+        ])
+            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "bl")
+            .addFrom(cat_transferent_entity_1.CatTransferentEntity, "cat")
+            .addFrom(record_entity_1.RecordEntity, "exd")
+            .addFrom(comer_parameter_mod_entity_1.ParameterModEntity, "par")
+            .where(whereBase)
+            .andWhere(`cat.CVMAN = par.VALOR `)
+            .andWhere(`bie.NO_EXPEDIENTE = exd.NO_EXPEDIENTE `)
+            .andWhere(`exd.NO_TRANSFERENTE = cat.NO_TRANSFERENTE`)
+            .andWhere(`par.PARAMETRO = 'RESTMAND'`)
+            .andWhere(`par.DIRECCION = '${address}'`);
+        const prQuery2 = this.entityGoods
+            .createQueryBuilder(`bie`)
+            .select([
+            `bie.NO_BIEN`,
+            `bie.DESCRIPCION`,
+            `bie.ESTATUS`,
+            ` '||''''||LA ETIQUETA '||''''||
+        '||'||cat.DESCRIPCION||'||'||''''||' NO SE PUEDE COMERCIALIZAR'||'''' as CAUSA,4 TIPO, NULL EVENTOLOT, NULL LOTEPUB`,
+        ])
+            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "bl")
+            .addFrom(comer_parameter_mod_entity_1.ParameterModEntity, "par")
+            .addFrom(cat_label_entity_1.CatLabelEntity, "cat")
+            .where(whereBase)
+            .andWhere(`bie.NO_ETIQUETA = cat.NO_ETIQUETA`)
+            .andWhere(`par.DIRECCION ='${address}'`)
+            .andWhere(`par.PARAMETRO = 'ETIQUETANP'`)
+            .andWhere(`bie.NO_ETIQUETA = par.VALOR::numeric`);
+        const prQuery3 = this.entityGoods
+            .createQueryBuilder(`bie`)
+            .select([
+            `bie.NO_BIEN`,
+            `bie.DESCRIPCION`,
+            `bie.ESTATUS`,
+            `'||''''||No es un bien del programa de desalojo'||''''||'R1_CAUSA, 5 TIPO '||
+        ', NULL EVENTOLOT, NULL LOTEPUB ' as concat `,
+        ])
+            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "bl")
+            .where(whereBase)
+            .andWhere(`BIE.ESTATUS IN ('VXR', 'VXP')`)
+            .andWhere(`NOT EXISTS (SELECT 1 FROM sera.BIENES_CARGA_MASIVA BCM WHERE BCM.NO_BIEN=BIE.NO_BIEN AND BCM.DESALOJO_DIADIA=1)`);
+        const prQueryAddress = this.entityGoods
+            .createQueryBuilder(`bie`)
+            .select([
+            `bie.NO_BIEN`,
+            `bie.DESCRIPCION`,
+            `bie.ESTATUS`,
+            `'||''''||'||'No cuenta con avaluo'||'''' as  CAUSA`,
+            `NULL TIPO`,
+            `NULL EVENTOLOT`,
+            `NULL LOTEPUB`,
+        ])
+            .addFrom(comer_property_by_batch_entity_1.ComerGoodsXLotEntity, "bl")
+            .where(`NOT EXISTS (SELECT 1 FROM comer.BIENES_TRANS_AVA AVA WHERE AVA.NO_BIEN=bie.NO_BIEN) AND bl.NO_BIEN = bie.NO_BIEN AND bl.ID_LOTE=${lotId} AND bl.NO_BIEN=${goodNumber}`).andWhere(`NOT EXISTS ( SELECT 1 
+    FROM sera.COMER_DETAVALUO DA
+    WHERE DA.NO_BIEN=bie.NO_BIEN
+    limit 1 )`);
+        const results = [
+            ...(await prQuery1.getRawMany()),
+            ...(await prQuery2.getRawMany()),
+            ...(await prQuery3.getRawMany()),
+            ...(eventType != 5 && eventType != 6 && (address == "M" || address == "I")
+                ? await prQueryAddress.getRawMany()
+                : []),
+        ];
+        for (const result of results) {
+            const exists = await this.entityComerRejected
+                .createQueryBuilder("cr")
+                .select([`COUNT(1)`])
+                .where(`no_bien = ${result.no_bien}`)
+                .andWhere(`ID_EVENTO=${eventId}`)
+                .getRawOne();
+            if (exists.count == 0) {
+                const newIdQr = await this.entityComerRejected.query(`Select id_bienrechazado from sera.comer_bienesrechazados order by id_bienrechazado desc limit 1`);
+                const newId = newIdQr[0] ? newIdQr + 1 : 1;
+                try {
+                    await this.entityComerRejected.save({
+                        id: newId,
+                        eventId: eventId,
+                        propertyNumber: goodNumber,
+                        origin: origin,
+                        description: result.descripcion,
+                        status: result.estatus,
+                        cause: result.causa,
+                        event: null,
+                        batchPublic: result.pubLot,
+                        rejectedReason: result.tipo,
+                        batchOrigin: pubLot,
+                    });
+                    queryResult.created++;
+                }
+                catch (error) {
+                    console.error((_a = error.detail) !== null && _a !== void 0 ? _a : error);
+                    queryResult.createdErrors++;
+                }
+            }
+            else {
+                const existingObject = await this.entityComerRejected
+                    .createQueryBuilder()
+                    .select([`causa`])
+                    .where(`no_bien = ${goodNumber}`)
+                    .andWhere(`ID_EVENTO = ${eventId}`)
+                    .getRawOne();
+                const { affected } = await this.entityComerRejected
+                    .createQueryBuilder()
+                    .update(comer_rejected_property_entity_1.ComerRejectedPropertyEntity)
+                    .set({ cause: `${existingObject.causa}, ${result.causa}` })
+                    .where(`no_bien = ${result.no_bien}`)
+                    .andWhere(`ID_EVENTO=${eventId}`)
+                    .execute();
+                queryResult.updated = +affected;
+            }
+        }
+        return queryResult;
     }
 };
 PaProcessService = __decorate([
@@ -72,9 +193,11 @@ PaProcessService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(goods_entity_1.GoodsEntity)),
     __param(2, (0, typeorm_1.InjectRepository)(comer_batch_entity_1.ComerLotsEntity)),
-    __param(3, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
-    __param(4, (0, nestjs_prometheus_1.InjectMetric)("pa_process_served")),
+    __param(3, (0, typeorm_1.InjectRepository)(comer_rejected_property_entity_1.ComerRejectedPropertyEntity)),
+    __param(4, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
+    __param(5, (0, nestjs_prometheus_1.InjectMetric)("pa_process_served")),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
         common_1.Logger,

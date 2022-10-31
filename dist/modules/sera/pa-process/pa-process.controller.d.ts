@@ -5,5 +5,10 @@ export declare class PaProcessController {
     private readonly service;
     private readonly logger;
     constructor(service: PaProcessService, logger: Logger);
-    paReject(comer: PaRejectDto): Promise<void>;
+    paReject(comer: PaRejectDto): Promise<{
+        created: number;
+        createdErrors: number;
+        updated: number;
+        updatedErrors: number;
+    }>;
 }

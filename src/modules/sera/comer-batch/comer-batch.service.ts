@@ -53,18 +53,7 @@ export class ComerBatchService {
       goodsNumber: 1,
       ...lotToCancel,
     };
-    // console.log(body)
-    /*
-    console.log(
-      " clcLotId",
-      clcLotId[0],
-      " clcLotPubId",
-      clcLotPubId,
-      clcDescription,
-      " lotToCancel",
-      lotToCancel
-    );
-    */
+   
     return await this.entity.save(body);
   }
 

@@ -23,7 +23,7 @@ export class ComerRejectedPropertyService {
 
   async createComerRejectedProperty(comer: ComerRejectedGoodDto) {
     const comerExisting = await this.entity.findOneBy({
-      rejectedGoodId: comer.rejectedGoodId,
+      id: comer.rejectedGoodId,
     });
 
     if (comerExisting) {
@@ -107,7 +107,7 @@ export class ComerRejectedPropertyService {
     comer: ComerRejectedGoodDto
   ) {
     const data = await this.entity.findOneBy({
-      rejectedGoodId: rejectedGoodIdToUpdt,
+      id: rejectedGoodIdToUpdt,
     });
 
     if (data) {

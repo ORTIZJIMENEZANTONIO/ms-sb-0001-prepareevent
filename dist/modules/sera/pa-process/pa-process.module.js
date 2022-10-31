@@ -12,6 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
+const comer_rejected_property_entity_1 = require("../comer-rejected-property/entities/comer-rejected-property.entity");
 const goods_entity_1 = require("./entities/goods.entity");
 const pa_process_controller_1 = require("./pa-process.controller");
 const pa_process_service_1 = require("./pa-process.service");
@@ -20,7 +21,7 @@ let PaProcessModule = class PaProcessModule {
 PaProcessModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([goods_entity_1.GoodsEntity, comer_events_entity_1.ComerEventEntity, comer_batch_entity_1.ComerLotsEntity]),
+            typeorm_1.TypeOrmModule.forFeature([goods_entity_1.GoodsEntity, comer_events_entity_1.ComerEventEntity, comer_batch_entity_1.ComerLotsEntity, comer_rejected_property_entity_1.ComerRejectedPropertyEntity]),
         ],
         controllers: [pa_process_controller_1.PaProcessController],
         providers: [
