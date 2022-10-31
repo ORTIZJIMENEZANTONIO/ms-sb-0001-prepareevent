@@ -62,7 +62,7 @@ let PaProcessService = class PaProcessService {
             created: 0,
             createdErrors: 0,
             updated: 0,
-            updatedErrors: 0
+            updatedErrors: 0,
         };
         const prQuery1 = this.entityGoods
             .createQueryBuilder(`bie`)
@@ -187,6 +187,116 @@ let PaProcessService = class PaProcessService {
         }
         return queryResult;
     }
+    async paRemittancePrepByGood(params) {
+        var _a, _b;
+        const { eventId, goodNumber, cause, eventType } = params;
+        const queryResult = {
+            created: 0,
+            createdErrors: 0,
+            updated: 0,
+            updatedErrors: 0,
+        };
+        const query1 = await this.entityGoods
+            .createQueryBuilder()
+            .select([`estatus as "status"`, `descripcion as "description"`])
+            .where(`no_bien = ${goodNumber}`)
+            .getRawOne();
+        const query2 = await this.entityComerEvent
+            .createQueryBuilder("ce")
+            .select([`ce.ID_EVENTO as "eventId"`, `ce.ID_TPEVENTO as "tpEventId"`])
+            .addFrom(comer_batch_entity_1.ComerLotsEntity, "cl")
+            .where(`ce.ID_EVENTO = cl.ID_EVENTO`)
+            .andWhere(`ce.ID_TPEVENTO != 6`)
+            .andWhere(`NOT EXISTS ( SELECT 1 FROM sera.COMER_PARAMETROSMOD cp
+            WHERE cl.ID_ESTATUSVTA = cp.PARAMETRO   
+              AND VALOR = 'TPCAN'  
+              AND DIRECCION = ce.DIRECCION)`)
+            .andWhere(`CL.ID_LOTE= ( SELECT MAX(ID_LOTE) FROM sera.COMER_BIENESXLOTE CB
+        WHERE CB.NO_BIEN =  ${goodNumber})`)
+            .getRawMany();
+        const query3 = await this.entityComerRejected
+            .query(`SELECT COUNT(1) as "goodRejected"
+      FROM sera.COMER_BIENESRECHAZADOS
+      WHERE NO_BIEN = ${goodNumber}
+      AND ID_EVENTO = ${eventId}`);
+        console.log(query1, query2, query3[0]);
+        if (query2[0].tpEventId == 10) {
+            const valEvn6 = goodNumber;
+            if (valEvn6 == 0) {
+                const causeFinal = `-NO EXISTE EN UNA REMESA1`;
+                const newId = (_a = (await this.entityComerRejected.query(`SELECT NEXTVAL('SEQ_COMER_BIENRECHAZADO')`))) !== null && _a !== void 0 ? _a : 1;
+                if (query3[0].goodRejected == 0) {
+                    this.entityComerRejected.save({
+                        id: newId,
+                        eventId,
+                        goodNumber,
+                        origin: cause,
+                        causeFinal,
+                        description: query1[0].description,
+                        status: query1[0].status,
+                    });
+                    queryResult.created++;
+                }
+                else {
+                    const existingObject = await this.entityComerRejected
+                        .createQueryBuilder()
+                        .select([`causa`])
+                        .where(`no_bien = ${goodNumber}`)
+                        .andWhere(`ID_EVENTO = ${eventId}`)
+                        .getRawOne();
+                    const { affected } = await this.entityComerRejected
+                        .createQueryBuilder()
+                        .update(comer_rejected_property_entity_1.ComerRejectedPropertyEntity)
+                        .set({ cause: `${existingObject.causa}, ${causeFinal}` })
+                        .where(`no_bien = ${goodNumber}`)
+                        .andWhere(`ID_EVENTO = ${eventId}`)
+                        .execute();
+                    queryResult.updated = +affected;
+                }
+            }
+        }
+        else if (query2[0].tpEventId != 6 && query2[0].tpEventId == 10) {
+            const valEvn6 = goodNumber;
+            const sumValGood6 = valEvn6 == 0 ? 1 : 0;
+            const cause = valEvn6 == 0 ? "- NO EXISTE EN UNA REMESA2" : "";
+            const valEvn10 = goodNumber;
+            const sumValGood10 = valEvn10 == 0 ? 1 : 0;
+            const cause2 = valEvn10 == 0 ? "- NO EXISTE EN UN EVENTO DE PREPARACION" : "";
+            const sumValFinal = sumValGood6 + sumValGood10;
+            const causeFinal = `${cause} ${cause2}`;
+            if (sumValFinal >= 1 && query3[0].goodRejected == 0) {
+                const newId = (_b = (await this.entityComerRejected.query(`SELECT NEXTVAL('SEQ_COMER_BIENRECHAZADO')`))) !== null && _b !== void 0 ? _b : 1;
+                this.entityComerRejected.save({
+                    id: newId,
+                    eventId,
+                    goodNumber,
+                    origin: cause,
+                    causeFinal,
+                    description: query1[0].description,
+                    status: query1[0].status,
+                });
+                queryResult.created++;
+            }
+            else if (sumValFinal >= 1 && query3[0].goodRejected != 0) {
+                const existingObject = await this.entityComerRejected
+                    .createQueryBuilder()
+                    .select([`causa`])
+                    .where(`no_bien = ${goodNumber}`)
+                    .andWhere(`ID_EVENTO = ${eventId}`)
+                    .getRawOne();
+                const { affected } = await this.entityComerRejected
+                    .createQueryBuilder()
+                    .update(comer_rejected_property_entity_1.ComerRejectedPropertyEntity)
+                    .set({ cause: `${existingObject.causa}, ${causeFinal}` })
+                    .where(`no_bien = ${goodNumber}`)
+                    .andWhere(`ID_EVENTO = ${eventId}`)
+                    .execute();
+                queryResult.updated = +affected;
+            }
+        }
+        return queryResult;
+    }
+    async paChangeStatusValidate() { }
 };
 PaProcessService = __decorate([
     (0, common_1.Injectable)(),

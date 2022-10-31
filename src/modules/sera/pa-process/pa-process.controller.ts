@@ -5,6 +5,7 @@ import { MessagePattern } from "@nestjs/microservices";
 
 import { PaProcessService } from "./pa-process.service";
 import { PaRejectDto } from "./dto/reject.dto";
+import { RemittancePrepByGoodDto } from "./dto/remmitance-prep-by-good.dto";
 
 @Controller("pa-process")
 export class PaProcessController {
@@ -16,5 +17,10 @@ export class PaProcessController {
   @MessagePattern({ cmd: "paReject" })
   async paReject(comer: PaRejectDto) {
     return await this.service.paReject(comer);
+  }
+
+  @MessagePattern({ cmd: "paRemittancePrepByGood" })
+  async paRemittancePrepByGood(comer: RemittancePrepByGoodDto) {
+    return await this.service.paRemittancePrepByGood(comer);
   }
 }
