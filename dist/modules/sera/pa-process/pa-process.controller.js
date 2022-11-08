@@ -20,6 +20,7 @@ const microservices_1 = require("@nestjs/microservices");
 const pa_process_service_1 = require("./pa-process.service");
 const reject_dto_1 = require("./dto/reject.dto");
 const remmitance_prep_by_good_dto_1 = require("./dto/remmitance-prep-by-good.dto");
+const change_status_validate_dto_1 = require("./dto/change-status-validate.dto");
 let PaProcessController = class PaProcessController {
     constructor(service, logger) {
         this.service = service;
@@ -30,6 +31,9 @@ let PaProcessController = class PaProcessController {
     }
     async paRemittancePrepByGood(comer) {
         return await this.service.paRemittancePrepByGood(comer);
+    }
+    async paChangeStatusValidate(comer) {
+        return await this.service.paChangeStatusValidate(comer);
     }
 };
 __decorate([
@@ -44,6 +48,12 @@ __decorate([
     __metadata("design:paramtypes", [remmitance_prep_by_good_dto_1.RemittancePrepByGoodDto]),
     __metadata("design:returntype", Promise)
 ], PaProcessController.prototype, "paRemittancePrepByGood", null);
+__decorate([
+    (0, microservices_1.MessagePattern)({ cmd: "paChangeStatusValidate" }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [change_status_validate_dto_1.ChangeStatusValidateDto]),
+    __metadata("design:returntype", Promise)
+], PaProcessController.prototype, "paChangeStatusValidate", null);
 PaProcessController = __decorate([
     (0, common_1.Controller)("pa-process"),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

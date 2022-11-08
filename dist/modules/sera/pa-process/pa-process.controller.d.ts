@@ -2,6 +2,7 @@ import { Logger } from "winston";
 import { PaProcessService } from "./pa-process.service";
 import { PaRejectDto } from "./dto/reject.dto";
 import { RemittancePrepByGoodDto } from "./dto/remmitance-prep-by-good.dto";
+import { ChangeStatusValidateDto } from "./dto/change-status-validate.dto";
 export declare class PaProcessController {
     private readonly service;
     private readonly logger;
@@ -18,4 +19,5 @@ export declare class PaProcessController {
         updated: number;
         updatedErrors: number;
     }>;
+    paChangeStatusValidate(comer: ChangeStatusValidateDto): Promise<{}>;
 }

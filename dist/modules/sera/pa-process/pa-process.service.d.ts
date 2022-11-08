@@ -7,14 +7,17 @@ import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities
 import { ActGoodLotMDto } from "./dto/act-good-lot-m.dto";
 import { PaRejectDto } from "./dto/reject.dto";
 import { RemittancePrepByGoodDto } from "./dto/remmitance-prep-by-good.dto";
+import { ChangeStatusValidateDto } from "./dto/change-status-validate.dto";
+import { GoodAtribMalEntity } from "./entities/good-atrib-mal.entity";
 export declare class PaProcessService {
     private entityComerEvent;
     private entityGoods;
     private entityComerLot;
     private entityComerRejected;
+    private entityGoodAtrib;
     private readonly logger;
     counter: Counter<string>;
-    constructor(entityComerEvent: Repository<ComerEventEntity>, entityGoods: Repository<ComerEventEntity>, entityComerLot: Repository<ComerLotsEntity>, entityComerRejected: Repository<ComerRejectedPropertyEntity>, logger: Logger, counter: Counter<string>);
+    constructor(entityComerEvent: Repository<ComerEventEntity>, entityGoods: Repository<ComerEventEntity>, entityComerLot: Repository<ComerLotsEntity>, entityComerRejected: Repository<ComerRejectedPropertyEntity>, entityGoodAtrib: Repository<GoodAtribMalEntity>, logger: Logger, counter: Counter<string>);
     paActGoodLotMDto(params: ActGoodLotMDto): Promise<void>;
     paReject(params: PaRejectDto): Promise<{
         created: number;
@@ -28,5 +31,8 @@ export declare class PaProcessService {
         updated: number;
         updatedErrors: number;
     }>;
-    paChangeStatusValidate(): Promise<void>;
+    paChangeStatusValidate(params: ChangeStatusValidateDto): Promise<{}>;
+    createReason(query: string, getAttrib: Function, countQuery: Function, p1: any, p2: any): Promise<{
+        returnMessages: any[];
+    }>;
 }
