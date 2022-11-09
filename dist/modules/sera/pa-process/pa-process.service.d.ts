@@ -31,8 +31,5 @@ export declare class PaProcessService {
         updated: number;
         updatedErrors: number;
     }>;
-    paChangeStatusValidate(params: ChangeStatusValidateDto): Promise<{}>;
-    createReason(query: string, getAttrib: Function, countQuery: Function, p1: any, p2: any): Promise<{
-        returnMessages: any[];
-    }>;
+    paChangeStatusValidate(params: ChangeStatusValidateDto): Promise<any[]>;
 }

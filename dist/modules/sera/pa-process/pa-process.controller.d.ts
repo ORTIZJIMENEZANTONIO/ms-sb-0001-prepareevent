@@ -19,5 +19,5 @@ export declare class PaProcessController {
         updated: number;
         updatedErrors: number;
     }>;
-    paChangeStatusValidate(comer: ChangeStatusValidateDto): Promise<{}>;
+    paChangeStatusValidate(comer: ChangeStatusValidateDto): Promise<any[]>;
 }

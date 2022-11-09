@@ -301,7 +301,8 @@ let PaProcessService = class PaProcessService {
     async paChangeStatusValidate(params) {
         const { p1, p2, p3, p4, p5 } = params;
         const variables = {
-            cause: null
+            cause: null,
+            withoutPhoto: "BIEN SIN FOTOS",
         };
         const returnMessages = [];
         const dictums = `
@@ -319,20 +320,6 @@ let PaProcessService = class PaProcessService {
         AND CSB.NO_TIPO IN (5,6)
         AND NOT EXISTS (SELECT 1 FROM COMER.BIENES_TRANS_AVA WHERE NO_BIEN = BNS.NO_BIEN)
     `;
-        const getAttrib2 = async (goodClasificationNumber) => {
-            return await this.entityGoods
-                .query(`SELECT NO_COLUMNA, 'VAL'||NO_COLUMNA VAL_COLUMNA, DSATRIBUTO
-          FROM sera.ATRIBUTOS_CLASIF_BIEN
-          WHERE NO_CLASIF_BIEN = ${goodClasificationNumber}
-            AND TIPO_ACT IN (1,2)
-            AND REQUERIDO = 'S'
-          ORDER BY NO_COLUMNA;`);
-        };
-        const dictumsCount = (goodClasificationNumber) => `SELECT COUNT(1) as count
-    FROM sera.ATRIBUTOS_CLASIF_BIEN
-    WHERE sera.NO_CLASIF_BIEN = ${goodClasificationNumber}
-      AND TIPO_ACT IN (1,2)
-      AND REQUERIDO = 'S';`;
         const agreements = ` 
       SELECT AER.NO_BIEN, BNS.NO_CLASIF_BIEN, CSB.NO_TIPO, CSB.NO_SUBTIPO, BNS.FEC_AVALUO_VIG, BNS.VALOR_AVALUO,
         BNS.VAL1,  BNS.VAL2,  BNS.VAL3,  BNS.VAL4,  BNS.VAL5,  BNS.VAL6,  BNS.VAL7,  BNS.VAL8,  BNS.VAL9,  BNS.VAL10,
@@ -347,21 +334,7 @@ let PaProcessService = class PaProcessService {
         AND CSB.NO_TIPO IN (5,6)
         AND NOT EXISTS (SELECT 1 FROM COMER.BIENES_TRANS_AVA WHERE NO_BIEN = AER.NO_BIEN);
     `;
-        const getAttrib3 = async (goodClasificationNumber) => {
-            return await this.entityGoods
-                .query(`SELECT NO_COLUMNA, 'VAL'||NO_COLUMNA VAL_COLUMNA, DSATRIBUTO
-        FROM sera.ATRIBUTOS_CLASIF_BIEN
-        WHERE NO_CLASIF_BIEN = ${goodClasificationNumber}
-          AND TIPO_ACT IN (1,2,3)
-          AND REQUERIDO = 'S'
-        ORDER BY NO_COLUMNA;`);
-        };
-        const agreementsCount = (goodClasificationNumber) => `SELECT COUNT(1) as count
-    FROM sera.ATRIBUTOS_CLASIF_BIEN
-    WHERE sera.NO_CLASIF_BIEN = ${goodClasificationNumber}
-      AND TIPO_ACT IN (1,2,3)
-      AND REQUERIDO = 'S';`;
-        const goods = await this.entityGoods.query(`
+        const goods = `
       SELECT BNS.NO_BIEN, BNS.DESCRIPCION, BNS.ESTATUS, BNS.NO_CLASIF_BIEN, CSB.NO_TIPO, CSB.NO_SUBTIPO, BNS.FEC_AVALUO_VIG, BNS.VALOR_AVALUO,
         BNS.VAL1,  BNS.VAL2,  BNS.VAL3,  BNS.VAL4,  BNS.VAL5,  BNS.VAL6,  BNS.VAL7,  BNS.VAL8,  BNS.VAL9,  BNS.VAL10,
         BNS.VAL11, BNS.VAL12, BNS.VAL13, BNS.VAL14, BNS.VAL15, BNS.VAL16, BNS.VAL17, BNS.VAL18, BNS.VAL19, BNS.VAL20,
@@ -373,397 +346,468 @@ let PaProcessService = class PaProcessService {
         AND BNS.NO_BIEN = ${p2}
         AND CSB.NO_TIPO IN (5,6)
         AND NOT EXISTS (SELECT 1 FROM COMER.BIENES_TRANS_AVA WHERE NO_BIEN = BNS.NO_BIEN);
-    `);
+    `;
+        const getAttrib2 = async (goodClasificationNumber) => {
+            return await this.entityGoods
+                .query(`SELECT NO_COLUMNA, 'VAL'||NO_COLUMNA VAL_COLUMNA, DSATRIBUTO
+          FROM sera.ATRIBUTOS_CLASIF_BIEN
+          WHERE NO_CLASIF_BIEN = ${goodClasificationNumber}
+            AND TIPO_ACT IN (1,2)
+            AND REQUERIDO = 'S'
+          ORDER BY NO_COLUMNA;`);
+        };
+        const getAttrib3 = async (goodClasificationNumber) => {
+            return await this.entityGoods
+                .query(`SELECT NO_COLUMNA, 'VAL'||NO_COLUMNA VAL_COLUMNA, DSATRIBUTO
+        FROM sera.ATRIBUTOS_CLASIF_BIEN
+        WHERE NO_CLASIF_BIEN = ${goodClasificationNumber}
+          AND TIPO_ACT IN (1,2,3)
+          AND REQUERIDO = 'S'
+        ORDER BY NO_COLUMNA;`);
+        };
+        const dictumsCount = (goodClasificationNumber) => `SELECT COUNT(1) as count
+    FROM sera.ATRIBUTOS_CLASIF_BIEN
+    WHERE sera.NO_CLASIF_BIEN = ${goodClasificationNumber}
+      AND TIPO_ACT IN (1,2)
+      AND REQUERIDO = 'S';`;
+        const agreementsCount = (goodClasificationNumber) => `SELECT COUNT(1) as count
+    FROM sera.ATRIBUTOS_CLASIF_BIEN
+    WHERE NO_CLASIF_BIEN = ${goodClasificationNumber}
+      AND TIPO_ACT IN (1,2,3)
+      AND REQUERIDO = 'S';`;
         const getPhotos = async (goodNumber) => {
             return await this.entityGoods.query(`SELECT NO_CONSEC, FEC_FOTO, UBICACION
         FROM sera.BIENES_FOTO FOT
         WHERE FOT.NO_BIEN = ${goodNumber};`);
         };
-        const phtosCount = (goodNumber) => `SELECT COUNT(1) count
+        const photosCount = (goodNumber) => `SELECT COUNT(1) count
       FROM sera.BIENES_FOTO
       WHERE NO_BIEN = ${goodNumber};`;
-        await this.entityGoodAtrib.delete({
+        const deleted = await this.entityGoodAtrib.delete({
             par1: p1,
             par2: p2,
         });
-        switch (p1) {
-            case 2:
-                console.log(2);
-                return this.createReason(dictums, getAttrib2, dictumsCount, p1, p2);
-            case 3:
-                return this.createReason(agreements, getAttrib3, agreementsCount, p1, p2);
-            case 4:
-                return {};
-            default:
-                return {};
-        }
-    }
-    async createReason(query, getAttrib, countQuery, p1, p2) {
-        var _a;
-        const elements = await this.entityGoods.query(query);
-        const variables = {
-            cause: null
-        };
-        const returnMessages = [];
-        console.log(elements);
+        returnMessages.push(deleted);
+        const query = p1 == 2 ? dictums : p1 == 3 ? agreements : p1 == 4 ? goods : null;
+        const elements = query ? await this.entityGoods.query(query) : [];
+        console.log(query);
         for (const element of elements) {
-            if (element.NO_CLASIF_BIEN) {
-                const check1 = await this.entityGoods
-                    .query(countQuery(element.NO_CLASIF_BIEN));
-                console.log(check1);
+            console.log(element);
+            if (element.no_clasif_bien) {
+                const countQuery = p1 == 2
+                    ? dictumsCount(element.no_clasif_bien)
+                    : p1 == 3 || p1 == 4
+                        ? agreementsCount(element.no_clasif_bien)
+                        : dictumsCount(element.no_clasif_bien);
+                const check1 = await this.entityGoods.query(countQuery);
+                console.log(check1[0].count);
                 if (check1[0].count > 0) {
-                    const attribs = (_a = await getAttrib(element.NO_CLASIF_BIEN)) !== null && _a !== void 0 ? _a : [];
+                    const attribs = p1 == 2
+                        ? await getAttrib3(element.no_clasif_bien)
+                        : p1 == 3 || p1 == 4
+                            ? await getAttrib2(element.no_clasif_bien)
+                            : [];
                     for (const attrib of attribs) {
-                        if (attrib.NO_COLUMNA != null) {
-                            switch (attrib.NO_COLUMNA) {
+                        if (attrib.no_columna) {
+                            switch (attrib.no_columna) {
                                 case 1:
                                     if (element.VAL1 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 2:
                                     if (element.VAL2 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 3:
                                     if (element.VAL3 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 4:
                                     if (element.VAL4 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 5:
                                     if (element.VAL5 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 6:
                                     if (element.VAL6 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 7:
                                     if (element.VAL7 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 8:
                                     if (element.VAL8 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 9:
                                     if (element.VAL9 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 10:
                                     if (element.VAL10 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 11:
                                     if (element.VAL11 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 12:
                                     if (element.VAL12 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 13:
                                     if (element.VAL13 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 14:
                                     if (element.VAL14 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 15:
                                     if (element.VAL15 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 16:
                                     if (element.VAL16 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 17:
                                     if (element.VAL17 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 18:
                                     if (element.VAL18 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 19:
                                     if (element.VAL19 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 20:
                                     if (element.VAL20 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 21:
                                     if (element.VAL21 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 22:
                                     if (element.VAL22 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 23:
                                     if (element.VAL23 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 24:
                                     if (element.VAL24 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 25:
                                     if (element.VAL25 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 26:
                                     if (element.VAL26 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 27:
                                     if (element.VAL27 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 28:
                                     if (element.VAL28 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 29:
                                     if (element.VAL29 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 30:
                                     if (element.VAL30 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 31:
                                     if (element.VAL31 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 32:
                                     if (element.VAL32 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 33:
                                     if (element.VAL33 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 34:
                                     if (element.VAL34 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 35:
                                     if (element.VAL35 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 36:
                                     if (element.VAL36 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 37:
                                     if (element.VAL37 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 38:
                                     if (element.VAL38 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 39:
                                     if (element.VAL39 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 40:
                                     if (element.VAL40 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 41:
                                     if (element.VAL41 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 42:
                                     if (element.VAL42 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 43:
                                     if (element.VAL43 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 44:
                                     if (element.VAL44 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 45:
                                     if (element.VAL45 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 46:
                                     if (element.VAL46 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 47:
                                     if (element.VAL47 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 48:
                                     if (element.VAL48 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 49:
                                     if (element.VAL49 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 case 50:
                                     if (element.VAL50 != null) {
-                                        variables.cause = (variables.cause == null)
-                                            ? attrib.DSATRIBUTO
-                                            : `${variables.cause}/${attrib.DSATRIBUTO}`;
+                                        variables.cause =
+                                            variables.cause == null
+                                                ? attrib.DSATRIBUTO
+                                                : `${variables.cause}/${attrib.DSATRIBUTO}`;
                                     }
                                     break;
                                 default:
@@ -771,39 +815,148 @@ let PaProcessService = class PaProcessService {
                             }
                         }
                         else {
-                            returnMessages.push(`NO SE ENCONTRARON DATOS DE CLASIFICADOR ${element.NO_BIEN}`);
+                            returnMessages.push(`NO SE ENCONTRARON DATOS DE CLASIFICADOR ${element.no_bien}`);
                         }
                     }
-                    if (element.NO_TIPO = 6 && element.NO_SUBTIPO == 1 && element.VAL14 == 'S') {
-                        if (!element.FEC_AVALUO_VIG) {
-                            element.FEC_AVALUO_VIG_NULO = 'FEC_AVALUO_VIG';
-                            variables.cause = (!variables.cause)
-                                ? element.FEC_AVALUO_VIG_NULO
-                                : `${variables.cause}/${element.FEC_AVALUO_VIG_NULO}`;
+                    if ((element.no_tipo =
+                        6 && element.no_subtipo == 1 && element.val14 == "S")) {
+                        if (!element.fec_avaluo_vig) {
+                            element.fec_avaluo_vig_nulo = "FEC_AVALUO_VIG";
+                            variables.cause = !variables.cause
+                                ? element.fec_avaluo_vig_nulo
+                                : `${variables.cause}/${element.fec_avaluo_vig_nulo}`;
                         }
                     }
-                    if (element.NO_TIPO = 6 && element.NO_SUBTIPO == 1 && element.VAL14 == 'S') {
-                        if (!element.VALOR_AVALUO) {
-                            element.FEC_AVALUO_VIG_NULO = 'VALOR_AVALUO';
-                            variables.cause = (!variables.cause)
-                                ? element.VALOR_AVALUO_NULO
-                                : `${variables.cause}/${element.VALOR_AVALUO_NULO}`;
+                    if ((element.no_tipo =
+                        6 && element.no_subtipo == 1 && element.val14 == "S")) {
+                        if (!element.valor_avaluo) {
+                            element.fec_avaluo_vig_nulo = "VALOR_AVALUO";
+                            variables.cause = !variables.cause
+                                ? element.valor_avaluo_nulo
+                                : `${variables.cause}/${element.valor_avaluo_nulo}`;
+                        }
+                    }
+                    if (p1 == 3 || p1 == 4) {
+                        const goodPhotoCta = await this.entityGoods.query(photosCount(element.NO_BIEN));
+                        if (goodPhotoCta[0].count == 0) {
+                            variables.cause = !variables.cause
+                                ? variables.withoutPhoto
+                                : `${variables.cause}/${variables.withoutPhoto}`;
+                        }
+                        else {
+                            const photos = await getPhotos(element.NO_BIEN);
+                            for (const photo of photos) {
+                                if (!photo.fec_foto) {
+                                    const nullPhoto = `'EL CAMPO FEC_FOTO DE LA TABLA BIENES_FOTO ESTA NULO EN EL CONSECUTIVO ${photo.NO_CONSEC}`;
+                                    variables.cause = !variables.cause
+                                        ? nullPhoto
+                                        : `${variables.cause}/${nullPhoto}`;
+                                }
+                                if (!photo.ubicacion) {
+                                    const nullUbication = `'EL CAMPO UBICACION DE LA TABLA BIENES_FOTO ESTA NULO EN EL CONSECUTIVO  ${photo.NO_CONSEC}`;
+                                    variables.cause = !variables.cause
+                                        ? nullUbication
+                                        : `${variables.cause}/${nullUbication}`;
+                                }
+                            }
                         }
                     }
                     if (variables.cause) {
-                        const newGoodAtrib = await this.entityGoodAtrib.save({
-                            id: element.NO_BIEN,
-                            reason: variables.cause,
-                            par1: p1,
-                            par2: p2
-                        });
+                        const newId = p1 == 2 || p1 == 3
+                            ? element.no_bien
+                            : await this.entityComerRejected.query(`SELECT NEXTVAL('sera.SEQ_COMER_BIENRECHAZADO') as val`);
+                        const newGoodAtrib = p1 == 2 || p1 == 3
+                            ? await this.entityGoodAtrib.save({
+                                id: newId,
+                                reason: variables.cause,
+                                par1: p1,
+                                par2: p2,
+                            })
+                            : await this.entityComerRejected.save({
+                                id: newId[0].val,
+                                eventId: p4,
+                                propertyNumber: element.no_bien,
+                                origin: p3,
+                                description: element.descripcion,
+                                status: element.estatus,
+                                cause: variables.cause,
+                            });
                         returnMessages.push(newGoodAtrib);
                     }
-                    variables.cause = '';
+                    variables.cause = "";
+                }
+                else {
+                    if (p1 == 3 || p1 == 4) {
+                        if (p1 == 4) {
+                            if ((element.no_tipo =
+                                6 && element.no_subtipo == 1 && element.val14 == "S")) {
+                                if (!element.fec_avaluo_vig) {
+                                    element.fec_avaluo_vig_nulo = "FEC_AVALUO_VIG";
+                                    variables.cause = !variables.cause
+                                        ? element.fec_avaluo_vig_nulo
+                                        : `${variables.cause}/${element.fec_avaluo_vig_nulo}`;
+                                }
+                            }
+                            if ((element.no_tipo =
+                                6 && element.no_subtipo == 1 && element.val14 == "S")) {
+                                if (!element.valor_avaluo) {
+                                    element.fec_avaluo_vig_nulo = "VALOR_AVALUO";
+                                    variables.cause = !variables.cause
+                                        ? element.valor_avaluo_nulo
+                                        : `${variables.cause}/${element.valor_avaluo_nulo}`;
+                                }
+                            }
+                        }
+                        const goodPhotoCta = await this.entityGoods.query(photosCount(element.no_bien));
+                        if (goodPhotoCta[0].count == 0) {
+                            variables.cause = !variables.cause
+                                ? variables.withoutPhoto
+                                : `${variables.cause}/${variables.withoutPhoto}`;
+                        }
+                        else {
+                            const photos = await getPhotos(element.no_bien);
+                            for (const photo of photos) {
+                                if (!photo.fec_foto) {
+                                    const nullPhoto = `'EL CAMPO FEC_FOTO DE LA TABLA BIENES_FOTO ESTA NULO EN EL CONSECUTIVO ${photo.no_consec}`;
+                                    variables.cause = !variables.cause
+                                        ? nullPhoto
+                                        : `${variables.cause}/${nullPhoto}`;
+                                }
+                                if (!photo.ubicacion) {
+                                    const nullUbication = `'EL CAMPO UBICACION DE LA TABLA BIENES_FOTO ESTA NULO EN EL CONSECUTIVO  ${photo.NO_CONSEC}`;
+                                    variables.cause = !variables.cause
+                                        ? nullUbication
+                                        : `${variables.cause}/${nullUbication}`;
+                                }
+                            }
+                        }
+                        if (variables.cause) {
+                            const newId = p1 == 3
+                                ? element.no_bien
+                                : await this.entityComerRejected.query(`SELECT NEXTVAL('sera.SEQ_COMER_BIENRECHAZADO') as val`);
+                            const newGoodAtrib = p1 == 3
+                                ? await this.entityGoodAtrib.save({
+                                    id: newId,
+                                    reason: variables.cause,
+                                    par1: p1,
+                                    par2: p2,
+                                })
+                                : await this.entityComerRejected.save({
+                                    id: newId[0].val,
+                                    eventId: p4,
+                                    propertyNumber: element.no_bien,
+                                    origin: p3,
+                                    description: element.descripcion,
+                                    status: element.estatus,
+                                    cause: variables.cause,
+                                });
+                            returnMessages.push(newGoodAtrib);
+                        }
+                    }
                 }
             }
         }
-        return { returnMessages };
+        return returnMessages;
     }
 };
 PaProcessService = __decorate([
