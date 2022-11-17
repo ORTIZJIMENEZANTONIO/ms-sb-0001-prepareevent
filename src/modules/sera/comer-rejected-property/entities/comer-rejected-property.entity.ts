@@ -10,13 +10,13 @@ export class ComerRejectedPropertyEntity {
     type: "numeric",
     name: "id_bienrechazado"
   })
-  rejectedGoodId: number;
+  id: number;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
   eventId: number;
 
   @Column("numeric", { name: "no_bien", precision: 10, scale: 0 })
-  noProperty: number;
+  propertyNumber: number;
 
   @Column("character varying", { name: "origen", nullable: true, length: 15 })
   origin: string | null;
@@ -65,14 +65,4 @@ export class ComerRejectedPropertyEntity {
     scale: 0,
   })
   batchOrigin: number | null;
-
-  //@Column("character", { name: "trial709", nullable: true, length: 1 })
-  //trial709: string | null;
-//
-  //@ManyToOne(
-  //  () => ComerEventos,
-  //  (comerEventos) => comerEventos.comerBienesrechazados
-  //)
-  //@JoinColumn([{ name: "id_evento", referencedColumnName: "idEvento" }])
-  //idEvento2: ComerEventos;
 }

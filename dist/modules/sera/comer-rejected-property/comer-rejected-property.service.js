@@ -29,7 +29,7 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async createComerRejectedProperty(comer) {
         const comerExisting = await this.entity.findOneBy({
-            rejectedGoodId: comer.rejectedGoodId,
+            id: comer.rejectedGoodId,
         });
         if (comerExisting) {
             return {
@@ -87,7 +87,7 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async updateComerRejectedProperty({ rejectedGoodIdToUpdt }, comer) {
         const data = await this.entity.findOneBy({
-            rejectedGoodId: rejectedGoodIdToUpdt,
+            id: rejectedGoodIdToUpdt,
         });
         if (data) {
             delete comer.rejectedGoodId;
