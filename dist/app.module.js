@@ -28,6 +28,7 @@ const treatment_of_partial_returns_module_1 = require("./modules/sera/treatment-
 const good_not_delivered_module_1 = require("./modules/sera/good-not-delivered/good-not-delivered.module");
 const partial_property_delivered_module_1 = require("./modules/sera/partial-property-delivered/partial-property-delivered.module");
 const pa_process_module_1 = require("./modules/sera/pa-process/pa-process.module");
+const current_event_module_1 = require("./modules/sera/current-event/current-event.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -71,6 +72,7 @@ AppModule = __decorate([
             good_not_delivered_module_1.GoodNotDeliveredModule,
             partial_property_delivered_module_1.PartialPropertyDeliveredModule,
             pa_process_module_1.PaProcessModule,
+            current_event_module_1.CurrentEventModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

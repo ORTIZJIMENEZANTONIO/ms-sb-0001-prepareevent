@@ -21,6 +21,7 @@ import { TreatmentOfPartialReturnsModule } from './modules/sera/treatment-of-par
 import { GoodNotDeliveredModule } from './modules/sera/good-not-delivered/good-not-delivered.module';
 import { PartialPropertyDeliveredModule } from './modules/sera/partial-property-delivered/partial-property-delivered.module';
 import { PaProcessModule } from './modules/sera/pa-process/pa-process.module';
+import { CurrentEventModule } from './modules/sera/current-event/current-event.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { PaProcessModule } from './modules/sera/pa-process/pa-process.module';
     GoodNotDeliveredModule,
     PartialPropertyDeliveredModule,
     PaProcessModule,
+    CurrentEventModule,
     //
     ],
     controllers: [AppController],
