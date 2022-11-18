@@ -10,8 +10,10 @@ exports.CurrentEventModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
+const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 const current_event_controller_1 = require("./current-event.controller");
 const current_event_service_1 = require("./current-event.service");
+const comer_parameter_mod_entity_1 = require("./dto/comer-parameter-mod.entity");
 const comer_calendar_ev_entity_1 = require("./entities/comer-calendar-ev.entity");
 const comer_catcalendar_entity_1 = require("./entities/comer-catcalendar.entity");
 const tmp_events_comer_entity_1 = require("./entities/tmp-events-comer.entity");
@@ -19,7 +21,15 @@ let CurrentEventModule = class CurrentEventModule {
 };
 CurrentEventModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([comer_catcalendar_entity_1.ComerCatCalendarEntity, comer_calendar_ev_entity_1.ComerCalendarevEntity, tmp_events_comer_entity_1.TmpEventsComerEntity])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([
+                comer_catcalendar_entity_1.ComerCatCalendarEntity,
+                comer_calendar_ev_entity_1.ComerCalendarevEntity,
+                tmp_events_comer_entity_1.TmpEventsComerEntity,
+                comer_parameter_mod_entity_1.ComerParameterModEntity,
+                comer_events_entity_1.ComerEventEntity,
+            ]),
+        ],
         controllers: [current_event_controller_1.CurrentEventController],
         providers: [
             current_event_service_1.CurrentEventService,

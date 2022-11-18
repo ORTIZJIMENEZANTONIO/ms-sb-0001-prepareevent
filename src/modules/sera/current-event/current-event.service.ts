@@ -9,14 +9,20 @@ import { ComerCatCalendarEntity } from "./entities/comer-catcalendar.entity";
 import { ComerCalendarevEntity } from "./entities/comer-calendar-ev.entity";
 import { CurrentFilterDto } from "./dto/current-ifilter.dto";
 import { TmpEventsComerEntity } from "./entities/tmp-events-comer.entity";
-
+import { ComerParameterModEntity } from "./dto/comer-parameter-mod.entity";
+import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+ComerParameterModEntity;
 @Injectable()
 export class CurrentEventService {
   constructor(
+    @InjectRepository(ComerEventEntity)
+    private entityComerEvent: Repository<ComerEventEntity>,
     @InjectRepository(TmpEventsComerEntity)
     private entityTmpEventsComer: Repository<TmpEventsComerEntity>,
     @InjectRepository(ComerCalendarevEntity)
     private entityComerCalendarev: Repository<ComerCalendarevEntity>,
+    @InjectRepository(ComerParameterModEntity)
+    private entityComerParameterMod: Repository<ComerParameterModEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
     @InjectMetric("current_event_served") public counter: Counter<string>
   ) {}
@@ -45,8 +51,12 @@ export class CurrentEventService {
   }
 
   async spEventsInProgress() {
+    //console.log((new Date()).toLocaleDateString() );
     const variables = {
-      events: null
+      events: null,
+      currentDays: 0,
+      failDate: new Date().toLocaleDateString(),
+      nowDate: new Date().toLocaleDateString(),
     };
     const eventsQuery = this.entityTmpEventsComer
       .createQueryBuilder("ev")
@@ -59,17 +69,44 @@ export class CurrentEventService {
       ]);
     const events = await eventsQuery.getRawMany();
     for (const event of events) {
-      console.log(event);
-      if (event.address == "I" && event.idTpevent == 4) {
+      //console.log(event);
+      if (
+        (event.address == "I" && event.idTpevent == 4) ||
+        (event.address == "M" && event.idTpevent == 4) ||
+        (event.address == "M" && event.idTpevent == 1)
+      ) {
+        // const { value } = await this.getValue("SEI_LQE");
+        const validityDate = "12/02/2024" ?? this.getValidityDate();
+        if (
+          variables.nowDate >= event.eventDate.toLocaleDateString() &&
+          variables.nowDate <= validityDate
+        ) {
+          variables.events = variables.events
+            ? `${event.idEvent},`
+            : `${event.idEvent}`;
+        }
       }
 
-      if (event.address == "M" && event.idTpevent == 4) {
+      if (variables.events) {
+        const eventsQuery = this.entityComerEvent
+          .createQueryBuilder("ce")
+          .select([`ID_EVENTO as "idEvent"`, `CVE_PROCESO as "processKey"`])
+          .where(`ID_EVENTO in (${variables.events})`);
+        return await eventsQuery.getRawMany();
       }
-
-      if (event.address == "M" && event.idTpevent == 1) {
-      }
+      return null;
     }
-    //console.log(events.getQuery());
-    return await eventsQuery.getRawMany();
+  }
+
+  async getValue(parameter: string) {
+    const valueQuery = this.entityComerParameterMod
+      .createQueryBuilder("cpm")
+      .select([`cpm.value as "value"`])
+      .where(`cpm.parameter = '${parameter}'`);
+    return await valueQuery.getRawOne();
+  }
+
+  async getValidityDate() {
+    return 1;
   }
 }

@@ -22,10 +22,15 @@ const prom_client_1 = require("prom-client");
 const comer_catcalendar_entity_1 = require("./entities/comer-catcalendar.entity");
 const comer_calendar_ev_entity_1 = require("./entities/comer-calendar-ev.entity");
 const tmp_events_comer_entity_1 = require("./entities/tmp-events-comer.entity");
+const comer_parameter_mod_entity_1 = require("./dto/comer-parameter-mod.entity");
+const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
+comer_parameter_mod_entity_1.ComerParameterModEntity;
 let CurrentEventService = class CurrentEventService {
-    constructor(entityTmpEventsComer, entityComerCalendarev, logger, counter) {
+    constructor(entityComerEvent, entityTmpEventsComer, entityComerCalendarev, entityComerParameterMod, logger, counter) {
+        this.entityComerEvent = entityComerEvent;
         this.entityTmpEventsComer = entityTmpEventsComer;
         this.entityComerCalendarev = entityComerCalendarev;
+        this.entityComerParameterMod = entityComerParameterMod;
         this.logger = logger;
         this.counter = counter;
     }
@@ -50,7 +55,10 @@ let CurrentEventService = class CurrentEventService {
     }
     async spEventsInProgress() {
         const variables = {
-            events: null
+            events: null,
+            currentDays: 0,
+            failDate: new Date().toLocaleDateString(),
+            nowDate: new Date().toLocaleDateString(),
         };
         const eventsQuery = this.entityTmpEventsComer
             .createQueryBuilder("ev")
@@ -63,24 +71,49 @@ let CurrentEventService = class CurrentEventService {
         ]);
         const events = await eventsQuery.getRawMany();
         for (const event of events) {
-            console.log(event);
-            if (event.address == "I" && event.idTpevent == 4) {
+            if ((event.address == "I" && event.idTpevent == 4) ||
+                (event.address == "M" && event.idTpevent == 4) ||
+                (event.address == "M" && event.idTpevent == 1)) {
+                const validityDate = "12/02/2024" !== null && "12/02/2024" !== void 0 ? "12/02/2024" : this.getValidityDate();
+                if (variables.nowDate >= event.eventDate.toLocaleDateString() &&
+                    variables.nowDate <= validityDate) {
+                    variables.events = variables.events
+                        ? `${event.idEvent},`
+                        : `${event.idEvent}`;
+                }
             }
-            if (event.address == "M" && event.idTpevent == 4) {
+            if (variables.events) {
+                const eventsQuery = this.entityComerEvent
+                    .createQueryBuilder("ce")
+                    .select([`ID_EVENTO as "idEvent"`, `CVE_PROCESO as "processKey"`])
+                    .where(`ID_EVENTO in (${variables.events})`);
+                return await eventsQuery.getRawMany();
             }
-            if (event.address == "M" && event.idTpevent == 1) {
-            }
+            return null;
         }
-        return await eventsQuery.getRawMany();
+    }
+    async getValue(parameter) {
+        const valueQuery = this.entityComerParameterMod
+            .createQueryBuilder("cpm")
+            .select([`cpm.value as "value"`])
+            .where(`cpm.parameter = '${parameter}'`);
+        return await valueQuery.getRawOne();
+    }
+    async getValidityDate() {
+        return 1;
     }
 };
 CurrentEventService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(tmp_events_comer_entity_1.TmpEventsComerEntity)),
-    __param(1, (0, typeorm_1.InjectRepository)(comer_calendar_ev_entity_1.ComerCalendarevEntity)),
-    __param(2, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
-    __param(3, (0, nestjs_prometheus_1.InjectMetric)("current_event_served")),
+    __param(0, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
+    __param(1, (0, typeorm_1.InjectRepository)(tmp_events_comer_entity_1.TmpEventsComerEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(comer_calendar_ev_entity_1.ComerCalendarevEntity)),
+    __param(3, (0, typeorm_1.InjectRepository)(comer_parameter_mod_entity_1.ComerParameterModEntity)),
+    __param(4, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
+    __param(5, (0, nestjs_prometheus_1.InjectMetric)("current_event_served")),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         common_1.Logger,
         prom_client_1.Counter])
