@@ -14,7 +14,7 @@ import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
 
 @Injectable()
-export class ComerBatchService {
+export class ComerLotService {
   constructor(
     @InjectRepository(ComerLotEntity)
     private entity: Repository<ComerLotEntity>,

@@ -106,7 +106,7 @@ TreatmentOfPartialReturnsService = __decorate([
         prom_client_1.Counter,
         partial_property_delivered_service_1.PartialPropertyDeliveredService,
         good_not_delivered_service_1.GoodNotDeliveredService,
-        comer_batch_service_1.ComerBatchService])
+        comer_batch_service_1.ComerLotService])
 ], TreatmentOfPartialReturnsService);
 exports.TreatmentOfPartialReturnsService = TreatmentOfPartialReturnsService;
 //# sourceMappingURL=treatment-of-partial-returns.service.js.map

@@ -5,19 +5,19 @@ import {
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
 
-import { ComerBatchController } from './comer-batch.controller';
-import { ComerBatchService } from './comer-batch.service';
+import { ComerLotController } from './comer-batch.controller';
+import { ComerLotService } from './comer-batch.service';
 import { ComerLotEntity } from "./entities/comer-lot.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ComerLotEntity])],
-  controllers: [ComerBatchController],
+  controllers: [ComerLotController],
   providers: [
-    ComerBatchService,
+    ComerLotService,
     makeCounterProvider({
       name: "comer_lot_served",
       help: "comer_lot_help",
     }),
   ]
 })
-export class ComerBatchModule {}
+export class ComerLotModule {}

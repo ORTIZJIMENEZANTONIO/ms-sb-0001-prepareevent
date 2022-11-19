@@ -6,27 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerBatchModule = void 0;
+exports.ComerLotModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_batch_controller_1 = require("./comer-batch.controller");
 const comer_batch_service_1 = require("./comer-batch.service");
 const comer_lot_entity_1 = require("./entities/comer-lot.entity");
-let ComerBatchModule = class ComerBatchModule {
+let ComerLotModule = class ComerLotModule {
 };
-ComerBatchModule = __decorate([
+ComerLotModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([comer_lot_entity_1.ComerLotEntity])],
-        controllers: [comer_batch_controller_1.ComerBatchController],
+        controllers: [comer_batch_controller_1.ComerLotController],
         providers: [
-            comer_batch_service_1.ComerBatchService,
+            comer_batch_service_1.ComerLotService,
             (0, nestjs_prometheus_1.makeCounterProvider)({
                 name: "comer_lot_served",
                 help: "comer_lot_help",
             }),
         ]
     })
-], ComerBatchModule);
-exports.ComerBatchModule = ComerBatchModule;
+], ComerLotModule);
+exports.ComerLotModule = ComerLotModule;
 //# sourceMappingURL=comer-batch.module.js.map

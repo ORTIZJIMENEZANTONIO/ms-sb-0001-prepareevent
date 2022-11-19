@@ -34,7 +34,7 @@ TreatmentOfPartialReturnsModule = __decorate([
             treatment_of_partial_returns_service_1.TreatmentOfPartialReturnsService,
             partial_property_delivered_service_1.PartialPropertyDeliveredService,
             good_not_delivered_service_1.GoodNotDeliveredService,
-            comer_batch_service_1.ComerBatchService,
+            comer_batch_service_1.ComerLotService,
             (0, nestjs_prometheus_1.makeCounterProvider)({
                 name: "treatment_of_partial_returns_served",
                 help: "treatment_of_partial_returns_help",

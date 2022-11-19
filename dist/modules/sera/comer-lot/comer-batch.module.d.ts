@@ -1,2 +1,2 @@
-export declare class ComerBatchModule {
+export declare class ComerLotModule {
 }

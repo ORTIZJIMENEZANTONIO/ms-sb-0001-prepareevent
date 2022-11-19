@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerBatchService = void 0;
+exports.ComerLotService = void 0;
 const common_1 = require("@nestjs/common");
 const nest_winston_1 = require("nest-winston");
 const typeorm_1 = require("@nestjs/typeorm");
@@ -22,7 +22,7 @@ const prom_client_1 = require("prom-client");
 const comer_lot_entity_1 = require("./entities/comer-lot.entity");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
-let ComerBatchService = class ComerBatchService {
+let ComerLotService = class ComerLotService {
     constructor(entity, logger, counter) {
         this.entity = entity;
         this.logger = logger;
@@ -135,7 +135,7 @@ let ComerBatchService = class ComerBatchService {
         return await this.entity.delete({ id });
     }
 };
-ComerBatchService = __decorate([
+ComerLotService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(comer_lot_entity_1.ComerLotEntity)),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
@@ -143,6 +143,6 @@ ComerBatchService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository,
         common_1.Logger,
         prom_client_1.Counter])
-], ComerBatchService);
-exports.ComerBatchService = ComerBatchService;
+], ComerLotService);
+exports.ComerLotService = ComerLotService;
 //# sourceMappingURL=comer-batch.service.js.map

@@ -4,7 +4,7 @@ import {
   makeCounterProvider,
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
-import { ComerBatchService } from "../comer-lot/comer-batch.service";
+import { ComerLotService } from "../comer-lot/comer-batch.service";
 
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
@@ -27,7 +27,7 @@ import { TreatmentOfPartialReturnsService } from "./treatment-of-partial-returns
     TreatmentOfPartialReturnsService,
     PartialPropertyDeliveredService,
     GoodNotDeliveredService,
-    ComerBatchService,
+    ComerLotService,
     makeCounterProvider({
       name: "treatment_of_partial_returns_served",
       help: "treatment_of_partial_returns_help",

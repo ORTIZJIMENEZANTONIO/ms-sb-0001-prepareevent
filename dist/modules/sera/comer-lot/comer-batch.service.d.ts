@@ -6,7 +6,7 @@ import { ComerLotDto } from "./dto/comer-lot.dto";
 import { ComerLotEntity } from "./entities/comer-lot.entity";
 import { UpdateComerLotDto } from "./dto/update-comer-lot.dto";
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
-export declare class ComerBatchService {
+export declare class ComerLotService {
     private entity;
     private readonly logger;
     counter: Counter<string>;

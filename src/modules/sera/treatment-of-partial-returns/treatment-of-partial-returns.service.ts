@@ -10,7 +10,7 @@ import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.enti
 import { GoodsEntity } from "../file-util/entities/goods.entity";
 import { PartialPropertyDeliveredService } from "../partial-property-delivered/partial-property-delivered.service";
 import { GoodNotDeliveredService } from "../good-not-delivered/good-not-delivered.service";
-import { ComerBatchService } from "../comer-lot/comer-batch.service";
+import { ComerLotService } from "../comer-lot/comer-batch.service";
 
 @Injectable()
 export class TreatmentOfPartialReturnsService {
@@ -24,7 +24,7 @@ export class TreatmentOfPartialReturnsService {
     public counter: Counter<string>,
     private partialPropertyDeliveredService: PartialPropertyDeliveredService,
     private goodNotDeliveredService: GoodNotDeliveredService,
-    private comerBatchService: ComerBatchService
+    private comerBatchService: ComerLotService
   ) {}
 
   async treatmentOfPartialReturns(goodNumber: number) {

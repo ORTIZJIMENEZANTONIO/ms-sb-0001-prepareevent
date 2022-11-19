@@ -432,7 +432,7 @@
 					"response": []
 				},
 				{
-					"name": "createComerBatch",
+					"name": "createComerLot",
 					"request": {
 						"method": "POST",
 						"header": [],

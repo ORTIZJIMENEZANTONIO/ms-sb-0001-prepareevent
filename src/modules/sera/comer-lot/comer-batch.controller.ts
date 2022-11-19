@@ -5,13 +5,13 @@ import { MessagePattern } from "@nestjs/microservices";
 
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotDto } from './dto/comer-lot.dto';
-import { ComerBatchService } from "./comer-batch.service";
+import { ComerLotService } from "./comer-batch.service";
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
 
 @Controller('comer-batch')
-export class ComerBatchController {
+export class ComerLotController {
   constructor(
-    private readonly service: ComerBatchService,
+    private readonly service: ComerLotService,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger
   ) {}
 

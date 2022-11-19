@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ComerBatchService } from './comer-batch.service';
+import { ComerLotService } from './comer-batch.service';
 
-describe('ComerBatchService', () => {
-  let service: ComerBatchService;
+describe('ComerLotService', () => {
+  let service: ComerLotService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ComerBatchService],
+      providers: [ComerLotService],
     }).compile();
 
-    service = module.get<ComerBatchService>(ComerBatchService);
+    service = module.get<ComerLotService>(ComerLotService);
   });
 
   it('should be defined', () => {

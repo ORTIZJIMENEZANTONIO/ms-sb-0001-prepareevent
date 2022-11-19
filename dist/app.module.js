@@ -62,7 +62,7 @@ AppModule = __decorate([
             comer_events_module_1.ComerEventsModule,
             comer_agreement_events_module_1.ComerAgreementEventsModule,
             comer_property_by_batch_module_1.ComerPropertyByBatchModule,
-            comer_batch_module_1.ComerBatchModule,
+            comer_batch_module_1.ComerLotModule,
             comer_adjudirec_module_1.ComerAdjudirecModule,
             comer_client_module_1.ComerClientModule,
             comer_rejected_property_module_1.ComerRejectedPropertyModule,

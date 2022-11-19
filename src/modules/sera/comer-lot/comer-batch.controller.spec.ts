@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ComerBatchController } from './comer-batch.controller';
+import { ComerLotController } from './comer-batch.controller';
 
-describe('ComerBatchController', () => {
-  let controller: ComerBatchController;
+describe('ComerLotController', () => {
+  let controller: ComerLotController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ComerBatchController],
+      controllers: [ComerLotController],
     }).compile();
 
-    controller = module.get<ComerBatchController>(ComerBatchController);
+    controller = module.get<ComerLotController>(ComerLotController);
   });
 
   it('should be defined', () => {
