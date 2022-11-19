@@ -1,8 +1,8 @@
 export declare class ComerEventEntity {
-    eventId: number;
+    id: number;
     eventTpId: number;
     statusVtaId: string;
-    processCve: string | null;
+    processKey: string | null;
     observations: string | null;
     address: string | null;
     failureDate: Date | null;
@@ -11,20 +11,20 @@ export declare class ComerEventEntity {
     texto1: string | null;
     texto2: string | null;
     firmante: string | null;
-    firmanteCargo: string | null;
+    firmantePosition: string | null;
     notes: string | null;
-    textofin3: string | null;
-    textofin4: string | null;
+    endText3: string | null;
+    endText4: string | null;
     baseCost: number | null;
-    numBaseVend: number | null;
+    baseVendNumber: number | null;
     user: string | null;
     month: number | null;
     year: number | null;
-    delegationId: number | null;
-    faseInmu: number | null;
+    delegationNumber: number | null;
+    phaseInmu: number | null;
     thirdId: number | null;
-    fechaNotificacion: Date | null;
+    notificationDate: Date | null;
     eventClosingDate: Date | null;
     tpsolavalId: number | null;
-    ivaApplies: string | null;
+    vatApplies: string | null;
 }

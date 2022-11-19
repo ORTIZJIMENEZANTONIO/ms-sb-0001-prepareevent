@@ -7,8 +7,7 @@ import { Counter } from "prom-client";
 
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
-import { ComerEventEntity } from "./entities/comer-events.entity";
-import { Reference } from "src/shared/functions/reference";
+import { ComerEventEntity } from "./entities/comer-event.entity";
 import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { Text } from "src/shared/functions/text";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
@@ -25,7 +24,7 @@ export class ComerEventsService {
 
   async createComerEvent(comer: ComerEventDto) {
     const comerExisting = await this.entity.findOneBy({
-      eventId: comer.eventId,
+      id: comer.id,
     });
 
     if (comerExisting) {
@@ -86,10 +85,10 @@ export class ComerEventsService {
   }
 
   async getComerEventByAddressAndId(comerEvent: UpdateComerEventDto) {
-    const { address, eventId } = comerEvent;
+    const { address, id } = comerEvent;
     const result = await this.entity
       .createQueryBuilder("table")
-      .where({ eventId })
+      .where({ id })
       .andWhere(
         `${Text.formatTextDb("table.address")} like '%${Text.formatText(
           address
@@ -145,10 +144,10 @@ export class ComerEventsService {
     { eventIdToUpdt }: UpdateComerEventDto,
     comer: ComerEventDto
   ) {
-    const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+    const data = await this.entity.findOneBy({ id: eventIdToUpdt });
 
     if (data) {
-      delete comer.eventId;
+      delete comer.id;
       this.entity.merge(data, comer);
       return this.entity.save(data);
     }
@@ -156,7 +155,7 @@ export class ComerEventsService {
   }
 
   async deleteComerEvent(comer: ComerEventDto) {
-    const { eventId } = comer;
-    return await this.entity.delete({ eventId });
+    const { id } = comer;
+    return await this.entity.delete({ id });
   }
 }

@@ -8,16 +8,16 @@ export declare class ComerEventsController {
     private readonly service;
     private readonly logger;
     constructor(service: ComerEventsService, logger: Logger);
-    createComerEvent(comerEvent: ComerEventDto): Promise<(ComerEventDto & import("./entities/comer-events.entity").ComerEventEntity) | {
+    createComerEvent(comerEvent: ComerEventDto): Promise<(ComerEventDto & import("./entities/comer-event.entity").ComerEventEntity) | {
         statusCode: number;
         message: string;
     }>;
     getAllComerEvents(pagination: PaginationDto): Promise<{
-        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        data: import("./entities/comer-event.entity").ComerEventEntity[];
         count: number;
     }>;
     getComerEventByAddress(comerEvent: ComerEventDto & PaginationDto): Promise<{
-        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        data: import("./entities/comer-event.entity").ComerEventEntity[];
         count: number;
     }>;
     getComerEventByAddressAndId(comerEvent: UpdateComerEventDto): Promise<{
@@ -26,7 +26,7 @@ export declare class ComerEventsController {
         data?: undefined;
         count?: undefined;
     } | {
-        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        data: import("./entities/comer-event.entity").ComerEventEntity[];
         count: number;
         statusCode?: undefined;
         message?: undefined;
@@ -37,7 +37,7 @@ export declare class ComerEventsController {
         data?: undefined;
         count?: undefined;
     } | {
-        data: import("./entities/comer-events.entity").ComerEventEntity[];
+        data: import("./entities/comer-event.entity").ComerEventEntity[];
         count: number;
         statusCode?: undefined;
         message?: undefined;

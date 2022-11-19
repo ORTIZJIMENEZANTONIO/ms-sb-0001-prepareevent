@@ -1,13 +1,12 @@
 import { Column, Entity, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { ApiProperty } from "@nestjs/swagger";
-// autoincrement
+
 @Entity("comer_eventos", { schema: "sera" })
 export class ComerEventEntity {
 
   @PrimaryGeneratedColumn({
     name: "id_evento",
   })
-  eventId: number;
+  id: number;
 
   @Column("numeric", { name: "id_tpevento", precision: 2, scale: 0 })
   eventTpId: number;
@@ -20,7 +19,7 @@ export class ComerEventEntity {
     nullable: true,
     length: 60,
   })
-  processCve: string | null;
+  processKey: string | null;
 
   @Column("character varying", {
     name: "observaciones",
@@ -55,7 +54,7 @@ export class ComerEventEntity {
     nullable: true,
     length: 50,
   })
-  firmanteCargo: string | null;
+  firmantePosition: string | null;
 
   @Column("character varying", { name: "notas", nullable: true, length: 300 })
   notes: string | null;
@@ -65,14 +64,14 @@ export class ComerEventEntity {
     nullable: true,
     length: 4000,
   })
-  textofin3: string | null;
+  endText3: string | null;
 
   @Column("character varying", {
     name: "textofin4",
     nullable: true,
     length: 4000,
   })
-  textofin4: string | null;
+  endText4: string | null;
 
   @Column("numeric", {
     name: "costo_base",
@@ -88,7 +87,7 @@ export class ComerEventEntity {
     precision: 5,
     scale: 0,
   })
-  numBaseVend: number | null;
+  baseVendNumber: number | null;
 
   @Column("character varying", { name: "usuario", nullable: true, length: 30 })
   user: string | null;
@@ -105,7 +104,7 @@ export class ComerEventEntity {
     precision: 3,
     scale: 0,
   })
-  delegationId: number | null;
+  delegationNumber: number | null;
 
   @Column("numeric", {
     name: "fase_inmu",
@@ -113,7 +112,7 @@ export class ComerEventEntity {
     precision: 2,
     scale: 0,
   })
-  faseInmu: number | null;
+  phaseInmu: number | null;
 
   @Column("numeric", {
     name: "id_tercerocomer",
@@ -124,7 +123,7 @@ export class ComerEventEntity {
   thirdId: number | null;
 
   @Column("date", { name: "fecha_notificacion", nullable: true })
-  fechaNotificacion: Date | null;
+  notificationDate: Date | null;
 
   @Column("date", { name: "fecha_cierre_evento", nullable: true })
   eventClosingDate: Date | null;
@@ -143,5 +142,5 @@ export class ComerEventEntity {
     length: 2,
     default: () => "'2'",
   })
-  ivaApplies: string | null;
+  vatApplies: string | null;
 }

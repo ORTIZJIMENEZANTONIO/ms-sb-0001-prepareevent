@@ -20,7 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_lot_entity_1 = require("./entities/comer-lot.entity");
-const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
+const comer_event_entity_1 = require("../comer-events/entities/comer-event.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 let ComerLotService = class ComerLotService {
     constructor(entity, logger, counter) {
@@ -58,7 +58,7 @@ let ComerLotService = class ComerLotService {
         const { inicio = 1, pageSize = 10 } = pagination;
         const result = await this.entity
             .createQueryBuilder("cl")
-            .innerJoinAndMapOne("cl.eventId", comer_events_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
+            .innerJoinAndMapOne("cl.eventId", comer_event_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
             .orderBy({ "cl.publicLot": "DESC" })
             .skip((inicio - 1) * pageSize || 0)
             .take(pageSize)
@@ -73,7 +73,7 @@ let ComerLotService = class ComerLotService {
         const { eventId, inicio = 1, pageSize = 19 } = comer;
         const result = await this.entity
             .createQueryBuilder("cl")
-            .innerJoinAndMapOne("cl.eventId", comer_events_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
+            .innerJoinAndMapOne("cl.eventId", comer_event_entity_1.ComerEventEntity, "ce", "cl.eventId = ce.eventId")
             .where({ eventId })
             .orderBy({ "cl.publicLot": "DESC" })
             .skip((inicio - 1) * pageSize || 0)

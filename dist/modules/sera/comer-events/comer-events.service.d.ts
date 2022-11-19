@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
-import { ComerEventEntity } from "./entities/comer-events.entity";
+import { ComerEventEntity } from "./entities/comer-event.entity";
 import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 export declare class ComerEventsService {

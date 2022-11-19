@@ -15,7 +15,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerConvEventEntity } from "./entities/comer-agreement-events.entity";
 import { ComerConvEventDto } from "./dto/comer-agreement-events.dto";
-import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
 import { UpdateComerConvEventDto } from "./dto/update-comer-agreement-events.dto";
 @Injectable()
 export class ComerAgreementEventsService {

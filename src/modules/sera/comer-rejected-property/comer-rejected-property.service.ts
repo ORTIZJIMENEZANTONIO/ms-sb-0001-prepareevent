@@ -8,7 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerRejectedGoodDto } from "./dto/comer-rejected-property.dto";
 import { ComerRejectedPropertyEntity } from "./entities/comer-rejected-property.entity";
-import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
 import { UpdateComerRejectedGoodDto } from "./dto/update-comer-rejected-property.dto";
 
 @Injectable()

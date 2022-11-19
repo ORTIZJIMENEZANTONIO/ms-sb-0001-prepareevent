@@ -18,7 +18,7 @@ __decorate([
         name: "id_evento",
     }),
     __metadata("design:type", Number)
-], ComerEventEntity.prototype, "eventId", void 0);
+], ComerEventEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_tpevento", precision: 2, scale: 0 }),
     __metadata("design:type", Number)
@@ -34,7 +34,7 @@ __decorate([
         length: 60,
     }),
     __metadata("design:type", String)
-], ComerEventEntity.prototype, "processCve", void 0);
+], ComerEventEntity.prototype, "processKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "observaciones",
@@ -78,7 +78,7 @@ __decorate([
         length: 50,
     }),
     __metadata("design:type", String)
-], ComerEventEntity.prototype, "firmanteCargo", void 0);
+], ComerEventEntity.prototype, "firmantePosition", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "notas", nullable: true, length: 300 }),
     __metadata("design:type", String)
@@ -90,7 +90,7 @@ __decorate([
         length: 4000,
     }),
     __metadata("design:type", String)
-], ComerEventEntity.prototype, "textofin3", void 0);
+], ComerEventEntity.prototype, "endText3", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "textofin4",
@@ -98,7 +98,7 @@ __decorate([
         length: 4000,
     }),
     __metadata("design:type", String)
-], ComerEventEntity.prototype, "textofin4", void 0);
+], ComerEventEntity.prototype, "endText4", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "costo_base",
@@ -116,7 +116,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerEventEntity.prototype, "numBaseVend", void 0);
+], ComerEventEntity.prototype, "baseVendNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "usuario", nullable: true, length: 30 }),
     __metadata("design:type", String)
@@ -137,7 +137,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerEventEntity.prototype, "delegationId", void 0);
+], ComerEventEntity.prototype, "delegationNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "fase_inmu",
@@ -146,7 +146,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerEventEntity.prototype, "faseInmu", void 0);
+], ComerEventEntity.prototype, "phaseInmu", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_tercerocomer",
@@ -159,7 +159,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_notificacion", nullable: true }),
     __metadata("design:type", Date)
-], ComerEventEntity.prototype, "fechaNotificacion", void 0);
+], ComerEventEntity.prototype, "notificationDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_cierre_evento", nullable: true }),
     __metadata("design:type", Date)
@@ -181,9 +181,9 @@ __decorate([
         default: () => "'2'",
     }),
     __metadata("design:type", String)
-], ComerEventEntity.prototype, "ivaApplies", void 0);
+], ComerEventEntity.prototype, "vatApplies", void 0);
 ComerEventEntity = __decorate([
     (0, typeorm_1.Entity)("comer_eventos", { schema: "sera" })
 ], ComerEventEntity);
 exports.ComerEventEntity = ComerEventEntity;
-//# sourceMappingURL=comer-events.entity.js.map
+//# sourceMappingURL=comer-event.entity.js.map

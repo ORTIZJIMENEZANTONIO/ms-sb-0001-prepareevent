@@ -1,5 +1,5 @@
 export declare class ComerEventDto {
-    eventId: number | null;
+    id: number | null;
     eventTpId: number;
     statusVtaId: string;
     processCve: string | null;

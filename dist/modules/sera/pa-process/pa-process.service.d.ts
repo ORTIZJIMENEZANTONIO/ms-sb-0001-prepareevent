@@ -1,7 +1,7 @@
 import { Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Counter } from "prom-client";
-import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities/comer-rejected-property.entity";
 import { ActGoodLotMDto } from "./dto/act-good-lot-m.dto";

@@ -19,7 +19,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
-const comer_events_entity_1 = require("./entities/comer-events.entity");
+const comer_event_entity_1 = require("./entities/comer-event.entity");
 const text_1 = require("../../../shared/functions/text");
 let ComerEventsService = class ComerEventsService {
     constructor(entity, logger, counter) {
@@ -29,7 +29,7 @@ let ComerEventsService = class ComerEventsService {
     }
     async createComerEvent(comer) {
         const comerExisting = await this.entity.findOneBy({
-            eventId: comer.eventId,
+            id: comer.id,
         });
         if (comerExisting) {
             return {
@@ -72,10 +72,10 @@ let ComerEventsService = class ComerEventsService {
     }
     async getComerEventByAddressAndId(comerEvent) {
         var _a, _b;
-        const { address, eventId } = comerEvent;
+        const { address, id } = comerEvent;
         const result = await this.entity
             .createQueryBuilder("table")
-            .where({ eventId })
+            .where({ id })
             .andWhere(`${text_1.Text.formatTextDb("table.address")} like '%${text_1.Text.formatText(address)}%' `)
             .orderBy("table.eventId", "DESC")
             .getManyAndCount();
@@ -118,22 +118,22 @@ let ComerEventsService = class ComerEventsService {
             };
     }
     async updateComerEvent({ eventIdToUpdt }, comer) {
-        const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+        const data = await this.entity.findOneBy({ id: eventIdToUpdt });
         if (data) {
-            delete comer.eventId;
+            delete comer.id;
             this.entity.merge(data, comer);
             return this.entity.save(data);
         }
         return null;
     }
     async deleteComerEvent(comer) {
-        const { eventId } = comer;
-        return await this.entity.delete({ eventId });
+        const { id } = comer;
+        return await this.entity.delete({ id });
     }
 };
 ComerEventsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
+    __param(0, (0, typeorm_1.InjectRepository)(comer_event_entity_1.ComerEventEntity)),
     __param(1, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __param(2, (0, nestjs_prometheus_1.InjectMetric)("comer_event_served")),
     __metadata("design:paramtypes", [typeorm_2.Repository,

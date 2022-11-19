@@ -12,7 +12,7 @@ export class ComerEventDto {
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  eventId: number | null;
+  id: number | null;
 
   @IsNumber()
   @IsPositive()

@@ -12,12 +12,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_events_controller_1 = require("./comer-events.controller");
 const comer_events_service_1 = require("./comer-events.service");
-const comer_events_entity_1 = require("./entities/comer-events.entity");
+const comer_event_entity_1 = require("./entities/comer-event.entity");
 let ComerEventsModule = class ComerEventsModule {
 };
 ComerEventsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([comer_events_entity_1.ComerEventEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([comer_event_entity_1.ComerEventEntity])],
         controllers: [comer_events_controller_1.ComerEventsController],
         providers: [
             comer_events_service_1.ComerEventsService,

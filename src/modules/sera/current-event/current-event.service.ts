@@ -10,7 +10,7 @@ import { ComerCalendarevEntity } from "./entities/comer-calendar-ev.entity";
 import { CurrentFilterDto } from "./dto/current-ifilter.dto";
 import { TmpEventsComerEntity } from "./entities/tmp-events-comer.entity";
 import { ComerParameterModEntity } from "./dto/comer-parameter-mod.entity";
-import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
+import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
 ComerParameterModEntity;
 @Injectable()
 export class CurrentEventService {

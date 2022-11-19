@@ -7,7 +7,7 @@ import {
 
 import { ComerEventsController } from './comer-events.controller';
 import { ComerEventsService } from './comer-events.service';
-import { ComerEventEntity } from "./entities/comer-events.entity";
+import { ComerEventEntity } from "./entities/comer-event.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ComerEventEntity])],

@@ -23,7 +23,7 @@ const comer_catcalendar_entity_1 = require("./entities/comer-catcalendar.entity"
 const comer_calendar_ev_entity_1 = require("./entities/comer-calendar-ev.entity");
 const tmp_events_comer_entity_1 = require("./entities/tmp-events-comer.entity");
 const comer_parameter_mod_entity_1 = require("./dto/comer-parameter-mod.entity");
-const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
+const comer_event_entity_1 = require("../comer-events/entities/comer-event.entity");
 comer_parameter_mod_entity_1.ComerParameterModEntity;
 let CurrentEventService = class CurrentEventService {
     constructor(entityComerEvent, entityTmpEventsComer, entityComerCalendarev, entityComerParameterMod, logger, counter) {
@@ -105,7 +105,7 @@ let CurrentEventService = class CurrentEventService {
 };
 CurrentEventService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
+    __param(0, (0, typeorm_1.InjectRepository)(comer_event_entity_1.ComerEventEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(tmp_events_comer_entity_1.TmpEventsComerEntity)),
     __param(2, (0, typeorm_1.InjectRepository)(comer_calendar_ev_entity_1.ComerCalendarevEntity)),
     __param(3, (0, typeorm_1.InjectRepository)(comer_parameter_mod_entity_1.ComerParameterModEntity)),
