@@ -21,7 +21,7 @@ export class ComerAdjudirecService {
 
   async createComerAdjudirec(comer: ComerAdjudirecDto) {
     const comerExisting = await this.entity.findOneBy({
-      eventId: comer.eventId,
+      id: comer.id,
     });
 
     if (comerExisting) {
@@ -37,7 +37,7 @@ export class ComerAdjudirecService {
   async getAllComersAdjudirec(pagination: PaginationDto) {
     const { inicio = 1, pageSize = 10 } = pagination;
     const [result, total] = await this.entity.findAndCount({
-      order: { eventId: "DESC" },
+      order: { id: "DESC" },
       take: pageSize,
       skip: (inicio - 1) * pageSize || 0,
     });
@@ -51,10 +51,10 @@ export class ComerAdjudirecService {
     { eventIdToUpdt }: UpdateComerAdjudirecDto,
     comer: ComerAdjudirecDto
   ) {
-    const data = await this.entity.findOneBy({ eventId: eventIdToUpdt });
+    const data = await this.entity.findOneBy({ id: eventIdToUpdt });
 
     if (data) {
-      delete comer.eventId;
+      delete comer.id;
       this.entity.merge(data, comer);
       return this.entity.save(data);
     }
@@ -63,7 +63,7 @@ export class ComerAdjudirecService {
   }
 
   async deleteComerAdjudirec(comer: ComerAdjudirecDto) {
-    const { eventId } = comer;
-    return await this.entity.delete({ eventId });
+    const { id } = comer;
+    return await this.entity.delete({ id });
   }
 }

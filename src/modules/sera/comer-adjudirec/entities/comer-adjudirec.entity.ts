@@ -7,30 +7,27 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
-//import { ComerEventos } from "./ComerEventos";
-//
-//@Index("comer_adjudirec_pkey", ["idEvento"], { unique: true })
-//@Index("isia154p1_comer_adj", ["idEvento"], { unique: true })
+
 @Entity("comer_adjudirec", { schema: "sera" })
 export class ComerAdjudirecEntity {
-  @PrimaryGeneratedColumn( {
+  @PrimaryGeneratedColumn({
     type: "numeric",
     name: "id_evento",
   })
-  eventId: number;
+  id: number;
 
   @Column("character varying", { name: "comite", nullable: true, length: 1 })
   committee: string | null;
 
   @Column("date", { name: "fec_sesion", nullable: true })
-  sessionDate: string | null;
+  sessionDate: Date | null;
 
   @Column("character varying", {
     name: "no_sesion",
     nullable: true,
     length: 30,
   })
-  noSession: string | null;
+  sessionNumber;
 
   @Column("character varying", {
     name: "usr_elabora",
@@ -82,7 +79,7 @@ export class ComerAdjudirecEntity {
   tendered: string | null;
 
   @Column("date", { name: "fechaudi", nullable: true })
-  udiDate: string | null;
+  udiDate: Date | null;
 
   @Column("character varying", {
     name: "formapago",
@@ -124,11 +121,4 @@ export class ComerAdjudirecEntity {
 
   @Column("character varying", { name: "causa", nullable: true, length: 100 })
   cause: string | null;
-
-  //@Column("character", { name: "trial455", nullable: true, length: 1 })
-  //trial455: string | null;
-  //
-  //@OneToOne(() => ComerEventos, (comerEventos) => comerEventos.comerAdjudirec)
-  //@JoinColumn([{ name: "id_evento", referencedColumnName: "idEvento" }])
-  //idEvento2: ComerEventos;
 }

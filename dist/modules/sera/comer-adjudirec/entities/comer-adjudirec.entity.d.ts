@@ -1,8 +1,8 @@
 export declare class ComerAdjudirecEntity {
-    eventId: number;
+    id: number;
     committee: string | null;
-    sessionDate: string | null;
-    noSession: string | null;
+    sessionDate: Date | null;
+    sessionNumber: any;
     creationUser: string | null;
     userWhoProposed: string | null;
     userWhoFormulated: string | null;
@@ -11,7 +11,7 @@ export declare class ComerAdjudirecEntity {
     valudi: number | null;
     amountDis: number | null;
     tendered: string | null;
-    udiDate: string | null;
+    udiDate: Date | null;
     wayToPay: string | null;
     text1: string | null;
     text2: string | null;

@@ -19,14 +19,14 @@ __decorate([
         name: "id_evento",
     }),
     __metadata("design:type", Number)
-], ComerAdjudirecEntity.prototype, "eventId", void 0);
+], ComerAdjudirecEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "comite", nullable: true, length: 1 }),
     __metadata("design:type", String)
 ], ComerAdjudirecEntity.prototype, "committee", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fec_sesion", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerAdjudirecEntity.prototype, "sessionDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
@@ -34,8 +34,8 @@ __decorate([
         nullable: true,
         length: 30,
     }),
-    __metadata("design:type", String)
-], ComerAdjudirecEntity.prototype, "noSession", void 0);
+    __metadata("design:type", Object)
+], ComerAdjudirecEntity.prototype, "sessionNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "usr_elabora",
@@ -95,7 +95,7 @@ __decorate([
 ], ComerAdjudirecEntity.prototype, "tendered", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fechaudi", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], ComerAdjudirecEntity.prototype, "udiDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {

@@ -1,4 +1,5 @@
 import {
+  IsDate,
   IsDateString,
   IsNotEmpty,
   IsNumber,
@@ -7,107 +8,192 @@ import {
   IsString,
   MaxLength,
 } from "class-validator";
+import { Message } from "src/shared/validation-messages/message";
 
 export class ComerAdjudirecDto {
-
-  @IsNumber()
-  eventId: number | null;
-
-  @IsString()
-  @MaxLength(1)
   @IsOptional()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  id: number | null;
+
+  @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   committee: string | null;
 
-  @IsDateString()
   @IsOptional()
-  sessionDate: string | null;
+  @IsDate({
+    message: Message.IsDate("$property"),
+  })
+  sessionDate: Date | null;
 
-  @IsString()
-  @MaxLength(30)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   noSession: string | null;
 
-  @IsString()
-  @MaxLength(30)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   creationUser: string | null;
 
-  @IsString()
-  @MaxLength(30)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   userWhoProposed: string | null;
 
-  @IsString()
-  @MaxLength(30)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   userWhoFormulated: string | null;
 
-  @IsString()
-  @MaxLength(100)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(100, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   physicalCondition: string | null;
 
-  @IsString()
-  @MaxLength(250)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(250, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   observation: string | null;
 
-  @IsNumber()
-  @IsPositive()
   @IsOptional()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive()
   valudi: number | null;
 
-  @IsNumber()
-  @IsPositive()
   @IsOptional()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive()
   amountDis: number | null;
 
-  @IsString()
-  @MaxLength(2)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(2, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   tendered: string | null;
 
-  @IsDateString()
   @IsOptional()
-  udiDate: string | null;
+  @IsDate({
+    message: Message.IsDate("$property"),
+  })
+  udiDate: Date | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   wayToPay: string | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   text1: string | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   text2: string | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   text3: string | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   receptionDate: string | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   bookValue: string | null;
 
-  @IsNumber()
-  @IsPositive()
   @IsOptional()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive()
   valMaxUdi: number | null;
 
-  @IsString()
-  @MaxLength(7)
   @IsOptional()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(7, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
   cause: string | null;
 }
