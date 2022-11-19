@@ -21,7 +21,7 @@ const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 const goods_entity_1 = require("./entities/goods.entity");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 const cat_transferent_entity_1 = require("./entities/cat-transferent.entity");
 const record_entity_1 = require("./entities/record.entity");
@@ -206,7 +206,7 @@ let PaProcessService = class PaProcessService {
         const query2 = await this.entityComerEvent
             .createQueryBuilder("ce")
             .select([`ce.ID_EVENTO as "eventId"`, `ce.ID_TPEVENTO as "tpEventId"`])
-            .addFrom(comer_batch_entity_1.ComerLotsEntity, "cl")
+            .addFrom(comer_lot_entity_1.ComerLotEntity, "cl")
             .where(`ce.ID_EVENTO = cl.ID_EVENTO`)
             .andWhere(`ce.ID_TPEVENTO != 6`)
             .andWhere(`NOT EXISTS ( SELECT 1 FROM sera.COMER_PARAMETROSMOD cp
@@ -963,7 +963,7 @@ PaProcessService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
     __param(1, (0, typeorm_1.InjectRepository)(goods_entity_1.GoodsEntity)),
-    __param(2, (0, typeorm_1.InjectRepository)(comer_batch_entity_1.ComerLotsEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(comer_lot_entity_1.ComerLotEntity)),
     __param(3, (0, typeorm_1.InjectRepository)(comer_rejected_property_entity_1.ComerRejectedPropertyEntity)),
     __param(4, (0, typeorm_1.InjectRepository)(good_atrib_mal_entity_1.GoodAtribMalEntity)),
     __param(5, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),

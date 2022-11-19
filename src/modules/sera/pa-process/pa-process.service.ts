@@ -7,7 +7,7 @@ import { Counter } from "prom-client";
 
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { GoodsEntity } from "./entities/goods.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { CatTransferentEntity } from "./entities/cat-transferent.entity";
 import { RecordEntity } from "./entities/record.entity";
@@ -27,8 +27,8 @@ export class PaProcessService {
     private entityComerEvent: Repository<ComerEventEntity>,
     @InjectRepository(GoodsEntity)
     private entityGoods: Repository<ComerEventEntity>,
-    @InjectRepository(ComerLotsEntity)
-    private entityComerLot: Repository<ComerLotsEntity>,
+    @InjectRepository(ComerLotEntity)
+    private entityComerLot: Repository<ComerLotEntity>,
     @InjectRepository(ComerRejectedPropertyEntity)
     private entityComerRejected: Repository<ComerRejectedPropertyEntity>,
     @InjectRepository(GoodAtribMalEntity)
@@ -224,7 +224,7 @@ export class PaProcessService {
     const query2 = await this.entityComerEvent
       .createQueryBuilder("ce")
       .select([`ce.ID_EVENTO as "eventId"`, `ce.ID_TPEVENTO as "tpEventId"`])
-      .addFrom(ComerLotsEntity, "cl")
+      .addFrom(ComerLotEntity, "cl")
       .where(`ce.ID_EVENTO = cl.ID_EVENTO`)
       .andWhere(`ce.ID_TPEVENTO != 6`)
       .andWhere(

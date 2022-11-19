@@ -8,10 +8,10 @@ import {
 import { MandateFunctionService } from "./mandate-function.service";
 import { MandateFunctionController } from "./mandate-function.controller";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ComerGoodsXLotEntity, ComerLotsEntity])],
+  imports: [TypeOrmModule.forFeature([ComerGoodsXLotEntity, ComerLotEntity])],
   controllers: [MandateFunctionController],
   providers: [
     MandateFunctionService,

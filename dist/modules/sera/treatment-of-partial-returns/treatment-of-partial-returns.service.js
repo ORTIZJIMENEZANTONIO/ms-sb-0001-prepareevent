@@ -20,12 +20,12 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 const good_partial_delivery_entity_1 = require("./entities/good-partial-delivery.entity");
 const goods_entity_1 = require("../file-util/entities/goods.entity");
 const partial_property_delivered_service_1 = require("../partial-property-delivered/partial-property-delivered.service");
 const good_not_delivered_service_1 = require("../good-not-delivered/good-not-delivered.service");
-const comer_batch_service_1 = require("../comer-batch/comer-batch.service");
+const comer_batch_service_1 = require("../comer-lot/comer-batch.service");
 let TreatmentOfPartialReturnsService = class TreatmentOfPartialReturnsService {
     constructor(entityGoodXLot, entityGoodPartialDelivery, logger, counter, partialPropertyDeliveredService, goodNotDeliveredService, comerBatchService) {
         this.entityGoodXLot = entityGoodXLot;
@@ -77,7 +77,7 @@ let TreatmentOfPartialReturnsService = class TreatmentOfPartialReturnsService {
             `bxl.consignmentLotId as "consignmentLotId"`,
             `bxl.consignmentGoodsId as "consignmentGoodsId"`,
         ])
-            .addFrom(comer_batch_entity_1.ComerLotsEntity, "lot")
+            .addFrom(comer_lot_entity_1.ComerLotEntity, "lot")
             .where(`bxl.goodNumber = ${goodNumber}`)
             .andWhere(`lot.id = bxl.lotId`)
             .andWhere(`lot.statusVtaId = 'PAG'`)

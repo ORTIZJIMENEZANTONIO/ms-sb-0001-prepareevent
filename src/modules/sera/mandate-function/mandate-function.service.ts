@@ -6,7 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { MandateFunctionDto } from "./dto/mandate-function.dto";
 
 @Injectable()
@@ -14,8 +14,8 @@ export class MandateFunctionService {
   constructor(
     @InjectRepository(ComerGoodsXLotEntity)
     private comerGoodsXLotRepository: Repository<ComerGoodsXLotEntity>,
-    @InjectRepository(ComerLotsEntity)
-    private comerLotsRepository: Repository<ComerLotsEntity>,
+    @InjectRepository(ComerLotEntity)
+    private comerLotsRepository: Repository<ComerLotEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
     @InjectMetric("mandate_function_served") public counter: Counter<string>
   ) {}

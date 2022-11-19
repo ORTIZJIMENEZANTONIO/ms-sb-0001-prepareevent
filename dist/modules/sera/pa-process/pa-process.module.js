@@ -10,7 +10,7 @@ exports.PaProcessModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
 const comer_rejected_property_entity_1 = require("../comer-rejected-property/entities/comer-rejected-property.entity");
 const good_atrib_mal_entity_1 = require("./entities/good-atrib-mal.entity");
@@ -25,7 +25,7 @@ PaProcessModule = __decorate([
             typeorm_1.TypeOrmModule.forFeature([
                 goods_entity_1.GoodsEntity,
                 comer_events_entity_1.ComerEventEntity,
-                comer_batch_entity_1.ComerLotsEntity,
+                comer_lot_entity_1.ComerLotEntity,
                 comer_rejected_property_entity_1.ComerRejectedPropertyEntity,
                 good_atrib_mal_entity_1.GoodAtribMalEntity
             ]),

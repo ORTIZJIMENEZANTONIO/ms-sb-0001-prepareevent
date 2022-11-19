@@ -6,7 +6,7 @@ import { MessagePattern } from "@nestjs/microservices";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventsService } from "./comer-events.service";
 import { ComerEventDto } from "./dto/comer-events.dto";
-import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 
 @Controller("comer-events")
@@ -38,7 +38,7 @@ export class ComerEventsController {
 
   @MessagePattern({ cmd: "getComerEventByTpEvent" })
   async getComerEventByTpEvent(
-    comerEvent: ComerEventDto & ComerLotsDto & PaginationDto
+    comerEvent: ComerEventDto & ComerLotDto & PaginationDto
   ) {
     return await this.service.getComerEventByTpEvent(comerEvent);
   }

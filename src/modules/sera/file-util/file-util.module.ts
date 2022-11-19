@@ -5,7 +5,7 @@ import {
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
 
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { FileUtilController } from "./file-util.controller";
@@ -15,7 +15,7 @@ import { FileUtilService } from "./file-util.service";
   imports: [
     TypeOrmModule.forFeature([
       ComerGoodsXLotEntity,
-      ComerLotsEntity,
+      ComerLotEntity,
       ComerEventEntity,
     ]),
   ],

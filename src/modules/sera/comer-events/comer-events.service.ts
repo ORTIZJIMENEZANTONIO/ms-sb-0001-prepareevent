@@ -9,7 +9,7 @@ import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
 import { Reference } from "src/shared/functions/reference";
-import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { Text } from "src/shared/functions/text";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 // comer_tpeventos pending
@@ -107,7 +107,7 @@ export class ComerEventsService {
   }
 
   async getComerEventByTpEvent(
-    comerEvent: ComerEventDto & ComerLotsDto & PaginationDto
+    comerEvent: ComerEventDto & ComerLotDto & PaginationDto
   ) {
     const { eventTpId, id, address, inicio = 1, pageSize = 10 } = comerEvent;
     const lotId = id;

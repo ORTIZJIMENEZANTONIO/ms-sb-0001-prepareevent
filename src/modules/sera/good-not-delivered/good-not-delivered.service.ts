@@ -6,7 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { GoodNotDeliveredDto } from "./dto/good-not-delivered.dto";
 
 @Injectable()
@@ -14,8 +14,8 @@ export class GoodNotDeliveredService {
   constructor(
     @InjectRepository(ComerGoodsXLotEntity)
     private entity: Repository<ComerGoodsXLotEntity>,
-    @InjectRepository(ComerLotsEntity)
-    private entityLot: Repository<ComerLotsEntity>,
+    @InjectRepository(ComerLotEntity)
+    private entityLot: Repository<ComerLotEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
     @InjectMetric("good_not_delivered_served") public counter: Counter<string>
   ) {}
@@ -96,7 +96,7 @@ export class GoodNotDeliveredService {
 
     const propertyQuery = this.entityLot
       .createQueryBuilder()
-      .update(ComerLotsEntity)
+      .update(ComerLotEntity)
       .set({ finalPrice: queryFinalPrice.finalPrice })
       .where(`ID_LOTE = ${lotId}`);
 

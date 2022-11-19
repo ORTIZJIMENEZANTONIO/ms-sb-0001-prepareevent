@@ -2,14 +2,14 @@ import { Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Counter } from "prom-client";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { GoodNotDeliveredDto } from "./dto/good-not-delivered.dto";
 export declare class GoodNotDeliveredService {
     private entity;
     private entityLot;
     private readonly logger;
     counter: Counter<string>;
-    constructor(entity: Repository<ComerGoodsXLotEntity>, entityLot: Repository<ComerLotsEntity>, logger: Logger, counter: Counter<string>);
+    constructor(entity: Repository<ComerGoodsXLotEntity>, entityLot: Repository<ComerLotEntity>, logger: Logger, counter: Counter<string>);
     updateGoodNotDeliveredToTheCanceledLot({ lotIdNew, lotId, bxlId, lotConsignment, bxlConsignment, }: GoodNotDeliveredDto): Promise<{
         message: string;
         statusCode?: undefined;

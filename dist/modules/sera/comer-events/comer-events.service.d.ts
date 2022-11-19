@@ -4,7 +4,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerEventDto } from "./dto/comer-events.dto";
 import { ComerEventEntity } from "./entities/comer-events.entity";
-import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { UpdateComerEventDto } from "./dto/update-comer-events.entity";
 export declare class ComerEventsService {
     private entity;
@@ -34,7 +34,7 @@ export declare class ComerEventsService {
         statusCode?: undefined;
         message?: undefined;
     }>;
-    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotsDto & PaginationDto): Promise<{
+    getComerEventByTpEvent(comerEvent: ComerEventDto & ComerLotDto & PaginationDto): Promise<{
         statusCode: number;
         message: string;
         data?: undefined;

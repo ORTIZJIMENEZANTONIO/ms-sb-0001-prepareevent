@@ -20,7 +20,7 @@ const typeorm_2 = require("typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const prom_client_1 = require("prom-client");
 const comer_events_entity_1 = require("../comer-events/entities/comer-events.entity");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 const reference_1 = require("../../../shared/functions/reference");
 const excel_1 = require("../../../shared/functions/excel");
@@ -315,7 +315,7 @@ let FileUtilService = class FileUtilService {
 FileUtilService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(comer_property_by_batch_entity_1.ComerGoodsXLotEntity)),
-    __param(1, (0, typeorm_1.InjectRepository)(comer_batch_entity_1.ComerLotsEntity)),
+    __param(1, (0, typeorm_1.InjectRepository)(comer_lot_entity_1.ComerLotEntity)),
     __param(2, (0, typeorm_1.InjectRepository)(comer_events_entity_1.ComerEventEntity)),
     __param(3, (0, common_1.Inject)(nest_winston_1.WINSTON_MODULE_PROVIDER)),
     __param(4, (0, nestjs_prometheus_1.InjectMetric)("file_util_served")),

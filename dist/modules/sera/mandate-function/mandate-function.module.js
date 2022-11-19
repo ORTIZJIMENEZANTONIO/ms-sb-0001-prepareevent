@@ -13,12 +13,12 @@ const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const mandate_function_service_1 = require("./mandate-function.service");
 const mandate_function_controller_1 = require("./mandate-function.controller");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 let MandateFunctionModule = class MandateFunctionModule {
 };
 MandateFunctionModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([comer_property_by_batch_entity_1.ComerGoodsXLotEntity, comer_batch_entity_1.ComerLotsEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([comer_property_by_batch_entity_1.ComerGoodsXLotEntity, comer_lot_entity_1.ComerLotEntity])],
         controllers: [mandate_function_controller_1.MandateFunctionController],
         providers: [
             mandate_function_service_1.MandateFunctionService,

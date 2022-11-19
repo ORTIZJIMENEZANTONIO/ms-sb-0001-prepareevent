@@ -5,13 +5,13 @@ import {
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
 
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { GoodNotDeliveredController } from "./good-not-delivered.controller";
 import { GoodNotDeliveredService } from "./good-not-delivered.service";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ComerGoodsXLotEntity, ComerLotsEntity])],
+  imports: [TypeOrmModule.forFeature([ComerGoodsXLotEntity, ComerLotEntity])],
   controllers: [GoodNotDeliveredController],
   providers: [
     GoodNotDeliveredService,

@@ -2,7 +2,7 @@ import { Logger } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Counter } from "prom-client";
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities/comer-rejected-property.entity";
 import { ActGoodLotMDto } from "./dto/act-good-lot-m.dto";
 import { PaRejectDto } from "./dto/reject.dto";
@@ -17,7 +17,7 @@ export declare class PaProcessService {
     private entityGoodAtrib;
     private readonly logger;
     counter: Counter<string>;
-    constructor(entityComerEvent: Repository<ComerEventEntity>, entityGoods: Repository<ComerEventEntity>, entityComerLot: Repository<ComerLotsEntity>, entityComerRejected: Repository<ComerRejectedPropertyEntity>, entityGoodAtrib: Repository<GoodAtribMalEntity>, logger: Logger, counter: Counter<string>);
+    constructor(entityComerEvent: Repository<ComerEventEntity>, entityGoods: Repository<ComerEventEntity>, entityComerLot: Repository<ComerLotEntity>, entityComerRejected: Repository<ComerRejectedPropertyEntity>, entityGoodAtrib: Repository<GoodAtribMalEntity>, logger: Logger, counter: Counter<string>);
     paActGoodLotMDto(params: ActGoodLotMDto): Promise<void>;
     paReject(params: PaRejectDto): Promise<{
         created: number;

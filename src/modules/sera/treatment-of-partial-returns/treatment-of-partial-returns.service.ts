@@ -5,12 +5,12 @@ import { Repository } from "typeorm";
 import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.entity";
 import { GoodsEntity } from "../file-util/entities/goods.entity";
 import { PartialPropertyDeliveredService } from "../partial-property-delivered/partial-property-delivered.service";
 import { GoodNotDeliveredService } from "../good-not-delivered/good-not-delivered.service";
-import { ComerBatchService } from "../comer-batch/comer-batch.service";
+import { ComerBatchService } from "../comer-lot/comer-batch.service";
 
 @Injectable()
 export class TreatmentOfPartialReturnsService {
@@ -84,7 +84,7 @@ export class TreatmentOfPartialReturnsService {
         `bxl.consignmentLotId as "consignmentLotId"`,
         `bxl.consignmentGoodsId as "consignmentGoodsId"`,
       ])
-      .addFrom(ComerLotsEntity, "lot")
+      .addFrom(ComerLotEntity, "lot")
       .where(`bxl.goodNumber = ${goodNumber}`)
       .andWhere(`lot.id = bxl.lotId`)
       .andWhere(`lot.statusVtaId = 'PAG'`)

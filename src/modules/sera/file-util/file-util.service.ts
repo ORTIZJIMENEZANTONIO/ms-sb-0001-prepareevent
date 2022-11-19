@@ -6,7 +6,7 @@ import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { GoodsEntity } from "./entities/goods.entity";
 import { FilesEntity } from "./entities/files.entity";
@@ -14,8 +14,8 @@ import { CatTransferentEntity } from "./entities/cat-transferent.entity";
 import { WarehouseEntity } from "./entities/cat-warehouse.entity";
 import { LabelEntity } from "./entities/cat-label.entity";
 import { Reference } from "src/shared/functions/reference";
-import { UpdateComerBatchDto } from "../comer-batch/dto/update-comer-batch.dto";
-import { ComerLotsDto } from "../comer-batch/dto/comer-batch.dto";
+import { UpdateComerLotDto } from "../comer-lot/dto/update-comer-lot.dto";
+import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { File } from "src/shared/functions/excel";
 import { UpdateComerGoodsXLotDto } from "../comer-property-by-batch/dto/update-comer-property-by-batch.dto";
 
@@ -24,8 +24,8 @@ export class FileUtilService {
   constructor(
     @InjectRepository(ComerGoodsXLotEntity)
     private entityGoodXLot: Repository<ComerGoodsXLotEntity>,
-    @InjectRepository(ComerLotsEntity)
-    private entityComerLot: Repository<ComerLotsEntity>,
+    @InjectRepository(ComerLotEntity)
+    private entityComerLot: Repository<ComerLotEntity>,
     @InjectRepository(ComerEventEntity)
     private entityComerEvent: Repository<ComerEventEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
@@ -269,7 +269,6 @@ export class FileUtilService {
         }
       }
     }
-    //console.log(rowsUpdated);
     return rowsUpdated.length > 0
       ? { message: `Updated successfully ${rowsUpdated.length} rows `}
       : null;
@@ -319,7 +318,7 @@ export class FileUtilService {
     return idTpEvent ?? 0;
   }
 
-  async updateComerLot(comer: UpdateComerBatchDto) {
+  async updateComerLot(comer: UpdateComerLotDto) {
     const data = await this.entityComerLot.findOne({
       where: { id: comer.lotIdToUpdt },
     });

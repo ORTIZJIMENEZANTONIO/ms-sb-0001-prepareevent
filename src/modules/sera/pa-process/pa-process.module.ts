@@ -4,7 +4,7 @@ import {
   makeCounterProvider,
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
-import { ComerLotsEntity } from "../comer-batch/entities/comer-batch.entity";
+import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 
 import { ComerEventEntity } from "../comer-events/entities/comer-events.entity";
 import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities/comer-rejected-property.entity";
@@ -18,7 +18,7 @@ import { PaProcessService } from "./pa-process.service";
     TypeOrmModule.forFeature([
       GoodsEntity,
       ComerEventEntity,
-      ComerLotsEntity,
+      ComerLotEntity,
       ComerRejectedPropertyEntity,
       GoodAtribMalEntity
     ]),

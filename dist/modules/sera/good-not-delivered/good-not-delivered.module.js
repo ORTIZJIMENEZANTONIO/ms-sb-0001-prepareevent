@@ -10,7 +10,7 @@ exports.GoodNotDeliveredModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
-const comer_batch_entity_1 = require("../comer-batch/entities/comer-batch.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
 const comer_property_by_batch_entity_1 = require("../comer-property-by-batch/entities/comer-property-by-batch.entity");
 const good_not_delivered_controller_1 = require("./good-not-delivered.controller");
 const good_not_delivered_service_1 = require("./good-not-delivered.service");
@@ -18,7 +18,7 @@ let GoodNotDeliveredModule = class GoodNotDeliveredModule {
 };
 GoodNotDeliveredModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([comer_property_by_batch_entity_1.ComerGoodsXLotEntity, comer_batch_entity_1.ComerLotsEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([comer_property_by_batch_entity_1.ComerGoodsXLotEntity, comer_lot_entity_1.ComerLotEntity])],
         controllers: [good_not_delivered_controller_1.GoodNotDeliveredController],
         providers: [
             good_not_delivered_service_1.GoodNotDeliveredService,
