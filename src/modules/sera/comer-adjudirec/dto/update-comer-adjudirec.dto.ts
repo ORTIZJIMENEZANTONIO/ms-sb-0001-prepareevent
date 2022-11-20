@@ -1,8 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber } from "class-validator";
+import { Type } from "class-transformer";
+import { IsNotEmpty, IsNumber } from "class-validator";
 import { Message } from "src/shared/validation-messages/message";
 
 export class UpdateComerAdjudirecDto {
+  @Type(() => Number)
+  @IsNotEmpty({
+    message: Message.REQUIRED('$property')
+  })
   @IsNumber(
     {},
     {

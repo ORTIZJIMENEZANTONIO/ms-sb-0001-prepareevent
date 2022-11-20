@@ -11,47 +11,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerConvEventDto = void 0;
 const class_validator_1 = require("class-validator");
+const message_1 = require("../../../../shared/validation-messages/message");
 class ComerConvEventDto {
 }
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED("$property"),
+    }),
+    (0, class_validator_1.IsNumber)({}, {
+        message: message_1.Message.NUMBER("$property"),
+    }),
+    (0, class_validator_1.IsPositive)({ message: message_1.Message.POSITIVE("$property") }),
     __metadata("design:type", Number)
 ], ComerConvEventDto.prototype, "eventId", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED("$property"),
+    }),
+    (0, class_validator_1.IsNumber)({}, {
+        message: message_1.Message.NUMBER("$property"),
+    }),
     (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], ComerConvEventDto.prototype, "announcementEventId", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(200),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: message_1.Message.STRING("$pŕopérty") }),
+    (0, class_validator_1.MaxLength)(200, {
+        message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
+    }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsDateString)({ message: "Formato incorrecto" }),
-    (0, class_validator_1.IsNotEmpty)({ message: "fechas requerida" }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: message_1.Message.REQUIRED("$property") }),
+    (0, class_validator_1.IsString)({ message: message_1.Message.STRING("$pŕopérty") }),
+    (0, class_validator_1.MaxLength)(70, {
+        message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
+    }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "dates", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(70),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: message_1.Message.STRING("$pŕopérty") }),
+    (0, class_validator_1.MaxLength)(70, {
+        message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
+    }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "schedule", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(200),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: message_1.Message.STRING("$pŕopérty") }),
+    (0, class_validator_1.MaxLength)(200, {
+        message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
+    }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "place", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(500),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)({ message: message_1.Message.STRING("$pŕopérty") }),
+    (0, class_validator_1.MaxLength)(500, {
+        message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
+    }),
     __metadata("design:type", String)
 ], ComerConvEventDto.prototype, "restriction", void 0);
 exports.ComerConvEventDto = ComerConvEventDto;

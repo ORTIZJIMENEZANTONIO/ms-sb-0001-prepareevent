@@ -16,6 +16,9 @@ const message_1 = require("../../../../shared/validation-messages/message");
 class UpdateComerAdjudirecDto {
 }
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED('$property')
+    }),
     (0, class_validator_1.IsNumber)({}, {
         message: message_1.Message.NUMBER("$property"),
     }),

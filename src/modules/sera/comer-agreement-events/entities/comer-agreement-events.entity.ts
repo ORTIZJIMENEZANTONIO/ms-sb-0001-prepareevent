@@ -1,14 +1,11 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-//import { ComerEventos } from "./ComerEventos";
-
-//@Index("isia188p1_comer_con", ["idEvento", "noEventoConvocatoria"], {
-//  unique: true,
-//})
-//@Index("isia188s1_comer_con", ["idEvento"], {})
-//@Index("comer_conv_eventos_pkey", ["idEvento", "noEventoConvocatoria"], {
-//  unique: true,
-//})
-// autoincrement
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from "typeorm";
 @Entity("comer_conv_eventos", { schema: "sera" })
 export class ComerConvEventEntity {
   @PrimaryColumn("numeric", {
@@ -49,14 +46,4 @@ export class ComerConvEventEntity {
     length: 500,
   })
   restriction: string | null;
-
-  //@Column("character", { name: "trial339", nullable: true, length: 1 })
-  //trial339: string | null;
-//
-  //@ManyToOne(
-  //  () => ComerEventos,
-  //  (comerEventos) => comerEventos.comerConvEventos
-  //)
-  //@JoinColumn([{ name: "id_evento", referencedColumnName: "idEvento" }])
-  //idEvento2: ComerEventos;
 }
