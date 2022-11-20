@@ -6,7 +6,7 @@ import {
 } from "@willsoto/nestjs-prometheus";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 
-import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
+import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities/comer-rejected-property.entity";
 import { GoodAtribMalEntity } from "./entities/good-atrib-mal.entity";
 import { GoodsEntity } from "./entities/goods.entity";

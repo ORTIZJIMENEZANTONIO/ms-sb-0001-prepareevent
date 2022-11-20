@@ -8,7 +8,7 @@ import { Counter } from "prom-client";
 import { PaginationDto } from "src/shared/dto/pagination.dto";
 import { ComerLotDto } from "./dto/comer-lot.dto";
 import { ComerLotEntity } from "./entities/comer-lot.entity";
-import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
+import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { UpdateComerLotDto } from "./dto/update-comer-lot.dto";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";

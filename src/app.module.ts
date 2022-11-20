@@ -8,7 +8,7 @@ import { configService } from './shared/config/config.service';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ComerEventsModule } from './modules/sera/comer-events/comer-events.module';
+import { ComerEventsModule } from './modules/sera/comer-event/comer-events.module';
 import { ComerAgreementEventsModule } from './modules/sera/comer-agreement-events/comer-agreement-events.module';
 import { ComerPropertyByBatchModule } from './modules/sera/comer-property-by-batch/comer-property-by-batch.module';
 import { ComerLotModule } from './modules/sera/comer-lot/comer-batch.module';

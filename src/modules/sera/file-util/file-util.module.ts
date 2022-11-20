@@ -6,7 +6,7 @@ import {
 } from "@willsoto/nestjs-prometheus";
 
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
-import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
+import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
 import { FileUtilController } from "./file-util.controller";
 import { FileUtilService } from "./file-util.service";

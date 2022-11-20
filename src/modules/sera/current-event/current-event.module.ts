@@ -4,7 +4,7 @@ import {
   makeCounterProvider,
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
-import { ComerEventEntity } from "../comer-events/entities/comer-event.entity";
+import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 
 import { CurrentEventController } from "./current-event.controller";
 import { CurrentEventService } from "./current-event.service";

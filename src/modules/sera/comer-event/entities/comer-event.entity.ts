@@ -1,12 +1,17 @@
-import { Column, Entity, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity("comer_eventos", { schema: "sera" })
 export class ComerEventEntity {
-
   @PrimaryGeneratedColumn({
     name: "id_evento",
   })
-  id: number;
+  id: number | null;
 
   @Column("numeric", { name: "id_tpevento", precision: 2, scale: 0 })
   eventTpId: number;
@@ -41,20 +46,20 @@ export class ComerEventEntity {
   eventDate: Date | null;
 
   @Column("character varying", { name: "texto1", nullable: true, length: 4000 })
-  texto1: string | null;
+  text1: string | null;
 
   @Column("character varying", { name: "texto2", nullable: true, length: 4000 })
-  texto2: string | null;
+  text2: string | null;
 
   @Column("character varying", { name: "firmante", nullable: true, length: 50 })
-  firmante: string | null;
+  signatory: string | null;
 
   @Column("character varying", {
     name: "firmante_cargo",
     nullable: true,
     length: 50,
   })
-  firmantePosition: string | null;
+  signatoryPosition: string | null;
 
   @Column("character varying", { name: "notas", nullable: true, length: 300 })
   notes: string | null;
