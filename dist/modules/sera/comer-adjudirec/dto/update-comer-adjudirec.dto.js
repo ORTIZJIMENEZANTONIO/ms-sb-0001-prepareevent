@@ -11,10 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateComerAdjudirecDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
+const message_1 = require("../../../../shared/validation-messages/message");
 class UpdateComerAdjudirecDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: "ex" }),
+    (0, class_validator_1.IsNumber)({}, {
+        message: message_1.Message.NUMBER("$property"),
+    }),
+    (0, swagger_1.ApiProperty)({ example: 1 }),
     __metadata("design:type", Number)
 ], UpdateComerAdjudirecDto.prototype, "eventIdToUpdt", void 0);
 exports.UpdateComerAdjudirecDto = UpdateComerAdjudirecDto;

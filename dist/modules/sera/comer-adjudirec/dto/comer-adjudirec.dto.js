@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComerAdjudirecDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const message_1 = require("../../../../shared/validation-messages/message");
 class ComerAdjudirecDto {
@@ -19,6 +20,7 @@ __decorate([
     (0, class_validator_1.IsNumber)({}, {
         message: message_1.Message.NUMBER("$property"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Number)
 ], ComerAdjudirecDto.prototype, "id", void 0);
 __decorate([
@@ -29,6 +31,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(1, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 1 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "committee", void 0);
 __decorate([
@@ -36,6 +39,7 @@ __decorate([
     (0, class_validator_1.IsDate)({
         message: message_1.Message.IsDate("$property"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Date)
 ], ComerAdjudirecDto.prototype, "sessionDate", void 0);
 __decorate([
@@ -46,6 +50,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(30, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 30 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "noSession", void 0);
 __decorate([
@@ -56,6 +61,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(30, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 30 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "creationUser", void 0);
 __decorate([
@@ -66,6 +72,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(30, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 30 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "userWhoProposed", void 0);
 __decorate([
@@ -76,6 +83,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(30, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 30 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "userWhoFormulated", void 0);
 __decorate([
@@ -86,6 +94,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(100, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 100 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "physicalCondition", void 0);
 __decorate([
@@ -96,6 +105,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(250, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 250 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "observation", void 0);
 __decorate([
@@ -104,6 +114,7 @@ __decorate([
         message: message_1.Message.NUMBER("$property"),
     }),
     (0, class_validator_1.IsPositive)(),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Number)
 ], ComerAdjudirecDto.prototype, "valudi", void 0);
 __decorate([
@@ -112,6 +123,7 @@ __decorate([
         message: message_1.Message.NUMBER("$property"),
     }),
     (0, class_validator_1.IsPositive)(),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Number)
 ], ComerAdjudirecDto.prototype, "amountDis", void 0);
 __decorate([
@@ -122,6 +134,7 @@ __decorate([
     (0, class_validator_1.MaxLength)(2, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 2 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "tendered", void 0);
 __decorate([
@@ -129,6 +142,7 @@ __decorate([
     (0, class_validator_1.IsDate)({
         message: message_1.Message.IsDate("$property"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Date)
 ], ComerAdjudirecDto.prototype, "udiDate", void 0);
 __decorate([
@@ -136,9 +150,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(50, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 50 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "wayToPay", void 0);
 __decorate([
@@ -146,9 +161,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(800, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 800 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "text1", void 0);
 __decorate([
@@ -156,9 +172,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(100, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 100 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "text2", void 0);
 __decorate([
@@ -166,9 +183,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(1500, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 1500 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "text3", void 0);
 __decorate([
@@ -176,9 +194,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(30, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 30 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "receptionDate", void 0);
 __decorate([
@@ -186,9 +205,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(50, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 50 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "bookValue", void 0);
 __decorate([
@@ -197,6 +217,7 @@ __decorate([
         message: message_1.Message.NUMBER("$property"),
     }),
     (0, class_validator_1.IsPositive)(),
+    (0, swagger_1.ApiProperty)({ example: null, required: false }),
     __metadata("design:type", Number)
 ], ComerAdjudirecDto.prototype, "valMaxUdi", void 0);
 __decorate([
@@ -204,9 +225,10 @@ __decorate([
     (0, class_validator_1.IsString)({
         message: message_1.Message.STRING("$property"),
     }),
-    (0, class_validator_1.MaxLength)(7, {
+    (0, class_validator_1.MaxLength)(100, {
         message: message_1.Message.MAX_LENGTH("$property", "$constraint1"),
     }),
+    (0, swagger_1.ApiProperty)({ example: null, required: false, maxLength: 100 }),
     __metadata("design:type", String)
 ], ComerAdjudirecDto.prototype, "cause", void 0);
 exports.ComerAdjudirecDto = ComerAdjudirecDto;
