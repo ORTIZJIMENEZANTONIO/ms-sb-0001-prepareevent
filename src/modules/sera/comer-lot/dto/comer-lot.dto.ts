@@ -1,286 +1,648 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 import {
-  IsDateString,
+  IsDate,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsPositive,
   IsString,
+  Max,
   MaxLength,
 } from "class-validator";
-import { IsNullable } from "src/shared/custom-validators/custom-validator";
-export class ComerLotDto {
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
-  id: number;
 
-  @IsString()
-  @MaxLength(4)
-  @IsNotEmpty()
+import { Message } from "src/shared/validation-messages/message";
+export class ComerLotDto {
+  @Type(() => Number)
+  @IsOptional()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @ApiProperty({ example: null, required: false })
+  id: number | null;
+
+  @Type(() => String)
+  @IsNotEmpty({
+    message: Message.REQUIRED("$property"),
+  })
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(4, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: true, maxLength: 4 })
   statusVtaId: string;
 
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
+  @Type(() => Number)
+  @IsNotEmpty({
+    message: Message.REQUIRED("$property"),
+  })
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(9999999, {
+    message: Message.MAX_NUMBER("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   eventId: number;
 
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
+  @Type(() => Number)
+  @IsNotEmpty({
+    message: Message.REQUIRED("$property"),
+  })
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(99999999, {
+    message: Message.MAX_NUMBER("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 8 })
   publicLot: number;
 
-  @IsString()
-  @MaxLength(1250)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1250, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 1250 })
   description: string | null;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @Type(() => Number)
+  @IsNotEmpty({
+    message: Message.REQUIRED("$property"),
+  })
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 33 })
   baseValue: number;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   transferenceNumber: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   customerId: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   appraisalPriceRef: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   warrantyPrice: number | null;
 
-  @IsDateString()
+  @Type(() => Date)
   @IsOptional()
-  @IsNullable()
+  @IsDate({
+    message: Message.IsDate("$property"),
+  })
+  @ApiProperty({ example: null, required: false })
   deliveryDate: Date | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   finalPrice: number | null;
 
-  @IsString()
-  @MaxLength(30)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 30 })
   referenceG: string | null;
 
-  @IsString()
-  @MaxLength(30)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(30, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 30 })
   referential: string | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   accumulated: number | null;
 
-  @IsString()
-  @MaxLength(1)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 1 })
   systemValid: string | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   lotVat: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   amountAppVat: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   amountNoAppVat: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   vatAppPercentage: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 9 })
   vatNoAppPercentage: number | null;
 
-  @IsString()
-  @MaxLength(50)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(50, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 50 })
   regCoordination: string | null;
 
-  @IsString()
-  @MaxLength(50)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()@IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(50, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 50 })
   regCoordinator: string | null;
 
-  @IsString()
-  @MaxLength(200)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()@IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(200, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 200 })
   fiscMandFact: string | null;
-  
-  @IsString()
-  @MaxLength(250)
+
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(250, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 250 })
   ubication: string | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   advance: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   amountWithoutVat: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   notifyOfficeNumber: number | null;
 
-  @IsString()
-  @MaxLength(1)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 1 })
   notifyPrint: string | null;
 
-  @IsString()
-  @MaxLength(4)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(4, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 4 })
   statusVtantId: string | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   goodsNumber: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   faultExceeds: number | null;
 
-  @IsString()
-  @MaxLength(1)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 1 })
   assignedEs: string | null;
 
-  @IsString()
-  @MaxLength(1)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(1, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 1 })
   scrapEs: string | null;
 
-  @IsString()
-  @MaxLength(60)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(60, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 60 })
   request: string | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   withheldAmount: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(99, {
+    message: Message.MAX_NUMBER("$property", "$constrain1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 2 })
   delegationNumber: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   originLot: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   lotCover: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   palette: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   assignedWarranty: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 7 })
   liqAmount: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(99, {
+    message: Message.MAX_NUMBER("$property", "$constrain1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 2 })
   phase: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(99, {
+    message: Message.MAX_NUMBER("$property", "$constrain1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 2 })
   partialitiesNumber: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(9999, {
+    message: Message.MAX_NUMBER("$property", "$constrain1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 4 })
   percentPoints: number | null;
 
-  @IsNumber()
-  @IsPositive()
+  @Type(() => Number)
   @IsOptional()
-  @IsNullable()
+  @IsNumber(
+    {},
+    {
+      message: Message.NUMBER("$property"),
+    }
+  )
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
+  })
+  @Max(999, {
+    message: Message.MAX_NUMBER("$property", "$constrain1"),
+  })
+  @ApiProperty({ example: 1, required: true, maxLength: 3 })
   advancePercent: number | null;
 
-  @IsString()
-  @MaxLength(2)
+  @Type(() => String)
   @IsOptional()
-  @IsNullable()
+  @IsString({
+    message: Message.STRING("$property"),
+  })
+  @MaxLength(2, {
+    message: Message.MAX_LENGTH("$property", "$constraint1"),
+  })
+  @ApiProperty({ example: null, required: false, maxLength: 2 })
   vatA: string | null;
 }

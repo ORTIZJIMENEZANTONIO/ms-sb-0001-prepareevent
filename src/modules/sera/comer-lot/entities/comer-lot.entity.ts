@@ -12,7 +12,7 @@ export class ComerLotEntity {
   @PrimaryGeneratedColumn({
     name: "id_lote",
   })
-  id: number;
+  id: number | null;
 
   @Column("character varying", { name: "id_estatusvta", length: 4 })
   statusVtaId: string;

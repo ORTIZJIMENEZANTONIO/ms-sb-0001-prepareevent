@@ -239,8 +239,8 @@ export class ComerClientDto {
       message: Message.NUMBER("$property"),
     }
   )
-   @IsPositive({
-    message: Message.POSITIVE('$property'),
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
   })
   @ApiProperty({ example: null, required: false })
   estaId: number | null;
@@ -270,7 +270,7 @@ export class ComerClientDto {
     }
   )
   @IsPositive({
-    message: Message.POSITIVE("$property")
+    message: Message.POSITIVE("$property"),
   })
   @ApiProperty({ example: null, required: false })
   penaltyId: number | null;
@@ -324,8 +324,8 @@ export class ComerClientDto {
       message: Message.NUMBER("$property"),
     }
   )
-   @IsPositive({
-    message: Message.POSITIVE('$property'),
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
   })
   @ApiProperty({ example: null, required: false })
   registerId: number | null;
@@ -349,8 +349,8 @@ export class ComerClientDto {
       message: Message.NUMBER("$property"),
     }
   )
-   @IsPositive({
-    message: Message.POSITIVE('$property'),
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
   })
   @ApiProperty({ example: null, required: false })
   identificationType: number | null;
@@ -374,8 +374,8 @@ export class ComerClientDto {
       message: Message.NUMBER("$property"),
     }
   )
-   @IsPositive({
-    message: Message.POSITIVE('$property'),
+  @IsPositive({
+    message: Message.POSITIVE("$property"),
   })
   @ApiProperty({ example: null, required: false })
   agentId: number | null;
