@@ -9,7 +9,7 @@ import { ComerCatCalendarEntity } from "./entities/comer-catcalendar.entity";
 import { ComerCalendarevEntity } from "./entities/comer-calendar-ev.entity";
 import { CurrentFilterDto } from "./dto/current-ifilter.dto";
 import { TmpEventsComerEntity } from "./entities/tmp-events-comer.entity";
-import { ComerParameterModEntity } from "./dto/comer-parameter-mod.entity";
+import { ComerParameterModEntity } from "./entities/comer-parameter-mod.entity";
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 ComerParameterModEntity;
 @Injectable()

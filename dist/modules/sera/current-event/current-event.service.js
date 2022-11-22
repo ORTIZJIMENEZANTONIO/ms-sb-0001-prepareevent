@@ -22,7 +22,7 @@ const prom_client_1 = require("prom-client");
 const comer_catcalendar_entity_1 = require("./entities/comer-catcalendar.entity");
 const comer_calendar_ev_entity_1 = require("./entities/comer-calendar-ev.entity");
 const tmp_events_comer_entity_1 = require("./entities/tmp-events-comer.entity");
-const comer_parameter_mod_entity_1 = require("./dto/comer-parameter-mod.entity");
+const comer_parameter_mod_entity_1 = require("./entities/comer-parameter-mod.entity");
 const comer_event_entity_1 = require("../comer-event/entities/comer-event.entity");
 comer_parameter_mod_entity_1.ComerParameterModEntity;
 let CurrentEventService = class CurrentEventService {

@@ -2,10 +2,10 @@ export declare class TmpEventsComerEntity {
     id: string;
     processKey: string | null;
     failDate: Date | null;
-    idTpevent: number;
+    tpeventId: number;
     address: string;
     place: string | null;
-    idStatusVta: string | null;
+    statusVtaId: string | null;
     eventDate: Date | null;
-    atTpevent: number;
+    atTpeventId: number;
 }

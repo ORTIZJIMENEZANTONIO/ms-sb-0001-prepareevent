@@ -27,5 +27,5 @@ export class GoodPartialDeliveryEntity {
   enPartialGoddNumber: string;
 
   @Column("date", { name: "fecha", nullable: true })
-  date: string | null;
+  date: Date | null;
 }

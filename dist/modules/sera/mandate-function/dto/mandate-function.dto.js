@@ -10,25 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MandateFunctionDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const message_1 = require("../../../../shared/validation-messages/message");
 class MandateFunctionDto {
 }
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED("$property"),
+    }),
+    (0, class_validator_1.IsNumber)({}, { message: message_1.Message.NUMBER("$property") }),
+    (0, swagger_1.ApiProperty)({ example: 2 }),
     __metadata("design:type", Number)
 ], MandateFunctionDto.prototype, "lotId", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED("$property"),
+    }),
+    (0, class_validator_1.IsNumber)({}, { message: message_1.Message.NUMBER("$property") }),
+    (0, swagger_1.ApiProperty)({ example: 2 }),
     __metadata("design:type", Number)
 ], MandateFunctionDto.prototype, "goodId", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED("$property"),
+    }),
+    (0, class_validator_1.IsNumber)({}, { message: message_1.Message.NUMBER("$property") }),
+    (0, swagger_1.ApiProperty)({ example: 2 }),
     __metadata("design:type", Number)
 ], MandateFunctionDto.prototype, "lotIdToUdate", void 0);
 exports.MandateFunctionDto = MandateFunctionDto;

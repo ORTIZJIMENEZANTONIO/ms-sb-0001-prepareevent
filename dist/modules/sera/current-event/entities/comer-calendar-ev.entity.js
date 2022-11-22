@@ -25,7 +25,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "id_evento", precision: 7, scale: 0 }),
     __metadata("design:type", Number)
-], ComerCalendarevEntity.prototype, "idEvent", void 0);
+], ComerCalendarevEntity.prototype, "eventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_estatus",
@@ -33,7 +33,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerCalendarevEntity.prototype, "idStatus", void 0);
+], ComerCalendarevEntity.prototype, "statusId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "dia",

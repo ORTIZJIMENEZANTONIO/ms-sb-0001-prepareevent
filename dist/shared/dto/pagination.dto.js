@@ -10,19 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaginationDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const message_1 = require("../validation-messages/message");
 class PaginationDto {
 }
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
+    (0, class_transformer_1.Type)(() => Number),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)({}, {
+        message: message_1.Message.NUMBER("$property"),
+    }),
+    (0, swagger_1.ApiProperty)({ example: 0 }),
     __metadata("design:type", Number)
 ], PaginationDto.prototype, "inicio", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsPositive)(),
+    (0, class_transformer_1.Type)(() => Number),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)({}, {
+        message: message_1.Message.NUMBER("$property"),
+    }),
+    (0, class_validator_1.IsPositive)({
+        message: message_1.Message.POSITIVE("$property"),
+    }),
+    (0, swagger_1.ApiProperty)({ example: 3 }),
     __metadata("design:type", Number)
 ], PaginationDto.prototype, "pageSize", void 0);
 exports.PaginationDto = PaginationDto;

@@ -39,7 +39,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], TmpEventsComerEntity.prototype, "idTpevent", void 0);
+], TmpEventsComerEntity.prototype, "tpeventId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "direccion",
@@ -62,7 +62,7 @@ __decorate([
         length: 4,
     }),
     __metadata("design:type", String)
-], TmpEventsComerEntity.prototype, "idStatusVta", void 0);
+], TmpEventsComerEntity.prototype, "statusVtaId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "date", name: "fecha_evento", nullable: true }),
     __metadata("design:type", Date)
@@ -74,7 +74,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], TmpEventsComerEntity.prototype, "atTpevent", void 0);
+], TmpEventsComerEntity.prototype, "atTpeventId", void 0);
 TmpEventsComerEntity = __decorate([
     (0, typeorm_1.Entity)("tmp_eventos_comer", { schema: "comer" })
 ], TmpEventsComerEntity);

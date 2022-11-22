@@ -42,7 +42,7 @@ __decorate([
 ], GoodPartialDeliveryEntity.prototype, "enPartialGoddNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha", nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Date)
 ], GoodPartialDeliveryEntity.prototype, "date", void 0);
 GoodPartialDeliveryEntity = __decorate([
     (0, typeorm_1.Entity)("bienes_entrega_parcial", { schema: "sera" })

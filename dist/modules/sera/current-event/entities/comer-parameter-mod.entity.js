@@ -9,57 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ParameterModEntity = void 0;
+exports.ComerParameterModEntity = void 0;
 const typeorm_1 = require("typeorm");
-let ParameterModEntity = class ParameterModEntity {
+let ComerParameterModEntity = class ComerParameterModEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({
-        name: "parametro",
-        type: "character varying",
-        length: 20,
-        nullable: false,
-    }),
+    (0, typeorm_1.Column)("character varying", { name: "parametro", primary: true, length: 20 }),
     __metadata("design:type", String)
-], ParameterModEntity.prototype, "id", void 0);
+], ComerParameterModEntity.prototype, "parameter", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({
-        name: "valor",
-        type: "character varying",
-        length: 500,
-        nullable: false,
-    }),
+    (0, typeorm_1.Column)("character varying", { name: "valor", primary: true, length: 500 }),
     __metadata("design:type", String)
-], ParameterModEntity.prototype, "value", void 0);
+], ComerParameterModEntity.prototype, "value", void 0);
 __decorate([
-    (0, typeorm_1.Column)({
+    (0, typeorm_1.Column)("character varying", {
         name: "descripcion",
-        type: "character varying",
-        length: 200,
         nullable: true,
+        length: 200,
     }),
     __metadata("design:type", String)
-], ParameterModEntity.prototype, "description", void 0);
+], ComerParameterModEntity.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)({
-        name: "direccion",
-        type: "character varying",
-        length: 1,
-        nullable: false,
-    }),
+    (0, typeorm_1.Column)("character varying", { name: "direccion", primary: true, length: 1 }),
     __metadata("design:type", String)
-], ParameterModEntity.prototype, "address", void 0);
+], ComerParameterModEntity.prototype, "address", void 0);
 __decorate([
-    (0, typeorm_1.Column)({
+    (0, typeorm_1.Column)("numeric", {
         name: "id_tpevento",
         nullable: true,
         precision: 3,
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ParameterModEntity.prototype, "tpEventId", void 0);
-ParameterModEntity = __decorate([
+], ComerParameterModEntity.prototype, "idTpevent", void 0);
+ComerParameterModEntity = __decorate([
     (0, typeorm_1.Entity)("comer_parametrosmod", { schema: "sera" })
-], ParameterModEntity);
-exports.ParameterModEntity = ParameterModEntity;
-//# sourceMappingURL=comer-parameter-mod.entity%20copy.js.map
+], ComerParameterModEntity);
+exports.ComerParameterModEntity = ComerParameterModEntity;
+//# sourceMappingURL=comer-parameter-mod.entity.js.map

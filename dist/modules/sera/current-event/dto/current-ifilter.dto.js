@@ -22,6 +22,15 @@ __decorate([
         message: message_1.Message.REQUIRED('$property')
     }),
     (0, class_validator_1.IsNumber)({}, { message: message_1.Message.NUMBER('$property') }),
+    (0, swagger_1.ApiProperty)({ example: 2, maxLength: 2 }),
+    __metadata("design:type", Number)
+], CurrentFilterDto.prototype, "month", void 0);
+__decorate([
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNotEmpty)({
+        message: message_1.Message.REQUIRED('$property')
+    }),
+    (0, class_validator_1.IsNumber)({}, { message: message_1.Message.NUMBER('$property') }),
     (0, swagger_1.ApiProperty)({ example: 2022, maxLength: 4 }),
     __metadata("design:type", Number)
 ], CurrentFilterDto.prototype, "year", void 0);

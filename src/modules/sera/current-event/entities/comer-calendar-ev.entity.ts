@@ -1,7 +1,4 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
-import { ComerCatCalendarEntity } from "./comer-catcalendar.entity";
-
-//@Index("isia165p1_comer_cal", ["idCalendar"], { unique: true })
 @Index("comer_calendarev_pk", ["id"], { unique: true })
 @Entity("comer_calendarev", { schema: "sera" })
 export class ComerCalendarevEntity {
@@ -14,14 +11,14 @@ export class ComerCalendarevEntity {
   id: string;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
-  idEvent: number;
+  eventId: number;
 
   @Column("numeric", {
     name: "id_estatus",
     precision: 10,
     scale: 0,
   })
-  idStatus: string;
+  statusId: string;
 
   @Column("numeric", {
     name: "dia",
@@ -57,12 +54,5 @@ export class ComerCalendarevEntity {
     scale: 0,
     default: () => "1",
   })
-  daysRange: number  | null;
-
-  // @ManyToOne(
-  //   () => ComerCatCalendarEntity,
-  //   (comerCatcalendar) => comerCatcalendar.comerCalendarevs
-  // )
-  // @JoinColumn([{ name: "id_estatus", referencedColumnName: "idEstatus" }])
-  // idEstatus: ComerCatCalendarEntity;
+  daysRange: number | null;
 }

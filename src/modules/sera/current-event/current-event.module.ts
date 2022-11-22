@@ -8,7 +8,7 @@ import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 
 import { CurrentEventController } from "./current-event.controller";
 import { CurrentEventService } from "./current-event.service";
-import { ComerParameterModEntity } from "./dto/comer-parameter-mod.entity";
+import { ComerParameterModEntity } from "./entities/comer-parameter-mod.entity";
 
 import { ComerCalendarevEntity } from "./entities/comer-calendar-ev.entity";
 import { ComerCatCalendarEntity } from "./entities/comer-catcalendar.entity";

@@ -25,7 +25,7 @@ export class TmpEventsComerEntity {
     precision: 10,
     scale: 0,
   })
-  idTpevent: number;
+  tpeventId: number;
 
   @Column("character varying", {
     name: "direccion",
@@ -45,7 +45,7 @@ export class TmpEventsComerEntity {
     nullable: true,
     length: 4,
   })
-  idStatusVta: string | null;
+  statusVtaId: string | null;
 
   @Column({ type: "date", name: "fecha_evento", nullable: true })
   eventDate: Date | null;
@@ -55,5 +55,5 @@ export class TmpEventsComerEntity {
     precision: 2,
     scale: 0,
   })
-  atTpevent: number;
+  atTpeventId: number;
 }
