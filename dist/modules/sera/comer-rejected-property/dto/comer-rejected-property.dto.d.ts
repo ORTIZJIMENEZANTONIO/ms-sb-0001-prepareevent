@@ -1,7 +1,7 @@
 export declare class ComerRejectedGoodDto {
-    rejectedGoodId: number;
+    id?: number | null;
     eventId: number;
-    noProperty: number;
+    propertyNumber: number;
     origin: string | null;
     description: string | null;
     status: string | null;

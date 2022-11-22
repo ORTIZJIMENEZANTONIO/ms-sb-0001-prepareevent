@@ -1,16 +1,19 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-//import { ComerEventos } from "./ComerEventos";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
-//@Index("isia162p1_comer_bie", ["idBienrechazado"], { unique: true })
-//@Index("comer_bienesrechazados_pkey", ["idBienrechazado"], { unique: true })
-//@Index("isia162s1_comer_bie", ["idEvento"], {})
 @Entity("comer_bienesrechazados", { schema: "sera" })
 export class ComerRejectedPropertyEntity {
   @PrimaryGeneratedColumn({
     type: "numeric",
-    name: "id_bienrechazado"
+    name: "id_bienrechazado",
   })
-  id: number;
+  id?: number | null;
 
   @Column("numeric", { name: "id_evento", precision: 7, scale: 0 })
   eventId: number;
@@ -40,7 +43,7 @@ export class ComerRejectedPropertyEntity {
     precision: 10,
     scale: 0,
   })
-  event: number| null;
+  event: number | null;
 
   @Column("numeric", {
     name: "lote_publico",

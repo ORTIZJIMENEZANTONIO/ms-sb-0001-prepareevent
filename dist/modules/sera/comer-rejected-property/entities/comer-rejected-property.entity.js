@@ -16,7 +16,7 @@ let ComerRejectedPropertyEntity = class ComerRejectedPropertyEntity {
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({
         type: "numeric",
-        name: "id_bienrechazado"
+        name: "id_bienrechazado",
     }),
     __metadata("design:type", Number)
 ], ComerRejectedPropertyEntity.prototype, "id", void 0);

@@ -29,7 +29,7 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async createComerRejectedProperty(comer) {
         const comerExisting = await this.entity.findOneBy({
-            id: comer.rejectedGoodId,
+            id: comer.id,
         });
         if (comerExisting) {
             return {
@@ -57,11 +57,11 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
     }
     async getComerRejectedPropertyById(comer) {
         var _a, _b;
-        const { rejectedGoodId } = comer;
+        const { id } = comer;
         const result = await this.entity
             .createQueryBuilder("crp")
             .innerJoinAndMapOne("crp.eventId", comer_event_entity_1.ComerEventEntity, "ce", "crp.eventId = ce.eventId")
-            .where({ rejectedGoodId })
+            .where({ id })
             .getManyAndCount();
         return {
             data: (_a = result[0]) !== null && _a !== void 0 ? _a : [],
@@ -90,7 +90,7 @@ let ComerRejectedPropertyService = class ComerRejectedPropertyService {
             id: rejectedGoodIdToUpdt,
         });
         if (data) {
-            delete comer.rejectedGoodId;
+            delete comer.id;
             this.entity.merge(data, comer);
             return this.entity.save(data);
         }

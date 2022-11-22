@@ -1,5 +1,5 @@
 export declare class ComerRejectedPropertyEntity {
-    id: number;
+    id?: number | null;
     eventId: number;
     propertyNumber: number;
     origin: string | null;
