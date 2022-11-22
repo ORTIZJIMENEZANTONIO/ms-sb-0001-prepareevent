@@ -21,7 +21,7 @@ export class ComerClientService {
 
   async createComerClient(comer: ComerClientDto) {
     const comerExisting = await this.entity.findOneBy({
-      id: comer.clientId,
+      id: comer.id,
     });
 
     if (comerExisting) {
@@ -55,7 +55,7 @@ export class ComerClientService {
     });
 
     if (data) {
-      delete comer.clientId;
+      delete comer.id;
       this.entity.merge(data, comer);
       return this.entity.save(data);
     }
@@ -64,7 +64,7 @@ export class ComerClientService {
   }
 
   async deleteComerClient(comer: ComerClientDto) {
-    const { clientId } = comer;
-    return await this.entity.delete({ id: clientId });
+    const { id } = comer;
+    return await this.entity.delete({ id });
   }
 }
