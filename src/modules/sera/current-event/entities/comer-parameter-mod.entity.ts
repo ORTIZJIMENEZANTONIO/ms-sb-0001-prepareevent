@@ -1,9 +1,5 @@
 import { Column, Entity, Index, OneToMany } from "typeorm";
-//import { ComerParamxconceptos } from "./ComerParamxconceptos";
 
-//@Index("isia256p1_comer_par", ["direccion", "parametro", "valor"], {
-//  unique: true,
-//})
 @Entity("comer_parametrosmod", { schema: "sera" })
 export class ComerParameterModEntity {
   
@@ -29,11 +25,6 @@ export class ComerParameterModEntity {
     precision: 3,
     scale: 0,
   })
-  idTpevent: number | null;
+  tpeventId: number | null;
 
-  // @OneToMany(
-  //   () => ComerParamxconceptos,
-  //   (comerParamxconceptos) => comerParamxconceptos.comerParametrosmod
-  // )
-  // comerParamxconceptos: ComerParamxconceptos[];
 }
