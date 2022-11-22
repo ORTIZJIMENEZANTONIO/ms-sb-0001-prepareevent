@@ -8,7 +8,7 @@ import { Counter } from "prom-client";
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { GoodsEntity } from "./entities/goods.entity";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { CatTransferentEntity } from "./entities/cat-transferent.entity";
 import { RecordEntity } from "./entities/record.entity";
 import { ParameterModEntity } from "./entities/comer-parameter-mod.entity";

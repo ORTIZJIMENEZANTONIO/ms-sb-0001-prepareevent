@@ -400,9 +400,6 @@ export class ComerClientDto {
     message: Message.MAX_LENGTH("$property", "$constraint1"),
   })
   @ApiProperty({ example: null, required: false, maxLength: 40 })
-  @IsString()
-  @MaxLength(40)
-  @IsOptional()
   insisdeNumber: string | null;
 
   @Type(() => String)

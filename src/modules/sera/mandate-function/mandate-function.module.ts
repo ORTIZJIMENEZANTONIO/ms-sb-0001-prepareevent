@@ -7,7 +7,7 @@ import {
 
 import { MandateFunctionService } from "./mandate-function.service";
 import { MandateFunctionController } from "./mandate-function.controller";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 
 @Module({

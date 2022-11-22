@@ -7,7 +7,7 @@ import { Counter } from "prom-client";
 
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { GoodsEntity } from "./entities/goods.entity";
 import { FilesEntity } from "./entities/files.entity";
 import { CatTransferentEntity } from "./entities/cat-transferent.entity";
@@ -17,7 +17,7 @@ import { Reference } from "src/shared/functions/reference";
 import { UpdateComerLotDto } from "../comer-lot/dto/update-comer-lot.dto";
 import { ComerLotDto } from "../comer-lot/dto/comer-lot.dto";
 import { File } from "src/shared/functions/excel";
-import { UpdateComerGoodsXLotDto } from "../comer-property-by-batch/dto/update-comer-property-by-batch.dto";
+import { UpdateComerGoodsXLotDto } from "../comer-property-by-lot/dto/update-comer-property-by-lot.dto";
 
 @Injectable()
 export class FileUtilService {

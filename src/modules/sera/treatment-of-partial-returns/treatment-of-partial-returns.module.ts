@@ -7,7 +7,7 @@ import {
 import { ComerLotService } from "../comer-lot/comer-batch.service";
 
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { GoodNotDeliveredService } from "../good-not-delivered/good-not-delivered.service";
 import { PartialPropertyDeliveredService } from "../partial-property-delivered/partial-property-delivered.service";
 import { GoodPartialDeliveryEntity } from "./entities/good-partial-delivery.entity";

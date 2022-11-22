@@ -10,7 +10,7 @@ import { ComerLotDto } from "./dto/comer-lot.dto";
 import { ComerLotEntity } from "./entities/comer-lot.entity";
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { UpdateComerLotDto } from "./dto/update-comer-lot.dto";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { ComerLotCanceledDto } from "./dto/comer-lot-canceled.dto";
 
 @Injectable()

@@ -5,7 +5,7 @@ import {
   PrometheusModule,
 } from "@willsoto/nestjs-prometheus";
 
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { PartialPropertyDeliveredController } from "./partial-property-delivered.controller";
 import { PartialPropertyDeliveredService } from "./partial-property-delivered.service";
 

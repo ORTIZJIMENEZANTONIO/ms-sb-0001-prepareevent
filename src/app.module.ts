@@ -10,7 +10,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ComerEventsModule } from './modules/sera/comer-event/comer-events.module';
 import { ComerAgreementEventsModule } from './modules/sera/comer-agreement-events/comer-agreement-events.module';
-import { ComerPropertyByBatchModule } from './modules/sera/comer-property-by-batch/comer-property-by-batch.module';
+import { ComerPropertyByBatchModule } from './modules/sera/comer-property-by-lot/comer-property-by-batch.module';
 import { ComerLotModule } from './modules/sera/comer-lot/comer-batch.module';
 import { ComerAdjudirecModule } from './modules/sera/comer-adjudirec/comer-adjudirec.module';
 import { ComerClientModule } from './modules/sera/comer-client/comer-client.module';

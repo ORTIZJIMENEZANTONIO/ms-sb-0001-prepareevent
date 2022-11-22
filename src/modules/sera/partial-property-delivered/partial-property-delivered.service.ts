@@ -5,7 +5,7 @@ import { Repository } from "typeorm";
 import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
 
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { PartialPropertyDelivered } from "./dto/partial-property-delivered.dto";
 
 @Injectable()

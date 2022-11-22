@@ -7,7 +7,7 @@ import {
 
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
-import { ComerGoodsXLotEntity } from "../comer-property-by-batch/entities/comer-property-by-batch.entity";
+import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { FileUtilController } from "./file-util.controller";
 import { FileUtilService } from "./file-util.service";
 
