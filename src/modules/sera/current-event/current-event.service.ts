@@ -29,7 +29,6 @@ export class CurrentEventService {
 
   async getCurrentEvents(filter: CurrentFilterDto) {
     const { month, year } = filter;
-    //console.log(month, year);
     const queryEvents = this.entityComerCalendarev
       .createQueryBuilder("cc")
       .select([
@@ -98,7 +97,7 @@ export class CurrentEventService {
         .where(`ID_EVENTO in (${variables.events.join(",")})`);
       return await eventsQuery.getRawMany();
     }
-    if (variables.events) console.log(variables.events);
+    
     return null;
   }
 
