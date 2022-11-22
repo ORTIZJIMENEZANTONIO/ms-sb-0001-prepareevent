@@ -17,5 +17,5 @@ export declare class CurrentEventService {
     getCurrentEvents(filter: CurrentFilterDto): Promise<any[]>;
     spEventsInProgress(): Promise<any[]>;
     getValue(parameter: string): Promise<any>;
-    getValidityDate(): Promise<number>;
+    getValidityDate(date: any, int: any): Promise<any>;
 }

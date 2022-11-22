@@ -1,5 +1,5 @@
 export declare class FilesEntity {
-    filesId: number;
+    id: number;
     agreementDate: Date | null;
     forecast: string | null;
     forecastDate: Date | null;
@@ -7,10 +7,10 @@ export declare class FilesEntity {
     ministerialDate: Date | null;
     ministerialAct: string | null;
     dictumDate: Date | null;
-    bateryId: number | null;
-    lockerId: number | null;
-    shelfId: number | null;
-    judgedId: number | null;
+    bateryNumber: number | null;
+    lockerNumber: number | null;
+    shelfNumber: number | null;
+    judgedNumber: number | null;
     forecastObservation: string | null;
     insertedBy: string | null;
     observations: string | null;
@@ -19,14 +19,14 @@ export declare class FilesEntity {
     seraReceptionDate: Date | null;
     penaltyCause: string | null;
     previewFind: string | null;
-    shelterCve: string | null;
-    crimeCve: string | null;
+    shelterKey: string | null;
+    crimeKey: string | null;
     circumstantainedAct: string | null;
-    penaltyCve: string | null;
+    penaltyKey: string | null;
     instituteName: string | null;
     judgeName: string | null;
     mpName: string | null;
-    valueSaveCve: string | null;
+    valueSaveKey: string | null;
     initialName: string | null;
     dictumOrderAuth: string | null;
     notifyDate: Date | null;
@@ -35,20 +35,20 @@ export declare class FilesEntity {
     confiscationRulerDate: Date | null;
     returnRulerDate: Date | null;
     alienationDate: Date | null;
-    cveEntfed: string | null;
+    entfedKey: string | null;
     rulerRecrevDate: Date | null;
-    registerId: number | null;
+    registerNumber: number | null;
     destructionDate: Date | null;
     donationDate: Date | null;
     initialAgreementDate: Date | null;
     initialAgreement: string | null;
     fileStatus: string | null;
     identifier: string | null;
-    esDelit: string | null;
-    transferringId: number | null;
-    expTransferringId: string | null;
+    isDelit: string | null;
+    transferringNumber: number | null;
+    expTransferringNumber: string | null;
     fileType: string | null;
-    senderId: number | null;
-    authId: number | null;
+    senderNumber: number | null;
+    authNumber: number | null;
     insertHcDate: Date | null;
 }

@@ -3,5 +3,5 @@ export declare class ComerParameterModEntity {
     value: string;
     description: string | null;
     address: string;
-    idTpevent: number | null;
+    tpeventId: number | null;
 }

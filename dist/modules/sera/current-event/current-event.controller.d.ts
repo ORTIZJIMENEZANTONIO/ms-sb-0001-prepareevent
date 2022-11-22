@@ -5,12 +5,6 @@ export declare class CurrentEventController {
     private readonly service;
     private readonly logger;
     constructor(service: CurrentEventService, logger: Logger);
-    getCurrentEvents(params: CurrentFilterDto): Promise<any[] | {
-        statusCode: number;
-        message: string;
-    }>;
-    spEventsInProgress(): Promise<any[] | {
-        statusCode: number;
-        message: string;
-    }>;
+    getCurrentEvents(params: CurrentFilterDto): Promise<any[]>;
+    spEventsInProgress(): Promise<any[]>;
 }

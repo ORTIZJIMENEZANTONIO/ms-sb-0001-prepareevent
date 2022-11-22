@@ -46,17 +46,15 @@ export class CurrentEventService {
       .where(`cc.month = ${month}`)
       .andWhere(`cc.year = ${year}`);
 
-    // console.log(queryEvents.getQuery());
     return await queryEvents.getRawMany();
   }
 
   async spEventsInProgress() {
-    //console.log((new Date()).toLocaleDateString() );
     const variables = {
-      events: null,
+      events: [],
       currentDays: 0,
-      failDate: new Date().toLocaleDateString(),
-      nowDate: new Date().toLocaleDateString(),
+      failDate: new Date().toLocaleDateString("en-US"),
+      nowDate: new Date().toLocaleDateString("en-US"),
     };
     const eventsQuery = this.entityTmpEventsComer
       .createQueryBuilder("ev")
@@ -66,36 +64,42 @@ export class CurrentEventService {
         `ID_TPEVENTO as "idTpevent"`,
         `FEC_FALLO as "failDate"`,
         `FECHA_EVENTO as "eventDate"`,
-      ]);
-    const events = await eventsQuery.getRawMany();
-    for (const event of events) {
-      //console.log(event);
-      if (
-        (event.address == "I" && event.idTpevent == 4) ||
-        (event.address == "M" && event.idTpevent == 4) ||
-        (event.address == "M" && event.idTpevent == 1)
-      ) {
-        // const { value } = await this.getValue("SEI_LQE");
-        const validityDate = "12/02/2024" ?? this.getValidityDate();
-        if (
-          variables.nowDate >= event.eventDate.toLocaleDateString() &&
-          variables.nowDate <= validityDate
-        ) {
-          variables.events = variables.events
-            ? `${event.idEvent},`
-            : `${event.idEvent}`;
-        }
-      }
+      ])
+      .where(`(DIRECCION = 'I' AND ID_TPEVENTO = 4)`)
+      .orWhere(`(DIRECCION = 'M' AND ID_TPEVENTO = 4)`)
+      .orWhere(`(DIRECCION = 'M' AND ID_TPEVENTO = 1)`)
+      .andWhere(`FEC_FALLO is not null`);
 
-      if (variables.events) {
-        const eventsQuery = this.entityComerEvent
-          .createQueryBuilder("ce")
-          .select([`ID_EVENTO as "idEvent"`, `CVE_PROCESO as "processKey"`])
-          .where(`ID_EVENTO in (${variables.events})`);
-        return await eventsQuery.getRawMany();
-      }
-      return null;
+    const events = await eventsQuery.getRawMany();
+
+    for (const event of events) {
+      const valParam =
+        event.address == "I" && event.idTpevent == 4
+          ? "SEI_LQE"
+          : event.address == "M" && event.idTpevent == 4
+          ? "SEM_LQE"
+          : event.address == "M" && event.idTpevent == 1
+          ? "SPM_LQE"
+          : "";
+      const { value } = await this.getValue(valParam);
+      const validityDate = await this.getValidityDate(event.failDate, value);
+
+      variables.nowDate >= event.eventDate.toLocaleDateString("en-US") &&
+      variables.nowDate <= validityDate
+        ? variables.events.push(event.idEvent)
+        : null;
+
     }
+
+    if (variables.events.length > 0) {
+      const eventsQuery = this.entityComerEvent
+        .createQueryBuilder("ce")
+        .select([`ID_EVENTO as "idEvent"`, `CVE_PROCESO as "processKey"`])
+        .where(`ID_EVENTO in (${variables.events.join(",")})`);
+      return await eventsQuery.getRawMany();
+    }
+    if (variables.events) console.log(variables.events);
+    return null;
   }
 
   async getValue(parameter: string) {
@@ -103,10 +107,17 @@ export class CurrentEventService {
       .createQueryBuilder("cpm")
       .select([`cpm.value as "value"`])
       .where(`cpm.parameter = '${parameter}'`);
+
     return await valueQuery.getRawOne();
   }
 
-  async getValidityDate() {
-    return 1;
+  async getValidityDate(date, int) {
+    const dateFunc = await this.entityComerEvent.query(
+      `select sera.OBTENER_POST_FECHA_HABIL('${date.toLocaleDateString(
+        "en-US"
+      )}',${int}) as "validDate"`
+    );
+
+    return dateFunc[0].validDate.toLocaleDateString("en-US");
   }
 }

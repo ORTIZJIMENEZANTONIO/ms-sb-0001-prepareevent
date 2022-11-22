@@ -16,12 +16,12 @@ export class CurrentEventController {
   @MessagePattern({ cmd: "getCurrentEvents" })
   async getCurrentEvents(params: CurrentFilterDto) {
     const events = await this.service.getCurrentEvents(params);
-    return events ?? { statusCode: 404, message: "Data not found" };
+    return events;
   }
 
   @MessagePattern({ cmd: "spEventsInProgress" })
   async spEventsInProgress() {
-    const events = await this.service.spEventsInProgress( );
-    return events ?? { statusCode: 404, message: "Data not found" };
+    const events = await this.service.spEventsInProgress();
+    return events;
   }
 }

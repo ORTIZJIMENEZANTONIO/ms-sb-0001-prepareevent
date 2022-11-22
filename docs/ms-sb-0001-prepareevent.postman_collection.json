@@ -432,7 +432,7 @@
 					"response": []
 				},
 				{
-					"name": "createComerLot",
+					"name": "createComerBatch",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -493,7 +493,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"pLotId\": 1,\n  \"pEventId\": 1,\n  \"pLotPubId\": 1,\n  \"pGood\": 1\n}",
+							"raw": "{\n  \"pLotId\": 22199,\n  \"pEventId\": 1,\n  \"pLotPubId\": 1,\n  \"pGood\": 445403\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -782,6 +782,153 @@
 								"api",
 								"v1",
 								"treatment-of-partial-returns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pa-process",
+			"item": [
+				{
+					"name": "paReject",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": 1,\n  \"goodNumber\": 242017,\n  \"eventType\": 1,\n  \"lotId\": 498,\n  \"address\": \"M\",\n  \"origin\": \"string\",\n  \"pubLot\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/pa-process/pa-reject",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pa-process",
+								"pa-reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paRemittancePrepByGood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1,\n    \"goodNumber\": 1,\n    \"cause\": 1,\n    \"eventType\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/pa-process/pa-remittance-prep-by-good",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pa-process",
+								"pa-remittance-prep-by-good"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paChangeStatusValidate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"p1\": 2,\n  \"p2\": 1,\n  \"p3\": \"PROCEDENCIA\",\n  \"p4\": 1,\n  \"p5\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/pa-process/pa-change-status-validate",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pa-process",
+								"pa-change-status-validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "current-event",
+			"item": [
+				{
+					"name": "getCurrentEvents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}/api/v1/current-event/current?month=1&year=2022",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"current-event",
+								"current"
+							],
+							"query": [
+								{
+									"key": "month",
+									"value": "1"
+								},
+								{
+									"key": "year",
+									"value": "2022"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "spEventsInProgress",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{port}}/api/v1/current-event/in-progress",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"current-event",
+								"in-progress"
 							]
 						}
 					},

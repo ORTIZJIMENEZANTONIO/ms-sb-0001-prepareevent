@@ -26,11 +26,11 @@ let CurrentEventController = class CurrentEventController {
     }
     async getCurrentEvents(params) {
         const events = await this.service.getCurrentEvents(params);
-        return events !== null && events !== void 0 ? events : { statusCode: 404, message: "Data not found" };
+        return events;
     }
     async spEventsInProgress() {
         const events = await this.service.spEventsInProgress();
-        return events !== null && events !== void 0 ? events : { statusCode: 404, message: "Data not found" };
+        return events;
     }
 };
 __decorate([

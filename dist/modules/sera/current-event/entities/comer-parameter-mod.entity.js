@@ -41,7 +41,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerParameterModEntity.prototype, "idTpevent", void 0);
+], ComerParameterModEntity.prototype, "tpeventId", void 0);
 ComerParameterModEntity = __decorate([
     (0, typeorm_1.Entity)("comer_parametrosmod", { schema: "sera" })
 ], ComerParameterModEntity);

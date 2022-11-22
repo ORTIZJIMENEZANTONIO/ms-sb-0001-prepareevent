@@ -15,12 +15,12 @@ const swagger_1 = require("@nestjs/swagger");
 let FilesEntity = class FilesEntity {
 };
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'No. Expediente' }),
+    (0, swagger_1.ApiProperty)({ example: "No. Expediente" }),
     (0, typeorm_1.PrimaryGeneratedColumn)({
         name: "no_expediente",
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "filesId", void 0);
+], FilesEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_acuerdo_aseg", nullable: true }),
     __metadata("design:type", Date)
@@ -65,7 +65,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "bateryId", void 0);
+], FilesEntity.prototype, "bateryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_casillero",
@@ -74,7 +74,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "lockerId", void 0);
+], FilesEntity.prototype, "lockerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_estante",
@@ -83,7 +83,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "shelfId", void 0);
+], FilesEntity.prototype, "shelfNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_juzgado",
@@ -92,7 +92,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "judgedId", void 0);
+], FilesEntity.prototype, "judgedNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "observaciones_prevision",
@@ -156,7 +156,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "shelterCve", void 0);
+], FilesEntity.prototype, "shelterKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "cve_delito",
@@ -164,7 +164,7 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "crimeCve", void 0);
+], FilesEntity.prototype, "crimeKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "acta_circunstanciada",
@@ -180,7 +180,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "penaltyCve", void 0);
+], FilesEntity.prototype, "penaltyKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "nombre_institucion",
@@ -212,7 +212,7 @@ __decorate([
         length: 5,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "valueSaveCve", void 0);
+], FilesEntity.prototype, "valueSaveKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "nombre_indiciado",
@@ -268,7 +268,7 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "cveEntfed", void 0);
+], FilesEntity.prototype, "entfedKey", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_recrev_dictaminacion", nullable: true }),
     __metadata("design:type", Date)
@@ -276,7 +276,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_registro", nullable: true }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "registerId", void 0);
+], FilesEntity.prototype, "registerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_destruccion", nullable: true }),
     __metadata("design:type", Date)
@@ -316,7 +316,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "es_delit", nullable: true, length: 1 }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "esDelit", void 0);
+], FilesEntity.prototype, "isDelit", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_transferente",
@@ -325,7 +325,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "transferringId", void 0);
+], FilesEntity.prototype, "transferringNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "no_exp_transferentes",
@@ -333,7 +333,7 @@ __decorate([
         length: 400,
     }),
     __metadata("design:type", String)
-], FilesEntity.prototype, "expTransferringId", void 0);
+], FilesEntity.prototype, "expTransferringNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "tipo_expediente",
@@ -350,7 +350,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "senderId", void 0);
+], FilesEntity.prototype, "senderNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_autoridad",
@@ -359,7 +359,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "authId", void 0);
+], FilesEntity.prototype, "authNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: "fec_insercion_hc", nullable: true }),
     __metadata("design:type", Date)
