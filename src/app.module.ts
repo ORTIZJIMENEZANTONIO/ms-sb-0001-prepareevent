@@ -22,6 +22,7 @@ import { GoodNotDeliveredModule } from './modules/sera/good-not-delivered/good-n
 import { PartialPropertyDeliveredModule } from './modules/sera/partial-property-delivered/partial-property-delivered.module';
 import { PaProcessModule } from './modules/sera/pa-process/pa-process.module';
 import { CurrentEventModule } from './modules/sera/current-event/current-event.module';
+import { ComerSentenceDispersionModule } from './modules/sera/comer-sentence-dispersion/comer-sentence-dispersion.module';
 
 @Module({
   imports: [
@@ -70,6 +71,7 @@ import { CurrentEventModule } from './modules/sera/current-event/current-event.m
     PartialPropertyDeliveredModule,
     PaProcessModule,
     CurrentEventModule,
+    ComerSentenceDispersionModule,
     //
     ],
     controllers: [AppController],

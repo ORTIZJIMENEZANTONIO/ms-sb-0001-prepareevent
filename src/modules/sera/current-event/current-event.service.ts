@@ -11,7 +11,6 @@ import { CurrentFilterDto } from "./dto/current-ifilter.dto";
 import { TmpEventsComerEntity } from "./entities/tmp-events-comer.entity";
 import { ComerParameterModEntity } from "./entities/comer-parameter-mod.entity";
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
-ComerParameterModEntity;
 @Injectable()
 export class CurrentEventService {
   constructor(

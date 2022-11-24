@@ -10,6 +10,7 @@ import {
   Max,
   MaxLength,
 } from "class-validator";
+
 import { Message } from "src/shared/validation-messages/message";
 
 export class ComerEventDto {
