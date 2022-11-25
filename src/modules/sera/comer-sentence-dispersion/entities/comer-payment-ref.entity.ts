@@ -1,10 +1,6 @@
 import {
   Column,
   Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
   PrimaryColumn,
 } from "typeorm";
 
@@ -15,34 +11,32 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idPago: string;
+  id: number;
 
-  @Column("character varying", {
-    primary: true,
+  @PrimaryColumn("character varying", {
     name: "referencia",
     length: 30,
   })
-  referencia: string;
+  reference: string;
 
-  @Column("numeric", {
-    primary: true,
+  @PrimaryColumn("numeric", {
     name: "no_movimiento",
     precision: 10,
     scale: 0,
   })
-  noMovimiento: string;
+  movementNumber: string;
 
   @Column("date", { primary: true, name: "fecha" })
-  fecha: string;
+  date: Date;
 
   @Column("numeric", { name: "monto", precision: 15, scale: 2 })
-  monto: string;
+  amount: number;
 
   @Column("character varying", { primary: true, name: "cve_banco", length: 10 })
-  cveBanco: string;
+  bankKey: string;
 
   @Column("numeric", { name: "codigo", nullable: true, precision: 4, scale: 0 })
-  codigo: string | null;
+  code: number| null;
 
   @Column("numeric", {
     name: "id_lote",
@@ -50,31 +44,31 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idLote: string | null;
+  lotId: number | null;
 
   @Column("character varying", {
     name: "valido_sistema",
     nullable: true,
     length: 1,
   })
-  validoSistema: string | null;
+  validSystem: string | null;
 
   @Column("character varying", {
     name: "noentiempo",
     nullable: true,
     length: 1,
   })
-  noentiempo: string | null;
+  noenTime: string | null;
 
   @Column("character varying", {
     name: "descripcion",
     nullable: true,
     length: 200,
   })
-  descripcion: string | null;
+  description: string | null;
 
   @Column("character varying", { name: "tipo", nullable: true, length: 1 })
-  tipo: string | null;
+  type: string | null;
 
   @Column("numeric", {
     name: "idordeningreso",
@@ -82,14 +76,14 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idordeningreso: string | null;
+  orderIngressId: number | null;
 
   @Column("character varying", {
     name: "resultado",
     nullable: true,
     length: 200,
   })
-  resultado: string | null;
+  result: string | null;
 
   @Column("numeric", {
     name: "sucursal",
@@ -97,7 +91,7 @@ export class ComerPagoref {
     precision: 6,
     scale: 0,
   })
-  sucursal: string | null;
+  branchOffice: number | null;
 
   @Column("numeric", {
     name: "id_pagodevuelve",
@@ -105,33 +99,33 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idPagodevuelve: string | null;
+  paymentReturnId: number | null;
 
   @Column("character varying", {
     name: "conciliado",
     nullable: true,
     length: 1,
   })
-  conciliado: string | null;
+  reconciled: string | null;
 
   @Column("date", { name: "fecha_registro", nullable: true })
-  fechaRegistro: string | null;
+  registryDate: Date | null;
 
   @Column("character varying", {
     name: "referenciaori",
     nullable: true,
     length: 30,
   })
-  referenciaori: string | null;
+  urlReference: string | null;
 
   @Column("character varying", { name: "cuenta", nullable: true, length: 20 })
-  cuenta: string | null;
+  account: string | null;
 
   @Column("date", { name: "fecha_oi", nullable: true })
-  fechaOi: string | null;
+  oiDate: Date | null;
 
   @Column("character varying", { name: "aplicadoa", nullable: true, length: 2 })
-  aplicadoa: string | null;
+  applyTo: string | null;
 
   @Column("numeric", {
     name: "id_cliente",
@@ -139,7 +133,7 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idCliente: string | null;
+  clientId: number | null;
 
   @Column("numeric", {
     name: "folio_oi",
@@ -147,7 +141,7 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  folioOi: string | null;
+  oiFolio: number | null;
 
   @Column("numeric", {
     name: "indicador",
@@ -155,7 +149,7 @@ export class ComerPagoref {
     precision: 1,
     scale: 0,
   })
-  indicador: string | null;
+  indicator: number | null;
 
   @Column("numeric", {
     name: "codigo_edo_cta",
@@ -163,13 +157,13 @@ export class ComerPagoref {
     precision: 5,
     scale: 0,
   })
-  codigoEdoCta: string | null;
+  codeStateCta: number | null;
 
   @Column("date", { name: "fecha_afectacion", nullable: true })
-  fechaAfectacion: string | null;
+  affectationDate: Date | null;
 
   @Column("numeric", { name: "no_registro", nullable: true })
-  noRegistro: string | null;
+  registryNumber: number | null;
 
   @Column("numeric", {
     name: "id_tipo_sat",
@@ -177,7 +171,7 @@ export class ComerPagoref {
     precision: 5,
     scale: 0,
   })
-  idTipoSat: string | null;
+  typeSatId: number | null;
 
   @Column("numeric", {
     name: "id_gasto",
@@ -185,7 +179,7 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idGasto: string | null;
+  spentId: number | null;
 
   @Column("numeric", {
     name: "id_solicitudpago",
@@ -193,6 +187,6 @@ export class ComerPagoref {
     precision: 10,
     scale: 0,
   })
-  idSolicitudpago: string | null;
+  paymentRequestId: number | null;
 
 }
