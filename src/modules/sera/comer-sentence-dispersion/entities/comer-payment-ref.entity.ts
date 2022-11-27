@@ -163,7 +163,7 @@ export class ComerPagoref {
   affectationDate: Date | null;
 
   @Column("numeric", { name: "no_registro", nullable: true })
-  registryNumber: number | null;
+  registerNumber: number | null;
 
   @Column("numeric", {
     name: "id_tipo_sat",

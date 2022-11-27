@@ -1,0 +1,33 @@
+export declare class ComerPagoref {
+    id: number;
+    reference: string;
+    movementNumber: string;
+    date: Date;
+    amount: number;
+    bankKey: string;
+    code: number | null;
+    lotId: number | null;
+    validSystem: string | null;
+    noenTime: string | null;
+    description: string | null;
+    type: string | null;
+    orderIngressId: number | null;
+    result: string | null;
+    branchOffice: number | null;
+    paymentReturnId: number | null;
+    reconciled: string | null;
+    registryDate: Date | null;
+    urlReference: string | null;
+    account: string | null;
+    oiDate: Date | null;
+    applyTo: string | null;
+    clientId: number | null;
+    oiFolio: number | null;
+    indicator: number | null;
+    codeStateCta: number | null;
+    affectationDate: Date | null;
+    registerNumber: number | null;
+    typeSatId: number | null;
+    spentId: number | null;
+    paymentRequestId: number | null;
+}

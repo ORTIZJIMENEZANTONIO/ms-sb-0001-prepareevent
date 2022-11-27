@@ -24,7 +24,6 @@ const comer_calendar_ev_entity_1 = require("./entities/comer-calendar-ev.entity"
 const tmp_events_comer_entity_1 = require("./entities/tmp-events-comer.entity");
 const comer_parameter_mod_entity_1 = require("./entities/comer-parameter-mod.entity");
 const comer_event_entity_1 = require("../comer-event/entities/comer-event.entity");
-comer_parameter_mod_entity_1.ComerParameterModEntity;
 let CurrentEventService = class CurrentEventService {
     constructor(entityComerEvent, entityTmpEventsComer, entityComerCalendarev, entityComerParameterMod, logger, counter) {
         this.entityComerEvent = entityComerEvent;
@@ -96,8 +95,6 @@ let CurrentEventService = class CurrentEventService {
                 .where(`ID_EVENTO in (${variables.events.join(",")})`);
             return await eventsQuery.getRawMany();
         }
-        if (variables.events)
-            console.log(variables.events);
         return null;
     }
     async getValue(parameter) {

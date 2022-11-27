@@ -7,7 +7,7 @@ export declare class FilesEntity {
     ministerialDate: Date | null;
     ministerialAct: string | null;
     dictumDate: Date | null;
-    bateryNumber: number | null;
+    batteryNumber: number | null;
     lockerNumber: number | null;
     shelfNumber: number | null;
     judgedNumber: number | null;

@@ -1,4 +1,4 @@
-export declare class RecordEntity {
+export declare class FilesEntity {
     id: number;
     agreementAsegDate: Date | null;
     foresight: string | null;

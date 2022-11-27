@@ -29,6 +29,7 @@ const good_not_delivered_module_1 = require("./modules/sera/good-not-delivered/g
 const partial_property_delivered_module_1 = require("./modules/sera/partial-property-delivered/partial-property-delivered.module");
 const pa_process_module_1 = require("./modules/sera/pa-process/pa-process.module");
 const current_event_module_1 = require("./modules/sera/current-event/current-event.module");
+const comer_sentence_dispersion_module_1 = require("./modules/sera/comer-sentence-dispersion/comer-sentence-dispersion.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -73,6 +74,7 @@ AppModule = __decorate([
             partial_property_delivered_module_1.PartialPropertyDeliveredModule,
             pa_process_module_1.PaProcessModule,
             current_event_module_1.CurrentEventModule,
+            comer_sentence_dispersion_module_1.ComerSentenceDispersionModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

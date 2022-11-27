@@ -1,7 +1,4 @@
 import { Column, Entity } from "typeorm";
-
-//@Index("comer_catcalendar_pkey", ["idEstatus"], { unique: true })
-//@Index("isia170p1_comer_cat", ["idEstatus"], { unique: true })
 @Entity("tmp_eventos_comer", { schema: "comer" })
 export class TmpEventsComerEntity {
   @Column("numeric", {

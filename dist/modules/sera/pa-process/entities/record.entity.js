@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RecordEntity = void 0;
+exports.FilesEntity = void 0;
 const typeorm_1 = require("typeorm");
-let RecordEntity = class RecordEntity {
+let FilesEntity = class FilesEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({
         name: 'no_expediente',
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "id", void 0);
+], FilesEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_acuerdo_aseg', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "agreementAsegDate", void 0);
+], FilesEntity.prototype, "agreementAsegDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', { name: 'prevision', nullable: true, length: 1 }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "foresight", void 0);
+], FilesEntity.prototype, "foresight", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_prevision', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "foresightDate", void 0);
+], FilesEntity.prototype, "foresightDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'articulo_validado',
@@ -38,11 +38,11 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "validatedItem", void 0);
+], FilesEntity.prototype, "validatedItem", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_fe_ministerial', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "ministerialFeDate", void 0);
+], FilesEntity.prototype, "ministerialFeDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'acta_fe_ministerial',
@@ -50,11 +50,11 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "ministerialFeAct", void 0);
+], FilesEntity.prototype, "ministerialFeAct", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_dictamina', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "dictumDate", void 0);
+], FilesEntity.prototype, "dictumDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_bateria',
@@ -63,7 +63,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "bateryNumber", void 0);
+], FilesEntity.prototype, "bateryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_casillero',
@@ -72,7 +72,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "lockerNumber", void 0);
+], FilesEntity.prototype, "lockerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_estante',
@@ -81,7 +81,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "shelfNumber", void 0);
+], FilesEntity.prototype, "shelfNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_juzgado',
@@ -90,7 +90,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "judgedNumber", void 0);
+], FilesEntity.prototype, "judgedNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'observaciones_prevision',
@@ -98,7 +98,7 @@ __decorate([
         length: 1000,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "foresighttObservation", void 0);
+], FilesEntity.prototype, "foresighttObservation", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'insertado_por',
@@ -106,7 +106,7 @@ __decorate([
         length: 20,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "insertedBy", void 0);
+], FilesEntity.prototype, "insertedBy", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'observaciones',
@@ -114,7 +114,7 @@ __decorate([
         length: 1000,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "observations", void 0);
+], FilesEntity.prototype, "observations", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'metodo_insercion',
@@ -122,15 +122,15 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "insertMethod", void 0);
+], FilesEntity.prototype, "insertMethod", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_insercion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "insertDate", void 0);
+], FilesEntity.prototype, "insertDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_recepcion_sera', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "seraReceptionDate", void 0);
+], FilesEntity.prototype, "seraReceptionDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'causa_penal',
@@ -138,7 +138,7 @@ __decorate([
         length: 40,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "penaltyCause", void 0);
+], FilesEntity.prototype, "penaltyCause", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'averiguacion_previa',
@@ -146,7 +146,7 @@ __decorate([
         length: 200,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "preliminaryInquiry", void 0);
+], FilesEntity.prototype, "preliminaryInquiry", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'cve_amparo',
@@ -154,7 +154,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "shelterKey", void 0);
+], FilesEntity.prototype, "shelterKey", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'cve_delito',
@@ -162,7 +162,7 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "crimeKey", void 0);
+], FilesEntity.prototype, "crimeKey", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'acta_circunstanciada',
@@ -170,7 +170,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "circumstantialRecord", void 0);
+], FilesEntity.prototype, "circumstantialRecord", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'cve_toca_penal',
@@ -178,7 +178,7 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "penaltyTocaKey", void 0);
+], FilesEntity.prototype, "penaltyTocaKey", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'nombre_institucion',
@@ -186,7 +186,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "institutionName", void 0);
+], FilesEntity.prototype, "institutionName", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'nombre_juzgado',
@@ -194,7 +194,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "judgeName", void 0);
+], FilesEntity.prototype, "judgeName", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'nombre_mp',
@@ -202,7 +202,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "mpName", void 0);
+], FilesEntity.prototype, "mpName", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'cve_guardavalor',
@@ -210,7 +210,7 @@ __decorate([
         length: 5,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "valueSaveKey", void 0);
+], FilesEntity.prototype, "valueSaveKey", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'nombre_indiciado',
@@ -218,7 +218,7 @@ __decorate([
         length: 1000,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "indicatedName", void 0);
+], FilesEntity.prototype, "indicatedName", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'autoridad_ordena_dictamen',
@@ -226,11 +226,11 @@ __decorate([
         length: 200,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "dictumOrderAuthority", void 0);
+], FilesEntity.prototype, "dictumOrderAuthority", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_notificacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "notifyDate", void 0);
+], FilesEntity.prototype, "notifyDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'notificado_a',
@@ -238,7 +238,7 @@ __decorate([
         length: 100,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "notifyA", void 0);
+], FilesEntity.prototype, "notifyA", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'lugar_notificacion',
@@ -246,19 +246,19 @@ __decorate([
         length: 300,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "notifyPlace", void 0);
+], FilesEntity.prototype, "notifyPlace", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_decomiso_dictaminacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "confiscationRulerDate", void 0);
+], FilesEntity.prototype, "confiscationRulerDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_devolucion_dictaminacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "returnRulerDate", void 0);
+], FilesEntity.prototype, "returnRulerDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_enajenacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "alienationDate", void 0);
+], FilesEntity.prototype, "alienationDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'cve_entfed',
@@ -266,27 +266,27 @@ __decorate([
         length: 15,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "entfedKey", void 0);
+], FilesEntity.prototype, "entfedKey", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_recrev_dictaminacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "rulerRecrevDate", void 0);
+], FilesEntity.prototype, "rulerRecrevDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', { name: 'no_registro', nullable: true }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "registerNumber", void 0);
+], FilesEntity.prototype, "registerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_destruccion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "destructionDate", void 0);
+], FilesEntity.prototype, "destructionDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_donacion', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "donationDate", void 0);
+], FilesEntity.prototype, "donationDate", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_acuerdo_inicial', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "initialAgreementDate", void 0);
+], FilesEntity.prototype, "initialAgreementDate", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'acuerdo_inicial',
@@ -294,7 +294,7 @@ __decorate([
         length: 1000,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "initialAgreement", void 0);
+], FilesEntity.prototype, "initialAgreement", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'estatus_expediente',
@@ -302,7 +302,7 @@ __decorate([
         length: 10,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "status", void 0);
+], FilesEntity.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'identificador',
@@ -310,11 +310,11 @@ __decorate([
         length: 5,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "identifier", void 0);
+], FilesEntity.prototype, "identifier", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', { name: 'es_delit', nullable: true, length: 1 }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "esDelit", void 0);
+], FilesEntity.prototype, "esDelit", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_transferente',
@@ -323,7 +323,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "transferentNumber", void 0);
+], FilesEntity.prototype, "transferentNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'no_exp_transferentes',
@@ -331,7 +331,7 @@ __decorate([
         length: 400,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "expTransferentNumber", void 0);
+], FilesEntity.prototype, "expTransferentNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('character varying', {
         name: 'tipo_expediente',
@@ -339,7 +339,7 @@ __decorate([
         length: 2,
     }),
     __metadata("design:type", String)
-], RecordEntity.prototype, "type", void 0);
+], FilesEntity.prototype, "type", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_emisora',
@@ -348,7 +348,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "senderNumber", void 0);
+], FilesEntity.prototype, "senderNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)('numeric', {
         name: 'no_autoridad',
@@ -357,13 +357,13 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], RecordEntity.prototype, "authorityNumber", void 0);
+], FilesEntity.prototype, "authorityNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: Date, name: 'fec_insercion_hc', nullable: true }),
     __metadata("design:type", Date)
-], RecordEntity.prototype, "insertHcDate", void 0);
-RecordEntity = __decorate([
+], FilesEntity.prototype, "insertHcDate", void 0);
+FilesEntity = __decorate([
     (0, typeorm_1.Entity)('expedientes', { schema: 'sera' })
-], RecordEntity);
-exports.RecordEntity = RecordEntity;
+], FilesEntity);
+exports.FilesEntity = FilesEntity;
 //# sourceMappingURL=record.entity.js.map

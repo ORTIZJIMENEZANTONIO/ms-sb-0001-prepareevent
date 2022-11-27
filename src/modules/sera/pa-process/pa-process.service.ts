@@ -10,7 +10,7 @@ import { GoodsEntity } from "./entities/goods.entity";
 import { ComerLotEntity } from "../comer-lot/entities/comer-lot.entity";
 import { ComerGoodsXLotEntity } from "../comer-property-by-lot/entities/comer-property-by-lot.entity";
 import { CatTransferentEntity } from "./entities/cat-transferent.entity";
-import { RecordEntity } from "./entities/record.entity";
+import { FilesEntity } from "./entities/record.entity";
 import { ParameterModEntity } from "./entities/comer-parameter-mod.entity";
 import { CatLabelEntity } from "./entities/cat-label.entity";
 import { ComerRejectedPropertyEntity } from "../comer-rejected-property/entities/comer-rejected-property.entity";
@@ -80,7 +80,7 @@ export class PaProcessService {
       ])
       .addFrom(ComerGoodsXLotEntity, "bl")
       .addFrom(CatTransferentEntity, "cat")
-      .addFrom(RecordEntity, "exd")
+      .addFrom(FilesEntity, "exd")
       .addFrom(ParameterModEntity, "par")
       .where(whereBase)
       .andWhere(`cat.CVMAN = par.VALOR `)

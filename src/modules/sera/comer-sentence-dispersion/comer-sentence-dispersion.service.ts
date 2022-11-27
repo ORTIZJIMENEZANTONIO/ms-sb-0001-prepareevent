@@ -20,14 +20,12 @@ export class ComerSentenceDispersionService {
     // @InjectRepository(ComerParameterModEntity)
     // private entityComerParameterMod: Repository<ComerParameterModEntity>,
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
-    @InjectMetric("current_event_served") public counter: Counter<string>
+    @InjectMetric("comer_sentence_served") public counter: Counter<string>
   ) {}
 
   async setSentenceDispersion(params: SentenceDispersionDto) {
     return null;
   }
 
-  async getCost() {
-    
-  }
+  async getCost() {}
 }

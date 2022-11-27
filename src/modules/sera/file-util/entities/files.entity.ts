@@ -51,7 +51,7 @@ export class FilesEntity {
     precision: 5,
     scale: 0,
   })
-  bateryNumber: number | null;
+  batteryNumber: number | null;
 
   @Column("numeric", {
     name: "no_casillero",

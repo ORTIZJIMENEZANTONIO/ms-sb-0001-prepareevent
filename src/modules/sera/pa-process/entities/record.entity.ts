@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 @Entity('expedientes', { schema: 'sera' })
-export class RecordEntity {
+export class FilesEntity {
   
   @PrimaryGeneratedColumn({
     name: 'no_expediente',

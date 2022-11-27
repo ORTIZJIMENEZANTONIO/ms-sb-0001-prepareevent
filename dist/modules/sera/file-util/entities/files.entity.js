@@ -65,7 +65,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], FilesEntity.prototype, "bateryNumber", void 0);
+], FilesEntity.prototype, "batteryNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "no_casillero",

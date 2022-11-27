@@ -77,7 +77,7 @@ let PaProcessService = class PaProcessService {
         ])
             .addFrom(comer_property_by_lot_entity_1.ComerGoodsXLotEntity, "bl")
             .addFrom(cat_transferent_entity_1.CatTransferentEntity, "cat")
-            .addFrom(record_entity_1.RecordEntity, "exd")
+            .addFrom(record_entity_1.FilesEntity, "exd")
             .addFrom(comer_parameter_mod_entity_1.ParameterModEntity, "par")
             .where(whereBase)
             .andWhere(`cat.CVMAN = par.VALOR `)
