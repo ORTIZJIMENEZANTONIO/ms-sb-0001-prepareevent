@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComerPagoref = void 0;
+exports.ComerPaymentReferenceEntity = void 0;
 const typeorm_1 = require("typeorm");
-let ComerPagoref = class ComerPagoref {
+let ComerPaymentReferenceEntity = class ComerPaymentReferenceEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", {
@@ -20,14 +20,14 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "id", void 0);
+], ComerPaymentReferenceEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)("character varying", {
         name: "referencia",
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "reference", void 0);
+], ComerPaymentReferenceEntity.prototype, "reference", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)("numeric", {
         name: "no_movimiento",
@@ -35,23 +35,23 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "movementNumber", void 0);
+], ComerPaymentReferenceEntity.prototype, "movementNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { primary: true, name: "fecha" }),
     __metadata("design:type", Date)
-], ComerPagoref.prototype, "date", void 0);
+], ComerPaymentReferenceEntity.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "monto", precision: 15, scale: 2 }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "amount", void 0);
+], ComerPaymentReferenceEntity.prototype, "amount", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { primary: true, name: "cve_banco", length: 10 }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "bankKey", void 0);
+], ComerPaymentReferenceEntity.prototype, "bankKey", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "codigo", nullable: true, precision: 4, scale: 0 }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "code", void 0);
+], ComerPaymentReferenceEntity.prototype, "code", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_lote",
@@ -60,7 +60,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "lotId", void 0);
+], ComerPaymentReferenceEntity.prototype, "lotId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "valido_sistema",
@@ -68,7 +68,7 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "validSystem", void 0);
+], ComerPaymentReferenceEntity.prototype, "validSystem", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "noentiempo",
@@ -76,7 +76,7 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "noenTime", void 0);
+], ComerPaymentReferenceEntity.prototype, "noenTime", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "descripcion",
@@ -84,11 +84,11 @@ __decorate([
         length: 200,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "description", void 0);
+], ComerPaymentReferenceEntity.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "tipo", nullable: true, length: 1 }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "type", void 0);
+], ComerPaymentReferenceEntity.prototype, "type", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "idordeningreso",
@@ -97,7 +97,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "orderIngressId", void 0);
+], ComerPaymentReferenceEntity.prototype, "orderIngressId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "resultado",
@@ -105,7 +105,7 @@ __decorate([
         length: 200,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "result", void 0);
+], ComerPaymentReferenceEntity.prototype, "result", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "sucursal",
@@ -114,7 +114,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "branchOffice", void 0);
+], ComerPaymentReferenceEntity.prototype, "branchOffice", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_pagodevuelve",
@@ -123,7 +123,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "paymentReturnId", void 0);
+], ComerPaymentReferenceEntity.prototype, "paymentReturnId", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "conciliado",
@@ -131,11 +131,11 @@ __decorate([
         length: 1,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "reconciled", void 0);
+], ComerPaymentReferenceEntity.prototype, "reconciled", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_registro", nullable: true }),
     __metadata("design:type", Date)
-], ComerPagoref.prototype, "registryDate", void 0);
+], ComerPaymentReferenceEntity.prototype, "registryDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "referenciaori",
@@ -143,19 +143,19 @@ __decorate([
         length: 30,
     }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "urlReference", void 0);
+], ComerPaymentReferenceEntity.prototype, "urlReference", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "cuenta", nullable: true, length: 20 }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "account", void 0);
+], ComerPaymentReferenceEntity.prototype, "account", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_oi", nullable: true }),
     __metadata("design:type", Date)
-], ComerPagoref.prototype, "oiDate", void 0);
+], ComerPaymentReferenceEntity.prototype, "oiDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", { name: "aplicadoa", nullable: true, length: 2 }),
     __metadata("design:type", String)
-], ComerPagoref.prototype, "applyTo", void 0);
+], ComerPaymentReferenceEntity.prototype, "applyTo", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_cliente",
@@ -164,7 +164,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "clientId", void 0);
+], ComerPaymentReferenceEntity.prototype, "clientId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "folio_oi",
@@ -173,7 +173,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "oiFolio", void 0);
+], ComerPaymentReferenceEntity.prototype, "oiFolio", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "indicador",
@@ -182,7 +182,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "indicator", void 0);
+], ComerPaymentReferenceEntity.prototype, "indicator", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "codigo_edo_cta",
@@ -191,15 +191,15 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "codeStateCta", void 0);
+], ComerPaymentReferenceEntity.prototype, "codeStateCta", void 0);
 __decorate([
     (0, typeorm_1.Column)("date", { name: "fecha_afectacion", nullable: true }),
     __metadata("design:type", Date)
-], ComerPagoref.prototype, "affectationDate", void 0);
+], ComerPaymentReferenceEntity.prototype, "affectationDate", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", { name: "no_registro", nullable: true }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "registerNumber", void 0);
+], ComerPaymentReferenceEntity.prototype, "registerNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_tipo_sat",
@@ -208,7 +208,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "typeSatId", void 0);
+], ComerPaymentReferenceEntity.prototype, "typeSatId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_gasto",
@@ -217,7 +217,7 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "spentId", void 0);
+], ComerPaymentReferenceEntity.prototype, "spentId", void 0);
 __decorate([
     (0, typeorm_1.Column)("numeric", {
         name: "id_solicitudpago",
@@ -226,9 +226,9 @@ __decorate([
         scale: 0,
     }),
     __metadata("design:type", Number)
-], ComerPagoref.prototype, "paymentRequestId", void 0);
-ComerPagoref = __decorate([
+], ComerPaymentReferenceEntity.prototype, "paymentRequestId", void 0);
+ComerPaymentReferenceEntity = __decorate([
     (0, typeorm_1.Entity)("comer_pagoref", { schema: "sera" })
-], ComerPagoref);
-exports.ComerPagoref = ComerPagoref;
+], ComerPaymentReferenceEntity);
+exports.ComerPaymentReferenceEntity = ComerPaymentReferenceEntity;
 //# sourceMappingURL=comer-payment-ref.entity.js.map

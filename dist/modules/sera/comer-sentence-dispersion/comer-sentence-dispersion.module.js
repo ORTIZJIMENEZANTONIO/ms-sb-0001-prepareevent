@@ -11,8 +11,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const nestjs_prometheus_1 = require("@willsoto/nestjs-prometheus");
 const comer_event_entity_1 = require("../comer-event/entities/comer-event.entity");
+const comer_lot_entity_1 = require("../comer-lot/entities/comer-lot.entity");
+const comer_parameter_mod_entity_1 = require("../current-event/entities/comer-parameter-mod.entity");
 const comer_sentence_dispersion_controller_1 = require("./comer-sentence-dispersion.controller");
 const comer_sentence_dispersion_service_1 = require("./comer-sentence-dispersion.service");
+const comer_payment_ref_entity_1 = require("./entities/comer-payment-ref.entity");
 let ComerSentenceDispersionModule = class ComerSentenceDispersionModule {
 };
 ComerSentenceDispersionModule = __decorate([
@@ -20,6 +23,9 @@ ComerSentenceDispersionModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forFeature([
                 comer_event_entity_1.ComerEventEntity,
+                comer_payment_ref_entity_1.ComerPaymentReferenceEntity,
+                comer_lot_entity_1.ComerLotEntity,
+                comer_parameter_mod_entity_1.ComerParameterModEntity
             ]),
         ],
         controllers: [comer_sentence_dispersion_controller_1.ComerSentenceDispersionController],

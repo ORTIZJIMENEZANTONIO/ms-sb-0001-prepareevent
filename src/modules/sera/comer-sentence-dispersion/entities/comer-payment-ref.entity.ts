@@ -5,7 +5,7 @@ import {
 } from "typeorm";
 
 @Entity("comer_pagoref", { schema: "sera" })
-export class ComerPagoref {
+export class ComerPaymentReferenceEntity {
   @PrimaryColumn("numeric", {
     name: "id_pago",
     precision: 10,

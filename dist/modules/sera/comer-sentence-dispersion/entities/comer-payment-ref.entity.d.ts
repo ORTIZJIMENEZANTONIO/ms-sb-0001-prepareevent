@@ -1,4 +1,4 @@
-export declare class ComerPagoref {
+export declare class ComerPaymentReferenceEntity {
     id: number;
     reference: string;
     movementNumber: string;
