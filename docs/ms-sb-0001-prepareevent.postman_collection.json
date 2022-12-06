@@ -916,9 +916,21 @@
 				},
 				{
 					"name": "spEventsInProgress",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{port}}/api/v1/current-event/in-progress",
 							"host": [
@@ -929,6 +941,39 @@
 								"v1",
 								"current-event",
 								"in-progress"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sentence",
+			"item": [
+				{
+					"name": "setSentenceDispersion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1471,\n    \"lotId\": 1,\n    \"uspen\": \"s\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{port}}/api/v1/comer-sentence-dispersion",
+							"host": [
+								"{{port}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comer-sentence-dispersion"
 							]
 						}
 					},

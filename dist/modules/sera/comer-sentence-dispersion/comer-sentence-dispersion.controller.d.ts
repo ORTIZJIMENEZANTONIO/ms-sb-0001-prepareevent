@@ -5,5 +5,5 @@ export declare class ComerSentenceDispersionController {
     private readonly service;
     private readonly logger;
     constructor(service: ComerSentenceDispersionService, logger: Logger);
-    setSentenceDispersion(params: SentenceDispersionDto): Promise<string>;
+    setSentenceDispersion(params: SentenceDispersionDto): Promise<"Penalización creada correctamente" | "Datos sin coincidencia">;
 }

@@ -14,10 +14,12 @@ export declare class ComerSentenceDispersionService {
     private readonly logger;
     counter: Counter<string>;
     constructor(entityComerEvent: Repository<ComerEventEntity>, entityComerPaymentRef: Repository<ComerPaymentReferenceEntity>, entityComerLot: Repository<ComerLotEntity>, entityComerParameterMod: Repository<ComerParameterModEntity>, logger: Logger, counter: Counter<string>);
-    setSentenceDispersion(params: SentenceDispersionDto): Promise<string>;
+    setSentenceDispersion(params: SentenceDispersionDto): Promise<"Penalización creada correctamente" | "Datos sin coincidencia">;
     getCost(lotId: Number): Promise<any[]>;
     getPenalty(id: any): Promise<any>;
     getLot(lotId: number): Promise<any>;
     getValueParameter(lvDeftPenalty: string, address: string): Promise<any>;
-    getFailDates(eventId: number, lvDaysLimit: number, lvDaysLimit2: number): Promise<any>;
+    getFailDates(eventId: number, lvDaysLimit: number, lvDaysLimit2: number | null): Promise<any>;
+    getLvIdPenalty(clientId: any, eventId: any, lotId: any): Promise<any>;
+    insertIntoComerPnalties(clientId: number, eventId: number, lotId: number, publicLot: number, vIdPenalty: number, failC1: Date, fail: Date, uspen: String, tpEventId: number): Promise<any>;
 }
