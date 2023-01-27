@@ -4,7 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { QueryBuilder, Repository } from "typeorm";
 import { InjectMetric } from "@willsoto/nestjs-prometheus";
 import { Counter } from "prom-client";
-const https = require("https");
+
 import { ComerEventEntity } from "../comer-event/entities/comer-event.entity";
 import { SentenceDispersionDto } from "./dto/sentence-dispersion.dto";
 import { ComerPaymentReferenceEntity } from "./entities/comer-payment-ref.entity";
